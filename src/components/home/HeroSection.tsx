@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -11,21 +10,21 @@ const HeroSection = () => {
       id: "v1",
       brand: "AUTOP",
       model: "Baseada em Transparência",
-      image: "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png",
+      image: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
       description: "Todas as marcas em um só lugar"
     },
     {
       id: "v2",
       brand: "AUTOP",
       model: "Nº 1!",
-      image: "/lovable-uploads/6f26994d-a59f-41da-be90-c2104cad1ccd.png",
+      image: "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
       description: "Venha descobrir porque somos a escolha"
     },
     {
       id: "v3",
       brand: "AUTOP",
       model: "Confiança",
-      image: "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
+      image: "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
       description: "Confiança que faz a Diferença"
     }
   ];
@@ -40,7 +39,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 transition-opacity duration-1000 ease-in-out">
         {vehicles.map((vehicle, index) => (
           <div
@@ -59,7 +57,6 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Content */}
       <div className="relative h-full z-20 flex flex-col justify-center px-6 md:px-16 lg:px-24">
         <div className="max-w-2xl animate-fade-in">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 font-gotham tracking-tight">
@@ -85,7 +82,6 @@ const HeroSection = () => {
           </div>
         </div>
         
-        {/* Indicators */}
         <div className="absolute bottom-8 left-6 md:left-16 lg:left-24 flex space-x-3">
           {vehicles.map((_, index) => (
             <button
