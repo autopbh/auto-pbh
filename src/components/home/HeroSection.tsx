@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ const HeroSection = () => {
       id: "v2",
       brand: "AUTOP",
       model: "Nº 1!",
-      image: "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
+      image: "/lovable-uploads/9bd15bc2-bfb1-4c1e-9109-36905330b679.png",
       description: "Venha descobrir porque somos a escolha"
     },
     {
