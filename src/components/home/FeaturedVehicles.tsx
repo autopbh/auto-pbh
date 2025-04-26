@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -30,8 +29,8 @@ const FeaturedVehicles = () => {
       availability: "in-stock",
       currentLocation: "Rotterdam, Netherlands",
       estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png"],
-      thumbnail: "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+      images: ["/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png"],
+      thumbnail: "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png",
       description: "Experiência Inigualável",
       options: []
     },
@@ -54,8 +53,8 @@ const FeaturedVehicles = () => {
       availability: "in-stock",
       currentLocation: "Rotterdam, Netherlands",
       estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png"],
-      thumbnail: "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
+      images: ["/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png"],
+      thumbnail: "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
       description: "Uma jornada de sucesso",
       options: []
     },
@@ -78,8 +77,8 @@ const FeaturedVehicles = () => {
       availability: "in-stock",
       currentLocation: "Rotterdam, Netherlands",
       estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png"],
-      thumbnail: "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      images: ["/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png"],
+      thumbnail: "/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png",
       description: "Confiança que faz a Diferença",
       options: []
     }
