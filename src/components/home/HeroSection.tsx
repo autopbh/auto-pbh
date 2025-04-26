@@ -3,43 +3,33 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-interface Vehicle {
-  id: string;
-  brand: string;
-  model: string;
-  image: string;
-  description: string;
-}
-
 const HeroSection = () => {
   const [activeVehicle, setActiveVehicle] = useState(0);
   
-  // Featured vehicles for the hero
-  const vehicles: Vehicle[] = [
+  const vehicles = [
     {
       id: "v1",
-      brand: "Mercedes-Benz",
-      model: "S-Class",
-      image: "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop",
-      description: "L'élégance et la technologie dans une parfaite harmonie"
+      brand: "AUTOP",
+      model: "Baseada em Transparência",
+      image: "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png",
+      description: "Todas as marcas em um só lugar"
     },
     {
       id: "v2",
-      brand: "BMW",
-      model: "7 Series",
-      image: "https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?q=80&w=2592&auto=format&fit=crop",
-      description: "Une expérience de conduite prestigieuse et luxueuse"
+      brand: "AUTOP",
+      model: "Nº 1!",
+      image: "/lovable-uploads/6f26994d-a59f-41da-be90-c2104cad1ccd.png",
+      description: "Venha descobrir porque somos a escolha"
     },
     {
       id: "v3",
-      brand: "Audi",
-      model: "A8 L",
-      image: "https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?q=80&w=2574&auto=format&fit=crop",
-      description: "Sophistication, performance et confort exceptionnel"
+      brand: "AUTOP",
+      model: "Confiança",
+      image: "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
+      description: "Confiança que faz a Diferença"
     }
   ];
   
-  // Auto-rotate featured vehicles
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveVehicle(prev => (prev + 1) % vehicles.length);
@@ -83,11 +73,13 @@ const HeroSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <Link to="/catalog">
-              <Button className="btn-primary text-lg px-8 py-6">Découvrir</Button>
+              <Button className="btn-primary text-lg px-8 py-6">
+                Ver Catálogo Completo
+              </Button>
             </Link>
             <Link to={`/vehicle/${vehicles[activeVehicle].id}`}>
               <Button variant="outline" className="btn-secondary text-lg px-8 py-6">
-                Plus de détails
+                Saiba Mais
               </Button>
             </Link>
           </div>

@@ -4,11 +4,33 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import VehicleCard from "@/components/shop/VehicleCard";
-import { vehicles } from "@/data/vehicles";
 
 const FeaturedVehicles = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const featuredVehicles = vehicles.slice(0, 6);
+  const featuredVehicles = [
+    {
+      id: "featured1",
+      brand: "AUTOP",
+      model: "Atendimento Personalizado",
+      image: "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+      description: "Experiência Inigualável"
+    },
+    {
+      id: "featured2",
+      brand: "AUTOP",
+      model: "& Nossos Clientes",
+      image: "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
+      description: "Uma jornada de sucesso"
+    },
+    {
+      id: "featured3",
+      brand: "AUTOP",
+      model: "Creta",
+      image: "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      description: "Confiança que faz a Diferença"
+    }
+  ];
+  
   const slidesPerView = { mobile: 1, tablet: 2, desktop: 3 };
   const totalSlides = Math.ceil(featuredVehicles.length / slidesPerView.desktop);
 
@@ -25,9 +47,9 @@ const FeaturedVehicles = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold">Nos meilleures offres</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Nossos Destaques</h2>
             <p className="text-muted-foreground mt-2">
-              Découvrez nos véhicules sélectionnés avec soin pour leur qualité exceptionnelle
+              Descubra por que somos a escolha número 1
             </p>
           </div>
           <div className="hidden md:flex space-x-2">
@@ -36,7 +58,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={prevSlide}
               className="rounded-full"
-              aria-label="Slide précédent"
+              aria-label="Slide anterior"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -45,7 +67,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={nextSlide}
               className="rounded-full"
-              aria-label="Slide suivant"
+              aria-label="Próximo slide"
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
@@ -88,7 +110,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={prevSlide}
             className="rounded-full"
-            aria-label="Slide précédent"
+            aria-label="Slide anterior"
           >
             <ChevronLeft className="h-5 w-5" />
           </Button>
@@ -97,7 +119,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={nextSlide}
             className="rounded-full"
-            aria-label="Slide suivant"
+            aria-label="Próximo slide"
           >
             <ChevronRight className="h-5 w-5" />
           </Button>
@@ -106,7 +128,9 @@ const FeaturedVehicles = () => {
         {/* View All Button */}
         <div className="text-center mt-12">
           <Link to="/catalog">
-            <Button className="btn-primary px-8">Voir tout le catalogue</Button>
+            <Button className="btn-primary px-8">
+              Explorar Todo Catálogo
+            </Button>
           </Link>
         </div>
       </div>
