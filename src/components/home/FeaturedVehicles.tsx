@@ -4,30 +4,84 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import VehicleCard from "@/components/shop/VehicleCard";
+import { Vehicle } from "@/types";
 
 const FeaturedVehicles = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const featuredVehicles = [
+  
+  // Create complete Vehicle objects that match the required type
+  const featuredVehicles: Vehicle[] = [
     {
       id: "featured1",
       brand: "AUTOP",
       model: "Atendimento Personalizado",
-      image: "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
-      description: "Experiência Inigualável"
+      year: 2023,
+      mileage: 0,
+      fuelType: "Electric",
+      engineCapacity: 0,
+      power: 0,
+      transmission: "automatic",
+      exteriorColor: "Black",
+      interiorColor: "Black",
+      features: ["Luxury Service"],
+      previousOwners: 0,
+      price: 0,
+      condition: "excellent",
+      availability: "in-stock",
+      currentLocation: "Rotterdam, Netherlands",
+      estimatedDelivery: "Immediate",
+      images: ["/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png"],
+      thumbnail: "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+      description: "Experiência Inigualável",
+      options: []
     },
     {
       id: "featured2",
       brand: "AUTOP",
       model: "& Nossos Clientes",
-      image: "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
-      description: "Uma jornada de sucesso"
+      year: 2023,
+      mileage: 0,
+      fuelType: "Electric",
+      engineCapacity: 0,
+      power: 0,
+      transmission: "automatic",
+      exteriorColor: "Black",
+      interiorColor: "Black",
+      features: ["Customer Focus"],
+      previousOwners: 0,
+      price: 0,
+      condition: "excellent",
+      availability: "in-stock",
+      currentLocation: "Rotterdam, Netherlands",
+      estimatedDelivery: "Immediate",
+      images: ["/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png"],
+      thumbnail: "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
+      description: "Uma jornada de sucesso",
+      options: []
     },
     {
       id: "featured3",
       brand: "AUTOP",
       model: "Creta",
-      image: "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
-      description: "Confiança que faz a Diferença"
+      year: 2023,
+      mileage: 0,
+      fuelType: "Electric",
+      engineCapacity: 0,
+      power: 0,
+      transmission: "automatic",
+      exteriorColor: "Black",
+      interiorColor: "Black",
+      features: ["Trust"],
+      previousOwners: 0,
+      price: 0,
+      condition: "excellent",
+      availability: "in-stock",
+      currentLocation: "Rotterdam, Netherlands",
+      estimatedDelivery: "Immediate",
+      images: ["/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png"],
+      thumbnail: "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      description: "Confiança que faz a Diferença",
+      options: []
     }
   ];
   
