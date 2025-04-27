@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Vehicle } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,6 @@ interface VehicleCardProps {
 }
 
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
-  // Fallback image if the vehicle images are not available
   const imageUrl = vehicle.images && vehicle.images.length > 0 
     ? vehicle.images[0] 
     : "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop";
@@ -24,7 +24,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           />
           {vehicle.availability === "reserved" && (
             <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
-              Réservé
+              En Réservation
             </div>
           )}
           {vehicle.availability === "sold" && (
@@ -72,14 +72,14 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             {vehicle.availability === "in-stock" && (
               <Button size="sm" className="btn-primary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                Réserver
+                Réserver ce Véhicule
               </Button>
             )}
           </div>
           
           <Link to={`/vehicle/${vehicle.id}`} className="w-full">
             <Button variant="outline" className="w-full">
-              Voir les Détails
+              Découvrir en Détail
             </Button>
           </Link>
         </div>

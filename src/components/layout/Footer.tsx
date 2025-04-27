@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -15,7 +16,7 @@ const Footer = () => {
               className="h-12 mb-6"
             />
             <p className="text-gray-300 mb-4">
-              Votre partenaire de confiance pour des véhicules d'occasion premium et luxueux.
+              AUTO PBH - L'excellence automobile à votre service. Découvrez notre sélection exclusive de véhicules premium et profitez d'une expérience d'achat personnalisée.
             </p>
             <div className="text-gray-300">
               <p>Autolettestraat 10,</p>
@@ -28,31 +29,31 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Liens Essentiels</h4>
+            <h4 className="text-lg font-bold mb-6">Services Principaux</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/catalog" className="text-gray-300 hover:text-white transition-colors">
-                  Collection de Véhicules
+                  Notre Collection Premium
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Services Premium
+                  Services d'Exception
                 </Link>
               </li>
               <li>
                 <Link to="/financing" className="text-gray-300 hover:text-white transition-colors">
-                  Solutions de Financement
+                  Solutions de Financement Personnalisées
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-gray-300 hover:text-white transition-colors">
-                  Centre d'Aide
+                  Questions Fréquentes
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  Nous Contacter
+                  Contact Privilégié
                 </Link>
               </li>
             </ul>
@@ -60,31 +61,31 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Service Client Excellence</h4>
+            <h4 className="text-lg font-bold mb-6">Service Client Premium</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/delivery-tracking" className="text-gray-300 hover:text-white transition-colors">
-                  Suivi de Livraison Premium
+                  Suivi de Livraison Personnalisé
                 </Link>
               </li>
               <li>
                 <Link to="/warranty" className="text-gray-300 hover:text-white transition-colors">
-                  Garanties Exclusives
+                  Garanties Premium
                 </Link>
               </li>
               <li>
                 <Link to="/returns" className="text-gray-300 hover:text-white transition-colors">
-                  Conditions de Retour
+                  Politique de Satisfaction
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">
-                  Conditions Générales
+                  Conditions de Service
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">
-                  Protection des Données
+                  Confidentialité
                 </Link>
               </li>
               <li>
@@ -99,7 +100,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6">Restez Informé</h4>
             <p className="text-gray-300 mb-4">
-              Inscrivez-vous à notre newsletter pour recevoir les dernières offres et actualités.
+              Abonnez-vous à notre newsletter exclusive pour recevoir en avant-première nos dernières acquisitions et offres privilégiées.
             </p>
             <form className="flex flex-col space-y-3">
               <input
@@ -108,7 +109,7 @@ const Footer = () => {
                 className="px-4 py-2 bg-white/10 border border-white/20 rounded focus:outline-none focus:ring-2 focus:ring-autop-red"
               />
               <button type="submit" className="btn-primary">
-                S'inscrire
+                Rejoindre le Club AUTO PBH
               </button>
             </form>
             <div className="mt-6 flex space-x-4">
@@ -144,14 +145,14 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
-            © {year} AUTO PBH. Tous droits réservés.
+            © {year} AUTO PBH. L'Excellence Automobile.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link to="/terms" className="text-sm text-gray-400 hover:text-white">
-              Conditions générales
+              Mentions Légales
             </Link>
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-white">
-              Politique de confidentialité
+              Protection des Données
             </Link>
             <Link to="/cookies" className="text-sm text-gray-400 hover:text-white">
               Cookies

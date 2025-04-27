@@ -48,19 +48,19 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link to="/catalog" className="navbar-link">
-            Catalogue
+            Collection Premium
           </Link>
           <Link to="/services" className="navbar-link">
-            Services
+            Services d'Exception
           </Link>
           <Link to="/about" className="navbar-link">
-            À propos
+            Notre Histoire
           </Link>
           <Link to="/contact" className="navbar-link">
-            Contact
+            Contact Privilégié
           </Link>
           <Link to="/faq" className="navbar-link">
-            FAQ
+            Assistance
           </Link>
         </nav>
 
@@ -73,6 +73,7 @@ const Header = () => {
             size="icon"
             className="relative"
             onClick={() => window.location.href="/search"}
+            aria-label="Rechercher un véhicule"
           >
             <Search className="h-5 w-5" />
           </Button>
@@ -82,6 +83,7 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={() => setCartOpen(!cartOpen)}
+              aria-label="Voir mes réservations"
             >
               <ShoppingCart className="h-5 w-5" />
             </Button>
@@ -93,6 +95,7 @@ const Header = () => {
             size="icon"
             className="hidden md:flex"
             onClick={() => window.location.href="/account"}
+            aria-label="Mon espace personnel"
           >
             <User className="h-5 w-5" />
           </Button>

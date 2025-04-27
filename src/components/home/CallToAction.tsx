@@ -17,21 +17,21 @@ const CallToAction = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Trouvez votre véhicule de rêve dès aujourd'hui
+            Découvrez l'Excellence Automobile
           </h2>
           <p className="text-white/80 text-lg mb-8">
-            Notre équipe est à votre disposition pour vous aider à trouver le véhicule 
-            qui correspond parfaitement à vos besoins et à vos envies.
+            Notre équipe d'experts est à votre disposition pour vous accompagner dans 
+            la sélection du véhicule qui correspondra parfaitement à vos exigences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/catalog">
               <Button className="btn-primary text-lg px-8 py-6">
-                Explorer le catalogue
+                Explorer Notre Collection
               </Button>
             </Link>
             <Link to="/contact">
               <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
-                Nous contacter
+                Contact Privilégié
               </Button>
             </Link>
           </div>
