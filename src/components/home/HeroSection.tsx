@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -11,21 +10,21 @@ const HeroSection = () => {
       id: "v1",
       brand: "AUTOP",
       model: "Baseada em Transparência",
-      image: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+      image: "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
       description: "Todas as marcas em um só lugar"
     },
     {
       id: "v2",
       brand: "AUTOP",
       model: "Nº 1!",
-      image: "/lovable-uploads/9bd15bc2-bfb1-4c1e-9109-36905330b679.png",
+      image: "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
       description: "Venha descobrir porque somos a escolha"
     },
     {
       id: "v3",
       brand: "AUTOP",
       model: "Confiança",
-      image: "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
+      image: "/lovable-uploads/bb8c411a-fcc6-478f-ad1d-165259777b4b.png",
       description: "Confiança que faz a Diferença"
     }
   ];
