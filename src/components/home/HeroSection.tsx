@@ -74,7 +74,7 @@ const HeroSection = () => {
                 Ver Catálogo Completo
               </Button>
             </Link>
-            <Link to={`/vehicle/${vehicles[activeVehicle].id}`}>
+            <Link to={`/catalog`}>
               <Button variant="outline" className="btn-secondary text-lg px-8 py-6">
                 Saiba Mais
               </Button>
