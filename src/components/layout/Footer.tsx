@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -29,31 +28,31 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Liens Rapides</h4>
+            <h4 className="text-lg font-bold mb-6">Liens Essentiels</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/catalog" className="text-gray-300 hover:text-white transition-colors">
-                  Catalogue de véhicules
+                  Collection de Véhicules
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Nos services
+                  Services Premium
                 </Link>
               </li>
               <li>
                 <Link to="/financing" className="text-gray-300 hover:text-white transition-colors">
-                  Options de financement
+                  Solutions de Financement
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-gray-300 hover:text-white transition-colors">
-                  FAQ
+                  Centre d'Aide
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  Contactez-nous
+                  Nous Contacter
                 </Link>
               </li>
             </ul>
@@ -61,31 +60,36 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Service Client</h4>
+            <h4 className="text-lg font-bold mb-6">Service Client Excellence</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/delivery-tracking" className="text-gray-300 hover:text-white transition-colors">
-                  Suivi de livraison
+                  Suivi de Livraison Premium
                 </Link>
               </li>
               <li>
                 <Link to="/warranty" className="text-gray-300 hover:text-white transition-colors">
-                  Garanties
+                  Garanties Exclusives
                 </Link>
               </li>
               <li>
                 <Link to="/returns" className="text-gray-300 hover:text-white transition-colors">
-                  Politique de retour
+                  Conditions de Retour
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">
-                  Conditions générales
+                  Conditions Générales
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">
-                  Politique de confidentialité
+                  Protection des Données
+                </Link>
+              </li>
+              <li>
+                <Link to="/cookies" className="text-gray-300 hover:text-white transition-colors">
+                  Gestion des Cookies
                 </Link>
               </li>
             </ul>

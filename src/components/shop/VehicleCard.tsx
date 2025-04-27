@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Vehicle } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -73,14 +72,14 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             {vehicle.availability === "in-stock" && (
               <Button size="sm" className="btn-primary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                Ajouter
+                Réserver
               </Button>
             )}
           </div>
           
           <Link to={`/vehicle/${vehicle.id}`} className="w-full">
             <Button variant="outline" className="w-full">
-              Plus de détails
+              Voir les Détails
             </Button>
           </Link>
         </div>

@@ -8,7 +8,6 @@ import { Vehicle } from "@/types";
 const FeaturedVehicles = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Create complete Vehicle objects that match the required type
   const featuredVehicles: Vehicle[] = [
     {
       id: "featured1",
@@ -127,7 +126,6 @@ const FeaturedVehicles = () => {
           </div>
         </div>
 
-        {/* Desktop Carousel */}
         <div className="hidden md:block overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-out"
@@ -147,7 +145,6 @@ const FeaturedVehicles = () => {
           </div>
         </div>
 
-        {/* Mobile Version (Scroll instead of carousel) */}
         <div className="md:hidden flex overflow-x-auto space-x-4 pb-6 -mx-4 px-4">
           {featuredVehicles.map((vehicle) => (
             <div key={vehicle.id} className="w-80 flex-shrink-0">
@@ -156,7 +153,6 @@ const FeaturedVehicles = () => {
           ))}
         </div>
 
-        {/* Mobile Navigation */}
         <div className="md:hidden flex justify-center space-x-2 mt-6">
           <Button
             variant="outline"
@@ -178,11 +174,10 @@ const FeaturedVehicles = () => {
           </Button>
         </div>
 
-        {/* View All Button */}
         <div className="text-center mt-12">
           <Link to="/catalog">
             <Button className="btn-primary px-8">
-              Explorar Todo Catálogo
+              Explorer Notre Collection Complète
             </Button>
           </Link>
         </div>

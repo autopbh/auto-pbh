@@ -71,12 +71,12 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <Link to="/catalog">
               <Button className="btn-primary text-lg px-8 py-6">
-                Ver Catálogo Completo
+                Découvrez Notre Collection
               </Button>
             </Link>
-            <Link to={`/catalog`}>
+            <Link to="/about">
               <Button variant="outline" className="btn-secondary text-lg px-8 py-6">
-                Saiba Mais
+                Notre Histoire
               </Button>
             </Link>
           </div>
