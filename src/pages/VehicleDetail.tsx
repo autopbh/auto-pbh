@@ -101,8 +101,12 @@ const VehicleDetail = () => {
                 <span className="text-3xl font-bold text-autop-red">49 990 €</span>
               </div>
               <div className="space-y-4">
-                <Button className="w-full btn-primary">Réserver ce véhicule</Button>
-                <Button variant="outline" className="w-full">Demander plus d'informations</Button>
+                <Link to="/contact">
+                  <Button className="w-full btn-primary">Réserver ce véhicule</Button>
+                </Link>
+                <Link to="/contact">
+                  <Button variant="outline" className="w-full">Demander plus d'informations</Button>
+                </Link>
               </div>
             </div>
 
@@ -156,9 +160,11 @@ const VehicleDetail = () => {
               <p className="text-muted-foreground mb-4">
                 Notre équipe est à votre disposition pour répondre à toutes vos questions.
               </p>
-              <Button variant="outline" className="w-full">
-                Contactez votre conseiller dédié
-              </Button>
+              <Link to="/contact">
+                <Button variant="outline" className="w-full">
+                  Contactez votre conseiller dédié
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

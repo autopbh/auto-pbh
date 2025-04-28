@@ -148,7 +148,7 @@ const Footer = () => {
             © {year} AUTO PBH. L'Excellence Automobile.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link to="/terms" className="text-sm text-gray-400 hover:text-white">
+            <Link to="/legal-notice" className="text-sm text-gray-400 hover:text-white">
               Mentions Légales
             </Link>
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-white">

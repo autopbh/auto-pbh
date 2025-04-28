@@ -68,15 +68,16 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="relative"
-            onClick={() => window.location.href="/search"}
-            aria-label="Rechercher un véhicule"
-          >
-            <Search className="h-5 w-5" />
-          </Button>
+          <Link to="/search">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="relative"
+              aria-label="Rechercher un véhicule"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+          </Link>
           
           <div className="relative">
             <Button
@@ -90,15 +91,16 @@ const Header = () => {
             {cartOpen && <CartDropdown />}
           </div>
           
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hidden md:flex"
-            onClick={() => window.location.href="/account"}
-            aria-label="Mon espace personnel"
-          >
-            <User className="h-5 w-5" />
-          </Button>
+          <Link to="/account">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden md:flex"
+              aria-label="Mon espace personnel"
+            >
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
           
           {/* Mobile Menu */}
           <Sheet>
