@@ -25,80 +25,106 @@ const Faq = () => {
               <h2 className="text-2xl font-semibold mb-6 text-autop-red">Questions Fréquentes</h2>
               
               <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="financement">
-                  <AccordionTrigger>Proposez-vous des financements ?</AccordionTrigger>
+                <AccordionItem value="etat">
+                  <AccordionTrigger>Quel est l'état du véhicule et son kilométrage actuel ?</AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">
-                      Oui, nous collaborons avec des banques partenaires pour des crédits avantageux. 
-                      Nos solutions de financement sont flexibles et adaptées à chaque situation :
+                      Tous nos véhicules sont inspectés par nos experts. Le kilométrage exact est indiqué sur chaque fiche produit (exemple : Audi A4 2021 – 45 000 km). L'état est classé comme :
                     </p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li>Taux compétitifs négociés avec nos partenaires</li>
-                      <li>Durées de financement adaptables de 12 à 72 mois</li>
-                      <li>Options de leasing pour les professionnels</li>
-                      <li>Simulation personnalisée gratuite</li>
+                      <li><strong>Comme neuf</strong> (aucun défaut mécanique ou esthétique)</li>
+                      <li><strong>Très bon état</strong> (légères marques d'usage)</li>
+                      <li><strong>Bon état</strong> (petits défauts sans impact technique)</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="livraison">
-                  <AccordionTrigger>Livrez-vous en Europe ?</AccordionTrigger>
+                <AccordionItem value="pieces">
+                  <AccordionTrigger>Y a-t-il eu remplacement ou mise à jour de pièces ?</AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">
-                      Oui, nous organisons la logistique vers tous les pays de l'UE. Notre service de livraison comprend :
+                      Oui, nous indiquons toutes les pièces remplacées (ex : embrayage, freins, batterie) dans le <strong>rapport d'expertise</strong>. Demandez-le pour le véhicule qui vous intéresse !
                     </p>
-                    <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li>Transport sécurisé par transporteur spécialisé</li>
-                      <li>Suivi en temps réel de la livraison</li>
-                      <li>Assurance transport incluse</li>
-                      <li>Documentation complète pour l'immatriculation</li>
-                    </ul>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="garantie">
-                  <AccordionTrigger>Quelle garantie proposez-vous ?</AccordionTrigger>
+                <AccordionItem value="prix">
+                  <AccordionTrigger>Pourquoi vendez-vous le véhicule à ce prix ?</AccordionTrigger>
                   <AccordionContent>
-                    <p className="text-muted-foreground">
-                      Tous nos véhicules bénéficient d'une garantie minimum de 12 mois, extensible jusqu'à 36 mois. 
-                      La garantie couvre :
-                    </p>
+                    <p className="text-muted-foreground">Nos prix sont compétitifs car :</p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li>Pièces et main d'œuvre</li>
-                      <li>Assistance dépannage 24/7</li>
-                      <li>Véhicule de remplacement selon conditions</li>
-                      <li>Validité dans toute l'Europe</li>
+                      <li><strong>Occasions</strong> : Révisées et garanties (pas de mauvaises surprises)</li>
+                      <li><strong>Neufs</strong> : Remises constructeur jusqu'à -15%</li>
+                      <li><strong>Paiement comptant</strong> : Réduction supplémentaire de 10%</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="paiement">
-                  <AccordionTrigger>Quels moyens de paiement acceptez-vous ?</AccordionTrigger>
+                  <AccordionTrigger>Quand dois-je payer les 80% restants ?</AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">
-                      Nous acceptons plusieurs modes de paiement sécurisés :
+                      <strong>Aucun paiement entre l'acompte et la livraison !</strong>
                     </p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li>Virement bancaire</li>
-                      <li>Financement bancaire</li>
-                      <li>Chèque de banque</li>
-                      <li>Paiement échelonné selon conditions</li>
+                      <li>Vous payez seulement <strong>20% à la commande</strong> pour réserver le véhicule</li>
+                      <li>Les <strong>80% restants</strong> sont réglés :</li>
+                      <li className="ml-4">- À la livraison en un seul versement</li>
+                      <li className="ml-4">- OU en mensualités sans intérêt (6-84 mois) après livraison</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="reprise">
-                  <AccordionTrigger>Faites-vous la reprise de véhicules ?</AccordionTrigger>
+                <AccordionItem value="essai">
+                  <AccordionTrigger>Autorisez-vous des essais ?</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">Oui ! Réservez un essai gratuit :</p>
+                    <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
+                      <li><strong>En concession</strong> : 30 min avec un conseiller</li>
+                      <li><strong>À domicile</strong> : Possible pour les véhicules > 25k€ (frais selon distance)</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="inspection">
+                  <AccordionTrigger>Puis-je soumettre le véhicule à une inspection indépendante ?</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">Bien sûr ! Nous recommandons même :</p>
+                    <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
+                      <li><strong>Centres agréés</strong> : Dekra, Norauto</li>
+                      <li><strong>Coût</strong> : Offert pour les véhicules > 20k€ (sinon 150€ à votre charge)</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="livraison">
+                  <AccordionTrigger>Quel est le délai de livraison ?</AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">
-                      Oui, nous proposons un service de reprise professionnel :
+                      Le délai de livraison en Portugal, en France, En Espagne, en Roumanie, en Italie ne dépasse pas 5 jours.
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="garantie">
+                  <AccordionTrigger>Le véhicule est-il encore sous garantie ?</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">
+                      Garantie constructeur ou <strong>AutoAdi Extended</strong> :
                     </p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li>Évaluation gratuite de votre véhicule</li>
-                      <li>Proposition de reprise sous 24h</li>
-                      <li>Prise en charge de toutes les démarches administratives</li>
-                      <li>Possibilité de reprise même sans achat</li>
+                      <li><strong>Neufs</strong> : 2 à 5 ans (moteur, boîte, électronique)</li>
+                      <li><strong>Occasions</strong> : 12 à 24 mois (selon kilométrage)</li>
                     </ul>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="annulation">
+                  <AccordionTrigger>Puis-je annuler ma commande ?</AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-muted-foreground">
+                      Oui ! Vous bénéficiez de 14 jours de rétractation avec remboursement intégral.
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
