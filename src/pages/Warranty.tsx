@@ -1,7 +1,6 @@
-
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
-import { Shield, Clock, PhoneCall, Car, Tool } from "lucide-react";
+import { Shield, Clock, PhoneCall, Car, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Warranty = () => {
@@ -75,7 +74,7 @@ const Warranty = () => {
               
               <div className="text-center">
                 <div className="bg-autop-red/10 h-16 w-16 flex items-center justify-center rounded-full mx-auto mb-4">
-                  <Tool className="h-8 w-8 text-autop-red" />
+                  <Wrench className="h-8 w-8 text-autop-red" />
                 </div>
                 <h3 className="text-lg font-medium mb-2">Entretien privilégié</h3>
                 <p className="text-sm text-muted-foreground">
