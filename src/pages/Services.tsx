@@ -8,7 +8,7 @@ import {
   Shield, 
   PhoneCall,
   Banknote,
-  Tool,
+  Wrench,
   Clock,
   Map
 } from "lucide-react";
@@ -147,7 +147,7 @@ const Services = () => {
                   <p className="text-sm text-muted-foreground">Offres personnalisées et taux avantageux</p>
                 </div>
                 <div className="text-center">
-                  <Tool className="h-8 w-8 mx-auto mb-4 text-autop-red" />
+                  <Wrench className="h-8 w-8 mx-auto mb-4 text-autop-red" />
                   <h3 className="font-semibold mb-2">Service Après-Vente</h3>
                   <p className="text-sm text-muted-foreground">Suivi et maintenance expert</p>
                 </div>

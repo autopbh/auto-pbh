@@ -9,7 +9,7 @@ import {
   Gauge, 
   Power, 
   Shield, 
-  Tool,
+  Wrench,
   Phone,
   ArrowLeft
 } from "lucide-react";
@@ -129,7 +129,7 @@ const VehicleDetail = () => {
 
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Tool className="h-5 w-5 text-autop-red" />
+                <Wrench className="h-5 w-5 text-autop-red" />
                 Services Inclus
               </h3>
               <ul className="space-y-3 text-muted-foreground">
