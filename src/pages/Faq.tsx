@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import {
@@ -96,7 +97,7 @@ const Faq = () => {
                     <p className="text-muted-foreground">Oui ! Réservez un essai gratuit :</p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
                       <li><strong>En concession</strong> : 30 min avec un conseiller</li>
-                      <li><strong>À domicile</strong> : Possible pour les véhicules {'>'} 25k€ (frais selon distance)</li>
+                      <li><strong>À domicile</strong> : Possible pour les véhicules {'>'}25k€ (frais selon distance)</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -107,7 +108,7 @@ const Faq = () => {
                     <p className="text-muted-foreground">Bien sûr ! Nous recommandons même :</p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
                       <li><strong>Centres agréés</strong> : Dekra, Norauto</li>
-                      <li><strong>Coût</strong> : Offert pour les véhicules {'>'} 20k€ (sinon 150€ à votre charge)</li>
+                      <li><strong>Coût</strong> : Offert pour les véhicules {'>'}20k€ (sinon 150€ à votre charge)</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
