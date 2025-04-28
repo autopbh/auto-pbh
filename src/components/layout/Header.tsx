@@ -47,19 +47,19 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/catalog" className="navbar-link">
+          <Link to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
             Collection Premium
           </Link>
-          <Link to="/services" className="navbar-link">
+          <Link to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
             Services d'Exception
           </Link>
-          <Link to="/about" className="navbar-link">
+          <Link to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
             Notre Histoire
           </Link>
-          <Link to="/contact" className="navbar-link">
+          <Link to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
             Contact Privilégié
           </Link>
-          <Link to="/faq" className="navbar-link">
+          <Link to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
             Assistance
           </Link>
         </nav>
@@ -70,9 +70,9 @@ const Header = () => {
           
           <Link to="/search">
             <Button 
-              variant="ghost" 
+              variant="secondary"
               size="icon"
-              className="relative"
+              className="relative bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
               aria-label="Rechercher un véhicule"
             >
               <Search className="h-5 w-5" />
@@ -81,9 +81,10 @@ const Header = () => {
           
           <div className="relative">
             <Button
-              variant="ghost"
+              variant="secondary"
               size="icon"
               onClick={() => setCartOpen(!cartOpen)}
+              className="bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
               aria-label="Voir mes réservations"
             >
               <ShoppingCart className="h-5 w-5" />
@@ -93,9 +94,9 @@ const Header = () => {
           
           <Link to="/account">
             <Button
-              variant="ghost"
+              variant="secondary"
               size="icon"
-              className="hidden md:flex"
+              className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
               aria-label="Mon espace personnel"
             >
               <User className="h-5 w-5" />
@@ -105,7 +106,11 @@ const Header = () => {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button
+                variant="secondary"
+                size="icon"
+                className="md:hidden bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
