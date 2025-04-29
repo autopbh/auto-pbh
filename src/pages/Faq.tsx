@@ -189,7 +189,7 @@ const Faq = () => {
                     <p className="text-muted-foreground">Oui, surtout pour :</p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
                       <li><strong>Paiement comptant</strong> (jusqu'à -10%)</li>
-                      <li><strong>Anciens modèles</strong> (stock > 6 mois)</li>
+                      <li><strong>Anciens modèles</strong> (stock {'>'}6 mois)</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
