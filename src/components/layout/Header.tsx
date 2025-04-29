@@ -47,19 +47,19 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
+          <Link to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             Collection Premium
           </Link>
-          <Link to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
+          <Link to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             Services d'Exception
           </Link>
-          <Link to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
+          <Link to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             Notre Histoire
           </Link>
-          <Link to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
+          <Link to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             Contact Privilégié
           </Link>
-          <Link to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-3 py-2 rounded">
+          <Link to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             Assistance
           </Link>
         </nav>
@@ -72,7 +72,7 @@ const Header = () => {
             <Button 
               variant="secondary"
               size="icon"
-              className="relative bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
+              className="relative bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
               aria-label="Rechercher un véhicule"
             >
               <Search className="h-5 w-5" />
@@ -84,7 +84,7 @@ const Header = () => {
               variant="secondary"
               size="icon"
               onClick={() => setCartOpen(!cartOpen)}
-              className="bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
+              className="bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
               aria-label="Voir mes réservations"
             >
               <ShoppingCart className="h-5 w-5" />
@@ -96,7 +96,7 @@ const Header = () => {
             <Button
               variant="secondary"
               size="icon"
-              className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
+              className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
               aria-label="Mon espace personnel"
             >
               <User className="h-5 w-5" />
@@ -109,7 +109,7 @@ const Header = () => {
               <Button
                 variant="secondary"
                 size="icon"
-                className="md:hidden bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90"
+                className="md:hidden bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
               >
                 <Menu className="h-5 w-5" />
               </Button>
