@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Car, 
   Truck, 
@@ -10,8 +11,13 @@ import {
   Banknote,
   Wrench,
   Clock,
-  Map
+  Map,
+  CheckCircle,
+  Award,
+  UserCheck,
+  Sparkles
 } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Services = () => {
   useEffect(() => {
@@ -21,156 +27,402 @@ const Services = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Nos Services</h1>
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-12 text-center">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">Services d'Exception</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              AUTO PBH s'engage à offrir une expérience inégalée dans l'acquisition et l'entretien de véhicules premium.
+              Notre passion pour l'excellence se traduit par des services sur mesure.
+            </p>
+          </div>
           
-          <div className="space-y-12">
+          <div className="space-y-16">
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <div className="flex items-center gap-4 mb-6">
-                <Car className="h-8 w-8 text-autop-red" />
-                <h2 className="text-2xl font-semibold">Achat & Reprise de Véhicules</h2>
+                <div className="bg-autop-red rounded-full p-3">
+                  <Car className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold">Achat & Reprise de Véhicules Premium</h2>
+                  <p className="text-muted-foreground">Une expertise reconnue dans le secteur automobile haut de gamme</p>
+                </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Notre expertise dans l'achat et la reprise de véhicules premium vous garantit une transaction 
-                en toute sérénité. Nous vous proposons :
+                Notre expertise dans le marché des véhicules premium vous garantit une transaction 
+                en toute sérénité. Notre processus rigoureux inclut :
               </p>
-              <ul className="grid sm:grid-cols-2 gap-4 mb-6">
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Évaluation professionnelle gratuite
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Reprise de votre ancien véhicule
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Paiement sécurisé et rapide
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Gestion administrative complète
-                </li>
-              </ul>
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <Card className="border-autop-red/20">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold text-lg mb-3 flex items-center">
+                      <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
+                      Évaluation Professionnelle
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Analyse complète et gratuite de votre véhicule actuel par nos experts certifiés, 
+                      avec documentation détaillée et estimation optimale du prix de reprise.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="border-autop-red/20">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold text-lg mb-3 flex items-center">
+                      <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
+                      Reprise Toutes Marques
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Nous reprenons votre véhicule quelle que soit sa marque ou son état, en vous offrant
+                      les meilleures conditions du marché et un processus simplifié.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="border-autop-red/20">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold text-lg mb-3 flex items-center">
+                      <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
+                      Transaction Sécurisée
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Paiement rapide et sécurisé, avec multiples options disponibles selon vos préférences,
+                      y compris virement bancaire instantané et transfert certifié.
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="border-autop-red/20">
+                  <CardContent className="pt-6">
+                    <h3 className="font-semibold text-lg mb-3 flex items-center">
+                      <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
+                      Gestion Administrative Complète
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Prise en charge de toutes les formalités administratives, y compris le changement de propriétaire,
+                      les documents d'exportation et l'immatriculation.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <div className="flex items-center gap-4 mb-6">
-                <Truck className="h-8 w-8 text-autop-red" />
-                <h2 className="text-2xl font-semibold">Livraison Clé en Main</h2>
+                <div className="bg-autop-red rounded-full p-3">
+                  <Truck className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold">Livraison Clé en Main</h2>
+                  <p className="text-muted-foreground">Transport premium et personnalisé dans toute l'Europe</p>
+                </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Service de livraison premium dans toute l'Europe, adapté à vos exigences :
+                Notre service de livraison premium couvre l'ensemble du territoire européen avec une attention particulière aux détails :
               </p>
-              <ul className="grid sm:grid-cols-2 gap-4 mb-6">
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Transport sécurisé et assuré
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Suivi en temps réel
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Documentation complète fournie
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Livraison à domicile possible
-                </li>
-              </ul>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
+                  <h3 className="font-semibold text-lg mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-autop-red mr-2" />
+                    Transport Premium
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Transport ultra-sécurisé dans des camions spécialisés fermés avec contrôle de température et équipement anti-vibrations. 
+                    Assurance complète pendant tout le trajet et manipulation par des équipes hautement formées.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
+                  <h3 className="font-semibold text-lg mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-autop-red mr-2" />
+                    Suivi Temps Réel
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Application dédiée pour suivre votre véhicule en temps réel, avec notifications à chaque étape importante. 
+                    Contact permanent avec notre équipe de coordinateurs logistiques multilingues.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
+                  <h3 className="font-semibold text-lg mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-autop-red mr-2" />
+                    Service Personnalisé
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Livraison planifiée selon vos disponibilités, 7j/7, y compris en soirée et le week-end. 
+                    Présentation complète du véhicule et démonstration de ses fonctionnalités lors de la remise des clés.
+                  </p>
+                </div>
+                <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
+                  <h3 className="font-semibold text-lg mb-3 flex items-center">
+                    <Award className="h-5 w-5 text-autop-red mr-2" />
+                    Documentation Complète
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Dossier complet remis avec le véhicule : historique détaillé, carnets d'entretien, garanties, 
+                    manuels techniques et certificats d'authenticité pour les modèles de collection.
+                  </p>
+                </div>
+              </div>
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <div className="flex items-center gap-4 mb-6">
-                <Shield className="h-8 w-8 text-autop-red" />
-                <h2 className="text-2xl font-semibold">Garantie Premium</h2>
+                <div className="bg-autop-red rounded-full p-3">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold">Garantie Premium</h2>
+                  <p className="text-muted-foreground">Une protection complète pour votre tranquillité d'esprit</p>
+                </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Une protection complète pour votre tranquillité d'esprit :
+                Notre programme de garantie exclusive a été conçu pour répondre aux exigences les plus élevées :
               </p>
-              <ul className="grid sm:grid-cols-2 gap-4 mb-6">
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Garantie minimum 12 mois
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Extension possible jusqu'à 36 mois
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Assistance 24/7
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Réseau de partenaires agréés
-                </li>
-              </ul>
+              
+              <div className="bg-autop-red/5 p-8 rounded-lg mb-6">
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
+                  <div>
+                    <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Couverture Mécanique Premium
+                    </h3>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span><strong>24 mois</strong> minimum sur moteur et boîte de vitesses</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Extension possible jusqu'à <strong>36 mois</strong></span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Diagnostic complet avant chaque intervention</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Pièces d'origine et main d'œuvre qualifiée</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Couverture Électronique & Multimédia
+                    </h3>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Garantie de <strong>12 mois</strong> sur tous les systèmes électroniques</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Systèmes de navigation et d'infodivertissement</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Aides à la conduite et capteurs</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Mises à jour logicielles incluses</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Assistance Exclusive
+                    </h3>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Assistance routière <strong>24h/24, 7j/7</strong> dans toute l'Europe</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Dépannage et remorquage sans frais additionnels</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Hébergement ou transport alternatif en cas d'immobilisation</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Rapatriement du véhicule si nécessaire</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Services Complémentaires
+                    </h3>
+                    <ul className="space-y-3 text-muted-foreground">
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Véhicule de remplacement de catégorie équivalente</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Service de conciergerie dédié pour toute question</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Entretien préférentiel avec remise de 15%</span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                        <span>Bilan annuel offert avec diagnostic complet</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="mt-8 text-center">
+                  <Link to="/warranty">
+                    <Button className="bg-autop-red text-white hover:bg-autop-red/90">
+                      Découvrir notre programme de garantie complet
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <div className="flex items-center gap-4 mb-6">
-                <PhoneCall className="h-8 w-8 text-autop-red" />
-                <h2 className="text-2xl font-semibold">Assistance 7j/7</h2>
+                <div className="bg-autop-red rounded-full p-3">
+                  <PhoneCall className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold">Assistance Personnalisée</h2>
+                  <p className="text-muted-foreground">Un service client d'exception à votre écoute</p>
+                </div>
               </div>
-              <p className="text-lg text-muted-foreground mb-6">
-                Un support client premium disponible en permanence :
+              <p className="text-lg text-muted-foreground mb-8">
+                Notre équipe d'experts est disponible pour vous accompagner dans toutes vos démarches automobiles :
               </p>
-              <ul className="grid sm:grid-cols-2 gap-4 mb-6">
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Service client multilingue
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Assistance technique 24/7
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Dépannage d'urgence
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Suivi personnalisé
-                </li>
-              </ul>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">Service Client Premium</h3>
+                  <div className="space-y-4 text-muted-foreground">
+                    <p>
+                      <span className="font-medium text-foreground">Conseillers dédiés</span> — Chaque client bénéficie d'un conseiller personnel, 
+                      expert dans les véhicules premium et formé pour répondre à vos exigences spécifiques.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Service multilingue</span> — Nos conseillers parlent couramment français, 
+                      anglais, allemand, espagnol et portugais pour vous servir dans votre langue préférée.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Disponibilité étendue</span> — Joignables 7j/7 de 8h à 22h par téléphone, 
+                      email, chat en ligne ou visioconférence selon votre préférence.
+                    </p>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">Support Technique Spécialisé</h3>
+                  <div className="space-y-4 text-muted-foreground">
+                    <p>
+                      <span className="font-medium text-foreground">Techniciens certifiés</span> — Notre équipe technique est certifiée par les 
+                      constructeurs premium pour diagnostiquer et résoudre efficacement tout problème.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Assistance à distance</span> — Diagnostic préliminaire par visioconférence 
+                      pour résoudre rapidement les problèmes mineurs sans déplacement.
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Intervention rapide</span> — En cas de besoin, déploiement d'équipes 
+                      techniques sous 24h dans toute l'Europe pour intervention sur site.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-autop-red/10 to-transparent p-6 rounded-lg">
+                <h3 className="font-semibold text-xl mb-3 flex items-center">
+                  <UserCheck className="h-5 w-5 text-autop-red mr-2" />
+                  Notre Engagement Qualité
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  L'excellence du service est au cœur de notre philosophie. Nous nous engageons à :
+                </p>
+                <div className="grid sm:grid-cols-3 gap-4 text-sm">
+                  <div className="bg-white/50 p-4 rounded">
+                    <p className="font-medium text-center">Réponse sous 2h à toute demande</p>
+                  </div>
+                  <div className="bg-white/50 p-4 rounded">
+                    <p className="font-medium text-center">Suivi personnalisé de chaque dossier</p>
+                  </div>
+                  <div className="bg-white/50 p-4 rounded">
+                    <p className="font-medium text-center">Satisfaction client garantie à 100%</p>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-6 text-center">Services Complémentaires</h2>
-              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <Banknote className="h-8 w-8 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold mb-2">Solutions de Financement</h3>
-                  <p className="text-sm text-muted-foreground">Offres personnalisées et taux avantageux</p>
+              
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
+                  <Banknote className="h-10 w-10 mx-auto mb-4 text-autop-red" />
+                  <h3 className="font-semibold text-lg mb-2">Solutions de Financement</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Financement personnalisé avec taux préférentiels, crédit-bail et leasing avec options d'achat flexibles.
+                  </p>
+                  <Link to="/financing" className="text-autop-red hover:underline text-sm font-medium">
+                    Découvrir nos offres
+                  </Link>
                 </div>
-                <div className="text-center">
-                  <Wrench className="h-8 w-8 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold mb-2">Service Après-Vente</h3>
-                  <p className="text-sm text-muted-foreground">Suivi et maintenance expert</p>
+                
+                <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
+                  <Wrench className="h-10 w-10 mx-auto mb-4 text-autop-red" />
+                  <h3 className="font-semibold text-lg mb-2">Service Après-Vente</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Entretien premium, réparations par techniciens certifiés et programme de maintenance sur mesure.
+                  </p>
+                  <Link to="/warranty" className="text-autop-red hover:underline text-sm font-medium">
+                    En savoir plus
+                  </Link>
                 </div>
-                <div className="text-center">
-                  <Clock className="h-8 w-8 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold mb-2">Rendez-vous Express</h3>
-                  <p className="text-sm text-muted-foreground">Disponibilité sous 24h</p>
+                
+                <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
+                  <Clock className="h-10 w-10 mx-auto mb-4 text-autop-red" />
+                  <h3 className="font-semibold text-lg mb-2">Rendez-vous Express</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Service prioritaire sous 24h, consultation vidéo immédiate et assistance d'urgence.
+                  </p>
+                  <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
+                    Prendre rendez-vous
+                  </Link>
                 </div>
-                <div className="text-center">
-                  <Map className="h-8 w-8 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold mb-2">Service International</h3>
-                  <p className="text-sm text-muted-foreground">Présence dans toute l'Europe</p>
+                
+                <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
+                  <Map className="h-10 w-10 mx-auto mb-4 text-autop-red" />
+                  <h3 className="font-semibold text-lg mb-2">Service International</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Accompagnement pour importation/exportation, documentation multi-pays et conformité réglementaire.
+                  </p>
+                  <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
+                    Nous contacter
+                  </Link>
                 </div>
               </div>
-            </section>
 
-            <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm text-center">
-              <h2 className="text-2xl font-semibold mb-4">Besoin d'Plus d'Informations ?</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions
-                et vous accompagner dans votre projet.
-              </p>
-              <Button className="btn-primary">Contactez-nous</Button>
+              <div className="bg-autop-red/5 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-semibold mb-4">Besoin d'un Service Sur Mesure ?</h3>
+                <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Notre équipe d'experts est à votre disposition pour élaborer une solution
+                  parfaitement adaptée à vos exigences spécifiques.
+                </p>
+                <Link to="/contact">
+                  <Button size="lg" className="bg-autop-red hover:bg-autop-red/90 text-white">
+                    Contactez Notre Équipe Premium
+                  </Button>
+                </Link>
+              </div>
             </section>
           </div>
         </div>
