@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,9 @@ import { toast } from "@/components/ui/use-toast";
 import { TrackingOrder } from "@/types/tracking";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tables } from "@/integrations/supabase/types";
+import TrackingMap from "@/components/tracking/TrackingMap";
+import OrderDetails from "@/components/tracking/OrderDetails";
+import TrackingTimeline from "@/components/tracking/TrackingTimeline";
 
 const Tracking = () => {
   const [orderNumber, setOrderNumber] = useState("");
@@ -91,27 +95,51 @@ const Tracking = () => {
           ...data,
           trackingStatus: 'transport', // Example status
           trackingProgress: 65, // Example progress percentage
+          // Ajout des nouvelles informations
+          orderDate: new Date(data.created_at).toLocaleDateString('fr-FR'),
+          estimatedDeliveryDate: '29 avril 2025',
+          lastUpdateDate: new Date().toLocaleDateString('fr-FR'),
+          currentLocation: {
+            lat: 48.8566,
+            lng: 2.3522,
+            address: 'Centre logistique de Paris, 75008 Paris'
+          },
           trackingEvents: [
             {
               id: '1',
               date: '15 avril 2025',
               title: 'Préparation complétée',
               description: 'Valetage premium et contrôle final réalisés',
-              status: 'completed'
+              status: 'completed',
+              location: {
+                lat: 48.8566,
+                lng: 2.3522,
+                address: 'Centre de préparation Autopremium, Roissy'
+              }
             },
             {
               id: '2',
               date: '18 avril 2025',
               title: 'Transport en cours',
               description: 'Véhicule en transit, arrivée prévue le 22 avril',
-              status: 'in-progress'
+              status: 'in-progress',
+              location: {
+                lat: 48.8566,
+                lng: 2.3522,
+                address: 'En route vers Paris - A1'
+              }
             },
             {
               id: '3',
               date: '22 avril 2025',
               title: 'Livraison programmée',
               description: 'Votre conseiller vous contactera pour convenir d\'un rendez-vous',
-              status: 'pending'
+              status: 'pending',
+              location: {
+                lat: 48.8566,
+                lng: 2.3522,
+                address: 'Concession Paris 17ème'
+              }
             }
           ]
         };
@@ -426,7 +454,19 @@ const Tracking = () => {
                    order.status === 'delivered' ? 'Livrée' : 'En traitement'}
                 </span>
               </div>
+
+              {/* Carte de localisation */}
+              <div className="mb-8">
+                <h3 className="text-lg font-medium mb-4">Localisation Actuelle</h3>
+                <TrackingMap order={order} />
+              </div>
               
+              {/* Détails de la commande */}
+              <div className="mb-8">
+                <OrderDetails order={order} />
+              </div>
+              
+              {/* Barre de progression */}
               <div className="mb-8">
                 <div className="relative">
                   <div className="w-full bg-gray-200 h-2 rounded-full">
@@ -513,27 +553,10 @@ const Tracking = () => {
                 </div>
               </div>
               
+              {/* Timeline des événements */}
               <div className="space-y-4">
-                {order.trackingEvents?.map((event) => (
-                  <div key={event.id} className="flex items-start gap-4">
-                    <div className={`rounded-full p-2 ${
-                      event.status === 'completed' ? 'bg-green-100' :
-                      event.status === 'in-progress' ? 'bg-blue-100' : 'bg-gray-100'
-                    }`}>
-                      {event.status === 'completed' ? (
-                        <Check className="h-4 w-4 text-green-600" />
-                      ) : event.status === 'in-progress' ? (
-                        <TruckIcon className="h-4 w-4 text-blue-600" />
-                      ) : (
-                        <Package className="h-4 w-4 text-gray-600" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-medium">{event.title}</p>
-                      <p className="text-sm text-muted-foreground">{event.date} - {event.description}</p>
-                    </div>
-                  </div>
-                ))}
+                <h3 className="text-lg font-medium mb-4">Historique de Suivi</h3>
+                {order.trackingEvents && <TrackingTimeline events={order.trackingEvents} />}
               </div>
             </section>
           )}

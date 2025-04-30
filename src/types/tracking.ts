@@ -12,6 +12,15 @@ export type TrackingOrder = Tables<"orders"> & {
   trackingStatus?: 'preparation' | 'transport' | 'delivery' | 'reception';
   trackingProgress?: number;
   trackingEvents?: TrackingEvent[];
+  // Nouvelles propriétés pour la localisation et les dates
+  currentLocation?: {
+    lat: number;
+    lng: number;
+    address: string;
+  };
+  estimatedDeliveryDate?: string;
+  orderDate?: string;
+  lastUpdateDate?: string;
 };
 
 export type TrackingEvent = {
@@ -21,4 +30,9 @@ export type TrackingEvent = {
   description: string;
   status: 'completed' | 'in-progress' | 'pending';
   icon?: string;
+  location?: {
+    lat: number;
+    lng: number;
+    address: string;
+  };
 };
