@@ -6,31 +6,114 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TruckIcon, ClipboardCheck, Package, Check, Mail, AlertCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/components/ui/use-toast";
+import { TrackingOrder } from "@/types/tracking";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const Tracking = () => {
   const [orderNumber, setOrderNumber] = useState("");
   const [email, setEmail] = useState("");
   const [isTracking, setIsTracking] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [showRecoveryForm, setShowRecoveryForm] = useState(false);
   const [isRecoverySent, setIsRecoverySent] = useState(false);
+  const [order, setOrder] = useState<TrackingOrder | null>(null);
+  const [showNotFoundDialog, setShowNotFoundDialog] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (orderNumber.trim()) {
-      setIsTracking(true);
+    if (!orderNumber.trim()) return;
+    
+    setIsLoading(true);
+    
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .eq('order_number', orderNumber.trim())
+        .single();
+        
+      if (error) {
+        setShowNotFoundDialog(true);
+        setIsTracking(false);
+        console.error("Error fetching order:", error);
+        return;
+      }
+      
+      if (data) {
+        // Transform the data into a TrackingOrder with tracking info
+        const trackingOrder: TrackingOrder = {
+          ...data,
+          trackingStatus: 'transport', // Example status
+          trackingProgress: 65, // Example progress percentage
+          trackingEvents: [
+            {
+              id: '1',
+              date: '15 avril 2025',
+              title: 'Préparation complétée',
+              description: 'Valetage premium et contrôle final réalisés',
+              status: 'completed'
+            },
+            {
+              id: '2',
+              date: '18 avril 2025',
+              title: 'Transport en cours',
+              description: 'Véhicule en transit, arrivée prévue le 22 avril',
+              status: 'in-progress'
+            },
+            {
+              id: '3',
+              date: '22 avril 2025',
+              title: 'Livraison programmée',
+              description: 'Votre conseiller vous contactera pour convenir d\'un rendez-vous',
+              status: 'pending'
+            }
+          ]
+        };
+        
+        setOrder(trackingOrder);
+        setIsTracking(true);
+      }
+    } catch (error) {
+      console.error("Error in tracking:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur s'est produite lors de la recherche de votre commande.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const handleRecoverySubmit = (e: React.FormEvent) => {
+  const handleRecoverySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
-      // In a real application, this would send an API request to your backend
-      // to send an email with the order number to the customer
-      console.log("Sending recovery email to:", email);
+    if (!email.trim()) return;
+    
+    setIsLoading(true);
+    
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('order_number')
+        .eq('customer_email', email.trim());
+        
+      if (error) {
+        console.error("Error recovering order numbers:", error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur s'est produite lors de la récupération de vos numéros de commande.",
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      // Even if no orders are found, we'll still show success to avoid leaking information
       setIsRecoverySent(true);
       
       // Reset form after 3 seconds for better UX
@@ -39,6 +122,11 @@ const Tracking = () => {
         setShowRecoveryForm(false);
         setEmail("");
       }, 3000);
+      
+    } catch (error) {
+      console.error("Error in recovery:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -80,9 +168,14 @@ const Tracking = () => {
                   className="flex-1"
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
+                  disabled={isLoading}
                 />
-                <Button type="submit" className="bg-autop-red hover:bg-autop-red/90 text-white">
-                  Suivre ma commande
+                <Button 
+                  type="submit" 
+                  className="bg-autop-red hover:bg-autop-red/90 text-white"
+                  disabled={isLoading || !orderNumber.trim()}
+                >
+                  {isLoading ? "Recherche..." : "Suivre ma commande"}
                 </Button>
               </div>
             </form>
@@ -92,6 +185,7 @@ const Tracking = () => {
                 <button 
                   onClick={() => setShowRecoveryForm(true)}
                   className="text-autop-red hover:underline text-sm inline-flex items-center"
+                  disabled={isLoading}
                 >
                   <Mail className="h-4 w-4 mr-1" />
                   Je ne retrouve plus mon numéro de commande
@@ -112,6 +206,7 @@ const Tracking = () => {
                             placeholder="votre@email.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            disabled={isLoading}
                             required
                           />
                         </div>
@@ -119,13 +214,15 @@ const Tracking = () => {
                           <Button 
                             type="submit" 
                             className="bg-autop-red hover:bg-autop-red/90 text-white"
+                            disabled={isLoading || !email.trim()}
                           >
-                            Recevoir mes numéros de commande
+                            {isLoading ? "Envoi..." : "Recevoir mes numéros de commande"}
                           </Button>
                           <Button 
                             type="button" 
                             variant="outline" 
                             onClick={() => setShowRecoveryForm(false)}
+                            disabled={isLoading}
                           >
                             Annuler
                           </Button>
@@ -149,92 +246,158 @@ const Tracking = () => {
             )}
           </section>
 
-          {isTracking && (
+          {isTracking && order && (
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-autop-red">Commande #PBH-23856</h2>
+                <h2 className="text-2xl font-semibold text-autop-red">Commande #{order.order_number}</h2>
                 <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                  En transit
+                  {order.status === 'pending' ? 'En attente' : 
+                   order.status === 'processing' ? 'En préparation' :
+                   order.status === 'shipped' ? 'En transit' :
+                   order.status === 'delivered' ? 'Livrée' : 'En traitement'}
                 </span>
               </div>
               
               <div className="mb-8">
                 <div className="relative">
                   <div className="w-full bg-gray-200 h-2 rounded-full">
-                    <div className="bg-autop-red h-2 rounded-full" style={{ width: '65%' }}></div>
+                    <div 
+                      className="bg-autop-red h-2 rounded-full" 
+                      style={{ width: `${order.trackingProgress || 0}%` }}
+                    ></div>
                   </div>
                   
                   <div className="flex justify-between mt-4">
                     <div className="flex flex-col items-center text-center">
-                      <div className="rounded-full bg-autop-red p-2 mb-2">
-                        <Check className="h-4 w-4 text-white" />
+                      <div className={`rounded-full p-2 mb-2 ${
+                        order.trackingStatus === 'preparation' || 
+                        order.trackingStatus === 'transport' || 
+                        order.trackingStatus === 'delivery' || 
+                        order.trackingStatus === 'reception' ? 'bg-autop-red' : 'bg-gray-200'
+                      }`}>
+                        <Check className={`h-4 w-4 ${
+                          order.trackingStatus === 'preparation' || 
+                          order.trackingStatus === 'transport' || 
+                          order.trackingStatus === 'delivery' || 
+                          order.trackingStatus === 'reception' ? 'text-white' : 'text-gray-400'
+                        }`} />
                       </div>
                       <span className="text-sm font-medium">Préparation</span>
-                      <span className="text-xs text-muted-foreground">Terminé</span>
+                      <span className="text-xs text-muted-foreground">{
+                        order.trackingStatus === 'preparation' || 
+                        order.trackingStatus === 'transport' || 
+                        order.trackingStatus === 'delivery' || 
+                        order.trackingStatus === 'reception' ? 'Terminé' : 'À venir'
+                      }</span>
                     </div>
                     
                     <div className="flex flex-col items-center text-center">
-                      <div className="rounded-full bg-autop-red p-2 mb-2">
-                        <TruckIcon className="h-4 w-4 text-white" />
+                      <div className={`rounded-full p-2 mb-2 ${
+                        order.trackingStatus === 'transport' || 
+                        order.trackingStatus === 'delivery' || 
+                        order.trackingStatus === 'reception' ? 'bg-autop-red' : 'bg-gray-200'
+                      }`}>
+                        <TruckIcon className={`h-4 w-4 ${
+                          order.trackingStatus === 'transport' || 
+                          order.trackingStatus === 'delivery' || 
+                          order.trackingStatus === 'reception' ? 'text-white' : 'text-gray-400'
+                        }`} />
                       </div>
                       <span className="text-sm font-medium">Transport</span>
-                      <span className="text-xs text-muted-foreground">En cours</span>
+                      <span className="text-xs text-muted-foreground">{
+                        order.trackingStatus === 'transport' ? 'En cours' : 
+                        order.trackingStatus === 'delivery' || order.trackingStatus === 'reception' ? 'Terminé' : 'À venir'
+                      }</span>
                     </div>
                     
                     <div className="flex flex-col items-center text-center">
-                      <div className="rounded-full bg-gray-200 p-2 mb-2">
-                        <Package className="h-4 w-4 text-gray-400" />
+                      <div className={`rounded-full p-2 mb-2 ${
+                        order.trackingStatus === 'delivery' || 
+                        order.trackingStatus === 'reception' ? 'bg-autop-red' : 'bg-gray-200'
+                      }`}>
+                        <Package className={`h-4 w-4 ${
+                          order.trackingStatus === 'delivery' || 
+                          order.trackingStatus === 'reception' ? 'text-white' : 'text-gray-400'
+                        }`} />
                       </div>
                       <span className="text-sm font-medium">Livraison</span>
-                      <span className="text-xs text-muted-foreground">À venir</span>
+                      <span className="text-xs text-muted-foreground">{
+                        order.trackingStatus === 'delivery' ? 'En cours' :
+                        order.trackingStatus === 'reception' ? 'Terminé' : 'À venir'
+                      }</span>
                     </div>
                     
                     <div className="flex flex-col items-center text-center">
-                      <div className="rounded-full bg-gray-200 p-2 mb-2">
-                        <ClipboardCheck className="h-4 w-4 text-gray-400" />
+                      <div className={`rounded-full p-2 mb-2 ${
+                        order.trackingStatus === 'reception' ? 'bg-autop-red' : 'bg-gray-200'
+                      }`}>
+                        <ClipboardCheck className={`h-4 w-4 ${
+                          order.trackingStatus === 'reception' ? 'text-white' : 'text-gray-400'
+                        }`} />
                       </div>
                       <span className="text-sm font-medium">Réception</span>
-                      <span className="text-xs text-muted-foreground">À venir</span>
+                      <span className="text-xs text-muted-foreground">{
+                        order.trackingStatus === 'reception' ? 'Terminé' : 'À venir'
+                      }</span>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 rounded-full p-2">
-                    <Check className="h-4 w-4 text-green-600" />
+                {order.trackingEvents?.map((event) => (
+                  <div key={event.id} className="flex items-start gap-4">
+                    <div className={`rounded-full p-2 ${
+                      event.status === 'completed' ? 'bg-green-100' :
+                      event.status === 'in-progress' ? 'bg-blue-100' : 'bg-gray-100'
+                    }`}>
+                      {event.status === 'completed' ? (
+                        <Check className="h-4 w-4 text-green-600" />
+                      ) : event.status === 'in-progress' ? (
+                        <TruckIcon className="h-4 w-4 text-blue-600" />
+                      ) : (
+                        <Package className="h-4 w-4 text-gray-600" />
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-medium">{event.title}</p>
+                      <p className="text-sm text-muted-foreground">{event.date} - {event.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">Préparation complétée</p>
-                    <p className="text-sm text-muted-foreground">15 avril 2025 - Valetage premium et contrôle final réalisés</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 rounded-full p-2">
-                    <TruckIcon className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Transport en cours</p>
-                    <p className="text-sm text-muted-foreground">18 avril 2025 - Véhicule en transit, arrivée prévue le 22 avril</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="bg-gray-100 rounded-full p-2">
-                    <Package className="h-4 w-4 text-gray-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Livraison programmée</p>
-                    <p className="text-sm text-muted-foreground">22 avril 2025 - Votre conseiller vous contactera pour convenir d'un rendez-vous</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
           )}
         </div>
       </div>
+
+      <Dialog open={showNotFoundDialog} onOpenChange={setShowNotFoundDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-center text-lg font-semibold text-autop-red">
+              Commande introuvable
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4 text-center">
+            <p className="mb-4">
+              Aucune commande trouvée avec le numéro <strong>{orderNumber}</strong>.
+            </p>
+            <p className="text-sm text-muted-foreground mb-6">
+              Veuillez vérifier le numéro saisi ou utiliser l'option "Je ne retrouve plus mon numéro de commande".
+            </p>
+            <Button
+              variant="default"
+              className="bg-autop-red hover:bg-autop-red/90 text-white"
+              onClick={() => {
+                setShowNotFoundDialog(false);
+                setShowRecoveryForm(true);
+              }}
+            >
+              Récupérer mon numéro de commande
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
