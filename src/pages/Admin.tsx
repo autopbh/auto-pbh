@@ -9,7 +9,7 @@ import { TrackingOrder, TrackingEvent } from "@/types/tracking";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tables } from "@/integrations/supabase/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Save } from "lucide-react";
+import { Plus } from "lucide-react";
 import { EventFormValues, NewOrderFormValues, OrderFormValues } from "@/types/admin";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
@@ -71,7 +71,8 @@ const Admin = () => {
   // Ouvrir le dialogue d'édition pour une commande
   const handleEditOrder = (order: Tables<"orders">) => {
     // Récupérer les options de suivi depuis les additional_options si disponible
-    const trackingInfo = order.additional_options?.tracking || {};
+    const additionalOptions = order.additional_options as Record<string, any> | null;
+    const trackingInfo = additionalOptions?.tracking || {};
     
     // Convertir la commande en TrackingOrder avec les détails supplémentaires
     const trackingOrder: TrackingOrder = {
@@ -169,28 +170,26 @@ const Admin = () => {
       // Insérer une nouvelle commande
       const { data, error } = await supabase
         .from('orders')
-        .insert([
-          {
-            customer_name: values.customer_name,
-            customer_email: values.customer_email,
-            customer_phone: values.customer_phone,
-            vehicle_id: values.vehicle_id,
-            price: values.price,
-            status: 'pending',
-            additional_options: {
-              tracking: {
-                status: 'preparation',
-                progress: 0,
-                currentLocation: {
-                  lat: 48.8566,
-                  lng: 2.3522,
-                  address: 'Paris, France'
-                },
-                estimatedDeliveryDate: new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR')
-              }
+        .insert({
+          customer_name: values.customer_name,
+          customer_email: values.customer_email,
+          customer_phone: values.customer_phone,
+          vehicle_id: values.vehicle_id,
+          price: values.price,
+          status: 'pending',
+          additional_options: {
+            tracking: {
+              status: 'preparation',
+              progress: 0,
+              currentLocation: {
+                lat: 48.8566,
+                lng: 2.3522,
+                address: 'Paris, France'
+              },
+              estimatedDeliveryDate: new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR')
             }
           }
-        ])
+        })
         .select();
         
       if (error) {
