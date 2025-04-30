@@ -4,7 +4,7 @@ import { TrackingOrder } from '@/types/tracking';
 import { Card } from '@/components/ui/card';
 import { MapPin, Navigation } from 'lucide-react';
 import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-css.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface TrackingMapProps {
   order: TrackingOrder;

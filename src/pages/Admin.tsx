@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { EventFormValues, NewOrderFormValues, OrderFormValues } from "@/types/admin";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Json } from "@/integrations/supabase/types";
 
 // Import our components
 import OrdersTable from "@/components/admin/OrdersTable";
@@ -123,7 +123,7 @@ const Admin = () => {
           vehicle_id: values.vehicle_id,
           // Les champs de suivi seraient stockés dans une table séparée ou dans additional_options
           additional_options: {
-            ...selectedOrder.additional_options,
+            ...(selectedOrder.additional_options as Record<string, any> || {}),
             tracking: {
               status: values.trackingStatus,
               progress: values.trackingProgress,
@@ -170,6 +170,9 @@ const Admin = () => {
     setIsLoading(true);
     
     try {
+      // Générer un numéro de commande temporaire (dans une application réelle, cela serait géré côté serveur)
+      const tempOrderNum = `PBH-TEMP-${Math.floor(Math.random() * 10000)}`;
+
       // Insérer une nouvelle commande
       const { data, error } = await supabase
         .from('orders')
@@ -180,6 +183,7 @@ const Admin = () => {
           vehicle_id: values.vehicle_id,
           price: values.price,
           status: 'pending',
+          order_number: tempOrderNum, // Cette valeur est requise selon le type
           additional_options: {
             tracking: {
               status: 'preparation',
@@ -381,7 +385,7 @@ const Admin = () => {
         </Card>
       </div>
 
-      {/* Dialogue pour créer une nouvelle commande */}
+      {/* Dialogues and modals */}
       <Dialog open={isNewOrderDialogOpen} onOpenChange={setIsNewOrderDialogOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -396,7 +400,6 @@ const Admin = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Dialogue d'édition de commande */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
@@ -434,7 +437,6 @@ const Admin = () => {
         </DialogContent>
       </Dialog>
       
-      {/* Dialogue d'ajout d'événement */}
       <Dialog open={isNewEventDialogOpen} onOpenChange={setIsNewEventDialogOpen}>
         <DialogContent className="max-w-md">
           <DialogHeader>
@@ -449,7 +451,6 @@ const Admin = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Dialogue de confirmation de suppression */}
       <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
