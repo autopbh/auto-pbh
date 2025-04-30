@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -177,16 +176,21 @@ const Tracking = () => {
   // Fonction pour créer un exemple de commande pour les tests
   const createExampleOrder = async () => {
     try {
+      // We need to generate a temporary order number since it's required
+      // In production, this would be handled by the trigger we created
+      const tempOrderNum = `PBH-TEST-${Math.floor(Math.random() * 10000)}`;
+      
       const { data, error } = await supabase
         .from('orders')
-        .insert([
+        .insert(
           {
             customer_name: 'Client Test',
             customer_email: 'test@example.com',
             customer_phone: '+33123456789',
-            status: 'processing'
+            status: 'processing',
+            order_number: tempOrderNum // Adding the required field
           }
-        ])
+        )
         .select();
         
       if (error) {
