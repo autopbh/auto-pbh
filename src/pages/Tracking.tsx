@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/use-toast";
 import { TrackingOrder } from "@/types/tracking";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Tables } from "@/integrations/supabase/types";
 
 const Tracking = () => {
   const [orderNumber, setOrderNumber] = useState("");
@@ -20,10 +21,49 @@ const Tracking = () => {
   const [isRecoverySent, setIsRecoverySent] = useState(false);
   const [order, setOrder] = useState<TrackingOrder | null>(null);
   const [showNotFoundDialog, setShowNotFoundDialog] = useState(false);
+  const [debugMode, setDebugMode] = useState(false);
+  const [allOrders, setAllOrders] = useState<Tables<"orders">[]>([]);
+  const [debugError, setDebugError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Fonction de débogage pour vérifier si nous pouvons accéder aux commandes
+  const fetchAllOrders = async () => {
+    setDebugError(null);
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .limit(10);
+        
+      if (error) {
+        console.error("Erreur lors de la récupération des commandes:", error);
+        setDebugError(error.message);
+        return;
+      }
+      
+      setAllOrders(data || []);
+      
+      if (data && data.length > 0) {
+        toast({
+          title: "Succès",
+          description: `${data.length} commandes récupérées.`,
+          variant: "default"
+        });
+      } else {
+        toast({
+          title: "Aucune commande",
+          description: "Aucune commande trouvée dans la base de données.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error("Erreur inattendue:", error);
+      setDebugError(error instanceof Error ? error.message : "Erreur inconnue");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,9 +79,10 @@ const Tracking = () => {
         .single();
         
       if (error) {
+        console.error("Error fetching order:", error);
         setShowNotFoundDialog(true);
         setIsTracking(false);
-        console.error("Error fetching order:", error);
+        setDebugError(error.message);
         return;
       }
       
@@ -81,6 +122,7 @@ const Tracking = () => {
       }
     } catch (error) {
       console.error("Error in tracking:", error);
+      setDebugError(error instanceof Error ? error.message : "Erreur inconnue");
       toast({
         title: "Erreur",
         description: "Une erreur s'est produite lors de la recherche de votre commande.",
@@ -105,6 +147,7 @@ const Tracking = () => {
         
       if (error) {
         console.error("Error recovering order numbers:", error);
+        setDebugError(error.message);
         toast({
           title: "Erreur",
           description: "Une erreur s'est produite lors de la récupération de vos numéros de commande.",
@@ -125,8 +168,51 @@ const Tracking = () => {
       
     } catch (error) {
       console.error("Error in recovery:", error);
+      setDebugError(error instanceof Error ? error.message : "Erreur inconnue");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  // Fonction pour créer un exemple de commande pour les tests
+  const createExampleOrder = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('orders')
+        .insert([
+          {
+            customer_name: 'Client Test',
+            customer_email: 'test@example.com',
+            customer_phone: '+33123456789',
+            status: 'processing'
+          }
+        ])
+        .select();
+        
+      if (error) {
+        console.error("Erreur lors de la création de la commande test:", error);
+        setDebugError(error.message);
+        toast({
+          title: "Erreur",
+          description: "Impossible de créer la commande test: " + error.message,
+          variant: "destructive"
+        });
+        return;
+      }
+      
+      if (data && data.length > 0) {
+        toast({
+          title: "Commande créée",
+          description: `Numéro de commande: ${data[0].order_number}`,
+          variant: "default"
+        });
+        
+        // Actualiser la liste des commandes
+        fetchAllOrders();
+      }
+    } catch (error) {
+      console.error("Erreur inattendue:", error);
+      setDebugError(error instanceof Error ? error.message : "Erreur inconnue");
     }
   };
 
@@ -135,6 +221,85 @@ const Tracking = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold mb-8">Suivi de Livraison Personnalisé</h1>
+          
+          {/* Mode débogage */}
+          <div className="mb-6">
+            <Button 
+              onClick={() => setDebugMode(!debugMode)} 
+              variant="outline" 
+              className="text-xs"
+            >
+              {debugMode ? "Masquer le mode débogage" : "Afficher le mode débogage"}
+            </Button>
+          </div>
+          
+          {debugMode && (
+            <Card className="mb-8 bg-slate-50 border-dashed border-slate-300">
+              <CardContent className="pt-6">
+                <h2 className="text-lg font-semibold mb-4">Mode Débogage</h2>
+                
+                <div className="space-y-4">
+                  <div>
+                    <Button onClick={fetchAllOrders} className="mr-2">
+                      Tester l'accès à la base de données
+                    </Button>
+                    <Button onClick={createExampleOrder} variant="outline">
+                      Créer une commande test
+                    </Button>
+                  </div>
+                  
+                  {debugError && (
+                    <div className="bg-red-50 border border-red-200 p-4 rounded">
+                      <h3 className="font-medium text-red-800 mb-1">Erreur</h3>
+                      <p className="text-sm text-red-700">{debugError}</p>
+                    </div>
+                  )}
+                  
+                  <div>
+                    <h3 className="font-medium mb-2">Commandes disponibles ({allOrders.length})</h3>
+                    {allOrders.length > 0 ? (
+                      <div className="bg-white p-4 rounded border overflow-x-auto max-h-60">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead>
+                            <tr>
+                              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">N° Commande</th>
+                              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Client</th>
+                              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Statut</th>
+                              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200">
+                            {allOrders.map((order) => (
+                              <tr key={order.id}>
+                                <td className="px-4 py-2 text-sm">{order.order_number}</td>
+                                <td className="px-4 py-2 text-sm">{order.customer_name}</td>
+                                <td className="px-4 py-2 text-sm">{order.status}</td>
+                                <td className="px-4 py-2 text-sm">
+                                  <Button 
+                                    variant="link" 
+                                    className="p-0 h-auto text-blue-600"
+                                    onClick={() => {
+                                      setOrderNumber(order.order_number);
+                                      // Optionnellement, déclenchement de la recherche
+                                      // handleSubmit(new Event('click') as any);
+                                    }}
+                                  >
+                                    Utiliser
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-500">Aucune commande trouvée.</p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
             <h2 className="text-2xl font-semibold mb-6 text-autop-red">Service de Livraison d'Exception</h2>
