@@ -9,14 +9,16 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
+import { Edit, Trash2 } from "lucide-react";
 
 interface OrdersTableProps {
   orders: Tables<"orders">[];
   isLoading: boolean;
   onEditOrder: (order: Tables<"orders">) => void;
+  onDeleteOrder: (orderId: string) => void;
 }
 
-const OrdersTable = ({ orders, isLoading, onEditOrder }: OrdersTableProps) => {
+const OrdersTable = ({ orders, isLoading, onEditOrder, onDeleteOrder }: OrdersTableProps) => {
   return (
     <div className="border rounded-md overflow-x-auto">
       <Table>
@@ -49,12 +51,23 @@ const OrdersTable = ({ orders, isLoading, onEditOrder }: OrdersTableProps) => {
               </TableCell>
               <TableCell>{new Date(order.created_at).toLocaleDateString('fr-FR')}</TableCell>
               <TableCell className="text-right">
-                <Button 
-                  variant="ghost" 
-                  onClick={() => onEditOrder(order)}
-                >
-                  Éditer
-                </Button>
+                <div className="flex justify-end space-x-2">
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => onEditOrder(order)}
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50"
+                    onClick={() => onDeleteOrder(order.id)}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           ))}

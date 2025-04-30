@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OrderFormValues, orderFormSchema } from "@/types/admin";
 import { TrackingOrder } from "@/types/tracking";
-import { CalendarIcon } from "lucide-react";
 import { 
   Form, 
   FormField, 
@@ -23,6 +22,13 @@ interface OrderDetailsFormProps {
 }
 
 const OrderDetailsForm = ({ selectedOrder, onSubmit }: OrderDetailsFormProps) => {
+  // S'assurer que currentLocation est défini pour éviter l'erreur TypeScript
+  const defaultCurrentLocation = {
+    lat: 48.8566,
+    lng: 2.3522,
+    address: 'Paris, France'
+  };
+
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
@@ -32,11 +38,7 @@ const OrderDetailsForm = ({ selectedOrder, onSubmit }: OrderDetailsFormProps) =>
       status: selectedOrder.status,
       vehicle_id: selectedOrder.vehicle_id || "",
       estimatedDeliveryDate: selectedOrder.estimatedDeliveryDate,
-      currentLocation: selectedOrder.currentLocation || {
-        lat: 48.8566,
-        lng: 2.3522,
-        address: 'Paris, France'
-      },
+      currentLocation: selectedOrder.currentLocation || defaultCurrentLocation,
       trackingStatus: selectedOrder.trackingStatus || "preparation",
       trackingProgress: selectedOrder.trackingProgress || 0
     }
