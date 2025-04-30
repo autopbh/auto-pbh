@@ -71,7 +71,12 @@ const Admin = () => {
       customer_phone: "",
       status: "processing",
       trackingStatus: "preparation",
-      trackingProgress: 0
+      trackingProgress: 0,
+      currentLocation: {
+        lat: 48.8566,
+        lng: 2.3522,
+        address: "Paris, France"
+      }
     }
   });
 
@@ -172,6 +177,13 @@ const Admin = () => {
     setIsLoading(true);
     
     try {
+      // Make sure currentLocation is not undefined before updating
+      const currentLocationValue = values.currentLocation || {
+        lat: 48.8566,
+        lng: 2.3522,
+        address: 'Paris, France'
+      };
+
       // Mettre à jour les informations de base de la commande dans la base de données
       const { error } = await supabase
         .from('orders')
@@ -187,7 +199,7 @@ const Admin = () => {
             tracking: {
               status: values.trackingStatus,
               progress: values.trackingProgress,
-              currentLocation: values.currentLocation,
+              currentLocation: currentLocationValue,
               estimatedDeliveryDate: values.estimatedDeliveryDate,
               events: selectedOrder.trackingEvents
             }
