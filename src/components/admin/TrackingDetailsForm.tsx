@@ -18,6 +18,12 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface TrackingDetailsFormProps {
   selectedOrder: TrackingOrder;
@@ -27,6 +33,32 @@ interface TrackingDetailsFormProps {
 }
 
 const TrackingDetailsForm = ({ selectedOrder, onSubmit, onAddEvent, onDeleteEvent }: TrackingDetailsFormProps) => {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    selectedOrder.estimatedDeliveryDate ? new Date(parseDate(selectedOrder.estimatedDeliveryDate)) : undefined
+  );
+
+  // Fonction pour convertir une date au format FR (DD/MM/YYYY) en Date
+  function parseDate(dateStr: string): Date {
+    if (!dateStr) return new Date();
+    
+    // Si la date est déjà au format français (DD/MM/YYYY)
+    const frRegex = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+    const frMatches = dateStr.match(frRegex);
+    
+    if (frMatches) {
+      return new Date(Number(frMatches[3]), Number(frMatches[2]) - 1, Number(frMatches[1]));
+    }
+    
+    // Essayer de parser la date directement
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      return date;
+    }
+    
+    // Fallback à la date actuelle
+    return new Date();
+  }
+
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
@@ -45,6 +77,16 @@ const TrackingDetailsForm = ({ selectedOrder, onSubmit, onAddEvent, onDeleteEven
       trackingProgress: selectedOrder.trackingProgress || 0
     }
   });
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (!date) return;
+    
+    setSelectedDate(date);
+    
+    // Format la date au format français JJ/MM/AAAA
+    const formattedDate = format(date, 'dd/MM/yyyy', { locale: fr });
+    form.setValue('estimatedDeliveryDate', formattedDate);
+  };
 
   return (
     <Form {...form}>
@@ -102,21 +144,33 @@ const TrackingDetailsForm = ({ selectedOrder, onSubmit, onAddEvent, onDeleteEven
             control={form.control}
             name="estimatedDeliveryDate"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col">
                 <FormLabel>Date de livraison estimée</FormLabel>
-                <div className="flex">
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    type="button"
-                    className="ml-2"
-                  >
-                    <CalendarIcon className="h-4 w-4" />
-                  </Button>
-                </div>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full pl-3 text-left font-normal flex justify-between items-center",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? field.value : <span>Sélectionner une date</span>}
+                        <CalendarIcon className="h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={handleDateSelect}
+                      initialFocus
+                      className={cn("p-3 pointer-events-auto")}
+                    />
+                  </PopoverContent>
+                </Popover>
                 <FormDescription>Format: JJ/MM/AAAA</FormDescription>
                 <FormMessage />
               </FormItem>

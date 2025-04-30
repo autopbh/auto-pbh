@@ -74,17 +74,20 @@ const Admin = () => {
     const additionalOptions = order.additional_options as Record<string, any> | null;
     const trackingInfo = additionalOptions?.tracking || {};
     
+    // S'assurer que la currentLocation est définie
+    const currentLocation = trackingInfo.currentLocation || {
+      lat: 48.8566,
+      lng: 2.3522,
+      address: 'Paris, France'
+    };
+    
     // Convertir la commande en TrackingOrder avec les détails supplémentaires
     const trackingOrder: TrackingOrder = {
       ...order,
       // Ajouter des valeurs par défaut pour les propriétés de suivi
       trackingStatus: trackingInfo.status || 'preparation',
       trackingProgress: trackingInfo.progress || 0,
-      currentLocation: trackingInfo.currentLocation || {
-        lat: 48.8566,
-        lng: 2.3522,
-        address: 'Paris, France'
-      },
+      currentLocation: currentLocation,
       trackingEvents: trackingInfo.events || [],
       estimatedDeliveryDate: trackingInfo.estimatedDeliveryDate || new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR'),
       orderDate: new Date(order.created_at).toLocaleDateString('fr-FR'),
@@ -102,11 +105,11 @@ const Admin = () => {
     setIsLoading(true);
     
     try {
-      // S'assurer que currentLocation est défini
-      const currentLocationValue = values.currentLocation || {
-        lat: 48.8566,
-        lng: 2.3522,
-        address: 'Paris, France'
+      // S'assurer que currentLocation est défini avec des valeurs non-nulles
+      const currentLocationValue = {
+        lat: values.currentLocation?.lat ?? 48.8566,
+        lng: values.currentLocation?.lng ?? 2.3522,
+        address: values.currentLocation?.address ?? 'Paris, France'
       };
 
       // Mettre à jour les informations de base de la commande dans la base de données
@@ -289,7 +292,11 @@ const Admin = () => {
       description: values.description,
       date: values.date,
       status: values.status,
-      location: values.location
+      location: {
+        lat: values.location.lat,
+        lng: values.location.lng,
+        address: values.location.address
+      }
     };
     
     // Ajouter l'événement à la liste des événements de la commande sélectionnée
