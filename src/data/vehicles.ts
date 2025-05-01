@@ -1,3 +1,4 @@
+
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -460,7 +461,7 @@ export const vehicles: Vehicle[] = [
     engineCapacity: 1.4,
     power: 150,
     transmission: "automatic",
-    exteriorColor: "Blanc",
+    exteriorColor: "Gris",
     interiorColor: "Bicolore Noir/Beige",
     features: [
       "Pneus neufs",
@@ -505,19 +506,18 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "Immédiatement",
     images: [
-      "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
-      "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png",
-      "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
-      "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
-      "/lovable-uploads/9bd15bc2-bfb1-4c1e-9109-36905330b679.png",
-      "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
-      "/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png",
-      "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
-      "/lovable-uploads/bb8c411a-fcc6-478f-ad1d-165259777b4b.png",
-      "/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png",
-      "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png"
+      "/lovable-uploads/b6973597-824f-4f00-9c38-ddb5345596ce.png",
+      "/lovable-uploads/6e95c7c9-60c8-41bf-b120-c27b424914be.png",
+      "/lovable-uploads/c9574f84-828e-40b3-87df-80f409c1cc06.png",
+      "/lovable-uploads/fad779f7-0dd3-4863-a62a-31079e852320.png",
+      "/lovable-uploads/10f80d54-f54c-4fc6-9ccc-5196383b98fa.png",
+      "/lovable-uploads/ffb475b8-0867-444c-ba0a-2026bfb35ef5.png",
+      "/lovable-uploads/5df84bb0-2458-4ec2-b051-20875a43e367.png",
+      "/lovable-uploads/459f5c16-7af8-434e-b56c-968ab36d790f.png",
+      "/lovable-uploads/84aaf051-3d61-4e2d-a487-087c6be5ad7e.png",
+      "/lovable-uploads/7aee2465-e60f-492d-b200-d1dde2213c12.png"
     ],
-    thumbnail: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+    thumbnail: "/lovable-uploads/b6973597-824f-4f00-9c38-ddb5345596ce.png",
     description: "Ce Volkswagen T-Cross Highline 1.4TSI Automatique de 2021 avec seulement 25.000 km est équipé de tous les packs d'usine. Pack Innovation: Active info display, navigateur GPS, multimédia 8 pouces, commandes vocales et sélecteur de modes de conduite. Pack Sky view: toit ouvrant panoramique électrique. Pack Tech&Beats: Système audio Beats avec subwoofer, phares full LED (IQ Light) et Park assist.",
     options: ["Pack Innovation", "Pack Sky view", "Pack Tech&Beats"]
   }
