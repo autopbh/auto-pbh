@@ -70,6 +70,7 @@ export interface Order {
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
   paymentMethod: 'bank-transfer' | 'recharge-coupon';
   paymentStatus: 'pending' | 'paid' | 'failed';
+  paymentReceipt?: string;
   trackingInfo?: {
     trackingId: string;
     carrier: string;

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -9,7 +10,8 @@ import {
   CreditCard, 
   Banknote, 
   Calendar, 
-  Euro
+  Euro,
+  Upload
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -23,12 +25,15 @@ import {
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import PaymentReceiptUploader from "@/components/checkout/PaymentReceiptUploader";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [copySuccess, setCopySuccess] = useState("");
+  const [paymentReceiptUrl, setPaymentReceiptUrl] = useState("");
+  const [receiptUploaded, setReceiptUploaded] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -75,7 +80,7 @@ const Checkout = () => {
       
       toast({
         title: "Commande Confirmée",
-        description: "Votre demande de réservation a été confirmée. Veuillez effectuer le virement pour finaliser la réservation.",
+        description: "Votre demande de réservation a été confirmée. Veuillez effectuer le virement et télécharger la preuve de paiement.",
       });
     }, 1500);
   };
@@ -90,6 +95,16 @@ const Checkout = () => {
     });
     
     setTimeout(() => setCopySuccess(""), 2000);
+  };
+
+  const handleReceiptUpload = (url) => {
+    setPaymentReceiptUrl(url);
+    setReceiptUploaded(true);
+    
+    toast({
+      title: "Preuve de paiement reçue",
+      description: "Votre preuve de paiement a été téléchargée avec succès.",
+    });
   };
 
   return (
@@ -205,6 +220,20 @@ const Checkout = () => {
                     </CardContent>
                   </Card>
                   
+                  {/* Payment Receipt Upload Section */}
+                  <Alert className="bg-red-50 border-red-200 dark:bg-red-900/20 dark:border-red-800">
+                    <AlertCircle className="h-5 w-5 text-red-800 dark:text-red-400" />
+                    <AlertTitle className="text-red-800 dark:text-red-400">Important: Preuve de paiement requise</AlertTitle>
+                    <AlertDescription className="text-red-700 dark:text-red-300">
+                      <p className="mb-2">Votre commande ne sera pas traitée tant que nous n'aurons pas reçu une preuve de paiement de l'acompte.</p>
+                      <p className="mb-4">Veuillez télécharger une capture d'écran ou une photo du reçu de votre virement ci-dessous.</p>
+                      <PaymentReceiptUploader 
+                        onUploadComplete={handleReceiptUpload}
+                        orderReference={referenceNumber}
+                      />
+                    </AlertDescription>
+                  </Alert>
+                  
                   <div className="space-y-3">
                     <h3 className="font-medium text-lg">Détails de la commande</h3>
                     
@@ -277,7 +306,7 @@ const Checkout = () => {
                       <CardContent className="pt-0">
                         <p className="font-medium">{formattedDeliveryDate}</p>
                         <p className="text-sm text-amber-600 dark:text-amber-500">
-                          Après réception de votre acompte
+                          Après réception de votre acompte et validation de votre preuve de paiement
                         </p>
                       </CardContent>
                     </Card>
@@ -291,7 +320,7 @@ const Checkout = () => {
                         L'acompte de 20% est obligatoire pour confirmer votre réservation et sécuriser votre véhicule.
                       </p>
                       <p>
-                        Notre équipe vous contactera dans les 24 à 48h après réception du paiement pour finaliser les détails de la livraison.
+                        Notre équipe vous contactera dans les 24 à 48h après réception et validation du paiement pour finaliser les détails de la livraison.
                       </p>
                     </AlertDescription>
                   </Alert>
@@ -401,6 +430,7 @@ const Checkout = () => {
                         <li>Vous vous engagez à verser un acompte de 20% pour réserver votre véhicule</li>
                         <li>Le solde restant sera à régler lors de la livraison du véhicule</li>
                         <li>La livraison est estimée à 5 jours après réception de l'acompte</li>
+                        <li>Une preuve de paiement de l'acompte sera exigée pour confirmer votre réservation</li>
                       </ul>
                     </AlertDescription>
                   </Alert>
