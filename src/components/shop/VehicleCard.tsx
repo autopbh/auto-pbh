@@ -3,15 +3,50 @@ import { Link } from "react-router-dom";
 import { Vehicle } from "@/types";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface VehicleCardProps {
   vehicle: Vehicle;
 }
 
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
+  const { toast } = useToast();
   const imageUrl = vehicle.images && vehicle.images.length > 0 
     ? vehicle.images[0] 
     : "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop";
+
+  const addToCart = () => {
+    // Get current cart items from localStorage
+    const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    
+    // Check if vehicle is already in cart
+    if (currentCart.some(item => item.id === vehicle.id)) {
+      toast({
+        title: "Véhicule déjà dans le panier",
+        description: "Ce véhicule est déjà dans votre panier.",
+      });
+      return;
+    }
+    
+    // Add vehicle to cart with necessary info
+    const vehicleForCart = {
+      id: vehicle.id,
+      name: `${vehicle.brand} ${vehicle.model}`,
+      price: vehicle.price,
+      image: imageUrl
+    };
+    
+    const updatedCart = [...currentCart, vehicleForCart];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
+    // Trigger a storage event for other tabs
+    window.dispatchEvent(new Event("storage"));
+    
+    toast({
+      title: "Véhicule ajouté",
+      description: `${vehicle.brand} ${vehicle.model} a été ajouté à votre panier.`,
+    });
+  };
 
   return (
     <div className="product-card group h-full flex flex-col">
@@ -70,7 +105,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
               </span>
             </div>
             {vehicle.availability === "in-stock" && (
-              <Button size="sm" className="btn-primary">
+              <Button size="sm" className="btn-primary" onClick={addToCart}>
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Ajouter au panier
               </Button>
