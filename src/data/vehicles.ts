@@ -196,8 +196,8 @@ export const vehicles: Vehicle[] = [
     engineCapacity: 2.0,
     power: 252,
     transmission: "automatic",
-    exteriorColor: "Blanc",
-    interiorColor: "Cuir Bicolor",
+    exteriorColor: "Bleu Nuit",
+    interiorColor: "Cuir Beige",
     features: [
       "Traction intégrale",
       "IPVA payé",
@@ -243,11 +243,17 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "1-2 semaines",
     images: [
-      "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
-      "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
-      "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png"
+      "/lovable-uploads/e607ffd5-7259-4357-b93f-482b6c035b7c.png",
+      "/lovable-uploads/f5b2f97d-6087-41ea-aa99-680e2aa709e2.png",
+      "/lovable-uploads/78cf8008-6d09-4ba0-800d-b6c2597af54b.png",
+      "/lovable-uploads/ccc7303f-2890-44b9-b3f7-fdbad9eda655.png",
+      "/lovable-uploads/78b83592-3333-445e-b343-4820cafc18df.png",
+      "/lovable-uploads/6892be79-e545-442a-95d8-ca225f2d53cd.png",
+      "/lovable-uploads/16042019-ede7-4c94-ae0c-84fbb89f442c.png",
+      "/lovable-uploads/aac789b6-d0a6-4bd9-a398-31f36023a3d0.png",
+      "/lovable-uploads/f514b534-f1b5-41bd-bb35-e16d76eb810b.png"
     ],
-    thumbnail: "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
+    thumbnail: "/lovable-uploads/e607ffd5-7259-4357-b93f-482b6c035b7c.png",
     description: "Cette élégante Porsche Macan 2019 avec seulement 18 000 km est en parfait état. Moteur 2.0 16V développant 252 CV, traction intégrale, jantes RS Spyder 21 pouces et nombreux équipements. IPVA payé, licenciée, révisée en concession et premier propriétaire.",
     options: ["Pack Premium", "Toit Panoramique", "Jantes RS Spyder 21\""]
   },
