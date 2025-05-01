@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { AlertCircle, CheckCircle, BankIcon } from "lucide-react";
+import { AlertCircle, CheckCircle, Banknote } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 
@@ -151,7 +151,7 @@ const Cart = () => {
                       onClick={handlePaymentRequest}
                       className="w-full"
                     >
-                      <BankIcon className="mr-2 h-4 w-4" />
+                      <Banknote className="mr-2 h-4 w-4" />
                       Demander les informations de virement
                     </Button>
                   ) : (
