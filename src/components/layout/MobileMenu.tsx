@@ -1,10 +1,13 @@
 
 import { Link } from "react-router-dom";
-import { User, Search, ShoppingCart, Home, Car, HelpCircle, Phone, Info } from "lucide-react";
+import { User, Search, ShoppingCart, Home, Car, HelpCircle, Phone, Info, LogIn } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 
 const MobileMenu = () => {
   const { t } = useLanguage();
+  const { user, signOut } = useAuth();
 
   return (
     <div className="flex flex-col h-full">
@@ -39,13 +42,23 @@ const MobileMenu = () => {
             <ShoppingCart className="w-5 h-5 mr-3" />
             <span>{t("nav.cart")}</span>
           </Link>
-          <Link
-            to="/account"
-            className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
-          >
-            <User className="w-5 h-5 mr-3" />
-            <span>{t("nav.account")}</span>
-          </Link>
+          {user ? (
+            <Link
+              to="/account"
+              className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
+            >
+              <User className="w-5 h-5 mr-3" />
+              <span>{t("nav.account")}</span>
+            </Link>
+          ) : (
+            <Link
+              to="/auth"
+              className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
+            >
+              <LogIn className="w-5 h-5 mr-3" />
+              <span>{t("nav.login")}</span>
+            </Link>
+          )}
           <Link
             to="/about"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
@@ -67,6 +80,16 @@ const MobileMenu = () => {
             <HelpCircle className="w-5 h-5 mr-3" />
             <span>{t("nav.faq")}</span>
           </Link>
+          {user && (
+            <Button
+              variant="ghost"
+              className="justify-start px-4 py-2 hover:bg-muted transition-colors"
+              onClick={() => signOut()}
+            >
+              <LogIn className="w-5 h-5 mr-3 rotate-180" />
+              <span>Déconnexion</span>
+            </Button>
+          )}
         </nav>
       </div>
 
