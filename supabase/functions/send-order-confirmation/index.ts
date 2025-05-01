@@ -26,6 +26,8 @@ interface OrderConfirmationRequest {
 
 // Handle requests
 serve(async (req) => {
+  console.log("Received request to send-order-confirmation function");
+  
   // CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -33,6 +35,7 @@ serve(async (req) => {
   
   // Only allow POST requests
   if (req.method !== "POST") {
+    console.error("Method not allowed:", req.method);
     return new Response(JSON.stringify({ error: "Method not allowed" }), { 
       status: 405,
       headers: { ...corsHeaders, "Content-Type": "application/json" }
@@ -41,6 +44,9 @@ serve(async (req) => {
 
   try {
     // Parse request body
+    const requestData = await req.json();
+    console.log("Request data:", JSON.stringify(requestData));
+    
     const {
       orderReference,
       customerName,
@@ -51,7 +57,13 @@ serve(async (req) => {
       estimatedDelivery,
       cartItems,
       paymentReceiptUrl
-    }: OrderConfirmationRequest = await req.json();
+    }: OrderConfirmationRequest = requestData;
+
+    // Validate required fields
+    if (!customerEmail || !orderReference) {
+      console.error("Missing required fields", { customerEmail, orderReference });
+      throw new Error("Missing required fields: customerEmail and orderReference are required");
+    }
 
     // Log info about the order
     console.log(`Sending order confirmation for order ${orderReference} to ${customerEmail}`);
@@ -71,6 +83,7 @@ serve(async (req) => {
     `).join('');
 
     // Send email to customer - Using Resend's default sender domain instead of autopbh.com
+    console.log("Sending customer email...");
     const { data: customerEmailData, error: customerEmailError } = await resend.emails.send({
       from: "AutoPBH <onboarding@resend.dev>",
       to: customerEmail,
@@ -132,6 +145,28 @@ serve(async (req) => {
           </div>
         </div>
       `,
+      text: `
+        AutoPBH
+        Merci pour votre commande
+        
+        Bonjour ${customerName},
+        
+        Nous avons bien reçu votre commande ${orderReference} ainsi que votre preuve de paiement. Votre acompte a été validé.
+        
+        Livraison estimée: ${estimatedDelivery}
+        
+        Récapitulatif de votre commande:
+        Total: ${formatPrice(totalPrice)} €
+        Acompte versé: ${formatPrice(depositAmount)} €
+        Solde restant: ${formatPrice(remainingAmount)} €
+        
+        Notre équipe vous contactera dans les 24-48h pour finaliser les détails de livraison.
+        
+        Cordialement,
+        L'équipe AutoPBH
+        
+        AutoPBH SAS • 123 Avenue de l'Automobile, 75001 Paris • +33 1 23 45 67 89
+      `,
     });
 
     if (customerEmailError) {
@@ -139,7 +174,10 @@ serve(async (req) => {
       throw new Error(`Failed to send customer email: ${customerEmailError.message}`);
     }
     
+    console.log("Customer email sent successfully:", customerEmailData);
+    
     // Send notification email to admin - Using Resend's default sender domain instead of autopbh.com
+    console.log("Sending admin notification email...");
     const { data: adminEmailData, error: adminEmailError } = await resend.emails.send({
       from: "AutoPBH <onboarding@resend.dev>",
       to: "admin@autopbh.com", // Replace with your admin email
@@ -171,11 +209,23 @@ serve(async (req) => {
           </table>
         </div>
       `,
+      text: `
+        Nouvelle commande
+        
+        Référence: ${orderReference}
+        Client: ${customerName}
+        Email: ${customerEmail}
+        Total: ${formatPrice(totalPrice)} €
+        Acompte versé: ${formatPrice(depositAmount)} €
+        Livraison estimée: ${estimatedDelivery}
+      `,
     });
     
     if (adminEmailError) {
       console.error("Error sending admin email:", adminEmailError);
       // We still continue even if admin email fails, just log it
+    } else {
+      console.log("Admin email sent successfully:", adminEmailData);
     }
 
     // Return success response
