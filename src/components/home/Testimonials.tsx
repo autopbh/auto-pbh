@@ -50,25 +50,35 @@ const Testimonials = () => {
                       "{testimonial.comment}"
                     </blockquote>
                     
-                    <div className="flex items-center">
-                      {testimonial.avatar ? (
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full mr-4"
-                        />
-                      ) : (
-                        <div className="w-12 h-12 rounded-full bg-autop-red text-white flex items-center justify-center mr-4">
-                          {testimonial.name.charAt(0)}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        {testimonial.avatar ? (
+                          <img
+                            src={testimonial.avatar}
+                            alt={testimonial.name}
+                            className="w-12 h-12 rounded-full mr-4"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-autop-red text-white flex items-center justify-center mr-4">
+                            {testimonial.name.charAt(0)}
+                          </div>
+                        )}
+                        
+                        <div>
+                          <p className="font-bold">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {testimonial.location} • {testimonial.vehicle}
+                          </p>
+                        </div>
+                      </div>
+
+                      {testimonial.language && (
+                        <div className="ml-4">
+                          <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 dark:bg-gray-700 uppercase">
+                            {testimonial.language}
+                          </span>
                         </div>
                       )}
-                      
-                      <div>
-                        <p className="font-bold">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.location} • {testimonial.vehicle}
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
