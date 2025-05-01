@@ -1,4 +1,5 @@
 
+
 export interface Vehicle {
   id: string;
   brand: string;
@@ -70,7 +71,10 @@ export interface Order {
   status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
   paymentMethod: 'bank-transfer' | 'recharge-coupon';
   paymentStatus: 'pending' | 'paid' | 'failed';
+  paymentReceiptUrl?: string;
   paymentReceipt?: string;
+  customerEmail?: string;
+  orderConfirmationSent?: boolean;
   trackingInfo?: {
     trackingId: string;
     carrier: string;
@@ -99,3 +103,4 @@ export interface LanguageOption {
   name: string;
   flag: string;
 }
+

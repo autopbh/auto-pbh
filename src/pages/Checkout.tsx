@@ -11,7 +11,8 @@ import {
   Banknote, 
   Calendar, 
   Euro,
-  Upload
+  Upload,
+  Send
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { 
@@ -34,6 +35,8 @@ const Checkout = () => {
   const [copySuccess, setCopySuccess] = useState("");
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState("");
   const [receiptUploaded, setReceiptUploaded] = useState(false);
+  const [isFinalizingOrder, setIsFinalizingOrder] = useState(false);
+  const [orderFinalized, setOrderFinalized] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -105,6 +108,36 @@ const Checkout = () => {
       title: "Preuve de paiement reçue",
       description: "Votre preuve de paiement a été téléchargée avec succès.",
     });
+  };
+
+  const handleFinalizeOrder = () => {
+    if (!receiptUploaded) {
+      toast({
+        title: "Preuve de paiement manquante",
+        description: "Veuillez télécharger une preuve de paiement avant de finaliser votre commande.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsFinalizingOrder(true);
+    
+    // Simulate sending email
+    setTimeout(() => {
+      setIsFinalizingOrder(false);
+      setOrderFinalized(true);
+      
+      toast({
+        title: "Commande finalisée",
+        description: "Votre commande a été finalisée et nous avons reçu votre preuve de paiement. Vous recevrez un email de confirmation sous peu.",
+      });
+      
+      // Show finalization confirmation
+      toast({
+        title: "Email de confirmation envoyé",
+        description: "Un email contenant les détails de votre commande vous a été envoyé.",
+      });
+    }, 2000);
   };
 
   return (
@@ -328,11 +361,21 @@ const Checkout = () => {
                 
                 <CardFooter className="flex justify-center pt-2">
                   <Button 
-                    onClick={() => navigate("/")}
+                    onClick={handleFinalizeOrder}
+                    disabled={isFinalizingOrder || !receiptUploaded || orderFinalized}
                     size="lg"
                     className="w-full md:w-auto"
                   >
-                    Retour à l'accueil
+                    {isFinalizingOrder ? (
+                      "Finalisation en cours..."
+                    ) : orderFinalized ? (
+                      "Commande finalisée ✓"
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        Finaliser ma commande
+                      </>
+                    )}
                   </Button>
                 </CardFooter>
               </Card>
