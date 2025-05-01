@@ -3,8 +3,10 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { testimonials } from "@/data/testimonials";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Testimonials = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   
   const nextTestimonial = () => {
@@ -19,7 +21,7 @@ const Testimonials = () => {
     <section className="py-16 md:py-24 bg-gray-50 dark:bg-autop-gray">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Ce que nos clients disent
+          {t("home.testimonials.title")}
         </h2>
         
         <div className="relative max-w-4xl mx-auto">

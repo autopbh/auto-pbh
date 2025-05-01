@@ -1,8 +1,11 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
   const [activeVehicle, setActiveVehicle] = useState(0);
   
   const vehicles = [
@@ -71,12 +74,12 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
             <Link to="/catalog">
               <Button className="btn-primary text-lg px-8 py-6">
-                Découvrez Notre Collection
+                {t("home.hero.discover")}
               </Button>
             </Link>
             <Link to="/about">
               <Button variant="outline" className="btn-secondary text-lg px-8 py-6">
-                Notre Histoire
+                {t("home.hero.ourStory")}
               </Button>
             </Link>
           </div>

@@ -10,22 +10,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { languages } from "@/data/languages";
 import { Language } from "@/types";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LanguageSelector = () => {
-  const [currentLang, setCurrentLang] = useState<Language>("fr");
+  const { currentLanguage, setLanguage, currentLangDetails } = useLanguage();
   
-  const currentLanguage = languages.find(lang => lang.code === currentLang);
-
   const handleLanguageChange = (code: Language) => {
-    setCurrentLang(code);
-    // Ici, on pourrait implémenter la logique de changement de langue avec Google Translate
+    setLanguage(code);
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="flex items-center space-x-1 px-2 py-1">
-          <span className="text-lg">{currentLanguage?.flag}</span>
+          <span className="text-lg">{currentLangDetails.flag}</span>
           <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
@@ -34,7 +32,7 @@ const LanguageSelector = () => {
           <DropdownMenuItem
             key={language.code}
             className={`flex items-center px-4 py-2 cursor-pointer ${
-              language.code === currentLang ? 'bg-muted' : ''
+              language.code === currentLanguage ? 'bg-muted' : ''
             }`}
             onClick={() => handleLanguageChange(language.code)}
           >

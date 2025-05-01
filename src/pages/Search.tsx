@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -15,8 +16,10 @@ import { vehicles } from "@/data/vehicles";
 import VehicleCard from "@/components/shop/VehicleCard";
 import { useNavigate } from "react-router-dom";
 import { Vehicle } from "@/types";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Search = () => {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Vehicle[]>([]);
@@ -111,15 +114,14 @@ const Search = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Recherche</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("search.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Recherche Avancée</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("search.advanced")}</h2>
             
             <div className="mb-8">
               <p className="text-lg mb-6">
-                Utilisez notre moteur de recherche intelligent pour trouver le véhicule qui correspond parfaitement 
-                à vos critères parmi notre sélection exclusive.
+                {t("search.description")}
               </p>
               
               <div className="flex flex-col md:flex-row gap-4">
@@ -127,7 +129,7 @@ const Search = () => {
                   <SearchIcon className="absolute left-4 top-3 h-5 w-5 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder='Tapez "Mercedes Classe S 2023" ou scannez vos critères...'
+                    placeholder={t("search.placeholder")}
                     className="w-full rounded-md border pl-11 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-autop-red"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -141,7 +143,7 @@ const Search = () => {
                 </div>
                 <Button className="md:w-auto" onClick={handleSearch}>
                   <SearchIcon className="mr-2 h-4 w-4" />
-                  Rechercher
+                  {t("search.button")}
                 </Button>
               </div>
             </div>
@@ -150,7 +152,7 @@ const Search = () => {
               <div className="bg-white/70 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <Car className="h-6 w-6 text-autop-red" />
-                  <h3 className="text-xl font-semibold">Recherche par Marque</h3>
+                  <h3 className="text-xl font-semibold">{t("search.byBrand")}</h3>
                 </div>
                 <ul className="space-y-2">
                   {["Mercedes-Benz", "BMW", "Audi", "Porsche", "Ford", "Jaguar"].map((brand) => (
@@ -164,7 +166,7 @@ const Search = () => {
                     >
                       <span>{brand}</span>
                       <span className="text-muted-foreground">
-                        {vehicles.filter(v => v.brand === brand).length} modèles
+                        {vehicles.filter(v => v.brand === brand).length} {t("search.models")}
                       </span>
                     </li>
                   ))}
@@ -174,7 +176,7 @@ const Search = () => {
               <div className="bg-white/70 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <Filter className="h-6 w-6 text-autop-red" />
-                  <h3 className="text-xl font-semibold">Filtres Populaires</h3>
+                  <h3 className="text-xl font-semibold">{t("search.filters")}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {["SUV Premium", "Moins de 50 000 km", "Toit panoramique", "Année 2022+", "Hybride", "Berlines"].map(filter => (
@@ -199,8 +201,10 @@ const Search = () => {
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-6">
                 {searchResults.length > 0 
-                  ? `${searchResults.length} résultat${searchResults.length > 1 ? 's' : ''} trouvé${searchResults.length > 1 ? 's' : ''}`
-                  : "Aucun résultat trouvé"}
+                  ? `${searchResults.length} ${searchResults.length > 1 
+                       ? t("search.results_plural") 
+                       : t("search.results")}`
+                  : t("search.noResults")}
               </h2>
               
               {searchResults.length > 0 ? (
@@ -211,10 +215,10 @@ const Search = () => {
                 </div>
               ) : (
                 <div className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm text-center">
-                  <p className="text-lg mb-4">Aucun véhicule ne correspond à votre recherche.</p>
-                  <p className="mb-6">Essayez avec d'autres termes ou consultez notre catalogue complet.</p>
+                  <p className="text-lg mb-4">{t("search.noResultsDesc")}</p>
+                  <p className="mb-6">{t("search.tryOther")}</p>
                   <Button onClick={() => navigate('/catalog')}>
-                    Voir le catalogue complet
+                    {t("search.viewCatalog")}
                   </Button>
                 </div>
               )}
@@ -222,19 +226,19 @@ const Search = () => {
           )}
           
           <section className="text-center p-8">
-            <p className="text-muted-foreground mb-4">Assistance recherche</p>
+            <p className="text-muted-foreground mb-4">{t("search.assistance")}</p>
             <Button variant="outline" className="gap-2">
               <SearchIcon className="h-4 w-4" />
-              Recherche vocale disponible
+              {t("search.voiceSearch")}
             </Button>
           </section>
         </div>
       </div>
       
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Recherchez un véhicule..." value={query} onValueChange={setQuery} />
+        <CommandInput placeholder={t("search.placeholder")} value={query} onValueChange={setQuery} />
         <CommandList>
-          <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
+          <CommandEmpty>{t("search.noResults")}</CommandEmpty>
           <CommandGroup heading="Suggestions">
             {generateSuggestions().map((suggestion) => (
               <CommandItem 

@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import VehicleCard from "@/components/shop/VehicleCard";
 import { Vehicle } from "@/types";
 import { vehicles } from "@/data/vehicles";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeaturedVehicles = () => {
+  const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // Utiliser les 3 premiers véhicules du fichier de données
@@ -29,9 +31,9 @@ const FeaturedVehicles = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold">Nos Véhicules Vedettes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">{t("home.featured.title")}</h2>
             <p className="text-muted-foreground mt-2">
-              Découvrez notre sélection de véhicules premium
+              {t("home.featured.subtitle")}
             </p>
           </div>
           <div className="hidden md:flex space-x-2">
@@ -107,7 +109,7 @@ const FeaturedVehicles = () => {
         <div className="text-center mt-12">
           <Link to="/catalog">
             <Button className="btn-primary px-8">
-              Explorer Notre Collection Complète
+              {t("home.featured.viewAll")}
             </Button>
           </Link>
         </div>

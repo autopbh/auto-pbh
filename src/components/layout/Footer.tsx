@@ -1,9 +1,11 @@
 
 import { Link } from "react-router-dom";
 import { Facebook } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-autop-dark text-white pt-16 pb-8">
@@ -17,12 +19,12 @@ const Footer = () => {
               className="h-12 mb-6"
             />
             <p className="text-gray-300 mb-4">
-              AUTO PBH - L'excellence automobile à votre service. Découvrez notre sélection exclusive de véhicules premium et profitez d'une expérience d'achat personnalisée.
+              {t("footer.description")}
             </p>
             <div className="text-gray-300">
-              <p>Autolettestraat 10,</p>
-              <p>3063 NP Rotterdam,</p>
-              <p>Pays-Bas</p>
+              <p>{t("footer.address")}</p>
+              <p>{t("footer.city")}</p>
+              <p>{t("footer.country")}</p>
               <p className="mt-4">+351 961 196 405</p>
               <p>pbhauto@gmail.com</p>
             </div>
@@ -30,31 +32,31 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Services Principaux</h4>
+            <h4 className="text-lg font-bold mb-6">{t("footer.mainServices")}</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/catalog" className="text-gray-300 hover:text-white transition-colors">
-                  Notre Collection Premium
+                  {t("footer.collection")}
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-white transition-colors">
-                  Services d'Exception
+                  {t("footer.services")}
                 </Link>
               </li>
               <li>
                 <Link to="/financing" className="text-gray-300 hover:text-white transition-colors">
-                  Solutions de Financement Personnalisées
+                  {t("footer.financing")}
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-gray-300 hover:text-white transition-colors">
-                  Questions Fréquentes
+                  {t("footer.faq")}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  Contact Privilégié
+                  {t("footer.contactPrivilege")}
                 </Link>
               </li>
             </ul>
@@ -62,36 +64,36 @@ const Footer = () => {
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Service Client Premium</h4>
+            <h4 className="text-lg font-bold mb-6">{t("footer.customerService")}</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/delivery-tracking" className="text-gray-300 hover:text-white transition-colors">
-                  Suivi de Livraison Personnalisé
+                  {t("footer.tracking")}
                 </Link>
               </li>
               <li>
                 <Link to="/warranty" className="text-gray-300 hover:text-white transition-colors">
-                  Garanties Premium
+                  {t("footer.warranty")}
                 </Link>
               </li>
               <li>
                 <Link to="/returns" className="text-gray-300 hover:text-white transition-colors">
-                  Politique de Satisfaction
+                  {t("footer.returns")}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-gray-300 hover:text-white transition-colors">
-                  Conditions de Service
+                  {t("footer.terms")}
                 </Link>
               </li>
               <li>
                 <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">
-                  Confidentialité
+                  {t("footer.privacy")}
                 </Link>
               </li>
               <li>
                 <Link to="/cookies" className="text-gray-300 hover:text-white transition-colors">
-                  Gestion des Cookies
+                  {t("footer.cookies")}
                 </Link>
               </li>
             </ul>
@@ -99,18 +101,18 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-bold mb-6">Restez Informé</h4>
+            <h4 className="text-lg font-bold mb-6">{t("footer.stayInformed")}</h4>
             <p className="text-gray-300 mb-4">
-              Abonnez-vous à notre newsletter exclusive pour recevoir en avant-première nos dernières acquisitions et offres privilégiées.
+              {t("footer.newsletter")}
             </p>
             <form className="flex flex-col space-y-3">
               <input
                 type="email"
-                placeholder="Votre email"
+                placeholder={t("footer.emailPlaceholder")}
                 className="px-4 py-2 bg-white/10 border border-white/20 rounded focus:outline-none focus:ring-2 focus:ring-autop-red"
               />
               <button type="submit" className="btn-primary">
-                Rejoindre le Club AUTO PBH
+                {t("footer.joinClub")}
               </button>
             </form>
             <div className="mt-6 flex space-x-4">
@@ -130,17 +132,17 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-400">
-            © {year} AUTO PBH. L'Excellence Automobile.
+            {t("footer.copyright").replace("{year}", year.toString())}
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link to="/legal-notice" className="text-sm text-gray-400 hover:text-white">
-              Mentions Légales
+              {t("footer.legal")}
             </Link>
             <Link to="/privacy" className="text-sm text-gray-400 hover:text-white">
-              Protection des Données
+              {t("footer.dataProtection")}
             </Link>
             <Link to="/cookies" className="text-sm text-gray-400 hover:text-white">
-              Cookies
+              {t("footer.cookies")}
             </Link>
           </div>
         </div>

@@ -8,11 +8,13 @@ import { Badge } from "@/components/ui/badge";
 import LanguageSelector from "@/components/common/LanguageSelector";
 import CartDropdown from "@/components/shop/CartDropdown";
 import MobileMenu from "@/components/layout/MobileMenu";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const { t } = useLanguage();
 
   // Change header style on scroll
   useEffect(() => {
@@ -69,19 +71,19 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
-            Collection Premium
+            {t("nav.catalog")}
           </Link>
           <Link to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
-            Services d'Exception
+            {t("nav.services")}
           </Link>
           <Link to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
-            Notre Histoire
+            {t("nav.about")}
           </Link>
           <Link to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
-            Contact Privilégié
+            {t("nav.contact")}
           </Link>
           <Link to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
-            Assistance
+            {t("nav.faq")}
           </Link>
         </nav>
 
@@ -94,7 +96,7 @@ const Header = () => {
               variant="secondary"
               size="icon"
               className="relative bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
-              aria-label="Rechercher un véhicule"
+              aria-label={t("nav.search")}
             >
               <Search className="h-5 w-5" />
             </Button>
@@ -106,7 +108,7 @@ const Header = () => {
               size="icon"
               onClick={() => setCartOpen(!cartOpen)}
               className="bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
-              aria-label="Voir mes réservations"
+              aria-label={t("nav.cart")}
             >
               <ShoppingCart className="h-5 w-5" />
               {cartItems.length > 0 && (
@@ -126,7 +128,7 @@ const Header = () => {
               variant="secondary"
               size="icon"
               className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
-              aria-label="Mon espace personnel"
+              aria-label={t("nav.account")}
             >
               <User className="h-5 w-5" />
             </Button>

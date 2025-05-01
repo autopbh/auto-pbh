@@ -1,8 +1,11 @@
 
 import { Link } from "react-router-dom";
 import { User, Search, ShoppingCart, Home, Car, HelpCircle, Phone, Info } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MobileMenu = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col h-full">
       <div className="pt-6 pb-8">
@@ -13,56 +16,56 @@ const MobileMenu = () => {
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <Home className="w-5 h-5 mr-3" />
-            <span>Accueil</span>
+            <span>{t("nav.home")}</span>
           </Link>
           <Link
             to="/catalog"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <Car className="w-5 h-5 mr-3" />
-            <span>Catalogue</span>
+            <span>{t("nav.catalog")}</span>
           </Link>
           <Link
             to="/search"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <Search className="w-5 h-5 mr-3" />
-            <span>Recherche</span>
+            <span>{t("nav.search")}</span>
           </Link>
           <Link
             to="/cart"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <ShoppingCart className="w-5 h-5 mr-3" />
-            <span>Panier</span>
+            <span>{t("nav.cart")}</span>
           </Link>
           <Link
             to="/account"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <User className="w-5 h-5 mr-3" />
-            <span>Compte</span>
+            <span>{t("nav.account")}</span>
           </Link>
           <Link
             to="/about"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <Info className="w-5 h-5 mr-3" />
-            <span>À propos</span>
+            <span>{t("nav.about")}</span>
           </Link>
           <Link
             to="/contact"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <Phone className="w-5 h-5 mr-3" />
-            <span>Contact</span>
+            <span>{t("nav.contact")}</span>
           </Link>
           <Link
             to="/faq"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
             <HelpCircle className="w-5 h-5 mr-3" />
-            <span>FAQ</span>
+            <span>{t("nav.faq")}</span>
           </Link>
         </nav>
       </div>
