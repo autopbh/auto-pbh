@@ -1,7 +1,67 @@
-
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
+  {
+    id: "v14",
+    brand: "Land Rover",
+    model: "Range Rover Evoque Dynamic Si4 4x4",
+    year: 2013,
+    mileage: 138000,
+    fuelType: "Essence",
+    engineCapacity: 2.0,
+    power: 240,
+    transmission: "automatic",
+    exteriorColor: "Bleu Nuit",
+    interiorColor: "Bicolore Noir/Beige",
+    features: [
+      "Rapport technique approuvé",
+      "4 Pneus neufs",
+      "Moteur 2.0 Turbo avec 240cv",
+      "Boîte automatique de 6 vitesses",
+      "Traction intégrale à la demande",
+      "Jantes en alliage 19 pouces",
+      "Airbags frontaux, latéraux et rideaux",
+      "Intérieur bicolore",
+      "Contrôle automatique de descente",
+      "Capteur de stationnement avant et arrière",
+      "Feux de jour LED",
+      "Toit ouvrant panoramique",
+      "Contrôle de traction et stabilité",
+      "Système audio Meridian",
+      "Climatisation digitale bizone",
+      "Sièges avant à réglage électrique",
+      "Palette de changement de vitesse (Paddle shift)",
+      "Frein de stationnement électrique",
+      "Rétroviseur intérieur photochromique",
+      "Système multimédia avec Bluetooth et lecteur CD",
+      "Volant multifonctionnel"
+    ],
+    previousOwners: 1,
+    technicalInspection: {
+      lastDate: "2024-03-15",
+      validUntil: "2026-03-15",
+      status: "passed"
+    },
+    price: 7000,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/ce82cf3a-7922-46c0-bca6-c71831f8043c.png",
+      "/lovable-uploads/dcb2bbf3-aec7-4e9a-a4c7-54800b2e5d02.png",
+      "/lovable-uploads/205b419f-cf04-4620-9b67-ad731d539b08.png",
+      "/lovable-uploads/f47f4c37-2134-4c15-9739-11f8f75f1c61.png",
+      "/lovable-uploads/17f0079a-043e-40ff-b80d-af81cb34b62a.png",
+      "/lovable-uploads/a89eb414-db31-4f75-9ccd-d39cc766bab2.png",
+      "/lovable-uploads/22e06339-3e71-414d-9df1-f153c0ecfd40.png",
+      "/lovable-uploads/a59ab9dd-bce8-4d2c-b250-e7d3872623a4.png",
+      "/lovable-uploads/4454b55e-dc3a-4b7d-a499-e39a975dfe7d.png"
+    ],
+    thumbnail: "/lovable-uploads/ce82cf3a-7922-46c0-bca6-c71831f8043c.png",
+    description: "Ce Range Rover Evoque Dynamic Si4 4x4 de 2013 avec 138.000 km est en excellent état avec rapport technique approuvé et 4 pneus neufs. Équipé d'un moteur 2.0 Turbo de 240cv, d'une boîte automatique à 6 vitesses, traction intégrale à la demande, jantes en alliage 19 pouces et de nombreux équipements de confort et sécurité comme le système audio Meridian et le toit panoramique.",
+    options: ["Toit Panoramique", "Système Audio Meridian", "Intérieur Bicolore"]
+  },
   {
     id: "v13",
     brand: "Audi",
