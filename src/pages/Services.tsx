@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -17,11 +18,8 @@ import {
   Sparkles
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
-  const { t } = useLanguage();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -31,9 +29,10 @@ const Services = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">{t("services.title")}</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">Services d'Exception</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t("services.subtitle")}
+              AUTO PBH s'engage à offrir une expérience inégalée dans l'acquisition et l'entretien de véhicules premium.
+              Notre passion pour l'excellence se traduit par des services sur mesure.
             </p>
           </div>
           
@@ -44,22 +43,24 @@ const Services = () => {
                   <Car className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">{t("services.purchase.title")}</h2>
-                  <p className="text-muted-foreground">{t("services.purchase.subtitle")}</p>
+                  <h2 className="text-2xl font-semibold">Achat & Reprise de Véhicules Premium</h2>
+                  <p className="text-muted-foreground">Une expertise reconnue dans le secteur automobile haut de gamme</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                {t("services.purchase.description")}
+                Notre expertise dans le marché des véhicules premium vous garantit une transaction 
+                en toute sérénité. Notre processus rigoureux inclut :
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <Card className="border-autop-red/20">
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      {t("services.purchase.evaluation")}
+                      Évaluation Professionnelle
                     </h3>
                     <p className="text-muted-foreground">
-                      {t("services.purchase.evaluation.desc")}
+                      Analyse complète et gratuite de votre véhicule actuel par nos experts certifiés, 
+                      avec documentation détaillée et estimation optimale du prix de reprise.
                     </p>
                   </CardContent>
                 </Card>
@@ -67,10 +68,11 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      {t("services.purchase.tradein")}
+                      Reprise Toutes Marques
                     </h3>
                     <p className="text-muted-foreground">
-                      {t("services.purchase.tradein.desc")}
+                      Nous reprenons votre véhicule quelle que soit sa marque ou son état, en vous offrant
+                      les meilleures conditions du marché et un processus simplifié.
                     </p>
                   </CardContent>
                 </Card>
@@ -78,10 +80,11 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      {t("services.purchase.transaction")}
+                      Transaction Sécurisée
                     </h3>
                     <p className="text-muted-foreground">
-                      {t("services.purchase.transaction.desc")}
+                      Paiement rapide et sécurisé, avec multiples options disponibles selon vos préférences,
+                      y compris virement bancaire instantané et transfert certifié.
                     </p>
                   </CardContent>
                 </Card>
@@ -89,10 +92,11 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      {t("services.purchase.admin")}
+                      Gestion Administrative Complète
                     </h3>
                     <p className="text-muted-foreground">
-                      {t("services.purchase.admin.desc")}
+                      Prise en charge de toutes les formalités administratives, y compris le changement de propriétaire,
+                      les documents d'exportation et l'immatriculation.
                     </p>
                   </CardContent>
                 </Card>
@@ -105,49 +109,53 @@ const Services = () => {
                   <Truck className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">{t("services.delivery.title")}</h2>
-                  <p className="text-muted-foreground">{t("services.delivery.subtitle")}</p>
+                  <h2 className="text-2xl font-semibold">Livraison Clé en Main</h2>
+                  <p className="text-muted-foreground">Transport premium et personnalisé dans toute l'Europe</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                {t("services.delivery.description")}
+                Notre service de livraison premium couvre l'ensemble du territoire européen avec une attention particulière aux détails :
               </p>
               
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    {t("services.delivery.transport")}
+                    Transport Premium
                   </h3>
                   <p className="text-muted-foreground">
-                    {t("services.delivery.transport.desc")}
+                    Transport ultra-sécurisé dans des camions spécialisés fermés avec contrôle de température et équipement anti-vibrations. 
+                    Assurance complète pendant tout le trajet et manipulation par des équipes hautement formées.
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    {t("services.delivery.tracking")}
+                    Suivi Temps Réel
                   </h3>
                   <p className="text-muted-foreground">
-                    {t("services.delivery.tracking.desc")}
+                    Application dédiée pour suivre votre véhicule en temps réel, avec notifications à chaque étape importante. 
+                    Contact permanent avec notre équipe de coordinateurs logistiques multilingues.
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    {t("services.delivery.customized")}
+                    Service Personnalisé
                   </h3>
                   <p className="text-muted-foreground">
-                    {t("services.delivery.customized.desc")}
+                    Livraison planifiée selon vos disponibilités, 7j/7, y compris en soirée et le week-end. 
+                    Présentation complète du véhicule et démonstration de ses fonctionnalités lors de la remise des clés.
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    {t("services.delivery.documentation")}
+                    Documentation Complète
                   </h3>
                   <p className="text-muted-foreground">
-                    {t("services.delivery.documentation.desc")}
+                    Dossier complet remis avec le véhicule : historique détaillé, carnets d'entretien, garanties, 
+                    manuels techniques et certificats d'authenticité pour les modèles de collection.
                   </p>
                 </div>
               </div>
@@ -355,62 +363,63 @@ const Services = () => {
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-semibold mb-6 text-center">{t("services.additionalServices")}</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-center">Services Complémentaires</h2>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Banknote className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">{t("services.financing")}</h3>
+                  <h3 className="font-semibold text-lg mb-2">Solutions de Financement</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {t("services.financing.desc")}
+                    Financement personnalisé avec taux préférentiels, crédit-bail et leasing avec options d'achat flexibles.
                   </p>
                   <Link to="/financing" className="text-autop-red hover:underline text-sm font-medium">
-                    {t("services.discoverOffers")}
+                    Découvrir nos offres
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Wrench className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">{t("services.afterSales")}</h3>
+                  <h3 className="font-semibold text-lg mb-2">Service Après-Vente</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {t("services.afterSales.desc")}
+                    Entretien premium, réparations par techniciens certifiés et programme de maintenance sur mesure.
                   </p>
                   <Link to="/warranty" className="text-autop-red hover:underline text-sm font-medium">
-                    {t("services.learnMore")}
+                    En savoir plus
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Clock className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">{t("services.expressAppointment")}</h3>
+                  <h3 className="font-semibold text-lg mb-2">Rendez-vous Express</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {t("services.expressAppointment.desc")}
+                    Service prioritaire sous 24h, consultation vidéo immédiate et assistance d'urgence.
                   </p>
                   <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
-                    {t("services.makeAppointment")}
+                    Prendre rendez-vous
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Map className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">{t("services.international")}</h3>
+                  <h3 className="font-semibold text-lg mb-2">Service International</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    {t("services.international.desc")}
+                    Accompagnement pour importation/exportation, documentation multi-pays et conformité réglementaire.
                   </p>
                   <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
-                    {t("services.contactUs")}
+                    Nous contacter
                   </Link>
                 </div>
               </div>
 
               <div className="bg-autop-red/5 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-semibold mb-4">{t("services.customService")}</h3>
+                <h3 className="text-2xl font-semibold mb-4">Besoin d'un Service Sur Mesure ?</h3>
                 <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  {t("services.customService.desc")}
+                  Notre équipe d'experts est à votre disposition pour élaborer une solution
+                  parfaitement adaptée à vos exigences spécifiques.
                 </p>
                 <Link to="/contact">
                   <Button size="lg" className="bg-autop-red hover:bg-autop-red/90 text-white">
-                    {t("services.contactPremiumTeam")}
+                    Contactez Notre Équipe Premium
                   </Button>
                 </Link>
               </div>

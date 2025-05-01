@@ -1,11 +1,8 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const LegalNotice = () => {
-  const { t } = useLanguage();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -14,10 +11,10 @@ const LegalNotice = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("legal.title")}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">Mentions Légales</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("legal.companyInfo")}</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Informations Légales</h2>
             
             <div className="space-y-6">
               <div>

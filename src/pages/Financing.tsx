@@ -1,12 +1,10 @@
+
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Calculator, CreditCard, CheckCircle } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Financing = () => {
-  const { t } = useLanguage();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,12 +13,13 @@ const Financing = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("financing.title")}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">Solutions de Financement</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("financing.subtitle")}</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Financement Sur-Mesure</h2>
             <p className="text-lg mb-6">
-              {t("financing.description")}
+              AUTO PBH vous propose des solutions de financement adaptées à votre situation financière 
+              avec nos banques partenaires d'exception.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -28,9 +27,9 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <CreditCard className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">{t("financing.preferentialRates")}</h3>
+                <h3 className="text-xl font-medium mb-2">Taux Privilégiés</h3>
                 <p className="text-muted-foreground">
-                  {t("financing.preferentialRates.desc")}
+                  Bénéficiez de taux négociés dès 2.9% avec nos établissements bancaires partenaires.
                 </p>
               </div>
               
@@ -38,9 +37,9 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <Calculator className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">{t("financing.instantSimulation")}</h3>
+                <h3 className="text-xl font-medium mb-2">Simulation Instantanée</h3>
                 <p className="text-muted-foreground">
-                  {t("financing.instantSimulation.desc")}
+                  Obtenez une simulation personnalisée en ligne et recevez un accord de principe sous 2 heures.
                 </p>
               </div>
               
@@ -48,16 +47,16 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <CheckCircle className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">{t("financing.flexibleOptions")}</h3>
+                <h3 className="text-xl font-medium mb-2">Options Flexibles</h3>
                 <p className="text-muted-foreground">
-                  {t("financing.flexibleOptions.desc")}
+                  Choisissez entre crédit classique, leasing longue durée ou paiement différé selon vos préférences.
                 </p>
               </div>
             </div>
           </section>
 
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("financing.calculator")}</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Calculateur de Financement</h2>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
@@ -141,7 +140,7 @@ const Financing = () => {
             
             <div className="mt-8 text-center">
               <Button>
-                {t("financing.requestQuote")}
+                Demander un devis personnalisé
               </Button>
             </div>
           </section>

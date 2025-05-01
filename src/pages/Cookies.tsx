@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -12,10 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Cookie, Info } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Cookies = () => {
-  const { t } = useLanguage();
   const [preferences, setPreferences] = useState({
     essential: true,
     functional: true,
@@ -53,18 +52,21 @@ const Cookies = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("cookies.title")}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">Gestion des Cookies</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("cookies.description")}</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Politique de Cookies</h2>
             
             <div className="space-y-6 mb-8">
               <p className="text-lg">
-                {t("cookies.statement")}
+                AUTO PBH utilise des cookies pour améliorer votre expérience sur notre site, personnaliser le contenu et les publicités, 
+                fournir des fonctionnalités de médias sociaux et analyser notre trafic. Nous partageons également des informations sur 
+                votre utilisation de notre site avec nos partenaires de médias sociaux, de publicité et d'analyse.
               </p>
               
               <p className="text-lg">
-                {t("cookies.customize")}
+                Vous pouvez personnaliser vos préférences de cookies ci-dessous ou accepter tous les cookies pour profiter 
+                d'une expérience optimale sur notre site.
               </p>
             </div>
             
@@ -116,10 +118,10 @@ const Cookies = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Button onClick={handleSavePreferences}>
-                {t("cookies.savePreferences")}
+                Enregistrer mes préférences
               </Button>
               <Button variant="outline" onClick={handleAcceptAll}>
-                {t("cookies.acceptAll")}
+                Accepter tous les cookies
               </Button>
             </div>
           </section>

@@ -2,11 +2,8 @@
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Shield, Lock, Database } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Privacy = () => {
-  const { t } = useLanguage();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,14 +12,16 @@ const Privacy = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("privacy.title")}</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">Protection des Données</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("privacy.description")}</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Notre Politique de Confidentialité</h2>
             
             <div className="space-y-6 mb-8">
               <p className="text-lg">
-                {t("privacy.statement")}
+                Chez AUTO PBH, nous accordons une importance capitale à la protection de vos données personnelles.
+                Cette politique détaille quelles informations nous collectons, comment nous les utilisons et les mesures
+                que nous prenons pour garantir leur sécurité.
               </p>
             </div>
             
