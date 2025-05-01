@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,7 @@ import { Search, Filter, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { vehicles } from "@/data/vehicles";
+import VehicleCard from "@/components/shop/VehicleCard";
 
 const Catalog = () => {
   const { toast } = useToast();
