@@ -1,5 +1,4 @@
 
-
 export interface Vehicle {
   id: string;
   brand: string;
@@ -104,3 +103,9 @@ export interface LanguageOption {
   flag: string;
 }
 
+// Add the missing TranslationsType interface
+export interface TranslationsType {
+  [key: string]: {
+    [key: string]: string;
+  };
+}
