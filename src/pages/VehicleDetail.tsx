@@ -14,15 +14,25 @@ import {
   Wrench,
   Phone,
   ArrowLeft,
-  ShoppingCart
+  ShoppingCart,
+  ChevronRight,
+  ChevronLeft
 } from "lucide-react";
 import { Vehicle } from "@/types";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -101,6 +111,39 @@ const VehicleDetail = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
+            <div className="mb-8">
+              <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
+                <img 
+                  src={vehicle.images[selectedImageIndex]} 
+                  alt={`${vehicle.brand} ${vehicle.model}`} 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              
+              <div className="relative">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {vehicle.images.map((image, index) => (
+                      <CarouselItem key={index} className="basis-1/4 sm:basis-1/5 md:basis-1/6 lg:basis-1/6">
+                        <div 
+                          className={`cursor-pointer rounded-md overflow-hidden border-2 ${selectedImageIndex === index ? 'border-autop-red' : 'border-transparent'}`}
+                          onClick={() => setSelectedImageIndex(index)}
+                        >
+                          <img 
+                            src={image} 
+                            alt={`Vue ${index + 1} de ${vehicle.brand} ${vehicle.model}`} 
+                            className="aspect-square object-cover w-full h-full"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0" />
+                  <CarouselNext className="right-0" />
+                </Carousel>
+              </div>
+            </div>
+            
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.brand} {vehicle.model}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
               <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : 'ZÉRO KM'}</span>
