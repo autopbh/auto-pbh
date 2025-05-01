@@ -95,11 +95,18 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "2-4 semaines",
     images: [
-      "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png", 
-      "/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png",
-      "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png"
+      "/lovable-uploads/0f0c52de-dd06-4e5f-b718-64faf7d1d622.png",
+      "/lovable-uploads/4a9a2bf8-ebc0-4420-aa45-1a1b2e31a977.png",
+      "/lovable-uploads/660c8d14-6724-4c51-a3fc-7470aad52de8.png",
+      "/lovable-uploads/878b4169-81f7-4b18-a7dd-19ded01108e5.png",
+      "/lovable-uploads/8bf9593a-495e-44d8-8c20-e39b1070ea93.png",
+      "/lovable-uploads/a3b5ba2b-3c82-4f10-9101-3360abd91f87.png",
+      "/lovable-uploads/e02dc903-ef88-4c4d-939a-e6f1b2e57c13.png",
+      "/lovable-uploads/ab4fba37-7cc1-43a1-a112-83234069ef19.png",
+      "/lovable-uploads/f34047fe-551f-4b99-8774-a7ea4c6b50ed.png",
+      "/lovable-uploads/214693f3-b683-464b-8efb-9548196f6754.png"
     ],
-    thumbnail: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+    thumbnail: "/lovable-uploads/0f0c52de-dd06-4e5f-b718-64faf7d1d622.png",
     description: "Audi Q3 Ambiente 2.0 TFSi AWD avec seulement 55 000 km. Entièrement révisé avec rapport de vérification. Équipé d'un toit panoramique électrique, de 4 pneus neufs, moteur 2.0 (EA888) de 180 cv, boîte automatique à double embrayage à 7 vitesses, traction intégrale 4x4, et nombreux équipements de confort et sécurité.",
     options: ["Toit Panoramique", "Traction Intégrale", "Caméra de Recul"]
   },
