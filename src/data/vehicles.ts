@@ -3,6 +3,61 @@ import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
   {
+    id: "v12",
+    brand: "Peugeot",
+    model: "208 Style 1.0 Turbo",
+    year: 2024,
+    mileage: 9834,
+    fuelType: "Essence",
+    engineCapacity: 1.0,
+    power: 130,
+    transmission: "automatic",
+    exteriorColor: "Gris",
+    interiorColor: "Noir/Gris",
+    features: [
+      "Propriétaire unique",
+      "Rapport technique approuvé",
+      "Pneus en très bon état",
+      "Moteur 1.0 turbo avec 130cv",
+      "Boîte automatique",
+      "Tableau de bord digital",
+      "Toit panoramique",
+      "Caméra de recul",
+      "Apple CarPlay et Android Auto",
+      "Sièges en tissu avec bandes de cuir",
+      "Jantes diamantées"
+    ],
+    previousOwners: 0,
+    technicalInspection: {
+      lastDate: "2024-03-01",
+      validUntil: "2026-03-01",
+      status: "passed"
+    },
+    price: 10000,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/c9f874ca-3855-446e-a4b0-05ca32ba7a89.png",
+      "/lovable-uploads/f39c3340-17f3-4e70-b5f9-5e09374bf236.png",
+      "/lovable-uploads/384af7ee-9049-4868-aa82-a70f1606f610.png",
+      "/lovable-uploads/2919f4a2-1c4f-43e0-a9b8-7949ee0c07c5.png",
+      "/lovable-uploads/b09da126-3084-4f82-89e9-b62a02a05097.png",
+      "/lovable-uploads/0ebe49fb-35b0-4bad-89fa-9ec7de3679c5.png",
+      "/lovable-uploads/c09b624b-003e-479c-8710-ea044f82bd12.png",
+      "/lovable-uploads/547b1529-dcd4-4f81-9712-5606d59661e1.png",
+      "/lovable-uploads/2f1b2c69-eaa3-4390-9f72-27832e7bf355.png",
+      "/lovable-uploads/f23a603c-d77d-4e64-bfa2-8c8d2640e36b.png",
+      "/lovable-uploads/b6d5e2a7-1593-4b28-996d-67c0909f49a3.png",
+      "/lovable-uploads/dc95699e-63da-448c-a930-7c90b7ab9576.png",
+      "/lovable-uploads/86493022-c6eb-4c5e-8821-482675946c2a.png"
+    ],
+    thumbnail: "/lovable-uploads/c9f874ca-3855-446e-a4b0-05ca32ba7a89.png",
+    description: "Cette Peugeot 208 Style 1.0 Turbo de 2024 est en excellent état avec un seul propriétaire. Équipée d'un moteur 1.0 turbo de 130cv, boîte automatique, tableau de bord digital, toit panoramique, et compatibilité Apple CarPlay et Android Auto. Les sièges sont en tissu avec des bandes de cuir et elle dispose de jantes diamantées pour un look élégant.",
+    options: ["Toit panoramique", "Tableau de bord digital", "Apple CarPlay/Android Auto"]
+  },
+  {
     id: "v8",
     brand: "Jeep",
     model: "Compass Longitude 2.0 Turbo Diesel 4x4",
