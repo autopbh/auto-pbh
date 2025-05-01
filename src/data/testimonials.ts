@@ -20,6 +20,7 @@ export const testimonials: Testimonial[] = [
     comment: "O processo de compra com a AUTO PBH foi impecável. Encontrei um Mercedes Classe C em perfeito estado, e o serviço foi profissional do início ao fim. A entrega foi rápida e sem problemas até Lisboa.",
     vehicle: "Mercedes-Benz C-Class",
     date: "2023-10-15",
+    avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
     language: "pt"
   },
   {
@@ -30,6 +31,7 @@ export const testimonials: Testimonial[] = [
     comment: "Je cherchais une BMW Série 5 depuis longtemps et AUTO PBH avait exactement ce que je voulais avec un kilométrage bas et un historique d'entretien complet. Le véhicule est arrivé à Bruxelles en parfait état et dans les délais annoncés.",
     vehicle: "BMW 5 Series",
     date: "2023-09-22",
+    avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     language: "fr"
   },
   {
@@ -40,6 +42,7 @@ export const testimonials: Testimonial[] = [
     comment: "Esperienza fantastica con AUTO PBH! Ho acquistato un'Audi A6 a un prezzo molto competitivo. Tutta la documentazione era perfettamente in ordine e l'auto corrispondeva esattamente alla descrizione. Consiglio vivamente.",
     vehicle: "Audi A6",
     date: "2023-11-05",
+    avatar: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
     language: "it"
   },
   {
@@ -50,6 +53,7 @@ export const testimonials: Testimonial[] = [
     comment: "Finding a recent and well-maintained Porsche Macan is not easy, but AUTO PBH offered me an exceptional selection. The customer service was responsive to all my questions, and the car is impeccable.",
     vehicle: "Porsche Macan",
     date: "2023-08-17",
+    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
     language: "en"
   },
   {
@@ -60,6 +64,7 @@ export const testimonials: Testimonial[] = [
     comment: "He importado un Range Rover Sport a través de AUTO PBH y no podría estar más satisfecho. El sistema de seguimiento de entrega fue muy conveniente y el vehículo es exactamente como se muestra en las fotos. ¡Servicio de primera clase!",
     vehicle: "Range Rover Sport",
     date: "2023-12-03",
+    avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952",
     language: "es"
   }
 ];

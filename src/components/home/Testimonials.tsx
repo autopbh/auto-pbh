@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { testimonials } from "@/data/testimonials";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Testimonials = () => {
   const { t } = useLanguage();
@@ -52,17 +53,14 @@ const Testimonials = () => {
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        {testimonial.avatar ? (
-                          <img
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
-                            className="w-12 h-12 rounded-full mr-4"
-                          />
-                        ) : (
-                          <div className="w-12 h-12 rounded-full bg-autop-red text-white flex items-center justify-center mr-4">
+                        <Avatar className="h-12 w-12 mr-4">
+                          {testimonial.avatar ? (
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          ) : null}
+                          <AvatarFallback className="bg-autop-red text-white">
                             {testimonial.name.charAt(0)}
-                          </div>
-                        )}
+                          </AvatarFallback>
+                        </Avatar>
                         
                         <div>
                           <p className="font-bold">{testimonial.name}</p>
