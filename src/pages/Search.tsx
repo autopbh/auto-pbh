@@ -12,10 +12,17 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { vehicles } from "@/data/vehicles";
+import VehicleCard from "@/components/shop/VehicleCard";
+import { useNavigate } from "react-router-dom";
+import { Vehicle } from "@/types";
 
 const Search = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Vehicle[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const navigate = useNavigate();
 
   // Scroll to top on page load
   useEffect(() => {
@@ -34,6 +41,59 @@ const Search = () => {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
+
+  const handleSearch = () => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      setHasSearched(false);
+      return;
+    }
+
+    const normalizedQuery = query.trim().toLowerCase();
+    
+    const filteredVehicles = vehicles.filter(vehicle => {
+      const brandMatch = vehicle.brand.toLowerCase().includes(normalizedQuery);
+      const modelMatch = vehicle.model.toLowerCase().includes(normalizedQuery);
+      const yearMatch = vehicle.year.toString().includes(normalizedQuery);
+      const colorMatch = vehicle.exteriorColor.toLowerCase().includes(normalizedQuery);
+      const featureMatch = vehicle.features.some(feature => 
+        feature.toLowerCase().includes(normalizedQuery)
+      );
+      const optionMatch = vehicle.options.some(option => 
+        option.toLowerCase().includes(normalizedQuery)
+      );
+      
+      return brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch;
+    });
+    
+    setSearchResults(filteredVehicles);
+    setHasSearched(true);
+    console.log('Search results:', filteredVehicles.length, 'vehicles found');
+  };
+
+  const handleCommandSelect = (value: string) => {
+    setQuery(value);
+    setOpen(false);
+    handleSearch();
+  };
+
+  const generateSuggestions = () => {
+    const suggestions = [
+      "Mercedes", 
+      "Audi", 
+      "BMW", 
+      "Porsche", 
+      "Toit panoramique",
+      "SUV",
+      "2023",
+      "hybride",
+      "automatique"
+    ];
+    
+    // Add actual vehicle models to suggestions
+    const vehicleModels = vehicles.map(v => `${v.brand} ${v.model}`).slice(0, 5);
+    return [...suggestions, ...vehicleModels];
+  };
 
   return (
     <Layout>
@@ -60,9 +120,14 @@ const Search = () => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onClick={() => setOpen(true)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleSearch();
+                      }
+                    }}
                   />
                 </div>
-                <Button className="md:w-auto">
+                <Button className="md:w-auto" onClick={handleSearch}>
                   <SearchIcon className="mr-2 h-4 w-4" />
                   Rechercher
                 </Button>
@@ -73,25 +138,24 @@ const Search = () => {
               <div className="bg-white/70 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <Car className="h-6 w-6 text-autop-red" />
-                  <h3 className="text-xl font-semibold">Recherche par Modèle</h3>
+                  <h3 className="text-xl font-semibold">Recherche par Marque</h3>
                 </div>
                 <ul className="space-y-2">
-                  <li className="flex items-center justify-between hover:bg-muted/50 p-2 rounded cursor-pointer transition-colors">
-                    <span>BMW</span>
-                    <span className="text-muted-foreground">12 modèles</span>
-                  </li>
-                  <li className="flex items-center justify-between hover:bg-muted/50 p-2 rounded cursor-pointer transition-colors">
-                    <span>Mercedes-Benz</span>
-                    <span className="text-muted-foreground">9 modèles</span>
-                  </li>
-                  <li className="flex items-center justify-between hover:bg-muted/50 p-2 rounded cursor-pointer transition-colors">
-                    <span>Audi</span>
-                    <span className="text-muted-foreground">7 modèles</span>
-                  </li>
-                  <li className="flex items-center justify-between hover:bg-muted/50 p-2 rounded cursor-pointer transition-colors">
-                    <span>Porsche</span>
-                    <span className="text-muted-foreground">5 modèles</span>
-                  </li>
+                  {["Mercedes-Benz", "BMW", "Audi", "Porsche", "Ford", "Jaguar"].map((brand) => (
+                    <li 
+                      key={brand}
+                      className="flex items-center justify-between hover:bg-muted/50 p-2 rounded cursor-pointer transition-colors"
+                      onClick={() => {
+                        setQuery(brand);
+                        handleSearch();
+                      }}
+                    >
+                      <span>{brand}</span>
+                      <span className="text-muted-foreground">
+                        {vehicles.filter(v => v.brand === brand).length} modèles
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               
@@ -101,28 +165,49 @@ const Search = () => {
                   <h3 className="text-xl font-semibold">Filtres Populaires</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    SUV Premium
-                  </span>
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    Moins de 50 000 km
-                  </span>
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    Toit panoramique
-                  </span>
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    Année 2022+
-                  </span>
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    GPS intégré
-                  </span>
-                  <span className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors">
-                    Berlines
-                  </span>
+                  {["SUV Premium", "Moins de 50 000 km", "Toit panoramique", "Année 2022+", "Hybride", "Berlines"].map(filter => (
+                    <span 
+                      key={filter}
+                      className="bg-muted px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-muted/80 transition-colors"
+                      onClick={() => {
+                        setQuery(filter);
+                        handleSearch();
+                      }}
+                    >
+                      {filter}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
           </section>
+          
+          {/* Résultats de recherche */}
+          {hasSearched && (
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-6">
+                {searchResults.length > 0 
+                  ? `${searchResults.length} résultat${searchResults.length > 1 ? 's' : ''} trouvé${searchResults.length > 1 ? 's' : ''}`
+                  : "Aucun résultat trouvé"}
+              </h2>
+              
+              {searchResults.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                  {searchResults.map((vehicle) => (
+                    <VehicleCard key={vehicle.id} vehicle={vehicle} />
+                  ))}
+                </div>
+              ) : (
+                <div className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm text-center">
+                  <p className="text-lg mb-4">Aucun véhicule ne correspond à votre recherche.</p>
+                  <p className="mb-6">Essayez avec d'autres termes ou consultez notre catalogue complet.</p>
+                  <Button onClick={() => navigate('/catalog')}>
+                    Voir le catalogue complet
+                  </Button>
+                </div>
+              )}
+            </section>
+          )}
           
           <section className="text-center p-8">
             <p className="text-muted-foreground mb-4">Assistance recherche</p>
@@ -135,26 +220,20 @@ const Search = () => {
       </div>
       
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Recherchez un véhicule..." />
+        <CommandInput placeholder="Recherchez un véhicule..." value={query} onValueChange={setQuery} />
         <CommandList>
           <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem>
-              <Car className="mr-2 h-4 w-4" />
-              <span>BMW Série 5 2023</span>
-            </CommandItem>
-            <CommandItem>
-              <Car className="mr-2 h-4 w-4" />
-              <span>Mercedes Classe S 2022</span>
-            </CommandItem>
-            <CommandItem>
-              <Car className="mr-2 h-4 w-4" />
-              <span>Porsche Cayenne 2023 en bleu nuit</span>
-            </CommandItem>
-            <CommandItem>
-              <Car className="mr-2 h-4 w-4" />
-              <span>Audi Q7 avec toit panoramique</span>
-            </CommandItem>
+            {generateSuggestions().map((suggestion) => (
+              <CommandItem 
+                key={suggestion} 
+                value={suggestion}
+                onSelect={handleCommandSelect}
+              >
+                <Car className="mr-2 h-4 w-4" />
+                <span>{suggestion}</span>
+              </CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
