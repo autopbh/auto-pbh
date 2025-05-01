@@ -162,6 +162,22 @@ const TrackingMap: React.FC<TrackingMapProps> = ({ order }) => {
       <div className="relative">
         <div ref={mapRef} className="h-48 w-full"></div>
         
+        {/* Direct link to Google Maps */}
+        <div className="absolute bottom-8 right-2 z-10">
+          <Button
+            variant="secondary"
+            size="sm"
+            className="bg-white shadow-md border"
+            onClick={() => {
+              const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${order.currentLocation?.lat},${order.currentLocation?.lng}`;
+              window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
+            }}
+          >
+            <Navigation className="h-4 w-4 mr-2 text-autop-red" />
+            Ouvrir dans Google Maps
+          </Button>
+        </div>
+        
         {/* Mapbox credit attribution - required by Mapbox ToS */}
         <div className="absolute bottom-0 right-0 z-10 text-xs p-1 bg-white/70 rounded-tl">
           <a 

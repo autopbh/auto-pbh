@@ -1,15 +1,24 @@
 
 import React from 'react';
 import { TrackingOrder } from '@/types/tracking';
-import { CalendarDays, Clock, Car, MapPin } from 'lucide-react';
+import { CalendarDays, Clock, Car, MapPin, Navigation } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
 
 interface OrderDetailsProps {
   order: TrackingOrder;
 }
 
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
+  // Fonction pour ouvrir la localisation sur Google Maps
+  const openLocationInMap = () => {
+    if (order.currentLocation?.lat && order.currentLocation?.lng) {
+      const url = `https://www.google.com/maps/search/?api=1&query=${order.currentLocation.lat},${order.currentLocation.lng}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <Card>
       <CardContent className="pt-6">
@@ -41,6 +50,17 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order }) => {
                   Adresse de livraison: {order.currentLocation?.address || "À confirmer"}
                 </span>
               </div>
+              {order.currentLocation?.lat && order.currentLocation?.lng && (
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={openLocationInMap}
+                  className="mt-2 flex items-center gap-2"
+                >
+                  <Navigation className="h-4 w-4 text-autop-red" />
+                  Voir l'emplacement sur la carte
+                </Button>
+              )}
             </div>
           </div>
           <div>

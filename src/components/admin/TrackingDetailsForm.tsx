@@ -1,10 +1,9 @@
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OrderFormValues, orderFormSchema } from "@/types/admin";
 import { TrackingEvent, TrackingOrder } from "@/types/tracking";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon, PlusCircle, Trash2 } from "lucide-react";
+import { CalendarIcon, PlusCircle, Trash2, MapPin } from "lucide-react";
 import { 
   Form, 
   FormField, 
@@ -86,6 +85,16 @@ const TrackingDetailsForm = ({ selectedOrder, onSubmit, onAddEvent, onDeleteEven
     // Format la date au format français JJ/MM/AAAA
     const formattedDate = format(date, 'dd/MM/yyyy', { locale: fr });
     form.setValue('estimatedDeliveryDate', formattedDate);
+  };
+
+  // Fonction pour ouvrir Google Maps avec les coordonnées actuelles
+  const openLocationInMap = () => {
+    const lat = form.getValues('currentLocation.lat');
+    const lng = form.getValues('currentLocation.lng');
+    if (lat && lng) {
+      const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
@@ -183,6 +192,16 @@ const TrackingDetailsForm = ({ selectedOrder, onSubmit, onAddEvent, onDeleteEven
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium">Localisation actuelle</h3>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm"
+              onClick={openLocationInMap}
+              className="flex items-center gap-2"
+            >
+              <MapPin className="h-4 w-4" />
+              Voir sur la carte
+            </Button>
           </div>
           
           <div className="space-y-4">
