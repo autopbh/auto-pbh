@@ -8,14 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { AlertCircle, CheckCircle, Banknote } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Cart = () => {
   // Initialize cart state
   const [cartItems, setCartItems] = useState([]);
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const { toast } = useToast();
-  const { t } = useLanguage();
 
   // Load cart from localStorage on component mount
   useEffect(() => {
@@ -56,8 +54,8 @@ const Cart = () => {
   const handlePaymentRequest = () => {
     // Simuler la demande de paiement
     toast({
-      title: t("cart.paymentRequestSent"),
-      description: t("cart.paymentInstructions"),
+      title: "Demande d'acompte envoyée",
+      description: "Veuillez effectuer le virement dans les 3 jours pour confirmer votre réservation.",
     });
     setPaymentSubmitted(true);
   };
@@ -68,23 +66,23 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
     toast({
-      title: t("cart.itemRemoved"),
-      description: t("cart.itemRemovedDesc"),
+      title: "Article retiré",
+      description: "L'article a été retiré de votre panier.",
     });
   };
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
-        <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("cart.title")}</h1>
+        <h1 className="text-3xl md:text-5xl font-bold mb-8">Panier</h1>
         
         {cartItems.length === 0 ? (
           <div className="bg-white dark:bg-autop-gray shadow-md rounded-md p-8 text-center">
             <p className="text-lg mb-8">
-              {t("cart.emptyCart")}
+              Votre panier est actuellement vide.
             </p>
             <Button asChild>
-              <a href="/catalog">{t("cart.browseCatalog")}</a>
+              <a href="/catalog">Parcourir notre catalogue</a>
             </Button>
           </div>
         ) : (
@@ -92,12 +90,12 @@ const Cart = () => {
             <div className="lg:col-span-2">
               <Card>
                 <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4">{t("cart.items")} ({cartItems.length})</h2>
+                  <h2 className="text-xl font-semibold mb-4">Articles ({cartItems.length})</h2>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>{t("cart.product")}</TableHead>
-                        <TableHead className="text-right">{t("cart.price")}</TableHead>
+                        <TableHead>Produit</TableHead>
+                        <TableHead className="text-right">Prix</TableHead>
                         <TableHead></TableHead>
                       </TableRow>
                     </TableHeader>
@@ -121,7 +119,7 @@ const Cart = () => {
                               size="sm"
                               onClick={() => handleRemoveItem(item.id)}
                             >
-                              {t("cart.remove")}
+                              Supprimer
                             </Button>
                           </TableCell>
                         </TableRow>
@@ -135,19 +133,19 @@ const Cart = () => {
             <div>
               <Card>
                 <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4">{t("cart.orderSummary")}</h2>
+                  <h2 className="text-xl font-semibold mb-4">Résumé de la commande</h2>
                   <div className="space-y-4">
                     <div className="flex justify-between">
-                      <span>{t("cart.subtotal")}</span>
+                      <span>Sous-total</span>
                       <span>€{totalPrice.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between font-medium text-autop-red">
-                      <span>{t("cart.deposit")} (20%)</span>
+                      <span>Acompte à verser (20%)</span>
                       <span>€{depositAmount.toLocaleString()}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between font-bold">
-                      <span>{t("cart.totalPrice")}</span>
+                      <span>Prix total</span>
                       <span>€{totalPrice.toLocaleString()}</span>
                     </div>
                   </div>
@@ -159,40 +157,40 @@ const Cart = () => {
                       className="w-full"
                     >
                       <Banknote className="mr-2 h-4 w-4" />
-                      {t("cart.requestPaymentInfo")}
+                      Demander les informations de virement
                     </Button>
                   ) : (
                     <Alert>
                       <CheckCircle className="h-4 w-4 text-green-500" />
-                      <AlertTitle>{t("cart.paymentInstructionsTitle")}</AlertTitle>
+                      <AlertTitle>Instructions de paiement</AlertTitle>
                       <AlertDescription>
                         <div className="mt-2 space-y-2 text-sm">
-                          <p>{t("cart.wireTransferInstructions")}</p>
+                          <p>Veuillez effectuer un virement bancaire avec les informations suivantes :</p>
                           <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md mt-2">
                             <table className="w-full">
                               <tbody>
                                 <tr>
-                                  <td className="font-medium py-1">{t("cart.amount")}:</td>
+                                  <td className="font-medium py-1">Montant :</td>
                                   <td>€{depositAmount.toLocaleString()}</td>
                                 </tr>
                                 <tr>
-                                  <td className="font-medium py-1">{t("cart.recipient")}:</td>
+                                  <td className="font-medium py-1">Bénéficiaire :</td>
                                   <td>{bankInfo.accountName}</td>
                                 </tr>
                                 <tr>
-                                  <td className="font-medium py-1">IBAN:</td>
+                                  <td className="font-medium py-1">IBAN :</td>
                                   <td>{bankInfo.iban}</td>
                                 </tr>
                                 <tr>
-                                  <td className="font-medium py-1">BIC/SWIFT:</td>
+                                  <td className="font-medium py-1">BIC/SWIFT :</td>
                                   <td>{bankInfo.bic}</td>
                                 </tr>
                                 <tr>
-                                  <td className="font-medium py-1">{t("cart.bank")}:</td>
+                                  <td className="font-medium py-1">Banque :</td>
                                   <td>{bankInfo.bankName}</td>
                                 </tr>
                                 <tr>
-                                  <td className="font-medium py-1">{t("cart.reference")}:</td>
+                                  <td className="font-medium py-1">Référence :</td>
                                   <td className="font-mono">{bankInfo.reference}</td>
                                 </tr>
                               </tbody>
@@ -200,10 +198,10 @@ const Cart = () => {
                           </div>
                           <Alert className="mt-4 bg-amber-50 text-amber-800 border-amber-200">
                             <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>{t("cart.important")}</AlertTitle>
+                            <AlertTitle>Important</AlertTitle>
                             <AlertDescription>
-                              <p>{t("cart.depositRequired")}</p>
-                              <p className="mt-1">{t("cart.referenceNote")}</p>
+                              <p>L'acompte est requis pour réserver votre véhicule. Le solde sera à régler avant la livraison.</p>
+                              <p className="mt-1">Veuillez indiquer la référence exacte dans votre virement pour faciliter le traitement.</p>
                             </AlertDescription>
                           </Alert>
                         </div>
@@ -212,7 +210,7 @@ const Cart = () => {
                   )}
                   
                   <div className="text-sm text-muted-foreground">
-                    <p>{t("cart.termsAgreement")} <a href="/terms" className="text-autop-red hover:underline">{t("cart.termsLink")}</a> {t("cart.and")} <a href="/privacy" className="text-autop-red hover:underline">{t("cart.privacyLink")}</a>.</p>
+                    <p>En continuant, vous acceptez nos <a href="/terms" className="text-autop-red hover:underline">conditions générales</a> et notre <a href="/privacy" className="text-autop-red hover:underline">politique de confidentialité</a>.</p>
                   </div>
                 </CardFooter>
               </Card>

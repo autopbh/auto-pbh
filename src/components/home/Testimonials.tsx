@@ -54,16 +54,9 @@ const Testimonials = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <Avatar className="h-12 w-12 mr-4">
-                          {testimonial.avatar && (
-                            <AvatarImage 
-                              src={testimonial.avatar} 
-                              alt={testimonial.name}
-                              onError={(e) => {
-                                // Fallback to initials if image fails to load
-                                e.currentTarget.style.display = 'none';
-                              }}
-                            />
-                          )}
+                          {testimonial.avatar ? (
+                            <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                          ) : null}
                           <AvatarFallback className="bg-autop-red text-white">
                             {testimonial.name.charAt(0)}
                           </AvatarFallback>
