@@ -1,87 +1,17 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import VehicleCard from "@/components/shop/VehicleCard";
 import { Vehicle } from "@/types";
+import { vehicles } from "@/data/vehicles";
 
 const FeaturedVehicles = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  const featuredVehicles: Vehicle[] = [
-    {
-      id: "featured1",
-      brand: "AUTOP",
-      model: "Atendimento Personalizado",
-      year: 2023,
-      mileage: 0,
-      fuelType: "Electric",
-      engineCapacity: 0,
-      power: 0,
-      transmission: "automatic",
-      exteriorColor: "Black",
-      interiorColor: "Black",
-      features: ["Luxury Service"],
-      previousOwners: 0,
-      price: 0,
-      condition: "excellent",
-      availability: "in-stock",
-      currentLocation: "Rotterdam, Netherlands",
-      estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png"],
-      thumbnail: "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png",
-      description: "Experiência Inigualável",
-      options: []
-    },
-    {
-      id: "featured2",
-      brand: "AUTOP",
-      model: "& Nossos Clientes",
-      year: 2023,
-      mileage: 0,
-      fuelType: "Electric",
-      engineCapacity: 0,
-      power: 0,
-      transmission: "automatic",
-      exteriorColor: "Black",
-      interiorColor: "Black",
-      features: ["Customer Focus"],
-      previousOwners: 0,
-      price: 0,
-      condition: "excellent",
-      availability: "in-stock",
-      currentLocation: "Rotterdam, Netherlands",
-      estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png"],
-      thumbnail: "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
-      description: "Uma jornada de sucesso",
-      options: []
-    },
-    {
-      id: "featured3",
-      brand: "AUTOP",
-      model: "Creta",
-      year: 2023,
-      mileage: 0,
-      fuelType: "Electric",
-      engineCapacity: 0,
-      power: 0,
-      transmission: "automatic",
-      exteriorColor: "Black",
-      interiorColor: "Black",
-      features: ["Trust"],
-      previousOwners: 0,
-      price: 0,
-      condition: "excellent",
-      availability: "in-stock",
-      currentLocation: "Rotterdam, Netherlands",
-      estimatedDelivery: "Immediate",
-      images: ["/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png"],
-      thumbnail: "/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png",
-      description: "Confiança que faz a Diferença",
-      options: []
-    }
-  ];
+  // Utiliser les 3 premiers véhicules du fichier de données
+  const featuredVehicles: Vehicle[] = vehicles.slice(0, 3);
   
   const slidesPerView = { mobile: 1, tablet: 2, desktop: 3 };
   const totalSlides = Math.ceil(featuredVehicles.length / slidesPerView.desktop);
@@ -99,9 +29,9 @@ const FeaturedVehicles = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold">Nossos Destaques</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Nos Véhicules Vedettes</h2>
             <p className="text-muted-foreground mt-2">
-              Descubra por que somos a escolha número 1
+              Découvrez notre sélection de véhicules premium
             </p>
           </div>
           <div className="hidden md:flex space-x-2">
@@ -110,7 +40,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={prevSlide}
               className="rounded-full"
-              aria-label="Slide anterior"
+              aria-label="Slide précédent"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -119,7 +49,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={nextSlide}
               className="rounded-full"
-              aria-label="Próximo slide"
+              aria-label="Prochain slide"
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
@@ -159,7 +89,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={prevSlide}
             className="rounded-full"
-            aria-label="Slide anterior"
+            aria-label="Slide précédent"
           >
             <ChevronLeft className="h-5 w-5" />
           </Button>
@@ -168,7 +98,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={nextSlide}
             className="rounded-full"
-            aria-label="Próximo slide"
+            aria-label="Prochain slide"
           >
             <ChevronRight className="h-5 w-5" />
           </Button>

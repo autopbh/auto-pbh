@@ -4,50 +4,19 @@ import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
-// Mock vehicles for demo
-const mockVehicles = [
-  {
-    id: "v1",
-    name: "Mercedes-Benz S-Class",
-    price: 68900,
-    image: "/images/mercedes-s-class-thumb.jpg",
-    brand: "Mercedes-Benz",
-    model: "S-Class",
-    year: 2023
-  },
-  {
-    id: "v2", 
-    name: "BMW Série 5",
-    price: 59500,
-    image: "/images/bmw-5-series-thumb.jpg",
-    brand: "BMW",
-    model: "Série 5",
-    year: 2023
-  },
-  {
-    id: "v3",
-    name: "Audi A8 L",
-    price: 79900,
-    image: "/images/audi-a8-thumb.jpg",
-    brand: "Audi",
-    model: "A8 L",
-    year: 2022
-  },
-  {
-    id: "v4",
-    name: "Porsche Cayenne",
-    price: 89800,
-    image: "/images/porsche-cayenne-thumb.jpg",
-    brand: "Porsche",
-    model: "Cayenne",
-    year: 2023
-  }
-];
+import { vehicles } from "@/data/vehicles";
 
 const Catalog = () => {
   const { toast } = useToast();
-  const [vehicles, setVehicles] = useState(mockVehicles);
+  const [displayVehicles, setDisplayVehicles] = useState(vehicles.map(v => ({
+    id: v.id,
+    name: `${v.brand} ${v.model}`,
+    price: v.price,
+    image: v.thumbnail || v.images[0],
+    brand: v.brand,
+    model: v.model,
+    year: v.year
+  })));
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,7 +96,7 @@ const Catalog = () => {
 
         {/* Grille de véhicules */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {vehicles.map((vehicle) => (
+          {displayVehicles.map((vehicle) => (
             <div key={vehicle.id} className="bg-white dark:bg-autop-gray rounded-lg shadow-md overflow-hidden">
               <div className="h-48 overflow-hidden">
                 <img 
