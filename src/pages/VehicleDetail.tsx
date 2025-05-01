@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { vehicles } from "@/data/vehicles";
 import { 
   Car, 
   Calendar, 
@@ -15,34 +16,28 @@ import {
   ArrowLeft,
   ShoppingCart
 } from "lucide-react";
-
-// Mock vehicle data for the demo
-const mockVehicle = {
-  id: "v2",
-  name: "BMW Série 5 2023",
-  price: 49990,
-  image: "/images/bmw-5-series-thumb.jpg",
-  brand: "BMW",
-  model: "Série 5",
-  year: 2023,
-  mileage: 25000,
-  fuelType: "Diesel",
-  power: 300
-};
+import { Vehicle } from "@/types";
 
 const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
-  const [vehicle, setVehicle] = useState(mockVehicle);
+  const [vehicle, setVehicle] = useState<Vehicle | null>(null);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // In a real app, you would fetch the vehicle data using the ID
-    // For now, we'll use mock data
+    // Find the vehicle with the matching ID
+    const foundVehicle = vehicles.find(v => v.id === id);
+    if (foundVehicle) {
+      setVehicle(foundVehicle);
+    }
+    setLoading(false);
   }, [id]);
 
   const addToCart = () => {
+    if (!vehicle) return;
+    
     // Get current cart items from localStorage
     const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
     
@@ -56,14 +51,45 @@ const VehicleDetail = () => {
     }
     
     // Add vehicle to cart
-    const updatedCart = [...currentCart, vehicle];
+    const vehicleForCart = {
+      id: vehicle.id,
+      name: `${vehicle.brand} ${vehicle.model}`,
+      price: vehicle.price,
+      image: vehicle.images[0]
+    };
+    
+    const updatedCart = [...currentCart, vehicleForCart];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
     toast({
       title: "Véhicule ajouté",
-      description: `${vehicle.name} a été ajouté à votre panier.`,
+      description: `${vehicle.brand} ${vehicle.model} a été ajouté à votre panier.`,
     });
   };
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-16 mt-20">
+          <p>Chargement...</p>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!vehicle) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-16 mt-20">
+          <p>Véhicule non trouvé</p>
+          <Link to="/catalog" className="inline-flex items-center text-autop-red hover:underline mt-4">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Retour au catalogue
+          </Link>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -75,9 +101,9 @@ const VehicleDetail = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.name}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.brand} {vehicle.model}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <span>{vehicle.mileage.toLocaleString()} km</span>
+              <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : 'ZÉRO KM'}</span>
               <span>•</span>
               <span>{vehicle.fuelType}</span>
               <span>•</span>
@@ -94,7 +120,7 @@ const VehicleDetail = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Gauge className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.mileage.toLocaleString()} km</span>
+                    <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : 'ZÉRO KM'}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Power className="h-5 w-5 text-autop-red" />
@@ -110,30 +136,12 @@ const VehicleDetail = () => {
               <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
                 <h2 className="text-2xl font-semibold mb-4 text-autop-red">Options et Équipements</h2>
                 <ul className="grid sm:grid-cols-2 gap-3">
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Toit panoramique
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Sièges chauffants
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Système audio Harman Kardon
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Navigation GPS
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Caméra de recul
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                    Aide au stationnement
-                  </li>
+                  {vehicle.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <span className="h-2 w-2 bg-autop-red rounded-full"></span>
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </section>
             </div>
@@ -163,7 +171,7 @@ const VehicleDetail = () => {
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Garantie 12 mois incluse
+                  Garantie constructeur {vehicle.year === 2025 ? "complète" : "partielle"}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>

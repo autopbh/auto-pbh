@@ -1,58 +1,50 @@
-
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
   {
     id: "v1",
-    brand: "Mercedes-Benz",
-    model: "S-Class S500",
-    year: 2023,
-    mileage: 15000,
-    fuelType: "Hybride",
-    engineCapacity: 3.0,
-    power: 429,
+    brand: "MERCEDES-BENZ",
+    model: "CLA 200",
+    year: 2025,
+    mileage: 0,
+    fuelType: "Hybride léger (MHEV)",
+    engineCapacity: 1.3,
+    power: 163,
     transmission: "automatic",
-    exteriorColor: "Noir Obsidienne",
-    interiorColor: "Cuir Nappa Beige",
+    exteriorColor: "Blanc Polaire",
+    interiorColor: "Noir Artico",
     features: [
       "Toit Panoramique",
-      "Caméra 360°",
-      "Système Audio Burmester®",
-      "Sièges Chauffants",
-      "Régulateur de Vitesse Adaptatif",
-      "Assistant de Maintien de Voie",
-      "Surveillance des Angles Morts",
-      "Affichage Tête Haute",
-      "Charge Sans Fil"
+      "Système ACC",
+      "Frenagem autônoma de emergência",
+      "Airbags frontais, lateraux et de cortina",
+      "Faróis e lanternas de LED",
+      "Paddle Shift",
+      "Espelhamento do celular",
+      "Rodas diamantadas de 18\"",
+      "IPVA pago",
+      "Emplacada"
     ],
-    previousOwners: 1,
-    maintenanceHistory: [
-      {
-        date: "2023-10-15",
-        mileage: 10000,
-        service: "Révision Complète",
-        description: "Changement huile, filtres, inspection freins",
-        servicedBy: "Mercedes-Benz Officiel"
-      }
-    ],
+    previousOwners: 0,
+    maintenanceHistory: [],
     technicalInspection: {
-      lastDate: "2024-01-20",
-      validUntil: "2026-01-20",
+      lastDate: "2025-01-15",
+      validUntil: "2027-01-15",
       status: "passed"
     },
-    price: 95900,
+    price: 33000,
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
-    estimatedDelivery: "2-3 semaines",
+    estimatedDelivery: "Immédiatement",
     images: [
       "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
       "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
       "/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png"
     ],
     thumbnail: "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
-    description: "Cette élégante Mercedes-Benz Classe S représente le summum du luxe et de la technologie automobile. Parfaitement entretenue avec un seul propriétaire précédent, ce véhicule offre un confort exceptionnel et une expérience de conduite hors pair.",
-    options: ["Pack Premium", "Pack Assistance à la Conduite", "Pack Confort & Chaleur"]
+    description: "MERCEDES-BENZ CLA 200 ZERO KM - 2025. Véhicule avec motorisation hybride légère 1.3 MHEV, déjà immatriculé avec IPVA payé. Equipé de roues diamantées de 18\", système ACC, freinage autonome d'urgence, airbags frontaux, latéraux et rideaux, phares et feux LED, palettes de changement de vitesse et toit panoramique. Compatible avec la mise en miroir du smartphone.",
+    options: ["Pack Premium", "Pack Assistance à la Conduite", "Toit Panoramique"]
   },
   {
     id: "v2",
