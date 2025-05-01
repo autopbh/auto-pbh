@@ -52,9 +52,9 @@ const Checkout = () => {
   // Reference number for payment
   const referenceNumber = "ACOMPTE-" + Date.now().toString().slice(-6);
   
-  // Expected delivery date (30 days from now)
+  // Expected delivery date (5 days from now instead of 30)
   const deliveryDate = new Date();
-  deliveryDate.setDate(deliveryDate.getDate() + 30);
+  deliveryDate.setDate(deliveryDate.getDate() + 5);
   const formattedDeliveryDate = deliveryDate.toLocaleDateString('fr-FR', {
     year: 'numeric',
     month: 'long',
@@ -400,7 +400,7 @@ const Checkout = () => {
                       <ul className="list-disc list-inside space-y-1 pl-2">
                         <li>Vous vous engagez à verser un acompte de 20% pour réserver votre véhicule</li>
                         <li>Le solde restant sera à régler lors de la livraison du véhicule</li>
-                        <li>La livraison est estimée à 30 jours après réception de l'acompte</li>
+                        <li>La livraison est estimée à 5 jours après réception de l'acompte</li>
                       </ul>
                     </AlertDescription>
                   </Alert>
