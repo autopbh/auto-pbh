@@ -1,3 +1,4 @@
+
 import { Language } from "@/types";
 
 type TranslationDict = {
@@ -568,5 +569,29 @@ export const translations: TranslationsType = {
     "nav.search": "Suche",
     "nav.cart": "Warenkorb",
     "nav.account": "Konto",
+  },
+  it: {
+    // Navigation
+    "nav.home": "Home",
+    "nav.catalog": "Collezione Premium",
+    "nav.services": "Servizi Eccezionali",
+    "nav.about": "La Nostra Storia",
+    "nav.contact": "Contatto Privilegiato",
+    "nav.faq": "Assistenza",
+    "nav.search": "Ricerca",
+    "nav.cart": "Carrello",
+    "nav.account": "Account",
+  },
+  nl: {
+    // Navigation
+    "nav.home": "Home",
+    "nav.catalog": "Premium Collectie",
+    "nav.services": "Uitzonderlijke Diensten",
+    "nav.about": "Ons Verhaal",
+    "nav.contact": "Geprivilegieerd Contact",
+    "nav.faq": "Ondersteuning",
+    "nav.search": "Zoeken",
+    "nav.cart": "Winkelwagen",
+    "nav.account": "Account",
   },
 };
