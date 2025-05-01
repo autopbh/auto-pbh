@@ -1,10 +1,12 @@
-
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { ArrowLeftRight, ShieldCheck, CalendarClock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Returns = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -13,23 +15,20 @@ const Returns = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Politique de Satisfaction</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("returns.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Notre Engagement Qualité</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("returns.commitment")}</h2>
             
             <div className="mb-8">
               <div className="border-l-4 border-autop-red pl-4 italic mb-6">
                 <p className="text-lg">
-                  "Insatisfait ? Nous reprenons votre véhicule sous 7 jours, sans frais.
-                  Conditions : kilométrage identique à la livraison."
+                  {t("returns.guarantee")}
                 </p>
               </div>
               
               <p className="text-lg mb-4">
-                Chez AUTO PBH, votre entière satisfaction est notre priorité absolue. 
-                Nous sommes tellement confiants dans la qualité de nos véhicules que nous vous offrons 
-                une garantie de satisfaction unique sur le marché automobile premium.
+                {t("returns.satisfaction")}
               </p>
             </div>
             
@@ -89,10 +88,10 @@ const Returns = () => {
             
             <div className="text-center">
               <p className="text-muted-foreground mb-4">
-                Pour toute question concernant notre politique de retour, n'hésitez pas à contacter votre conseiller personnel.
+                {t("returns.contactAdvice")}
               </p>
               <Button>
-                Contacter mon conseiller
+                {t("returns.contactAdvisor")}
               </Button>
             </div>
           </section>

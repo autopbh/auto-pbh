@@ -1,971 +1,545 @@
 import { Language } from "@/types";
 
-type TranslationDict = {
-  [key: string]: string;
-};
+export type TranslationKey =
+  | "nav.catalog"
+  | "nav.services"
+  | "nav.about"
+  | "nav.contact"
+  | "nav.faq"
+  | "nav.search"
+  | "nav.cart"
+  | "nav.account"
+  | "shop.addToCart"
+  | "shop.vehicleAdded"
+  | "shop.vehicleAddedDesc"
+  | "shop.alreadyInCart"
+  | "shop.alreadyInCartDesc"
+  | "catalog.title"
+  | "catalog.description"
+  | "catalog.premiumCollection"
+  | "catalog.selectionDescription"
+  | "catalog.inspected"
+  | "catalog.history"
+  | "catalog.certified"
+  | "catalog.warranty"
+  | "catalog.advancedSearch"
+  | "catalog.advancedSearchDesc"
+  | "catalog.customFilters"
+  | "catalog.customFiltersDesc"
+  | "catalog.viewDetails"
+  | "footer.description"
+  | "footer.address"
+  | "footer.city"
+  | "footer.country"
+  | "footer.mainServices"
+  | "footer.collection"
+  | "footer.services"
+  | "footer.financing"
+  | "footer.faq"
+  | "footer.contactPrivilege"
+  | "footer.customerService"
+  | "footer.tracking"
+  | "footer.warranty"
+  | "footer.returns"
+  | "footer.terms"
+  | "footer.privacy"
+  | "footer.cookies"
+  | "footer.stayInformed"
+  | "footer.newsletter"
+  | "footer.emailPlaceholder"
+  | "footer.joinClub"
+  | "footer.copyright"
+  | "footer.legal"
+  | "footer.dataProtection"
+  | "footer.cookies"
+  | "footer.legal"
+  | "footer.dataProtection"
+  | "footer.cookies"
+  | "home.title"
+  | "home.subtitle"
+  | "home.exploreCatalog"
+  | "home.whyChooseUs"
+  | "home.wideSelection"
+  | "home.competitivePrices"
+  | "home.premiumQuality"
+  | "home.customerSatisfaction"
+  | "home.discoverMore"
+  | "home.latestModels"
+  | "home.ourCommitment"
+  | "home.commitmentDescription"
+  | "home.expertAdvice"
+  | "home.transparentProcess"
+  | "home.afterSalesService"
+  | "home.happyClients"
+  | "home.testimonials"
+  | "home.viewMoreTestimonials"
+  | "home.contactUs"
+  | "services.title"
+  | "services.subtitle"
+  | "services.purchase.title"
+  | "services.purchase.subtitle"
+  | "services.purchase.description"
+  | "services.purchase.evaluation"
+  | "services.purchase.evaluation.desc"
+  | "services.purchase.tradein"
+  | "services.purchase.tradein.desc"
+  | "services.purchase.transaction"
+  | "services.purchase.transaction.desc"
+  | "services.purchase.admin"
+  | "services.purchase.admin.desc"
+  | "services.delivery.title"
+  | "services.delivery.subtitle"
+  | "services.delivery.description"
+  | "services.delivery.transport"
+  | "services.delivery.transport.desc"
+  | "services.delivery.tracking"
+  | "services.delivery.tracking.desc"
+  | "services.delivery.customized"
+  | "services.delivery.customized.desc"
+  | "services.delivery.documentation"
+  | "services.delivery.documentation.desc"
+  | "services.additionalServices"
+  | "services.financing"
+  | "services.financing.desc"
+  | "services.discoverOffers"
+  | "services.afterSales"
+  | "services.afterSales.desc"
+  | "services.learnMore"
+  | "services.expressAppointment"
+  | "services.expressAppointment.desc"
+  | "services.makeAppointment"
+  | "services.international"
+  | "services.international.desc"
+  | "services.contactUs"
+  | "services.customService"
+  | "services.customService.desc"
+  | "services.contactPremiumTeam"
+  | "financing.title"
+  | "financing.subtitle"
+  | "financing.description"
+  | "financing.preferentialRates"
+  | "financing.preferentialRates.desc"
+  | "financing.instantSimulation"
+  | "financing.instantSimulation.desc"
+  | "financing.flexibleOptions"
+  | "financing.flexibleOptions.desc"
+  | "financing.calculator"
+  | "financing.requestQuote"
+  | "faq.title"
+  | "faq.description"
+  | "faq.contactUs"
+  | "faq.otherQuestions"
+  | "faq.ourTeam"
+  | "faq.vehicleCondition"
+  | "faq.vehicleConditionAnswer"
+  | "faq.condition.asNew"
+  | "faq.condition.veryGood"
+  | "faq.condition.good"
+  | "faq.partsReplacement"
+  | "faq.partsReplacementAnswer"
+  | "legal.title"
+  | "legal.companyInfo"
+  | "privacy.title"
+  | "privacy.description"
+  | "privacy.statement"
+  | "cookies.title"
+  | "cookies.description"
+  | "cookies.statement"
+  | "cookies.customize"
+  | "returns.title"
+  | "returns.commitment"
+  | "returns.guarantee"
+  | "returns.satisfaction"
+  | "returns.contactAdvice"
+  | "returns.contactAdvisor"
+  | "cookies.savePreferences"
+  | "cookies.acceptAll"
+  | "financing.preferentialRates.desc"
+  | "financing.instantSimulation.desc"
+  | "financing.flexibleOptions.desc";
 
-export type TranslationsType = {
-  [key in Language]: TranslationDict;
-};
-
-export const translations: TranslationsType = {
-  fr: {
-    // Navigation
-    "nav.home": "Accueil",
-    "nav.catalog": "Collection Premium",
-    "nav.services": "Services d'Exception",
-    "nav.about": "Notre Histoire",
-    "nav.contact": "Contact Privilégié",
-    "nav.faq": "Assistance",
-    "nav.search": "Recherche",
-    "nav.cart": "Panier",
-    "nav.account": "Compte",
-
-    // Home page
-    "home.hero.discover": "Découvrez Notre Collection",
-    "home.hero.ourStory": "Notre Histoire",
-    "home.hero.slide1.model": "Basée sur la Transparence",
-    "home.hero.slide1.description": "Toutes les marques en un seul endroit",
-    "home.hero.slide2.model": "N° 1 !",
-    "home.hero.slide2.description": "Venez découvrir pourquoi nous sommes le choix",
-    "home.hero.slide3.model": "Confiance",
-    "home.hero.slide3.description": "La confiance qui fait la différence",
-    "home.featured.title": "Nos Véhicules Vedettes",
-    "home.featured.subtitle": "Découvrez notre sélection de véhicules premium",
-    "home.featured.viewAll": "Explorer Notre Collection Complète",
-    "home.advantages.title": "Pourquoi choisir AUTO PBH",
-    "home.advantages.subtitle": "Notre engagement est de vous offrir une expérience d'achat automobile exceptionnelle, avec des véhicules de qualité et un service personnalisé.",
-    "home.advantages.selection.title": "Sélection rigoureuse",
-    "home.advantages.selection.text": "Tous nos véhicules sont soigneusement sélectionnés et inspectés pour garantir leur qualité exceptionnelle et leur état impeccable.",
-    "home.advantages.warranty.title": "Garantie étendue",
-    "home.advantages.warranty.text": "Nous offrons des garanties étendues sur tous nos véhicules pour vous assurer une tranquillité d'esprit complète après votre achat.",
-    "home.advantages.delivery.title": "Livraison européenne",
-    "home.advantages.delivery.text": "Nous livrons votre véhicule partout en Europe avec un suivi en temps réel et un service de transport professionnel et sécurisé.",
-    "home.testimonials.title": "Ce que nos clients disent",
-    "home.cta.title": "Découvrez l'Excellence Automobile",
-    "home.cta.subtitle": "Notre équipe d'experts est à votre disposition pour vous accompagner dans la sélection du véhicule qui correspondra parfaitement à vos exigences.",
-    "home.cta.explore": "Explorer Notre Collection",
-    "home.cta.contact": "Contact Privilégié",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Transmission",
-    "shop.power": "Puissance",
-    "shop.hp": "ch",
-    "shop.automatic": "Automatique",
-    "shop.manual": "Manuelle",
-    "shop.addToCart": "Ajouter au panier",
-    "shop.discoverDetails": "Découvrir en Détail",
-    "shop.reserved": "En Réservation",
-    "shop.sold": "Vendu",
-    "shop.alreadyInCart": "Véhicule déjà dans le panier",
-    "shop.alreadyInCartDesc": "Ce véhicule est déjà dans votre panier.",
-    "shop.vehicleAdded": "Véhicule ajouté",
-    "shop.vehicleAddedDesc": "{vehicle} a été ajouté à votre panier.",
-
-    // Common
-    "common.loading": "Chargement",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Véhicule non trouvé",
-    "vehicle.backToCatalog": "Retour au catalogue",
-    "vehicle.zeroKm": "ZÉRO KM",
-    "vehicle.mainFeatures": "Caractéristiques Principales",
-    "vehicle.year": "Année",
-    "vehicle.options": "Options et Équipements",
-    "vehicle.requestMoreInfo": "Demander plus d'informations",
-    "vehicle.warranties": "Garanties",
-    "vehicle.manufacturerWarranty": "Garantie constructeur",
-    "vehicle.full": "complète",
-    "vehicle.partial": "partielle",
-    "vehicle.warrantyExtension": "Extension possible jusqu'à 36 mois",
-    "vehicle.assistance": "Assistance 24/7 incluse",
-    "vehicle.includedServices": "Services Inclus",
-    "vehicle.delivery": "Livraison possible dans toute l'Europe",
-    "vehicle.tradeIn": "Reprise de votre ancien véhicule",
-    "vehicle.financing": "Solutions de financement personnalisées",
-    "vehicle.directContact": "Contact Direct",
-    "vehicle.teamAvailable": "Notre équipe est à votre disposition pour répondre à toutes vos questions.",
-    "vehicle.contactAdvisor": "Contactez votre conseiller dédié",
-
-    // Catalog
-    "catalog.title": "Catalogue",
-    "catalog.description": "Explorez notre sélection de véhicules d'exception : BMW, Mercedes-Benz, Audi et Porsche. Filtrez par marque, prix ou année pour trouver la voiture de vos rêves.",
-    "catalog.premiumCollection": "Notre Collection Premium",
-    "catalog.selectionDescription": "Découvrez une sélection rigoureuse des plus beaux modèles du marché premium. Chaque véhicule de notre collection est :",
-    "catalog.inspected": "Minutieusement inspecté par nos experts",
-    "catalog.history": "Accompagné d'un historique complet",
-    "catalog.certified": "Certifié pour sa qualité exceptionnelle",
-    "catalog.warranty": "Disponible avec une garantie étendue",
-    "catalog.advancedSearch": "Recherche Avancée",
-    "catalog.advancedSearchDesc": "Utilisez nos filtres détaillés pour trouver exactement le véhicule qui vous correspond.",
-    "catalog.customFilters": "Filtres Personnalisés",
-    "catalog.customFiltersDesc": "Affinez votre recherche par marque, modèle, année, kilométrage et bien plus.",
-    "catalog.viewDetails": "Voir détails",
-
-    // Search page
-    "search.title": "Recherche",
-    "search.advanced": "Recherche Avancée",
-    "search.description": "Utilisez notre moteur de recherche intelligent pour trouver le véhicule qui correspond parfaitement à vos critères parmi notre sélection exclusive.",
-    "search.placeholder": 'Tapez "Mercedes Classe S 2023" ou scannez vos critères...',
-    "search.button": "Rechercher",
-    "search.byBrand": "Recherche par Marque",
-    "search.models": "modèles",
-    "search.filters": "Filtres Populaires",
-    "search.results": "résultat trouvé",
-    "search.results_plural": "résultats trouvés",
-    "search.noResults": "Aucun résultat trouvé",
-    "search.noResultsDesc": "Aucun véhicule ne correspond à votre recherche.",
-    "search.tryOther": "Essayez avec d'autres termes ou consultez notre catalogue complet.",
-    "search.viewCatalog": "Voir le catalogue complet",
-    "search.assistance": "Assistance recherche",
-    "search.voiceSearch": "Recherche vocale disponible",
-
-    // Footer
-    "footer.description": "AUTO PBH - L'excellence automobile à votre service. Découvrez notre sélection exclusive de véhicules premium et profitez d'une expérience d'achat personnalisée.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
-    "footer.country": "Pays-Bas",
-    "footer.mainServices": "Services Principaux",
-    "footer.collection": "Notre Collection Premium",
-    "footer.services": "Services d'Exception",
-    "footer.financing": "Solutions de Financement Personnalisées",
-    "footer.faq": "Questions Fréquentes",
-    "footer.contactPrivilege": "Contact Privilégié",
-    "footer.customerService": "Service Client Premium",
-    "footer.tracking": "Suivi de Livraison Personnalisé",
-    "footer.warranty": "Garanties Premium",
-    "footer.returns": "Politique de Satisfaction",
-    "footer.terms": "Conditions de Service",
-    "footer.privacy": "Confidentialité",
-    "footer.cookies": "Gestion des Cookies",
-    "footer.stayInformed": "Restez Informé",
-    "footer.newsletter": "Abonnez-vous à notre newsletter exclusive pour recevoir en avant-première nos dernières acquisitions et offres privilégiées.",
-    "footer.emailPlaceholder": "Votre email",
-    "footer.joinClub": "Rejoindre le Club AUTO PBH",
-    "footer.copyright": "© {year} AUTO PBH. L'Excellence Automobile.",
-    "footer.legal": "Mentions Légales",
-    "footer.dataProtection": "Protection des Données",
-  },
+export const translations: Record<Language, Record<string, string>> = {
   en: {
-    // Navigation
-    "nav.home": "Home",
-    "nav.catalog": "Premium Collection",
-    "nav.services": "Exceptional Services",
-    "nav.about": "Our Story",
-    "nav.contact": "Contact Us",
-    "nav.faq": "Support",
+    "nav.catalog": "Catalog",
+    "nav.services": "Services",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "nav.faq": "FAQ",
     "nav.search": "Search",
     "nav.cart": "Cart",
     "nav.account": "Account",
-
-    // Home page
-    "home.hero.discover": "Discover Our Collection",
-    "home.hero.ourStory": "Our Story",
-    "home.hero.slide1.model": "Based on Transparency",
-    "home.hero.slide1.description": "All brands in one place",
-    "home.hero.slide2.model": "No. 1!",
-    "home.hero.slide2.description": "Come discover why we are the choice",
-    "home.hero.slide3.model": "Trust",
-    "home.hero.slide3.description": "Trust that makes the difference",
-    "home.featured.title": "Our Featured Vehicles",
-    "home.featured.subtitle": "Discover our selection of premium vehicles",
-    "home.featured.viewAll": "Explore Our Complete Collection",
-    "home.advantages.title": "Why choose AUTO PBH",
-    "home.advantages.subtitle": "Our commitment is to offer you an exceptional car buying experience, with quality vehicles and personalized service.",
-    "home.advantages.selection.title": "Rigorous selection",
-    "home.advantages.selection.text": "All our vehicles are carefully selected and inspected to ensure their exceptional quality and impeccable condition.",
-    "home.advantages.warranty.title": "Extended warranty",
-    "home.advantages.warranty.text": "We offer extended warranties on all our vehicles to ensure complete peace of mind after your purchase.",
-    "home.advantages.delivery.title": "European delivery",
-    "home.advantages.delivery.text": "We deliver your vehicle anywhere in Europe with real-time tracking and professional, secure transport service.",
-    "home.testimonials.title": "What our customers say",
-    "home.cta.title": "Discover Automotive Excellence",
-    "home.cta.subtitle": "Our team of experts is at your disposal to assist you in selecting the vehicle that will perfectly match your requirements.",
-    "home.cta.explore": "Explore Our Collection",
-    "home.cta.contact": "Contact Us",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Transmission",
-    "shop.power": "Power",
-    "shop.hp": "hp",
-    "shop.automatic": "Automatic",
-    "shop.manual": "Manual",
     "shop.addToCart": "Add to cart",
-    "shop.discoverDetails": "Discover Details",
-    "shop.reserved": "Reserved",
-    "shop.sold": "Sold",
-    "shop.alreadyInCart": "Vehicle already in cart",
-    "shop.alreadyInCartDesc": "This vehicle is already in your cart.",
     "shop.vehicleAdded": "Vehicle added",
     "shop.vehicleAddedDesc": "{vehicle} has been added to your cart.",
-
-    // Common
-    "common.loading": "Loading",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Vehicle not found",
-    "vehicle.backToCatalog": "Back to catalog",
-    "vehicle.zeroKm": "ZERO KM",
-    "vehicle.mainFeatures": "Main Features",
-    "vehicle.year": "Year",
-    "vehicle.options": "Options and Equipment",
-    "vehicle.requestMoreInfo": "Request more information",
-    "vehicle.warranties": "Warranties",
-    "vehicle.manufacturerWarranty": "Manufacturer warranty",
-    "vehicle.full": "full",
-    "vehicle.partial": "partial",
-    "vehicle.warrantyExtension": "Extension available up to 36 months",
-    "vehicle.assistance": "24/7 assistance included",
-    "vehicle.includedServices": "Included Services",
-    "vehicle.delivery": "Delivery available throughout Europe",
-    "vehicle.tradeIn": "Trade-in of your old vehicle",
-    "vehicle.financing": "Customized financing solutions",
-    "vehicle.directContact": "Direct Contact",
-    "vehicle.teamAvailable": "Our team is at your disposal to answer all your questions.",
-    "vehicle.contactAdvisor": "Contact your dedicated advisor",
-
-    // Catalog
-    "catalog.title": "Catalog",
-    "catalog.description": "Explore our selection of exceptional vehicles: BMW, Mercedes-Benz, Audi and Porsche. Filter by brand, price or year to find the car of your dreams.",
-    "catalog.premiumCollection": "Our Premium Collection",
-    "catalog.selectionDescription": "Discover a rigorous selection of the finest models on the premium market. Each vehicle in our collection is:",
-    "catalog.inspected": "Thoroughly inspected by our experts",
-    "catalog.history": "Accompanied by a complete history",
-    "catalog.certified": "Certified for its exceptional quality",
-    "catalog.warranty": "Available with an extended warranty",
+    "shop.alreadyInCart": "Already in cart",
+    "shop.alreadyInCartDesc": "This vehicle is already in your cart.",
+    "catalog.title": "Explore Our Premium Collection",
+    "catalog.description":
+      "Discover a wide selection of high-quality vehicles to suit your needs.",
+    "catalog.premiumCollection": "Premium Selection",
+    "catalog.selectionDescription":
+      "Carefully selected vehicles for their quality and performance.",
+    "catalog.inspected": "Thoroughly Inspected",
+    "catalog.history": "Detailed History Report",
+    "catalog.certified": "Certified Quality",
+    "catalog.warranty": "Extended Warranty Options",
     "catalog.advancedSearch": "Advanced Search",
-    "catalog.advancedSearchDesc": "Use our detailed filters to find exactly the vehicle that suits you.",
+    "catalog.advancedSearchDesc": "Find exactly what you're looking for with our advanced search options.",
     "catalog.customFilters": "Custom Filters",
-    "catalog.customFiltersDesc": "Refine your search by brand, model, year, mileage and much more.",
-    "catalog.viewDetails": "View details",
-
-    // Search page
-    "search.title": "Search",
-    "search.advanced": "Advanced Search",
-    "search.description": "Use our intelligent search engine to find the vehicle that perfectly matches your criteria from our exclusive selection.",
-    "search.placeholder": 'Type "Mercedes S-Class 2023" or scan your criteria...',
-    "search.button": "Search",
-    "search.byBrand": "Search by Brand",
-    "search.models": "models",
-    "search.filters": "Popular Filters",
-    "search.results": "result found",
-    "search.results_plural": "results found",
-    "search.noResults": "No results found",
-    "search.noResultsDesc": "No vehicle matches your search.",
-    "search.tryOther": "Try with other terms or browse our complete catalog.",
-    "search.viewCatalog": "View complete catalog",
-    "search.assistance": "Search assistance",
-    "search.voiceSearch": "Voice search available",
-
-    // Footer
-    "footer.description": "AUTO PBH - Automotive excellence at your service. Discover our exclusive selection of premium vehicles and enjoy a personalized buying experience.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
+    "catalog.customFiltersDesc": "Customize your search with specific criteria.",
+    "catalog.viewDetails": "View Details",
+    "footer.description":
+      "AUTO PBH is your premier destination for premium vehicles. We offer a wide selection of high-quality cars and exceptional customer service.",
+    "footer.address": "Autolettestraat 10",
+    "footer.city": "3063 NP Rotterdam",
     "footer.country": "Netherlands",
     "footer.mainServices": "Main Services",
-    "footer.collection": "Our Premium Collection",
-    "footer.services": "Exceptional Services",
-    "footer.financing": "Customized Financing Solutions",
-    "footer.faq": "Frequently Asked Questions",
-    "footer.contactPrivilege": "Contact Us",
-    "footer.customerService": "Premium Customer Service",
-    "footer.tracking": "Personalized Delivery Tracking",
-    "footer.warranty": "Premium Warranties",
-    "footer.returns": "Satisfaction Policy",
+    "footer.collection": "Our Collection",
+    "footer.services": "Our Services",
+    "footer.financing": "Financing",
+    "footer.faq": "FAQ",
+    "footer.contactPrivilege": "Privileged Contact",
+    "footer.customerService": "Customer Service",
+    "footer.tracking": "Delivery Tracking",
+    "footer.warranty": "Warranty",
+    "footer.returns": "Returns",
     "footer.terms": "Terms of Service",
-    "footer.privacy": "Privacy",
-    "footer.cookies": "Cookie Management",
+    "footer.privacy": "Privacy Policy",
+    "footer.cookies": "Cookies Policy",
     "footer.stayInformed": "Stay Informed",
-    "footer.newsletter": "Subscribe to our exclusive newsletter to receive previews of our latest acquisitions and privileged offers.",
-    "footer.emailPlaceholder": "Your email",
-    "footer.joinClub": "Join the AUTO PBH Club",
-    "footer.copyright": "© {year} AUTO PBH. Automotive Excellence.",
+    "footer.newsletter": "Subscribe to our newsletter to receive exclusive offers and the latest news.",
+    "footer.emailPlaceholder": "Your email address",
+    "footer.joinClub": "Join Our Club",
+    "footer.copyright": "© {year} AUTO PBH. All rights reserved.",
     "footer.legal": "Legal Notice",
     "footer.dataProtection": "Data Protection",
+    "home.title": "Find Your Dream Car",
+    "home.subtitle":
+      "Explore our exclusive selection of premium vehicles and experience unparalleled service.",
+    "home.exploreCatalog": "Explore Catalog",
+    "home.whyChooseUs": "Why Choose Us?",
+    "home.wideSelection": "Wide Selection",
+    "home.competitivePrices": "Competitive Prices",
+    "home.premiumQuality": "Premium Quality",
+    "home.customerSatisfaction": "Customer Satisfaction",
+    "home.discoverMore": "Discover More",
+    "home.latestModels": "Latest Models",
+    "home.ourCommitment": "Our Commitment",
+    "home.commitmentDescription":
+      "We are committed to providing you with the best possible car buying experience.",
+    "home.expertAdvice": "Expert Advice",
+    "home.transparentProcess": "Transparent Process",
+    "home.afterSalesService": "After-Sales Service",
+    "home.happyClients": "Happy Clients",
+    "home.testimonials": "Testimonials",
+    "home.viewMoreTestimonials": "View More Testimonials",
+    "home.contactUs": "Contact Us",
+    "services.title": "Exceptional Services",
+    "services.subtitle": "AUTO PBH is committed to offering an unparalleled experience in the acquisition and maintenance of premium vehicles. Our passion for excellence translates into customized services.",
+    "services.purchase.title": "Purchase & Trade-in of Premium Vehicles",
+    "services.purchase.subtitle": "Recognized expertise in the high-end automotive sector",
+    "services.purchase.description": "Our expertise in the premium vehicle market guarantees you a transaction with complete peace of mind. Our rigorous process includes:",
+    "services.purchase.evaluation": "Professional Evaluation",
+    "services.purchase.evaluation.desc": "Comprehensive and free analysis of your current vehicle by our certified experts, with detailed documentation and optimal trade-in price estimation.",
+    "services.purchase.tradein": "All Brands Trade-in",
+    "services.purchase.tradein.desc": "We buy back your vehicle regardless of its brand or condition, offering you the best market conditions and a simplified process.",
+    "services.purchase.transaction": "Secure Transaction",
+    "services.purchase.transaction.desc": "Quick and secure payment, with multiple options available according to your preferences, including instant bank transfer and certified transfer.",
+    "services.purchase.admin": "Complete Administrative Management",
+    "services.purchase.admin.desc": "Handling of all administrative formalities, including change of ownership, export documents and registration.",
+    "services.delivery.title": "Turnkey Delivery",
+    "services.delivery.subtitle": "Premium and personalized transport throughout Europe",
+    "services.delivery.description": "Our premium delivery service covers the entire European territory with special attention to details:",
+    "services.delivery.transport": "Premium Transport",
+    "services.delivery.transport.desc": "Ultra-secure transport in specialized closed trucks with temperature control and anti-vibration equipment. Full insurance during the entire journey and handling by highly trained teams.",
+    "services.delivery.tracking": "Real-time Tracking",
+    "services.delivery.tracking.desc": "Dedicated application to track your vehicle in real time, with notifications at each important stage. Permanent contact with our team of multilingual logistics coordinators.",
+    "services.delivery.customized": "Personalized Service",
+    "services.delivery.customized.desc": "Delivery scheduled according to your availability, 7 days a week, including evenings and weekends. Complete presentation of the vehicle and demonstration of its features when handing over the keys.",
+    "services.delivery.documentation": "Complete Documentation",
+    "services.delivery.documentation.desc": "Complete file delivered with the vehicle: detailed history, maintenance books, warranties, technical manuals and certificates of authenticity for collector models.",
+    "services.additionalServices": "Additional Services",
+    "services.financing": "Financing Solutions",
+    "services.financing.desc": "Personalized financing with preferential rates, leasing and leasing with flexible purchase options.",
+    "services.discoverOffers": "Discover our offers",
+    "services.afterSales": "After-Sales Service",
+    "services.afterSales.desc": "Premium maintenance, repairs by certified technicians and tailor-made maintenance program.",
+    "services.learnMore": "Learn more",
+    "services.expressAppointment": "Express Appointment",
+    "services.expressAppointment.desc": "Priority service within 24 hours, immediate video consultation and emergency assistance.",
+    "services.makeAppointment": "Make an appointment",
+    "services.international": "International Service",
+    "services.international.desc": "Support for import/export, multi-country documentation and regulatory compliance.",
+    "services.contactUs": "Contact us",
+    "services.customService": "Need a Custom Service?",
+    "services.customService.desc": "Our team of experts is available to develop a solution perfectly adapted to your specific requirements.",
+    "services.contactPremiumTeam": "Contact Our Premium Team",
+    "financing.title": "Financing Solutions",
+    "financing.subtitle": "Tailor-Made Financing",
+    "financing.description": "AUTO PBH offers financing solutions tailored to your financial situation with our exceptional partner banks.",
+    "financing.preferentialRates": "Preferential Rates",
+    "financing.preferentialRates.desc": "Benefit from negotiated rates from 2.9% with our partner banking institutions.",
+    "financing.instantSimulation": "Instant Simulation",
+    "financing.instantSimulation.desc": "Get a personalized online simulation and receive an agreement in principle within 2 hours.",
+    "financing.flexibleOptions": "Flexible Options",
+    "financing.flexibleOptions.desc": "Choose between classic credit, long-term leasing or deferred payment according to your preferences.",
+    "financing.calculator": "Financing Calculator",
+    "financing.requestQuote": "Request a personalized quote",
+    "faq.title": "FAQ",
+    "faq.description": "Find here the answers to the most common questions about our vehicles and services.",
+    "faq.contactUs": "Contact Us",
+    "faq.otherQuestions": "Do you have other questions?",
+    "faq.ourTeam": "Our team is at your disposal to answer all your questions.",
+    "faq.vehicleCondition": "What is the condition of the vehicle and its current mileage?",
+    "faq.vehicleConditionAnswer": "All our vehicles are inspected by our experts. The exact mileage is indicated on each product sheet (example: Audi A4 2021 – 45,000 km). The condition is classified as:",
+    "faq.condition.asNew": "As new (no mechanical or aesthetic defects)",
+    "faq.condition.veryGood": "Very good condition (slight signs of use)",
+    "faq.condition.good": "Good condition (small defects without technical impact)",
+    "faq.partsReplacement": "Has there been any replacement or update of parts?",
+    "faq.partsReplacementAnswer": "Yes, we indicate all the parts replaced (e.g. clutch, brakes, battery) in the expert report. Ask for it for the vehicle that interests you!",
+    "legal.title": "Legal Notice",
+    "legal.companyInfo": "Legal Information",
+    "privacy.title": "Data Protection",
+    "privacy.description": "Our Privacy Policy",
+    "privacy.statement": "At AUTO PBH, we attach great importance to the protection of your personal data. This policy details what information we collect, how we use it and the measures we take to ensure its security.",
+    "cookies.title": "Cookie Management",
+    "cookies.description": "Cookies Policy",
+    "cookies.statement": "AUTO PBH uses cookies to improve your experience on our site, personalize content and advertising, provide social media features and analyze our traffic. We also share information about your use of our site with our social media, advertising and analytics partners.",
+    "cookies.customize": "You can customize your cookie preferences below or accept all cookies to enjoy an optimal experience on our site.",
+    "returns.title": "Satisfaction Policy",
+    "returns.commitment": "Our Quality Commitment",
+    "returns.guarantee": "Unsatisfied? We will take back your vehicle within 7 days, free of charge. Conditions: mileage identical to delivery.",
+    "returns.satisfaction": "At AUTO PBH, your complete satisfaction is our top priority. We are so confident in the quality of our vehicles that we offer you a unique satisfaction guarantee in the premium automotive market.",
+    "returns.contactAdvice": "If you have any questions regarding our return policy, please contact your personal advisor.",
+    "returns.contactAdvisor": "Contact my advisor",
+    "cookies.savePreferences": "Save my preferences",
+    "cookies.acceptAll": "Accept all cookies",
   },
+
   pt: {
-    // Navigation
-    "nav.home": "Início",
-    "nav.catalog": "Coleção Premium",
-    "nav.services": "Serviços de Exceção",
-    "nav.about": "Nossa História",
-    "nav.contact": "Contacto Privilegiado",
-    "nav.faq": "Assistência",
-    "nav.search": "Pesquisa",
+    "nav.catalog": "Catálogo",
+    "nav.services": "Serviços",
+    "nav.about": "Sobre",
+    "nav.contact": "Contato",
+    "nav.faq": "FAQ",
+    "nav.search": "Pesquisar",
     "nav.cart": "Carrinho",
     "nav.account": "Conta",
-
-    // Home page
-    "home.hero.discover": "Descubra a Nossa Coleção",
-    "home.hero.ourStory": "Nossa História",
-    "home.hero.slide1.model": "Baseada em Transparência",
-    "home.hero.slide1.description": "Todas as marcas em um só lugar",
-    "home.hero.slide2.model": "Nº 1!",
-    "home.hero.slide2.description": "Venha descobrir porque somos a escolha",
-    "home.hero.slide3.model": "Confiança",
-    "home.hero.slide3.description": "Confiança que faz a Diferença",
-    "home.featured.title": "Nossos Veículos em Destaque",
-    "home.featured.subtitle": "Descubra a nossa seleção de veículos premium",
-    "home.featured.viewAll": "Explorar Nossa Coleção Completa",
-    "home.advantages.title": "Por que escolher a AUTO PBH",
-    "home.advantages.subtitle": "O nosso compromisso é oferecer-lhe uma experiência de compra excepcional, com veículos de qualidade e um serviço personalizado.",
-    "home.advantages.selection.title": "Seleção rigorosa",
-    "home.advantages.selection.text": "Todos os nossos veículos são cuidadosamente selecionados e inspecionados para garantir a sua qualidade excepcional e condição impecável.",
-    "home.advantages.warranty.title": "Garantia alargada",
-    "home.advantages.warranty.text": "Oferecemos garantias alargadas em todos os nossos veículos para garantir total tranquilidade após a sua compra.",
-    "home.advantages.delivery.title": "Entrega europeia",
-    "home.advantages.delivery.text": "Entregamos o seu veículo em qualquer lugar da Europa com rastreamento em tempo real e serviço de transporte profissional e seguro.",
-    "home.testimonials.title": "O que dizem os nossos clientes",
-    "home.cta.title": "Descubra a Excelência Automóvel",
-    "home.cta.subtitle": "A nossa equipa de especialistas está à sua disposição para o ajudar a selecionar o veículo que corresponderá perfeitamente às suas exigências.",
-    "home.cta.explore": "Explorar Nossa Coleção",
-    "home.cta.contact": "Contacto Privilegiado",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Transmissão",
-    "shop.power": "Potência",
-    "shop.hp": "cv",
-    "shop.automatic": "Automática",
-    "shop.manual": "Manual",
     "shop.addToCart": "Adicionar ao carrinho",
-    "shop.discoverDetails": "Descobrir em Detalhe",
-    "shop.reserved": "Reservado",
-    "shop.sold": "Vendido",
-    "shop.alreadyInCart": "Veículo já no carrinho",
-    "shop.alreadyInCartDesc": "Este veículo já está no seu carrinho.",
     "shop.vehicleAdded": "Veículo adicionado",
     "shop.vehicleAddedDesc": "{vehicle} foi adicionado ao seu carrinho.",
-
-    // Common
-    "common.loading": "Carregando",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Veículo não encontrado",
-    "vehicle.backToCatalog": "Voltar ao catálogo",
-    "vehicle.zeroKm": "ZERO KM",
-    "vehicle.mainFeatures": "Características Principais",
-    "vehicle.year": "Ano",
-    "vehicle.options": "Opções e Equipamentos",
-    "vehicle.requestMoreInfo": "Solicitar mais informações",
-    "vehicle.warranties": "Garantias",
-    "vehicle.manufacturerWarranty": "Garantia do fabricante",
-    "vehicle.full": "completa",
-    "vehicle.partial": "parcial",
-    "vehicle.warrantyExtension": "Extensão disponível até 36 meses",
-    "vehicle.assistance": "Assistência 24/7 incluída",
-    "vehicle.includedServices": "Serviços Incluídos",
-    "vehicle.delivery": "Entrega disponível em toda a Europa",
-    "vehicle.tradeIn": "Retoma do seu veículo antigo",
-    "vehicle.financing": "Soluções de financiamento personalizadas",
-    "vehicle.directContact": "Contacto Direto",
-    "vehicle.teamAvailable": "A nossa equipe está à sua disposição para responder a todas as suas perguntas.",
-    "vehicle.contactAdvisor": "Contacte o seu consultor dedicado",
-
-    // Catalog
-    "catalog.title": "Catálogo",
-    "catalog.description": "Explore a nossa seleção de veículos excecionais: BMW, Mercedes-Benz, Audi e Porsche. Filtre por marca, preço ou ano para encontrar o carro dos seus sonhos.",
-    "catalog.premiumCollection": "A Nossa Coleção Premium",
-    "catalog.selectionDescription": "Descubra uma seleção rigorosa dos melhores modelos do mercado premium. Cada veículo da nossa coleção é:",
-    "catalog.inspected": "Minuciosamente inspecionado pelos nossos especialistas",
-    "catalog.history": "Acompanhado de um histórico completo",
-    "catalog.certified": "Certificado pela sua qualidade excepcional",
-    "catalog.warranty": "Disponível com garantia estendida",
+    "shop.alreadyInCart": "Já está no carrinho",
+    "shop.alreadyInCartDesc": "Este veículo já está no seu carrinho.",
+    "catalog.title": "Explore a Nossa Coleção Premium",
+    "catalog.description":
+      "Descubra uma vasta seleção de veículos de alta qualidade para atender às suas necessidades.",
+    "catalog.premiumCollection": "Seleção Premium",
+    "catalog.selectionDescription":
+      "Veículos cuidadosamente selecionados pela sua qualidade e desempenho.",
+    "catalog.inspected": "Inspecionados Minuciosamente",
+    "catalog.history": "Relatório Detalhado do Histórico",
+    "catalog.certified": "Qualidade Certificada",
+    "catalog.warranty": "Opções de Garantia Estendida",
     "catalog.advancedSearch": "Pesquisa Avançada",
-    "catalog.advancedSearchDesc": "Utilize os nossos filtros detalhados para encontrar exatamente o veículo que lhe corresponde.",
+    "catalog.advancedSearchDesc": "Encontre exatamente o que procura com as nossas opções de pesquisa avançada.",
     "catalog.customFilters": "Filtros Personalizados",
-    "catalog.customFiltersDesc": "Refine a sua pesquisa por marca, modelo, ano, quilometragem e muito mais.",
-    "catalog.viewDetails": "Ver detalhes",
-
-    // Search page
-    "search.title": "Pesquisa",
-    "search.advanced": "Pesquisa Avançada",
-    "search.description": "Use o nosso motor de busca inteligente para encontrar o veículo que corresponde perfeitamente aos seus critérios na nossa seleção exclusiva.",
-    "search.placeholder": 'Digite "Mercedes Classe S 2023" ou explore seus critérios...',
-    "search.button": "Pesquisar",
-    "search.byBrand": "Pesquisa por Marca",
-    "search.models": "modelos",
-    "search.filters": "Filtros Populares",
-    "search.results": "resultado encontrado",
-    "search.results_plural": "resultados encontrados",
-    "search.noResults": "Nenhum resultado encontrado",
-    "search.noResultsDesc": "Nenhum veículo corresponde à sua pesquisa.",
-    "search.tryOther": "Tente com outros termos ou consulte o nosso catálogo completo.",
-    "search.viewCatalog": "Ver catálogo completo",
-    "search.assistance": "Assistência de pesquisa",
-    "search.voiceSearch": "Pesquisa por voz disponível",
-
-    // Footer
-    "footer.description": "AUTO PBH - A excelência automóvel ao seu serviço. Descubra a nossa seleção exclusiva de veículos premium e desfrute de uma experiência de compra personalizada.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
+    "catalog.customFiltersDesc": "Personalize a sua pesquisa com critérios específicos.",
+    "catalog.viewDetails": "Ver Detalhes",
+    "footer.description":
+      "A AUTO PBH é o seu principal destino para veículos premium. Oferecemos uma vasta seleção de carros de alta qualidade e um atendimento ao cliente excecional.",
+    "footer.address": "Autolettestraat 10",
+    "footer.city": "3063 NP Rotterdam",
     "footer.country": "Países Baixos",
     "footer.mainServices": "Serviços Principais",
-    "footer.collection": "Nossa Coleção Premium",
-    "footer.services": "Serviços de Exceção",
-    "footer.financing": "Soluções de Financiamento Personalizadas",
-    "footer.faq": "Perguntas Frequentes",
-    "footer.contactPrivilege": "Contacto Privilegiado",
-    "footer.customerService": "Serviço ao Cliente Premium",
-    "footer.tracking": "Acompanhamento de Entrega Personalizado",
-    "footer.warranty": "Garantias Premium",
-    "footer.returns": "Política de Satisfação",
+    "footer.collection": "A Nossa Coleção",
+    "footer.services": "Os Nossos Serviços",
+    "footer.financing": "Financiamento",
+    "footer.faq": "FAQ",
+    "footer.contactPrivilege": "Contato Privilegiado",
+    "footer.customerService": "Atendimento ao Cliente",
+    "footer.tracking": "Rastreamento de Entrega",
+    "footer.warranty": "Garantia",
+    "footer.returns": "Devoluções",
     "footer.terms": "Termos de Serviço",
-    "footer.privacy": "Privacidade",
-    "footer.cookies": "Gestão de Cookies",
+    "footer.privacy": "Política de Privacidade",
+    "footer.cookies": "Política de Cookies",
     "footer.stayInformed": "Mantenha-se Informado",
-    "footer.newsletter": "Subscreva a nossa newsletter exclusiva para receber em primeira mão as nossas últimas aquisições e ofertas privilegiadas.",
-    "footer.emailPlaceholder": "O seu email",
-    "footer.joinClub": "Junte-se ao Clube AUTO PBH",
-    "footer.copyright": "© {year} AUTO PBH. Excelência Automóvel.",
+    "footer.newsletter": "Subscreva a nossa newsletter para receber ofertas exclusivas e as últimas notícias.",
+    "footer.emailPlaceholder": "O seu endereço de email",
+    "footer.joinClub": "Junte-se ao Nosso Clube",
+    "footer.copyright": "© {year} AUTO PBH. Todos os direitos reservados.",
     "footer.legal": "Aviso Legal",
     "footer.dataProtection": "Proteção de Dados",
+    "home.title": "Encontre o Carro dos Seus Sonhos",
+    "home.subtitle":
+      "Explore a nossa seleção exclusiva de veículos premium e experimente um serviço incomparável.",
+    "home.exploreCatalog": "Explorar Catálogo",
+    "home.whyChooseUs": "Porquê Escolher-nos?",
+    "home.wideSelection": "Vasta Seleção",
+    "home.competitivePrices": "Preços Competitivos",
+    "home.premiumQuality": "Qualidade Premium",
+    "home.customerSatisfaction": "Satisfação do Cliente",
+    "home.discoverMore": "Descobrir Mais",
+    "home.latestModels": "Últimos Modelos",
+    "home.ourCommitment": "O Nosso Compromisso",
+    "home.commitmentDescription":
+      "Estamos comprometidos em fornecer-lhe a melhor experiência possível de compra de carros.",
+    "home.expertAdvice": "Aconselhamento Especializado",
+    "home.transparentProcess": "Processo Transparente",
+    "home.afterSalesService": "Serviço Pós-Venda",
+    "home.happyClients": "Clientes Satisfeitos",
+    "home.testimonials": "Testemunhos",
+    "home.viewMoreTestimonials": "Ver Mais Testemunhos",
+    "home.contactUs": "Contacte-nos",
+    "services.title": "Serviços de Exceção",
+    "services.subtitle": "A AUTO PBH está comprometida em oferecer uma experiência inigualável na aquisição e manutenção de veículos premium. Nossa paixão pela excelência se traduz em serviços personalizados.",
+    "services.purchase.title": "Compra e Retoma de Veículos Premium",
+    "services.purchase.subtitle": "Expertise reconhecida no setor automóvel de gama alta",
+    "services.purchase.description": "Nossa expertise no mercado de veículos premium garante-lhe uma transação com total tranquilidade. Nosso processo rigoroso inclui:",
+    "services.purchase.evaluation": "Avaliação Profissional",
+    "services.purchase.evaluation.desc": "Análise abrangente e gratuita do seu veículo atual por nossos especialistas certificados, com documentação detalhada e estimativa ótima do preço de retoma.",
+    "services.purchase.tradein": "Retoma de Todas as Marcas",
+    "services.purchase.tradein.desc": "Compramos o seu veículo independentemente da marca ou estado, oferecendo-lhe as melhores condições do mercado e um processo simplificado.",
+    "services.purchase.transaction": "Transação Segura",
+    "services.purchase.transaction.desc": "Pagamento rápido e seguro, com múltiplas opções disponíveis de acordo com as suas preferências, incluindo transferência bancária instantânea e transferência certificada.",
+    "services.purchase.admin": "Gestão Administrativa Completa",
+    "services.purchase.admin.desc": "Tratamento de todas as formalidades administrativas, incluindo mudança de proprietário, documentos de exportação e registro.",
+    "services.delivery.title": "Entrega Chave na Mão",
+    "services.delivery.subtitle": "Transporte premium e personalizado em toda a Europa",
+    "services.delivery.description": "O nosso serviço de entrega premium cobre todo o território europeu com especial atenção aos detalhes:",
+    "services.delivery.transport": "Transporte Premium",
+    "services.delivery.transport.desc": "Transporte ultra-seguro em caminhões fechados especializados com controle de temperatura e equipamento anti-vibração. Seguro completo durante toda a viagem e manuseio por equipes altamente treinadas.",
+    "services.delivery.tracking": "Acompanhamento em Tempo Real",
+    "services.delivery.tracking.desc": "Aplicação dedicada para acompanhar o seu veículo em tempo real, com notificações em cada etapa importante. Contato permanente com nossa equipe de coordenadores logísticos multilíngues.",
+    "services.delivery.customized": "Serviço Personalizado",
+    "services.delivery.customized.desc": "Entrega programada de acordo com a sua disponibilidade, 7 dias por semana, incluindo noites e fins de semana. Apresentação completa do veículo e demonstração das suas funcionalidades na entrega das chaves.",
+    "services.delivery.documentation": "Documentação Completa",
+    "services.delivery.documentation.desc": "Arquivo completo entregue com o veículo: histórico detalhado, livros de manutenção, garantias, manuais técnicos e certificados de autenticidade para modelos de coleção.",
+    "services.additionalServices": "Serviços Adicionais",
+    "services.financing": "Soluções de Financiamento",
+    "services.financing.desc": "Financiamento personalizado com taxas preferenciais, crédito e leasing com opções de compra flexíveis.",
+    "services.discoverOffers": "Descubra as nossas ofertas",
+    "services.afterSales": "Serviço Pós-Venda",
+    "services.afterSales.desc": "Manutenção premium, reparações por técnicos certificados e programa de manutenção personalizado.",
+    "services.learnMore": "Saiba mais",
+    "services.expressAppointment": "Consulta Expressa",
+    "services.expressAppointment.desc": "Serviço prioritário em 24 horas, consulta de vídeo imediata e assistência de emergência.",
+    "services.makeAppointment": "Marcar consulta",
+    "services.international": "Serviço Internacional",
+    "services.international.desc": "Apoio à importação/exportação, documentação multi-países e conformidade regulamentar.",
+    "services.contactUs": "Contacte-nos",
+    "services.customService": "Precisa de um Serviço Personalizado?",
+    "services.customService.desc": "A nossa equipa de especialistas está disponível para desenvolver uma solução perfeitamente adaptada às suas necessidades específicas.",
+    "services.contactPremiumTeam": "Contacte a Nossa Equipa Premium",
+    "financing.title": "Soluções de Financiamento",
+    "financing.subtitle": "Financiamento Sob Medida",
+    "financing.description": "A AUTO PBH oferece soluções de financiamento adaptadas à sua situação financeira com os nossos bancos parceiros de exceção.",
+    "financing.preferentialRates": "Taxas Preferenciais",
+    "financing.preferentialRates.desc": "Beneficie de taxas negociadas a partir de 2,9% com as nossas instituições bancárias parceiras.",
+    "financing.instantSimulation": "Simulação Instantânea",
+    "financing.instantSimulation.desc": "Obtenha uma simulação personalizada online e receba um acordo de princípio em 2 horas.",
+    "financing.flexibleOptions": "Opções Flexíveis",
+    "financing.flexibleOptions.desc": "Escolha entre crédito clássico, leasing de longo prazo ou pagamento diferido de acordo com as suas preferências.",
+    "financing.calculator": "Calculadora de Financiamento",
+    "financing.requestQuote": "Solicitar um orçamento personalizado",
+    "faq.title": "FAQ",
+    "faq.description": "Encontre aqui as respostas às perguntas mais frequentes sobre os nossos veículos e serviços.",
+    "faq.contactUs": "Contacte-nos",
+    "faq.otherQuestions": "Tem outras perguntas?",
+    "faq.ourTeam": "A nossa equipa está à sua disposição para responder a todas as suas perguntas.",
+    "faq.vehicleCondition": "Qual é o estado do veículo e a sua quilometragem atual?",
+    "faq.vehicleConditionAnswer": "Todos os nossos veículos são inspecionados pelos nossos especialistas. A quilometragem exata é indicada em cada ficha de produto (exemplo: Audi A4 2021 – 45.000 km). O estado é classificado como:",
+    "faq.condition.asNew": "Como novo (sem defeitos mecânicos ou estéticos)",
+    "faq.condition.veryGood": "Muito bom estado (ligeiros sinais de uso)",
+    "faq.condition.good": "Bom estado (pequenos defeitos sem impacto técnico)",
+    "faq.partsReplacement": "Houve alguma substituição ou atualização de peças?",
+    "faq.partsReplacementAnswer": "Sim, indicamos todas as peças substituídas (ex: embraiagem, travões, bateria) no relatório de perícia. Peça-o para o veículo que lhe interessa!",
+    "legal.title": "Aviso Legal",
+    "legal.companyInfo": "Informações Legais",
+    "privacy.title": "Proteção de Dados",
+    "privacy.description": "A Nossa Política de Privacidade",
+    "privacy.statement": "Na AUTO PBH, atribuímos grande importância à proteção dos seus dados pessoais. Esta política detalha quais as informações que recolhemos, como as utilizamos e as medidas que tomamos para garantir a sua segurança.",
+    "cookies.title": "Gestão de Cookies",
+    "cookies.description": "Política de Cookies",
+    "cookies.statement": "A AUTO PBH utiliza cookies para melhorar a sua experiência no nosso site, personalizar o conteúdo e a publicidade, fornecer funcionalidades de redes sociais e analisar o nosso tráfego. Também partilhamos informações sobre a sua utilização do nosso site com os nossos parceiros de redes sociais, publicidade e análise.",
+    "cookies.customize": "Pode personalizar as suas preferências de cookies abaixo ou aceitar todos os cookies para desfrutar de uma experiência ideal no nosso site.",
+    "returns.title": "Política de Satisfação",
+    "returns.commitment": "O Nosso Compromisso de Qualidade",
+    "returns.guarantee": "Insatisfeito? Retomamos o seu veículo em 7 dias, sem custos. Condições: quilometragem idêntica à da entrega.",
+    "returns.satisfaction": "Na AUTO PBH, a sua total satisfação é a nossa prioridade máxima. Estamos tão confiantes na qualidade dos nossos veículos que lhe oferecemos uma garantia de satisfação única no mercado automóvel premium.",
+    "returns.contactAdvice": "Se tiver alguma questão sobre a nossa política de devolução, não hesite em contactar o seu consultor pessoal.",
+    "returns.contactAdvisor": "Contactar o meu consultor",
+    "cookies.savePreferences": "Guardar as minhas preferências",
+    "cookies.acceptAll": "Aceitar todos os cookies",
   },
-  es: {
-    // Navigation
-    "nav.home": "Inicio",
-    "nav.catalog": "Colección Premium",
-    "nav.services": "Servicios Excepcionales",
-    "nav.about": "Nuestra Historia",
-    "nav.contact": "Contacto Privilegiado",
-    "nav.faq": "Asistencia",
-    "nav.search": "Búsqueda",
-    "nav.cart": "Carrito",
-    "nav.account": "Cuenta",
 
-    // Home page
-    "home.hero.discover": "Descubra Nuestra Colección",
-    "home.hero.ourStory": "Nuestra Historia",
-    "home.hero.slide1.model": "Basada en la Transparencia",
-    "home.hero.slide1.description": "Todas las marcas en un solo lugar",
-    "home.hero.slide2.model": "¡Nº 1!",
-    "home.hero.slide2.description": "Venga a descubrir por qué somos la elección",
-    "home.hero.slide3.model": "Confianza",
-    "home.hero.slide3.description": "Confianza que marca la diferencia",
-    "home.featured.title": "Nuestros Vehículos Destacados",
-    "home.featured.subtitle": "Descubra nuestra selección de vehículos premium",
-    "home.featured.viewAll": "Explorar Nuestra Colección Completa",
-    "home.advantages.title": "Por qué elegir AUTO PBH",
-    "home.advantages.subtitle": "Nuestro compromiso es ofrecerle una experiencia de compra excepcional, con vehículos de calidad y un servicio personalizado.",
-    "home.advantages.selection.title": "Selección rigurosa",
-    "home.advantages.selection.text": "Todos nuestros vehículos son cuidadosamente seleccionados y inspeccionados para garantizar su calidad excepcional y condición impecable.",
-    "home.advantages.warranty.title": "Garantía extendida",
-    "home.advantages.warranty.text": "Ofrecemos garantías extendidas en todos nuestros vehículos para asegurarle una total tranquilidad después de su compra.",
-    "home.advantages.delivery.title": "Entrega europea",
-    "home.advantages.delivery.text": "Entregamos su vehículo en cualquier parte de Europa con seguimiento en tiempo real y un servicio de transporte profesional y seguro.",
-    "home.testimonials.title": "Lo que dicen nuestros clientes",
-    "home.cta.title": "Descubra la Excelencia Automotriz",
-    "home.cta.subtitle": "Nuestro equipo de expertos está a su disposición para ayudarle a seleccionar el vehículo que se adaptará perfectamente a sus requisitos.",
-    "home.cta.explore": "Explorar Nuestra Colección",
-    "home.cta.contact": "Contacto Privilegiado",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Transmisión",
-    "shop.power": "Potencia",
-    "shop.hp": "cv",
-    "shop.automatic": "Automática",
-    "shop.manual": "Manual",
-    "shop.addToCart": "Añadir al carrito",
-    "shop.discoverDetails": "Descubrir en Detalle",
-    "shop.reserved": "Reservado",
-    "shop.sold": "Vendido",
-    "shop.alreadyInCart": "Vehículo ya en el carrito",
-    "shop.alreadyInCartDesc": "Este vehículo ya está en su carrito.",
-    "shop.vehicleAdded": "Vehículo añadido",
-    "shop.vehicleAddedDesc": "{vehicle} ha sido añadido a su carrito.",
-
-    // Common
-    "common.loading": "Cargando",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Vehículo no encontrado",
-    "vehicle.backToCatalog": "Volver al catálogo",
-    "vehicle.zeroKm": "CERO KM",
-    "vehicle.mainFeatures": "Características Principales",
-    "vehicle.year": "Año",
-    "vehicle.options": "Opciones y Equipamiento",
-    "vehicle.requestMoreInfo": "Solicitar más información",
-    "vehicle.warranties": "Garantías",
-    "vehicle.manufacturerWarranty": "Garantía del fabricante",
-    "vehicle.full": "completa",
-    "vehicle.partial": "parcial",
-    "vehicle.warrantyExtension": "Extensión disponible hasta 36 meses",
-    "vehicle.assistance": "Asistencia 24/7 incluida",
-    "vehicle.includedServices": "Servicios Incluidos",
-    "vehicle.delivery": "Entrega disponible en toda Europa",
-    "vehicle.tradeIn": "Recompra de su vehículo antiguo",
-    "vehicle.financing": "Soluciones de financiación personalizadas",
-    "vehicle.directContact": "Contacto Directo",
-    "vehicle.teamAvailable": "Nuestro equipo está a su disposición para responder a todas sus preguntas.",
-    "vehicle.contactAdvisor": "Contacte con su asesor dedicado",
-
-    // Catalog
-    "catalog.title": "Catálogo",
-    "catalog.description": "Explore nuestra selección de vehículos excepcionales: BMW, Mercedes-Benz, Audi y Porsche. Filtre por marca, precio o año para encontrar el coche de sus sueños.",
-    "catalog.premiumCollection": "Nuestra Colección Premium",
-    "catalog.selectionDescription": "Descubra una selección rigurosa de los mejores modelos del mercado premium. Cada vehículo de nuestra colección está:",
-    "catalog.inspected": "Minuciosamente inspeccionado por nuestros expertos",
-    "catalog.history": "Acompañado de un historial completo",
-    "catalog.certified": "Certificado por su calidad excepcional",
-    "catalog.warranty": "Disponible con garantía extendida",
-    "catalog.advancedSearch": "Búsqueda Avanzada",
-    "catalog.advancedSearchDesc": "Utilice nuestros filtros detallados para encontrar exactamente el vehículo que le corresponde.",
-    "catalog.customFilters": "Filtros Personalizados",
-    "catalog.customFiltersDesc": "Refine su búsqueda por marca, modelo, año, kilometraje y mucho más.",
-    "catalog.viewDetails": "Ver detalles",
-
-    // Search page
-    "search.title": "Búsqueda",
-    "search.advanced": "Búsqueda Avanzada",
-    "search.description": "Utilice nuestro motor de búsqueda inteligente para encontrar el vehículo que corresponde perfectamente a sus criterios entre nuestra selección exclusiva.",
-    "search.placeholder": 'Escriba "Mercedes Clase S 2023" o escanee sus criterios...',
-    "search.button": "Buscar",
-    "search.byBrand": "Búsqueda por Marca",
-    "search.models": "modelos",
-    "search.filters": "Filtros Populares",
-    "search.results": "resultado encontrado",
-    "search.results_plural": "resultados encontrados",
-    "search.noResults": "No se encontraron resultados",
-    "search.noResultsDesc": "Ningún vehículo corresponde a su búsqueda.",
-    "search.tryOther": "Intente con otros términos o consulte nuestro catálogo completo.",
-    "search.viewCatalog": "Ver catálogo completo",
-    "search.assistance": "Asistencia de búsqueda",
-    "search.voiceSearch": "Búsqueda por voz disponible",
-
-    // Footer
-    "footer.description": "AUTO PBH - La excelencia automotriz a su servicio. Descubra nuestra selección exclusiva de vehículos premium y disfrute de una experiencia de compra personalizada.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
-    "footer.country": "Países Bajos",
-    "footer.mainServices": "Servicios Principales",
-    "footer.collection": "Nuestra Colección Premium",
-    "footer.services": "Servicios Excepcionales",
-    "footer.financing": "Soluciones de Financiación Personalizadas",
-    "footer.faq": "Preguntas Frecuentes",
-    "footer.contactPrivilege": "Contacto Privilegiado",
-    "footer.customerService": "Servicio al Cliente Premium",
-    "footer.tracking": "Seguimiento de Entrega Personalizado",
-    "footer.warranty": "Garantías Premium",
-    "footer.returns": "Política de Satisfacción",
-    "footer.terms": "Condiciones de Serviço",
-    "footer.privacy": "Privacidad",
-    "footer.cookies": "Gestión de Cookies",
-    "footer.stayInformed": "Manténgase Informado",
-    "footer.newsletter": "Suscríbase a nuestro boletín exclusivo para recibir de antemano nuestras últimas aquisições y ofertas privilegiadas.",
-    "footer.emailPlaceholder": "Su email",
-    "footer.joinClub": "Únase al Club AUTO PBH",
-    "footer.copyright": "© {year} AUTO PBH. Excelencia Automotriz.",
-    "footer.legal": "Aviso Legal",
-    "footer.dataProtection": "Protección de Datos",
-  },
-  de: {
-    // Navigation
-    "nav.home": "Startseite",
-    "nav.catalog": "Premium-Kollektion",
-    "nav.services": "Außergewöhnliche Dienstleistungen",
-    "nav.about": "Unsere Geschichte",
-    "nav.contact": "Privilegierter Kontakt",
-    "nav.faq": "Unterstützung",
-    "nav.search": "Suche",
-    "nav.cart": "Warenkorb",
-    "nav.account": "Konto",
-
-    // Home page
-    "home.hero.discover": "Entdecken Sie unsere Collection",
-    "home.hero.ourStory": "Unsere Geschichte",
-    "home.hero.slide1.model": "Basierend auf Transparenz",
-    "home.hero.slide1.description": "Alle Marken in einem Ort",
-    "home.hero.slide2.model": "N° 1!",
-    "home.hero.slide2.description": "Kommen Sie und entdecken warum wir die Wahl sind",
-    "home.hero.slide3.model": "Vertrauen",
-    "home.hero.slide3.description": "Vertrauen, das die Differenz macht",
-    "home.featured.title": "Unsere Ausgezeichneten Fahrzeuge",
-    "home.featured.subtitle": "Entdecken Sie unsere Auswahl von Premium-Fahrzeugen",
-    "home.featured.viewAll": "Unsere Vollständige Collection Explorieren",
-    "home.advantages.title": "Warum AUTO PBH auswählen",
-    "home.advantages.subtitle": "Unser Engagement ist es, Ihnen eine ausgezeichnete Fahrzeugkauf-Expérience zu bieten, mit hochwertigen Fahrzeugen und individualem Service.",
-    "home.advantages.selection.title": "Rigoureuse Auswahl",
-    "home.advantages.selection.text": "Alle unsere Fahrzeuge werden sorgfältig ausgewählt und inspiziert, um ihre ausgezeichnete Qualität und perfekte Zustand zu gewährleisten.",
-    "home.advantages.warranty.title": "Erweiterte Garantie",
-    "home.advantages.warranty.text": "Wir bieten erweiterte Garantien auf allen unseren Fahrzeugen, um Sie eine vollständige Ruhe nach Ihrer Kauf-Experience zu gewährleisten.",
-    "home.advantages.delivery.title": "Europäische Lieferung",
-    "home.advantages.delivery.text": "Wir liefern Ihr Fahrzeug in Europa in jedem Ort mit realtem Tracking und professionalem, sicherem Transportdienst.",
-    "home.testimonials.title": "Was unsere Kunden sagen",
-    "home.cta.title": "Entdecken Sie die Automobil-Excellenz",
-    "home.cta.subtitle": "Unsere Experten sind Ihnen zur Verfügung, Ihnen zu helfen, das Fahrzeug zu finden, das Ihren Anforderungen entspricht.",
-    "home.cta.explore": "Unsere Vollständige Collection Explorieren",
-    "home.cta.contact": "Privilegierter Kontakt",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Übertragung",
-    "shop.power": "Leistung",
-    "shop.hp": "ch",
-    "shop.automatic": "Automatik",
-    "shop.manual": "Manuell",
-    "shop.addToCart": "In den Warenkorb hinzufügen",
-    "shop.discoverDetails": "Details entdecken",
-    "shop.reserved": "Reserviert",
-    "shop.sold": "Verkauft",
-    "shop.alreadyInCart": "Fahrzeug bereits im Warenkorb",
-    "shop.alreadyInCartDesc": "Dieses Fahrzeug befindet sich bereits in Ihrem Warenkorb.",
-    "shop.vehicleAdded": "Fahrzeug hinzugefügt",
-    "shop.vehicleAddedDesc": "{vehicle} wurde zu Ihrem Warenkorb hinzugefügt.",
-
-    // Common
-    "common.loading": "Laden",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Fahrzeug nicht gefunden",
-    "vehicle.backToCatalog": "Zurück zum Katalog",
-    "vehicle.zeroKm": "ZERO KM",
-    "vehicle.mainFeatures": "Hauptmerkmale",
-    "vehicle.year": "Jahr",
-    "vehicle.options": "Optionen und Ausstattung",
-    "vehicle.requestMoreInfo": "Mehr Informationen anfordern",
-    "vehicle.warranties": "Garantien",
-    "vehicle.manufacturerWarranty": "Herstellergarantie",
-    "vehicle.full": "vollständig",
-    "vehicle.partial": "teilweise",
-    "vehicle.warrantyExtension": "Erweiterung bis 36 Monate möglich",
-    "vehicle.assistance": "24/7 Unterstützung inklusive",
-    "vehicle.includedServices": "Inkludierte Dienstleistungen",
-    "vehicle.delivery": "Lieferung möglich in ganz Europa",
-    "vehicle.tradeIn": "Erbarene Fahrzeuge einwerfen",
-    "vehicle.financing": "Anpassbare Finanzierungslösungen",
-    "vehicle.directContact": "Direkter Kontakt",
-    "vehicle.teamAvailable": "Unser Team ist Ihnen zur Verfügung, um alle Ihre Fragen zu beantworten.",
-    "vehicle.contactAdvisor": "Ihr persönlicher Berater kontaktieren",
-
-    // Catalog
-    "catalog.title": "Katalog",
-    "catalog.description": "Entdecken Sie unsere Auswahl an außergewöhnlichen Fahrzeugen: BMW, Mercedes-Benz, Audi und Porsche. Filtern Sie nach Marke, Preis oder Jahr, um das Auto Ihrer Träume zu finden.",
-    "catalog.premiumCollection": "Unsere Premium-Kollektion",
-    "catalog.selectionDescription": "Entdecken Sie eine strenge Auswahl der besten Modelle auf dem Premium-Markt. Jedes Fahrzeug in unserer Kollektion ist:",
-    "catalog.inspected": "Gründlich von unseren Experten geprüft",
-    "catalog.history": "Mit einer vollständigen Historie ausgestattet",
-    "catalog.certified": "Für seine außergewöhnliche Qualität zertifiziert",
-    "catalog.warranty": "Mit erweiterter Garantie erhältlich",
-    "catalog.advancedSearch": "Erweiterte Suche",
-    "catalog.advancedSearchDesc": "Nutzen Sie unsere detaillierten Filter, um genau das Fahrzeug zu finden, das zu Ihnen passt.",
-    "catalog.customFilters": "Benutzerdefinierte Filter",
-    "catalog.customFiltersDesc": "Verfeinern Sie Ihre Suche nach Marke, Modell, Jahr, Kilometerstand und vielem mehr.",
-    "catalog.viewDetails": "Details anzeigen",
-
-    // Search page
-    "search.title": "Suche",
-    "search.advanced": "Erweiterte Suche",
-    "search.description": "Verwenden Sie unseren intelligenten Suchmotor, um das Fahrzeug zu finden, das genau Ihren Anforderungen entspricht aus unserer exklusiven Auswahl.",
-    "search.placeholder": 'Geben Sie "Mercedes Classe S 2023" ein oder scannen Sie Ihre Anforderungen...',
-    "search.button": "Suchen",
-    "search.byBrand": "Nach Marke suchen",
-    "search.models": "Modelle",
-    "search.filters": "Beliebte Filter",
-    "search.results": "Ergebnis gefunden",
-    "search.results_plural": "Ergebnisse gefunden",
-    "search.noResults": "Keine Ergebnisse gefunden",
-    "search.noResultsDesc": "Kein Fahrzeug entspricht Ihrer Suche.",
-    "search.tryOther": "Versuchen Sie mit anderen Begriffen oder durchsuchen Sie unseren kompletten Katalog.",
-    "search.viewCatalog": "Kompletten Katalog anzeigen",
-    "search.assistance": "Suchhilfe",
-    "search.voiceSearch": "Sprachsuche verfügbar",
-
-    // Footer
-    "footer.description": "AUTO PBH - Die Automobil-Excellenz an Ihrem Service. Entdecken Sie unsere exklusive Auswahl von Premium-Fahrzeugen und genießen Sie eine individuelle Kauf-Expérience.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
-    "footer.country": "Niederlande",
-    "footer.mainServices": "Hauptdienstleistungen",
-    "footer.collection": "Unsere Premium-Kollektion",
-    "footer.services": "Außergewöhnliche Dienstleistungen",
-    "footer.financing": "Anpassbare Finanzierungslösungen",
-    "footer.faq": "Häufige Fragen",
-    "footer.contactPrivilege": "Privilegierter Kontakt",
-    "footer.customerService": "Premium Kundenservice",
-    "footer.tracking": "Persönliche Lieferungsverfolgung",
-    "footer.warranty": "Premium-Garantien",
-    "footer.returns": "Zufriedenstellungsrichtlinien",
-    "footer.terms": "Servicebedingungen",
-    "footer.privacy": "Datenschutz",
-    "footer.cookies": "Cookie-Verwaltung",
-    "footer.stayInformed": "Stets Informiert bleiben",
-    "footer.newsletter": "Abonnieren Sie unsere exklusive Newsletter für Zugang zu unseren neuesten Erwerben und privilegierten Angebote.",
-    "footer.emailPlaceholder": "Ihre E-Mail",
-    "footer.joinClub": "Mitglied im AUTO PBH-Club beitreten",
-    "footer.copyright": "© {year} AUTO PBH. Automobil-Excellenz.",
-    "footer.legal": "Rechtliche Hinweise",
-    "footer.dataProtection": "Datenschutzbestimmungen",
-  },
-  it: {
-    // Navigation
-    "nav.home": "Home",
-    "nav.catalog": "Collezione Premium",
-    "nav.services": "Servizi Escezionali",
-    "nav.about": "La nostra Storia",
-    "nav.contact": "Contatto Privilegiato",
-    "nav.faq": "Assistenza",
-    "nav.search": "Ricerca",
-    "nav.cart": "Carrello",
-    "nav.account": "Account",
-
-    // Home page
-    "home.hero.discover": "Scopri la nostra Collezione",
-    "home.hero.ourStory": "La nostra Storia",
-    "home.hero.slide1.model": "Basata sulla Transparenza",
-    "home.hero.slide1.description": "Tutte le marche in un solo luogo",
-    "home.hero.slide2.model": "N° 1!",
-    "home.hero.slide2.description": "Veni a scoprire perché siamo la scelta",
-    "home.hero.slide3.model": "Confidenza",
-    "home.hero.slide3.description": "La confidenza che fa la differenza",
-    "home.featured.title": "I nostri Veicoli in Destinazione",
-    "home.featured.subtitle": "Scopri la nostra selezione di veicoli premium",
-    "home.featured.viewAll": "Esplora la nostra Collezione Completa",
-    "home.advantages.title": "Perché scegliere AUTO PBH",
-    "home.advantages.subtitle": "Il nostro compromesso è di offrire a te un'esperienza di acquisto automobile eccezionale, con veicoli di alta qualità e servizio personalizzato.",
-    "home.advantages.selection.title": "Selezione rigorosa",
-    "home.advantages.selection.text": "Tutti i nostri veicoli sono selezionati con cura e inspezionati per garantire la loro qualità eccezionale e condizione impeccabile.",
-    "home.advantages.warranty.title": "Garantia estesa",
-    "home.advantages.warranty.text": "Offriamo garantie estese su tutti i nostri veicoli per assicurarti una tranquillità completa dopo l'acquisto.",
-    "home.advantages.delivery.title": "Consegna europea",
-    "home.advantages.delivery.text": "Consegui il tuo veicolo in tutto Europa con segui in tempo reale e un servizio di trasporto professionale e sicuro.",
-    "home.testimonials.title": "Cosa dicono i nostri Clienti",
-    "home.cta.title": "Scopri l'Escellenza Automotrice",
-    "home.cta.subtitle": "La nostra squadra di esperti è a tua disposizione per aiutarti a scegliere il veicolo che corrisponderà perfettamente alle tue esigenze.",
-    "home.cta.explore": "Esplora la nostra Collezione Completa",
-    "home.cta.contact": "Contatto Privilegiato",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Trasmissione",
-    "shop.power": "Potenza",
-    "shop.hp": "cv",
-    "shop.automatic": "Automatica",
-    "shop.manual": "Manuale",
-    "shop.addToCart": "Aggiungi al Carrello",
-    "shop.discoverDetails": "Scopri in Dettaglio",
-    "shop.reserved": "Reservato",
-    "shop.sold": "Venduto",
-    "shop.alreadyInCart": "Veicolo già nel Carrello",
-    "shop.alreadyInCartDesc": "Questo veicolo è già nel tuo carrello.",
-    "shop.vehicleAdded": "Veicolo aggiunto",
-    "shop.vehicleAddedDesc": "{vehicle} è stato aggiunto al tuo carrello.",
-
-    // Common
-    "common.loading": "Caricamento",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Veicolo non trovato",
-    "vehicle.backToCatalog": "Ritorna al Catalogo",
-    "vehicle.zeroKm": "ZERO KM",
-    "vehicle.mainFeatures": "Caratteristiche Principali",
-    "vehicle.year": "Anno",
-    "vehicle.options": "Opzioni e Equipaggiamento",
-    "vehicle.requestMoreInfo": "Richiedi più informazioni",
-    "vehicle.warranties": "Garantie",
-    "vehicle.manufacturerWarranty": "Garantia del produttore",
-    "vehicle.full": "completo",
-    "vehicle.partial": "parziale",
-    "vehicle.warrantyExtension": "Estensione disponibile fino a 36 mesi",
-    "vehicle.assistance": "Assistenza 24/7 inclusa",
-    "vehicle.includedServices": "Servizi Inclusi",
-    "vehicle.delivery": "Consegna disponibile in tutto Europa",
-    "vehicle.tradeIn": "Ricarica del tuo veicolo antico",
-    "vehicle.financing": "Soluzioni di finanziamento personalizzate",
-    "vehicle.directContact": "Contatto Diretto",
-    "vehicle.teamAvailable": "Il nostro team è a tua disposizione per rispondere a tutte le tue domande.",
-    "vehicle.contactAdvisor": "Contatta il tuo consulente dedicato",
-
-    // Catalog
-    "catalog.title": "Catalogo",
-    "catalog.description": "Esplora la nostra selezione di veicoli eccezionali: BMW, Mercedes-Benz, Audi e Porsche. Filtra per marca, prezzo o anno per trovare il veicolo dei tuoi sogni.",
-    "catalog.premiumCollection": "La Nostra Collezione Premium",
-    "catalog.selectionDescription": "Scopri una selezione rigorosa dei migliori modelli nel mercato premium. Ogni veicolo della nostra collezione è:",
-    "catalog.inspected": "Accuratamente ispezionato dai nostri esperti",
-    "catalog.history": "Accompagnato da una storia completa",
-    "catalog.certified": "Certificato per la sua qualità eccezionale",
-    "catalog.warranty": "Disponibile con garanzia estesa",
-    "catalog.advancedSearch": "Ricerca Avanzata",
-    "catalog.advancedSearchDesc": "Utilizza i nostri filtri dettagliati per trovare esattamente il veicolo che ti corrisponde.",
-    "catalog.customFilters": "Filtri Personalizzati",
-    "catalog.customFiltersDesc": "Verfina la tua ricerca per marca, modello, anno, chilometraggio e molto altro.",
-    "catalog.viewDetails": "Vedi dettagli",
-
-    // Search page
-    "search.title": "Ricerca",
-    "search.advanced": "Ricerca Avanzata",
-    "search.description": "Utilizza il nostro motore di ricerca intelligente per trovare il veicolo che corrisponde perfettamente ai tuoi criteri tra la nostra selezione esclusiva.",
-    "search.placeholder": 'Digita "Mercedes Classe S 2023" o esplora i tuoi criteri...',
-    "search.button": "Cerca",
-    "search.byBrand": "Ricerca per Marca",
-    "search.models": "modelli",
-    "search.filters": "Filtri Popolari",
-    "search.results": "risultato trovato",
-    "search.results_plural": "risultati trovati",
-    "search.noResults": "Nessun risultato trovato",
-    "search.noResultsDesc": "Nessun veicolo corrisponde alla tua ricerca.",
-    "search.tryOther": "Prova con altri termini o consulta il nostro catalogo completo.",
-    "search.viewCatalog": "Visualizza catalogo completo",
-    "search.assistance": "Assistenza ricerca",
-    "search.voiceSearch": "Ricerca vocale disponibile",
-
-    // Footer
-    "footer.description": "AUTO PBH - L'Escellenza Automotrice al tuo servizio. Scopri la nostra selezione esclusiva di veicoli premium e goditi una esperienza di acquisto personalizzata.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
-    "footer.country": "Paesi Bassi",
-    "footer.mainServices": "Servizi Principali",
-    "footer.collection": "La Nostra Collezione Premium",
-    "footer.services": "Servizi Escezionali",
-    "footer.financing": "Soluzioni di Finanziamento Personalizzate",
-    "footer.faq": "Domande Frequenti",
-    "footer.contactPrivilege": "Contatto Privilegiato",
-    "footer.customerService": "Servizio al Cliente Premium",
-    "footer.tracking": "Seguimento di Consegna Personalizzato",
-    "footer.warranty": "Garantie Premium",
-    "footer.returns": "Politica di Satisfazione",
-    "footer.terms": "Condizioni di Servizio",
-    "footer.privacy": "Privacy",
-    "footer.cookies": "Gestione dei Cookies",
-    "footer.stayInformed": "Mantieni Informato",
-    "footer.newsletter": "Iscriviti alla nostra newsletter esclusiva per ricevere in anticipo le nostre ultime acquisizioni e offerte privilegiate.",
-    "footer.emailPlaceholder": "La tua email",
-    "footer.joinClub": "Unisciti al Club AUTO PBH",
-    "footer.copyright": "© {year} AUTO PBH. Escellenza Automotrice.",
-    "footer.legal": "Avviso Legale",
-    "footer.dataProtection": "Protezione dei Dati",
-  },
-  nl: {
-    // Navigation
-    "nav.home": "Startpagina",
-    "nav.catalog": "Premium-collectie",
-    "nav.services": "Uitzonderlijke diensten",
-    "nav.about": "Onze Geschiedenis",
-    "nav.contact": "Privilegierde Contact",
-    "nav.faq": "Ondersteuning",
-    "nav.search": "Zoeken",
-    "nav.cart": "Winkelwagen",
-    "nav.account": "Account",
-
-    // Home page
-    "home.hero.discover": "Ontdek onze Collectie",
-    "home.hero.ourStory": "Onze Geschiedenis",
-    "home.hero.slide1.model": "Gebaseerd op Transparantie",
-    "home.hero.slide1.description": "Alle merken in één plek",
-    "home.hero.slide2.model": "N° 1!",
-    "home.hero.slide2.description": "Kom naar ontdekken waarom we de keuze zijn",
-    "home.hero.slide3.model": "Vertrouwen",
-    "home.hero.slide3.description": "Vertrouwen dat de verschillen maakt",
-    "home.featured.title": "Onze Aanduidende Voertuigen",
-    "home.featured.subtitle": "Ontdek onze selectie van premium voertuigen",
-    "home.featured.viewAll": "Ontdek onze Volledige Collectie",
-    "home.advantages.title": "Waarom AUTO PBH kiezen",
-    "home.advantages.subtitle": "Onze verantwoordelijkheid is om je een uitstekende auto-koopervaring te bieden, met topkwaliteit voertuigen en persoonlijk service.",
-    "home.advantages.selection.title": "Rigoureus selectie",
-    "home.advantages.selection.text": "Alle onze voertuigen worden kritisch geselecteerd en geïnspecteerd om hun topkwaliteit en perfecte staat te garanderen.",
-    "home.advantages.warranty.title": "Uitgebreide garantie",
-    "home.advantages.warranty.text": "We bieden uitgebreide garanties op alle onze voertuigen om je volledige rust na je aankoop te zorgen.",
-    "home.advantages.delivery.title": "Europese levering",
-    "home.advantages.delivery.text": "We leveren je voertuig over de hele Europese wereld met real-time tracking en professioneel, veilig transportdienst.",
-    "home.testimonials.title": "Wat onze klanten zeggen",
-    "home.cta.title": "Ontdek Automobil-Excellence",
-    "home.cta.subtitle": "Onze experten zijn bij je klaar om je te helpen om het voertuig te vinden dat perfect past bij je vereisten.",
-    "home.cta.explore": "Ontdek onze Volledige Collectie",
-    "home.cta.contact": "Privilegierde Contact",
-    
-    // Shop and Vehicle
-    "shop.transmission": "Transmissie",
-    "shop.power": "Gewicht",
-    "shop.hp": "cv",
-    "shop.automatic": "Automatisch",
-    "shop.manual": "Handmatig",
-    "shop.addToCart": "Toevoegen aan winkelwagen",
-    "shop.discoverDetails": "Ontdek in Detail",
-    "shop.reserved": "Gereserveerd",
-    "shop.sold": "Verkocht",
-    "shop.alreadyInCart": "Voertuig al in winkelwagen",
-    "shop.alreadyInCartDesc": "Dit voertuig is al in je winkelwagen.",
-    "shop.vehicleAdded": "Voertuig toegevoegd",
-    "shop.vehicleAddedDesc": "{vehicle} is toegevoegd aan je winkelwagen.",
-
-    // Common
-    "common.loading": "Laden",
-    
-    // Vehicle detail
-    "vehicle.notFound": "Voertuig niet gevonden",
-    "vehicle.backToCatalog": "Terug naar catalogus",
-    "vehicle.zeroKm": "ZERO KM",
-    "vehicle.mainFeatures": "Hoofdmerken",
-    "vehicle.year": "Jaar",
-    "vehicle.options": "Opties en Equipment",
-    "vehicle.requestMoreInfo": "Meer informatie aanvragen",
-    "vehicle.warranties": "Garanties",
-    "vehicle.manufacturerWarranty": "Fabrikantsgarantie",
-    "vehicle.full": "volledig",
-    "vehicle.partial": "deelmatig",
-    "vehicle.warrantyExtension": "Uitbreiding mogelijk tot 36 maanden",
-    "vehicle.assistance": "24/7 assistentie ingesloten",
-    "vehicle.includedServices": "Inclusieve Dienstverlening",
-    "vehicle.delivery": "Levering beschikbaar over de hele Europese wereld",
-    "vehicle.tradeIn": "Erbare voertuig inwisselen",
-    "vehicle.financing": "Aangepaste financiële oplossingen",
-    "vehicle.directContact": "Direct Contact",
-    "vehicle.teamAvailable": "Onze team is bij je klaar om alle je vragen te beantwoorden.",
-    "vehicle.contactAdvisor": "Contacteer je specifieke adviesder",
-
-    // Catalog
-    "catalog.title": "Catalogus",
-    "catalog.description": "Ontdek onze selectie van uitzonderlijke voertuigen: BMW, Mercedes-Benz, Audi en Porsche. Filter op merk, prijs of jaar om de auto van uw dromen te vinden.",
-    "catalog.premiumCollection": "Onze Premium Collectie",
-    "catalog.selectionDescription": "Ontdek een strenge selectie van de beste modellen op de premium markt. Elk voertuig in onze collectie is:",
-    "catalog.inspected": "Grondig geïnspecteerd door onze experts",
-    "catalog.history": "Acompanied door een volledige geschiedenis",
-    "catalog.certified": "Certificeerd voor zijn uitzonderlijke kwaliteit",
-    "catalog.warranty": "Beschikbaar met verlengde garantie",
-    "catalog.advancedSearch": "Geavanceerde Zoeken",
-    "catalog.advancedSearchDesc": "Gebruik onze gedetailleerde filters om precies het voertuig te vinden dat bij u past.",
-    "catalog.customFilters": "Aangepaste Filters",
-    "catalog.customFiltersDesc": "Verfijn uw zoekopdracht op merk, model, jaar, kilometerstand en veel meer.",
-    "catalog.viewDetails": "Details bekijken",
-
-    // Search page
-    "search.title": "Zoeken",
-    "search.advanced": "Geavanceerde Zoeken",
-    "search.description": "Gebruik onze intelligente zoekmachine om het voertuig te vinden dat exact past bij je criteria uit onze exclusieve selectie.",
-    "search.placeholder": 'Typ "Mercedes Classe S 2023" of scannen je criteria...',
-    "search.button": "Zoeken",
-    "search.byBrand": "Zoeken op Merk",
-    "search.models": "modelen",
-    "search.filters": "Populaire Filters",
-    "search.results": "resultaat gevonden",
-    "search.results_plural": "resultaten gevonden",
-    "search.noResults": "Geen resultaten gevonden",
-    "search.noResultsDesc": "Geen voertuig past bij je zoekcriteria.",
-    "search.tryOther": "Probeer met andere termen of bekijk onze volledige catalogus.",
-    "search.viewCatalog": "Bekijk volledige catalogus",
-    "search.assistance": "Zoekhulp",
-    "search.voiceSearch": "Vocale Zoeken beschikbaar",
-
-    // Footer
-    "footer.description": "AUTO PBH - Automobil-Excellence aan je dienst. Ontdek onze exclusieve selectie van premium voertuigen en geniet van een persoonlijke aankoopervaring.",
-    "footer.address": "Autolettestraat 10,",
-    "footer.city": "3063 NP Rotterdam,",
-    "footer.country": "Nederland",
-    "footer.mainServices": "Hoofddiensten",
-    "footer.collection": "Onze Premium Collectie",
-    "footer.services": "Uitzonderlijke Diensten",
-    "footer.financing": "Aangepaste Financiële Oplossingen",
-    "footer.faq": "Veelgestelde Vragen",
-    "footer.contactPrivilege": "Privilegierde Contact",
-    "footer.customerService": "Premium Klantenservice",
-    "footer.tracking": "Persoonlijk Leveringsvolgeling",
-    "footer.warranty": "Premium Garanties",
-    "footer.returns": "Voorwaarden voor Voldoening",
-    "footer.terms": "Servicevoorwaarden",
-    "footer.privacy": "Privacy",
-    "footer.cookies": "Cookie Beheer",
-    "footer.stayInformed": "Sta Informatief",
-    "footer.newsletter": "Abonneer je op onze exclusieve nieuwsbrief om de laatste aankopen en geavanceerde aanbiedingen in de voorverkoop te ontvangen.",
-    "footer.emailPlaceholder": "Je e-mail",
-    "footer.joinClub": "Blijf lid van het AUTO PBH-Club",
-    "footer.copyright": "© {year} AUTO PBH. Automobil-Excellence.",
-    "footer.legal": "Rechtelijke Informatie",
-    "footer.dataProtection": "Gegevensbescherming",
-  },
-};
+  fr: {
+    "nav.catalog": "Catalogue",
+    "nav.services": "Services",
+    "nav.about": "À propos",
+    "nav.contact": "Contact",
+    "nav.faq": "FAQ",
+    "nav.search": "Recherche",
+    "nav.cart": "Panier",
+    "nav.account": "Compte",
+    "shop.addToCart": "Ajouter au panier",
+    "shop.vehicleAdded": "Véhicule ajouté",
+    "shop.vehicleAddedDesc": "{vehicle} a été ajouté à votre panier.",
+    "shop.alreadyInCart": "Déjà dans le panier",
+    "shop.alreadyInCartDesc": "Ce véhicule est déjà dans votre panier.",
+    "catalog.title": "Explorez Notre Collection Premium",
+    "catalog.description":
+      "Découvrez une large sélection de véhicules de haute qualité pour répondre à vos besoins.",
+    "catalog.premiumCollection": "Sélection Premium",
+    "catalog.selectionDescription":
+      "Véhicules soigneusement sélectionnés pour leur qualité et leurs performances.",
+    "catalog.inspected": "Inspectés Minutieusement",
+    "catalog.history": "Rapport d'Historique Détaillé",
+    "catalog.certified": "Qualité Certifiée",
+    "catalog.warranty": "Options de Garantie Prolongée",
+    "catalog.advancedSearch": "Recherche Avancée",
+    "catalog.advancedSearchDesc": "Trouvez exactement ce que vous cherchez grâce à nos options de recherche avancée.",
+    "catalog.customFilters": "Filtres Personnalisés",
+    "catalog.customFiltersDesc": "Personnalisez votre recherche avec des critères spécifiques.",
+    "catalog.viewDetails": "Voir les Détails",
+    "footer.description":
+      "AUTO PBH est votre destination privilégiée pour les véhicules premium. Nous offrons une large sélection de voitures de haute qualité et un service client exceptionnel.",
+    "footer.address": "Autolettestraat 10",
+    "footer.city": "3063 NP Rotterdam",
+    "footer.country": "Pays-Bas",
+    "footer.mainServices": "Services Principaux",
+    "footer.collection": "Notre Collection",
+    "footer.services": "Nos Services",
+    "footer.financing": "Financement",
+    "footer.faq": "FAQ",
+    "footer.contactPrivilege": "Contact Privilégié",
+    "footer.customerService": "Service Client",
+    "footer.tracking": "Suivi de Livraison",
+    "footer.warranty": "Garantie",
+    "footer.returns": "Retours",
+    "footer.terms": "Conditions d'Utilisation",
+    "footer.privacy": "Politique de Confidentialité",
+    "footer.cookies": "Politique de Cookies",
+    "footer.stayInformed": "Restez Informé",
+    "footer.newsletter": "Abonnez-vous à notre newsletter pour recevoir des offres exclusives et les dernières actualités.",
+    "footer.emailPlaceholder": "Votre adresse e-mail",
+    "footer.joinClub": "Rejoignez Notre Club",
+    "footer.copyright": "© {year} AUTO PBH. Tous droits réservés.",
+    "footer.legal": "Mentions Légales",
+    "footer.dataProtection": "Protection des Données",
+    "home.title": "Trouvez la Voiture de Vos Rêves",
+    "home.subtitle":
+      "Explorez notre sélection exclusive de véhicules premium et profitez d'un service inégalé.",
+    "home.exploreCatalog": "Explorer le Catalogue",
+    "home.whyChooseUs": "Pourquoi Nous Choisir ?",
+    "home.wideSelection": "Large Sélection",
+    "home.competitivePrices": "Prix Compétitifs",
+    "home.premiumQuality": "Qualité Premium",
+    "home.customerSatisfaction": "Satisfaction Client",
+    "home.discoverMore": "Découvrir Plus",
+    "home.latestModels": "Derniers Modèles",
+    "home.ourCommitment": "Notre Engagement",
+    "home.commitmentDescription":
+      "Nous nous engageons à vous offrir la meilleure expérience possible d'achat de voiture.",
+    "home.expertAdvice": "Conseils d'Experts",
+    "home.transparentProcess": "Processus Transparent
