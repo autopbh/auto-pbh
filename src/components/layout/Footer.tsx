@@ -114,7 +114,7 @@ const Footer = () => {
               </button>
             </form>
             <div className="mt-6 flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=100077014066042" target="_blank" rel="noopener noreferrer" className="text-white hover:text-autop-red transition-colors">
+              <a href="https://www.facebook.com/share/1Eth6H4Bvg/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-white hover:text-autop-red transition-colors">
                 <Facebook className="h-6 w-6" />
               </a>
               <a href="https://wa.me/+351961196405" target="_blank" rel="noopener noreferrer" className="text-white hover:text-autop-red transition-colors">
