@@ -577,5 +577,60 @@ export const vehicles: Vehicle[] = [
     thumbnail: "/lovable-uploads/7e33f773-a35f-49d2-9f48-e1950453046e.png",
     description: "Ce Mini Countryman S ALL4 1.6 Turbo de 2014 avec seulement 47.000 km est en excellent état. Rapport technique approuvé et pneus neufs. Équipé d'un moteur 1.6 Turbo (essence) de 184cv, boîte automatique à 6 vitesses, traction intégrale 4x4, jantes alliage 17 pouces et de nombreux équipements de confort et sécurité.",
     options: ["Traction intégrale 4x4", "Intérieur en cuir", "Navigation GPS"]
+  },
+  {
+    id: "v11",
+    brand: "Hyundai",
+    model: "Creta Limited 1.0 Turbo",
+    year: 2022,
+    mileage: 50000,
+    fuelType: "Essence/Flex",
+    engineCapacity: 1.0,
+    power: 120,
+    transmission: "automatic",
+    exteriorColor: "Blanc",
+    interiorColor: "Noir",
+    features: [
+      "Unique propriétaire",
+      "Toutes les révisions chez Hyundai",
+      "Dernière révision 04/2025",
+      "Garantie d'usine jusqu'à 05/2027",
+      "Moteur 1.0 Turbo avec 120cv (flex)",
+      "Boîte automatique",
+      "Chargeur par induction",
+      "Volant multifonction",
+      "Coffre de 422 litres",
+      "Caméra de recul",
+      "Capteur de stationnement",
+      "Contrôle de traction et stabilité",
+      "Apple CarPlay et Android Auto",
+      "Frein de stationnement électrique"
+    ],
+    previousOwners: 0,
+    technicalInspection: {
+      lastDate: "2024-04-01",
+      validUntil: "2026-04-01",
+      status: "passed"
+    },
+    price: 12000,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/50138b5a-b985-4ea8-842d-6e9a4eea8483.png",
+      "/lovable-uploads/15fc7ee5-2839-4ad3-a483-a9e8533e224c.png",
+      "/lovable-uploads/9c4f88f3-e967-46c6-89f0-333a42a5a056.png",
+      "/lovable-uploads/905ce0d5-bfef-4856-b62c-a7f1eb11f51c.png",
+      "/lovable-uploads/47717d1c-5f04-4b8d-902f-583c0a2243d2.png",
+      "/lovable-uploads/8be5bb42-701a-4537-bcd1-1a07bf3ac127.png",
+      "/lovable-uploads/9dcc5a25-6eb9-416e-9b27-a2a0a04c86ed.png",
+      "/lovable-uploads/ec6f3296-ca02-4cc5-9ddd-deae10c40d53.png",
+      "/lovable-uploads/32899cf6-f8ac-4d0f-9e88-6ac9dca9dad8.png",
+      "/lovable-uploads/fc94db4e-4cdd-4e6f-ae8e-db6af99fc95f.png"
+    ],
+    thumbnail: "/lovable-uploads/50138b5a-b985-4ea8-842d-6e9a4eea8483.png",
+    description: "Ce Hyundai Creta Limited 1.0 Turbo de 2022 avec 50.000 km est en excellent état. Premier propriétaire, toutes les révisions effectuées chez Hyundai. Équipé d'un moteur 1.0 Turbo de 120cv (flex), boîte automatique, chargeur par induction, coffre de 422 litres et de nombreux équipements de confort et technologie comme Apple CarPlay et Android Auto.",
+    options: ["Version Limited", "Garantie d'usine", "Apple CarPlay/Android Auto"]
   }
 ];
