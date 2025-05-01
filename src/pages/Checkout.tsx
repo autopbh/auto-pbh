@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -27,6 +26,7 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import PaymentReceiptUploader from "@/components/checkout/PaymentReceiptUploader";
+import { supabase } from "@/integrations/supabase/client";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -37,6 +37,8 @@ const Checkout = () => {
   const [receiptUploaded, setReceiptUploaded] = useState(false);
   const [isFinalizingOrder, setIsFinalizingOrder] = useState(false);
   const [orderFinalized, setOrderFinalized] = useState(false);
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -51,6 +53,11 @@ const Checkout = () => {
       // If no cart items, redirect back to catalog
       navigate("/catalog");
     }
+    
+    // For demo purposes: set default customer info
+    // In a real app, this would come from the user's account or previous checkout steps
+    setCustomerName("Jean Dupont");
+    setCustomerEmail("client@exemple.fr");
   }, [navigate]);
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
@@ -110,7 +117,7 @@ const Checkout = () => {
     });
   };
 
-  const handleFinalizeOrder = () => {
+  const handleFinalizeOrder = async () => {
     if (!receiptUploaded) {
       toast({
         title: "Preuve de paiement manquante",
@@ -122,22 +129,87 @@ const Checkout = () => {
 
     setIsFinalizingOrder(true);
     
-    // Simulate sending email
-    setTimeout(() => {
-      setIsFinalizingOrder(false);
+    try {
+      // Save order to database
+      const { data: orderData, error: orderError } = await supabase
+        .from('orders')
+        .insert([
+          {
+            order_number: referenceNumber,
+            customer_name: customerName,
+            customer_email: customerEmail,
+            price: totalPrice,
+            payment_receipt_url: paymentReceiptUrl,
+            status: 'pending',
+            vehicle_id: cartItems[0]?.id, // Simplification, in real app would handle multiple vehicles
+          }
+        ])
+        .select()
+        .single();
+        
+      if (orderError) throw orderError;
+      
+      // Send email confirmation
+      const response = await fetch('https://sgtaboftjgiugrprqjnh.supabase.co/functions/v1/send-order-confirmation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderReference: referenceNumber,
+          customerName,
+          customerEmail,
+          totalPrice,
+          depositAmount,
+          remainingAmount,
+          estimatedDelivery: formattedDeliveryDate,
+          cartItems: cartItems.map(item => ({
+            name: item.name,
+            price: item.price
+          })),
+          paymentReceiptUrl
+        })
+      });
+      
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || "Échec de l'envoi de l'email de confirmation");
+      }
+      
+      // Update order with confirmation sent status
+      await supabase
+        .from('orders')
+        .update({ order_confirmation_sent: true })
+        .eq('order_number', referenceNumber);
+      
       setOrderFinalized(true);
       
       toast({
         title: "Commande finalisée",
-        description: "Votre commande a été finalisée et nous avons reçu votre preuve de paiement. Vous recevrez un email de confirmation sous peu.",
+        description: "Votre commande a été finalisée et nous avons reçu votre preuve de paiement.",
       });
       
-      // Show finalization confirmation
       toast({
         title: "Email de confirmation envoyé",
-        description: "Un email contenant les détails de votre commande vous a été envoyé.",
+        description: `Un email de confirmation a été envoyé à ${customerEmail}.`,
       });
-    }, 2000);
+      
+      // Clear cart after successful order
+      localStorage.setItem("cart", JSON.stringify([]));
+      window.dispatchEvent(new Event("storage"));
+      
+    } catch (error) {
+      console.error("Error finalizing order:", error);
+      
+      toast({
+        title: "Erreur",
+        description: `Une erreur est survenue lors de la finalisation de la commande: ${error.message}`,
+        variant: "destructive"
+      });
+    } finally {
+      setIsFinalizingOrder(false);
+    }
   };
 
   return (

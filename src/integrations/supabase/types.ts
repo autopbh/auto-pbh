@@ -32,7 +32,9 @@ export type Database = {
           customer_name: string
           customer_phone: string | null
           id: string
+          order_confirmation_sent: boolean | null
           order_number: string
+          payment_receipt_url: string | null
           price: number | null
           status: string
           updated_at: string
@@ -46,7 +48,9 @@ export type Database = {
           customer_name: string
           customer_phone?: string | null
           id?: string
+          order_confirmation_sent?: boolean | null
           order_number: string
+          payment_receipt_url?: string | null
           price?: number | null
           status?: string
           updated_at?: string
@@ -60,7 +64,9 @@ export type Database = {
           customer_name?: string
           customer_phone?: string | null
           id?: string
+          order_confirmation_sent?: boolean | null
           order_number?: string
+          payment_receipt_url?: string | null
           price?: number | null
           status?: string
           updated_at?: string
