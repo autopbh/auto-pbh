@@ -1,3 +1,4 @@
+
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -460,4 +461,10 @@ export const vehicles: Vehicle[] = [
       "/lovable-uploads/e02dc903-ef88-4c4d-939a-e6f1b2e57c13.png",
       "/lovable-uploads/ab4fba37-7cc1-43a1-a112-83234069ef19.png",
       "/lovable-uploads/f34047fe-551f-4b99-8774-a7ea4c6b50ed.png",
-      "/lovable-uploads/214693f3-b683-464b-8efb-
+      "/lovable-uploads/214693f3-b683-464b-8efb-9548196f6754.png"
+    ],
+    thumbnail: "/lovable-uploads/0f0c52de-dd06-4e5f-b718-64faf7d1d622.png",
+    description: "Audi Q3 Ambiente 2.0 TFSi AWD de 2016 avec 55.000 km, équipée d'un moteur 2.0 TFSi (EA888) et d'une transmission intégrale quattro. Dotée d'un toit panoramique, de sièges en cuir noir, d'une climatisation digitale et d'un système multimédia avec Bluetooth. Equipements de sécurité complets incluant airbags frontaux, latéraux et rideaux, contrôle de stabilité et assistant de démarrage en côte. Véhicule en excellent état avec contrôle technique valide jusqu'en novembre 2025.",
+    options: ["Toit Panoramique", "Caméra de Recul", "Sièges en Cuir"]
+  }
+]
