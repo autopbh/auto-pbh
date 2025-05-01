@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -8,7 +7,7 @@ import {
   AlertCircle, 
   Copy, 
   CreditCard, 
-  BanknoteEuro, 
+  Banknote, 
   Calendar, 
   Euro
 } from "lucide-react";
@@ -136,7 +135,7 @@ const Checkout = () => {
                   <Card className="bg-gray-50 dark:bg-gray-800 border-none">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-lg flex items-center">
-                        <BanknoteEuro className="mr-2 h-5 w-5" /> 
+                        <Banknote className="mr-2 h-5 w-5" /> 
                         Coordonnées bancaires pour le virement
                       </CardTitle>
                     </CardHeader>
@@ -364,7 +363,7 @@ const Checkout = () => {
                         <div className="absolute top-2 right-2 h-4 w-4 rounded-full bg-primary"></div>
                         <CardContent className="p-4 flex items-center space-x-3">
                           <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                            <BanknoteEuro className="h-5 w-5 text-primary" />
+                            <Banknote className="h-5 w-5 text-primary" />
                           </div>
                           <div>
                             <p className="font-medium">Virement bancaire</p>
