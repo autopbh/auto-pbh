@@ -520,5 +520,62 @@ export const vehicles: Vehicle[] = [
     thumbnail: "/lovable-uploads/b6973597-824f-4f00-9c38-ddb5345596ce.png",
     description: "Ce Volkswagen T-Cross Highline 1.4TSI Automatique de 2021 avec seulement 25.000 km est équipé de tous les packs d'usine. Pack Innovation: Active info display, navigateur GPS, multimédia 8 pouces, commandes vocales et sélecteur de modes de conduite. Pack Sky view: toit ouvrant panoramique électrique. Pack Tech&Beats: Système audio Beats avec subwoofer, phares full LED (IQ Light) et Park assist.",
     options: ["Pack Innovation", "Pack Sky view", "Pack Tech&Beats"]
+  },
+  {
+    id: "v10",
+    brand: "Mini",
+    model: "Countryman S ALL4 1.6 Turbo",
+    year: 2014,
+    mileage: 47000,
+    fuelType: "Essence",
+    engineCapacity: 1.6,
+    power: 184,
+    transmission: "automatic",
+    exteriorColor: "Gris Anthracite",
+    interiorColor: "Cuir Noir",
+    features: [
+      "Laudo aprovado",
+      "Pneus neufs",
+      "Moteur 1.6 Turbo (essence) avec 184cv",
+      "Boîte automatique de 6 vitesses",
+      "Traction intégrale 4x4",
+      "Jantes alliage 17 pouces",
+      "Phares avec allumage automatique",
+      "Intérieur en cuir noir",
+      "Climatisation digitale",
+      "Capteur de pluie",
+      "Airbags frontaux, latéraux et rideaux",
+      "Capteur de stationnement arrière",
+      "Contrôle de traction et stabilité",
+      "Rétroviseurs électriques",
+      "Multimédia avec Bluetooth et USB",
+      "Navigateur GPS",
+      "Volant multifonction"
+    ],
+    previousOwners: 1,
+    technicalInspection: {
+      lastDate: "2023-12-10",
+      validUntil: "2025-12-10",
+      status: "passed"
+    },
+    price: 4500,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/7e33f773-a35f-49d2-9f48-e1950453046e.png",
+      "/lovable-uploads/ae6ce78c-7734-447f-8143-730665e876bd.png",
+      "/lovable-uploads/afc56376-4e32-48c8-bb31-d46323bdb219.png",
+      "/lovable-uploads/700fee20-1af2-45b8-ac8c-756acca17cc1.png",
+      "/lovable-uploads/1808014a-75e8-44f3-aa74-7fd7d58f2216.png",
+      "/lovable-uploads/b5629bf5-7018-4d54-b6e1-fbeacdaa538b.png",
+      "/lovable-uploads/ade72ce0-a0bf-4444-ac1d-14d9a43de6cd.png",
+      "/lovable-uploads/31172310-2bbc-44c8-8649-87b1239e6f24.png",
+      "/lovable-uploads/fbf2510e-aeed-49c8-bb7e-4f7fd61fa140.png"
+    ],
+    thumbnail: "/lovable-uploads/7e33f773-a35f-49d2-9f48-e1950453046e.png",
+    description: "Ce Mini Countryman S ALL4 1.6 Turbo de 2014 avec seulement 47.000 km est en excellent état. Rapport technique approuvé et pneus neufs. Équipé d'un moteur 1.6 Turbo (essence) de 184cv, boîte automatique à 6 vitesses, traction intégrale 4x4, jantes alliage 17 pouces et de nombreux équipements de confort et sécurité.",
+    options: ["Traction intégrale 4x4", "Intérieur en cuir", "Navigation GPS"]
   }
 ];
