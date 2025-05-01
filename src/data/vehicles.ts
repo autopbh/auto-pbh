@@ -364,12 +364,20 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "1-2 semaines",
     images: [
-      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80&w=800"
+      "/lovable-uploads/3e953cd5-609e-4203-bad1-364e2bd8d657.png",
+      "/lovable-uploads/0257f11f-44ef-46e0-8344-11def261ecf0.png",
+      "/lovable-uploads/6d566d3e-e7bf-4796-87db-7a1db12cc0b3.png",
+      "/lovable-uploads/dbbd284f-d182-44ec-aa3c-2a6c2bfb6342.png",
+      "/lovable-uploads/567a2d12-8980-4489-ae7c-f79b339c2b36.png",
+      "/lovable-uploads/47afce38-b378-40fa-8bde-02b4b7634afc.png",
+      "/lovable-uploads/321ea4a8-6eb1-435e-8724-cc067662f747.png",
+      "/lovable-uploads/6513383c-ebc6-48bc-a1c4-7c3e81dd4bf0.png",
+      "/lovable-uploads/e0bec1b4-6cbd-4704-a399-5c80d67820d3.png",
+      "/lovable-uploads/5292ef3e-b379-429f-bb8d-8d893f23a4c3.png",
+      "/lovable-uploads/9e9d9dd3-09c7-4c19-a3a2-b39c93d8f400.png",
+      "/lovable-uploads/572f2747-32f3-4212-a2f2-6bb0d8109f8b.png"
     ],
-    thumbnail: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800",
+    thumbnail: "/lovable-uploads/3e953cd5-609e-4203-bad1-364e2bd8d657.png",
     description: "Cette Jaguar E-Pace R-Dynamic SE AWD de 2019 avec 48.000 km est en excellent état. Équipée d'un moteur 2.0 Turbo de 300cv, d'une boîte automatique à 9 vitesses, traction intégrale à la demande, toit panoramique et nombreux équipements de confort et de sécurité.",
     options: ["Toit Panoramique", "Pack R-Dynamic", "Head Up Display"]
   }
