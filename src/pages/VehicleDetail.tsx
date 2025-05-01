@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -72,9 +73,10 @@ const VehicleDetail = () => {
     const updatedCart = [...currentCart, vehicleForCart];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
+    // Correction ici : utiliser la syntaxe correcte pour les variables dans les traductions
     toast({
       title: t("shop.vehicleAdded"),
-      description: t("shop.vehicleAddedDesc", { vehicle: `${vehicle.brand} ${vehicle.model}` }),
+      description: t("shop.vehicleAddedDesc").replace("{vehicle}", `${vehicle.brand} ${vehicle.model}`),
     });
   };
 

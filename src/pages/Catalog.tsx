@@ -41,9 +41,10 @@ const Catalog = () => {
     const updatedCart = [...currentCart, vehicle];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
+    // Correction ici : utiliser la syntaxe correcte pour les variables dans les traductions
     toast({
       title: t("shop.vehicleAdded"),
-      description: t("shop.vehicleAddedDesc", { vehicle: vehicle.name }),
+      description: t("shop.vehicleAddedDesc").replace("{vehicle}", vehicle.name),
     });
   };
 

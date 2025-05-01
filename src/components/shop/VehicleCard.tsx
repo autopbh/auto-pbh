@@ -44,9 +44,10 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     // Trigger a storage event for other tabs
     window.dispatchEvent(new Event("storage"));
     
+    // Correction ici : utiliser la syntaxe correcte pour les variables dans les traductions
     toast({
       title: t("shop.vehicleAdded"),
-      description: t("shop.vehicleAddedDesc", { vehicle: `${vehicle.brand} ${vehicle.model}` }),
+      description: t("shop.vehicleAddedDesc").replace("{vehicle}", `${vehicle.brand} ${vehicle.model}`),
     });
   };
 
