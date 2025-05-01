@@ -1,4 +1,3 @@
-
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -190,53 +189,67 @@ export const vehicles: Vehicle[] = [
   {
     id: "v4",
     brand: "Porsche",
-    model: "911 Carrera S",
-    year: 2023,
-    mileage: 5500,
+    model: "Macan 2.0 16V Gasolina 4P Automático",
+    year: 2019,
+    mileage: 18000,
     fuelType: "Essence",
-    engineCapacity: 3.0,
-    power: 450,
+    engineCapacity: 2.0,
+    power: 252,
     transmission: "automatic",
-    exteriorColor: "Rouge Carmin",
-    interiorColor: "Cuir Noir",
+    exteriorColor: "Blanc",
+    interiorColor: "Cuir Bicolor",
     features: [
-      "Pack Chrono Sport",
-      "Système Audio BOSE® Surround",
-      "Phares LED avec Faisceau Matriciel",
-      "Sièges Sport Chauffants",
-      "Assistant de Changement de Voie",
-      "Porsche Dynamic Chassis Control",
-      "Direction de l'Essieu Arrière",
-      "Système d'Échappement Sport"
+      "Traction intégrale",
+      "IPVA payé",
+      "Révisé en Concession",
+      "Propriétaire unique",
+      "Jantes RS Spyder 21 Pouces",
+      "Film de protection solaire",
+      "Système multimédia",
+      "Jantes en alliage",
+      "Toit ouvrant",
+      "Airbags latéraux, avant et arrière",
+      "Caméra de recul",
+      "Caméra panoramique avec capteurs avant et arrière",
+      "ACC avec assistant de voie",
+      "Alerte d'angle mort",
+      "Système keyless complet",
+      "Contrôle de traction",
+      "Régulateur de vitesse",
+      "Phares au xénon",
+      "Rétroviseur photochromique",
+      "Capteur de pluie",
+      "Capteur de stationnement",
+      "Capteur de luminosité"
     ],
-    previousOwners: 1,
+    previousOwners: 0,
     maintenanceHistory: [
       {
-        date: "2024-05-10",
-        mileage: 5000,
+        date: "2023-12-10",
+        mileage: 15000,
         service: "Révision Complète",
         description: "Entretien complet avec pièces Porsche d'origine",
         servicedBy: "Service Officiel Porsche"
       }
     ],
     technicalInspection: {
-      lastDate: "2023-10-15",
-      validUntil: "2025-10-15",
+      lastDate: "2023-09-15",
+      validUntil: "2025-09-15",
       status: "passed"
     },
-    price: 149500,
+    price: 36000,
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
-    estimatedDelivery: "1-3 semaines",
+    estimatedDelivery: "1-2 semaines",
     images: [
       "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
       "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
       "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png"
     ],
     thumbnail: "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
-    description: "Cette magnifique Porsche 911 Carrera S allie design emblématique et performances exaltantes. Parfaitement entretenue et dans un état impeccable, cette voiture de sport offre une expérience de conduite inégalée.",
-    options: ["Pack Chrono Sport", "Pack Premium", "Pack Assistance à la Conduite"]
+    description: "Cette élégante Porsche Macan 2019 avec seulement 18 000 km est en parfait état. Moteur 2.0 16V développant 252 CV, traction intégrale, jantes RS Spyder 21 pouces et nombreux équipements. IPVA payé, licenciée, révisée en concession et premier propriétaire.",
+    options: ["Pack Premium", "Toit Panoramique", "Jantes RS Spyder 21\""]
   },
   {
     id: "v5",
