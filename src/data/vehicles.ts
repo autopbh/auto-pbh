@@ -1,4 +1,3 @@
-
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -632,5 +631,70 @@ export const vehicles: Vehicle[] = [
     thumbnail: "/lovable-uploads/50138b5a-b985-4ea8-842d-6e9a4eea8483.png",
     description: "Ce Hyundai Creta Limited 1.0 Turbo de 2022 avec 50.000 km est en excellent état. Premier propriétaire, toutes les révisions effectuées chez Hyundai. Équipé d'un moteur 1.0 Turbo de 120cv (flex), boîte automatique, chargeur par induction, coffre de 422 litres et de nombreux équipements de confort et technologie comme Apple CarPlay et Android Auto.",
     options: ["Version Limited", "Garantie d'usine", "Apple CarPlay/Android Auto"]
+  },
+  {
+    id: "v12",
+    brand: "Jeep",
+    model: "Compass Longitude 2.0 Turbo Diesel 4x4",
+    year: 2020,
+    mileage: 72000,
+    fuelType: "Diesel",
+    engineCapacity: 2.0,
+    power: 170,
+    transmission: "automatic",
+    exteriorColor: "Noir",
+    interiorColor: "Cuir Noir",
+    features: [
+      "Unique propriétaire avec pneus neufs",
+      "Récemment révisé",
+      "Rapport technique approuvé 100%",
+      "Pack premium",
+      "Moteur 2.0 Turbo diesel avec 170cv",
+      "Boîte automatique à 9 vitesses",
+      "Park assist semi-automatique",
+      "Système audio Beats avec subwoofer",
+      "Démarrage du moteur à distance",
+      "Traction intégrale 4x4 à la demande | 5 modes de conduite",
+      "Intérieur en cuir noir",
+      "Tableau de bord partiellement numérique",
+      "Système multimédia avec Apple CarPlay et Android Auto",
+      "Palettes de changement de vitesse",
+      "Jantes 18 pouces",
+      "Frein de stationnement électrique",
+      "Rétroviseurs à rabattement électrique",
+      "Connexion USB et Bluetooth",
+      "Volant multifonction"
+    ],
+    previousOwners: 0,
+    technicalInspection: {
+      lastDate: "2024-03-01",
+      validUntil: "2026-03-01",
+      status: "passed"
+    },
+    price: 9000,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+      "/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png",
+      "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
+      "/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png",
+      "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+      "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
+      "/lovable-uploads/6f26994d-a59f-41da-be90-c2104cad1ccd.png",
+      "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
+      "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png",
+      "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
+      "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
+      "/lovable-uploads/9bd15bc2-bfb1-4c1e-9109-36905330b679.png",
+      "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png",
+      "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png"
+    ],
+    thumbnail: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+    description: "Ce Jeep Compass Longitude 2.0 Turbo Diesel 4x4 de 2020 avec 72.000 km est en excellent état. Premier propriétaire, pneus neufs, récemment révisé avec rapport technique approuvé à 100%. Équipé d'un moteur 2.0 Turbo diesel de 170cv, boîte automatique à 9 vitesses, traction intégrale 4x4 à la demande avec 5 modes de conduite et nombreux équipements de confort et technologie.",
+    options: ["Pack Premium", "Traction 4x4", "Système Audio Beats"]
   }
 ];
