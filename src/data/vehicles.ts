@@ -317,47 +317,62 @@ export const vehicles: Vehicle[] = [
   },
   {
     id: "v6",
-    brand: "Tesla",
-    model: "Model S Plaid",
-    year: 2023,
-    mileage: 5000,
-    fuelType: "Electric",
-    engineCapacity: 0,
-    power: 1020,
+    brand: "Jaguar",
+    model: "E-Pace R-Dynamic SE AWD",
+    year: 2019,
+    mileage: 48000,
+    fuelType: "Essence",
+    engineCapacity: 2.0,
+    power: 300,
     transmission: "automatic",
     exteriorColor: "Gris Métallisé",
-    interiorColor: "Noir et Blanc",
+    interiorColor: "Noir",
     features: [
-      "Jantes Arachnid 21\"",
-      "Connectivité Premium",
-      "Capacité de Conduite Entièrement Autonome",
-      "Volant Yoke",
-      "Son Ultra Haute-Fidélité",
-      "Toit en Verre Panoramique",
-      "Sièges Chauffants et Ventilés",
-      "Filtration d'Air HEPA"
+      "Laudo 100% aprovado",
+      "Pneus neufs",
+      "Moteur 2.0 Turbo 300cv (Essence)",
+      "Boîte automatique 9 vitesses",
+      "Traction intégrale à la demande",
+      "Direction assistée électrique",
+      "Jantes 20 pouces",
+      "Airbags frontaux, latéraux et rideaux",
+      "Lane assist (Assistant de voie)",
+      "Freinage automatique d'urgence",
+      "Capteurs de stationnement avant et arrière",
+      "Phares et feux LED",
+      "Contrôle automatique de descente",
+      "Alerte d'angle mort",
+      "Palette de changement de vitesse",
+      "Toit panoramique",
+      "Hayon motorisé",
+      "Système Start/Stop",
+      "Frein de stationnement électrique",
+      "Head up display",
+      "Connexion USB et Bluetooth",
+      "Volant multifonction",
+      "Climatisation digitale bizone"
     ],
     previousOwners: 1,
     technicalInspection: {
-      lastDate: "2024-01-20",
-      validUntil: "2026-01-20",
+      lastDate: "2023-09-15",
+      validUntil: "2025-09-15",
       status: "passed"
     },
-    price: 119900,
+    price: 10000,
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "1-2 semaines",
     images: [
-      "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
-      "/lovable-uploads/50354ce4-8768-48c9-8f67-a5622dbd7179.png",
-      "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png"
+      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80&w=800"
     ],
-    thumbnail: "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
-    description: "Cette Tesla Model S Plaid est le summum de la performance électrique avec son installation à trois moteurs et son accélération fulgurante. Combinant technologie de pointe et luxe, elle représente l'avenir de l'excellence automobile.",
-    options: ["Autopilote Amélioré", "Conduite Entièrement Autonome", "Intérieur Premium"]
+    thumbnail: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800",
+    description: "Cette Jaguar E-Pace R-Dynamic SE AWD de 2019 avec 48.000 km est en excellent état. Équipée d'un moteur 2.0 Turbo de 300cv, d'une boîte automatique à 9 vitesses, traction intégrale à la demande, toit panoramique et nombreux équipements de confort et de sécurité.",
+    options: ["Toit Panoramique", "Pack R-Dynamic", "Head Up Display"]
   }
 ];
 
 export const featuredVehicles = vehicles.slice(0, 3);
-
