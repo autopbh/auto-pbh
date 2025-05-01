@@ -3,48 +3,21 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { Badge } from "@/components/ui/badge";
 import { vehicles } from "@/data/vehicles";
-import { 
-  Car, 
-  Calendar, 
-  Gauge, 
-  Power, 
-  Shield, 
-  Wrench,
-  Phone,
-  ArrowLeft,
-  ShoppingCart,
-  ChevronRight,
-  ChevronLeft
-} from "lucide-react";
-import { Vehicle } from "@/types";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { ArrowLeft, Check, Shield, Car, Phone, Plus } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [vehicle, setVehicle] = useState<Vehicle | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [vehicle, setVehicle] = useState(vehicles.find(v => v.id === id));
   
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Find the vehicle with the matching ID
-    const foundVehicle = vehicles.find(v => v.id === id);
-    if (foundVehicle) {
-      setVehicle(foundVehicle);
-    }
-    setLoading(false);
+    setVehicle(vehicles.find(v => v.id === id));
   }, [id]);
 
   const addToCart = () => {
@@ -63,207 +36,244 @@ const VehicleDetail = () => {
     }
     
     // Add vehicle to cart
-    const vehicleForCart = {
+    const vehicleToAdd = {
       id: vehicle.id,
       name: `${vehicle.brand} ${vehicle.model}`,
       price: vehicle.price,
-      image: vehicle.images[0]
+      image: vehicle.thumbnail || vehicle.images[0],
+      brand: vehicle.brand,
+      model: vehicle.model,
+      year: vehicle.year
     };
     
-    const updatedCart = [...currentCart, vehicleForCart];
+    const updatedCart = [...currentCart, vehicleToAdd];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
-    // Correction ici : utiliser la syntaxe correcte pour les variables dans les traductions
     toast({
       title: t("shop.vehicleAdded"),
       description: t("shop.vehicleAddedDesc").replace("{vehicle}", `${vehicle.brand} ${vehicle.model}`),
     });
   };
 
-  if (loading) {
-    return (
-      <Layout>
-        <div className="container mx-auto px-4 py-16 mt-20">
-          <p>{t("common.loading")}...</p>
-        </div>
-      </Layout>
-    );
-  }
-
   if (!vehicle) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-16 mt-20">
-          <p>{t("vehicle.notFound")}</p>
-          <Link to="/catalog" className="inline-flex items-center text-autop-red hover:underline mt-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t("vehicle.backToCatalog")}
-          </Link>
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-2xl font-bold mb-4">{t("vehicle.notFound")}</h1>
+            <Button asChild>
+              <Link to="/catalog">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {t("vehicle.backToCatalog")}
+              </Link>
+            </Button>
+          </div>
         </div>
       </Layout>
     );
   }
 
+  const features = [
+    { id: "panoramicRoof", name: t("vehicle.features.panoramicRoof") },
+    { id: "acc", name: t("vehicle.features.acc") },
+    { id: "emergencyBraking", name: t("vehicle.features.emergencyBraking") },
+    { id: "airbags", name: t("vehicle.features.airbags") },
+    { id: "ledLights", name: t("vehicle.features.ledLights") },
+    { id: "paddleShift", name: t("vehicle.features.paddleShift") },
+    { id: "phoneIntegration", name: t("vehicle.features.phoneIntegration") },
+    { id: "alloyWheels", name: t("vehicle.features.alloyWheels") },
+    { id: "taxPaid", name: t("vehicle.features.taxPaid") },
+    { id: "registered", name: t("vehicle.features.registered") },
+  ];
+
+  // Vehicle specs with icons
+  const specs = [
+    { 
+      icon: <Car className="h-8 w-8 text-autop-red" />, 
+      value: vehicle.kilometers === 0 ? t("vehicle.specs.zeroKm") : `${vehicle.kilometers.toLocaleString()} km` 
+    },
+    { 
+      icon: <span className="text-autop-red text-2xl">⚡</span>, 
+      value: t("vehicle.specs.horsePower").replace("{hp}", vehicle.power.toString()) 
+    },
+    { 
+      icon: <span className="text-autop-red text-2xl">🔋</span>, 
+      value: t("vehicle.specs.mildHybrid")
+    }
+  ];
+
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 mt-20">
-        <Link to="/catalog" className="inline-flex items-center text-muted-foreground hover:text-autop-red mb-8">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          {t("vehicle.backToCatalog")}
-        </Link>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <div className="mb-8">
-              <div className="relative aspect-video rounded-lg overflow-hidden mb-4">
-                <img 
-                  src={vehicle.images[selectedImageIndex]} 
-                  alt={`${vehicle.brand} ${vehicle.model}`} 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              
-              <div className="relative">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {vehicle.images.map((image, index) => (
-                      <CarouselItem key={index} className="basis-1/4 sm:basis-1/5 md:basis-1/6 lg:basis-1/6">
-                        <div 
-                          className={`cursor-pointer rounded-md overflow-hidden border-2 ${selectedImageIndex === index ? 'border-autop-red' : 'border-transparent'}`}
-                          onClick={() => setSelectedImageIndex(index)}
-                        >
-                          <img 
-                            src={image} 
-                            alt={`Vue ${index + 1} de ${vehicle.brand} ${vehicle.model}`} 
-                            className="aspect-square object-cover w-full h-full"
-                          />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-0" />
-                  <CarouselNext className="right-0" />
-                </Carousel>
+      <div className="container mx-auto px-4 py-12 mt-20">
+        <div className="grid lg:grid-cols-12 gap-8">
+          {/* Left column - Gallery */}
+          <div className="lg:col-span-7">
+            {/* Vehicle title visible on mobile only */}
+            <div className="block lg:hidden mb-6">
+              <Link to="/catalog" className="text-autop-red hover:underline flex items-center mb-4">
+                <ArrowLeft className="mr-2 h-4 w-4" /> {t("vehicle.backToCatalog")}
+              </Link>
+              <h1 className="text-3xl font-bold mb-2">{vehicle.brand} {vehicle.model}</h1>
+              <p className="text-xl mb-4">{vehicle.version}</p>
+              <div className="flex items-center justify-between">
+                <Badge variant="outline" className="text-lg py-1 px-3 border-autop-red text-autop-red">
+                  {vehicle.year}
+                </Badge>
+                <span className="text-3xl font-bold text-autop-red">€{vehicle.price.toLocaleString()}</span>
               </div>
             </div>
             
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.brand} {vehicle.model}</h1>
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : t("vehicle.zeroKm")}</span>
-              <span>•</span>
-              <span>{vehicle.fuelType}</span>
-              <span>•</span>
-              <span>{vehicle.power} {t("shop.hp")}</span>
+            {/* Main image */}
+            <div className="aspect-[16/9] rounded-lg overflow-hidden mb-4 bg-black">
+              <img 
+                src={vehicle.images[0]} 
+                alt={`${vehicle.brand} ${vehicle.model}`} 
+                className="w-full h-full object-cover"
+              />
             </div>
-
-            <div className="prose prose-lg max-w-none space-y-6">
-              <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-                <h2 className="text-2xl font-semibold mb-4 text-autop-red">{t("vehicle.mainFeatures")}</h2>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3">
-                    <Calendar className="h-5 w-5 text-autop-red" />
-                    <span>{t("vehicle.year")} : {vehicle.year}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Gauge className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : t("vehicle.zeroKm")}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Power className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.power} {t("shop.hp")}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Car className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.fuelType}</span>
-                  </div>
+            
+            {/* Thumbnails row */}
+            <div className="grid grid-cols-4 gap-2 mb-8">
+              {vehicle.images.slice(1, 5).map((image, idx) => (
+                <div key={idx} className="aspect-[4/3] rounded-md overflow-hidden bg-gray-100">
+                  <img 
+                    src={image} 
+                    alt={`${vehicle.brand} ${vehicle.model} view ${idx+2}`} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </section>
-
-              <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-                <h2 className="text-2xl font-semibold mb-4 text-autop-red">{t("vehicle.options")}</h2>
-                <ul className="grid sm:grid-cols-2 gap-3">
-                  {vehicle.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              ))}
+            </div>
+            
+            {/* Specifications */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              {specs.map((spec, idx) => (
+                <div key={idx} className="flex items-center gap-3 bg-white/70 p-4 rounded-lg shadow-sm">
+                  {spec.icon}
+                  <div className="text-lg font-medium">{spec.value}</div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Features */}
+            <div className="bg-white/70 rounded-lg shadow-sm p-6 mb-8">
+              <h2 className="text-xl font-semibold mb-4">{t("vehicle.options")}</h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {features.map((feature) => (
+                  <li key={feature.id} className="flex items-center">
+                    <span className="mr-3 text-autop-red">•</span>
+                    {feature.name}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-
-          <div className="space-y-6">
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-              <div className="mb-4">
+          
+          {/* Right column - Details and CTA */}
+          <div className="lg:col-span-5">
+            {/* Vehicle title hidden on mobile */}
+            <div className="hidden lg:block mb-6">
+              <Link to="/catalog" className="text-autop-red hover:underline flex items-center mb-4">
+                <ArrowLeft className="mr-2 h-4 w-4" /> {t("vehicle.backToCatalog")}
+              </Link>
+              <h1 className="text-3xl font-bold mb-2">{vehicle.brand} {vehicle.model}</h1>
+              <p className="text-xl mb-4">{vehicle.version}</p>
+              <div className="flex items-center justify-between">
+                <Badge variant="outline" className="text-lg py-1 px-3 border-autop-red text-autop-red">
+                  {vehicle.year}
+                </Badge>
                 <span className="text-3xl font-bold text-autop-red">€{vehicle.price.toLocaleString()}</span>
               </div>
-              <div className="space-y-4">
-                <Button onClick={addToCart} className="w-full btn-primary">
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  {t("shop.addToCart")}
-                </Button>
-                <Link to="/contact">
-                  <Button variant="outline" className="w-full">{t("vehicle.requestMoreInfo")}</Button>
-                </Link>
+            </div>
+            
+            {/* Main features */}
+            <div className="bg-white/70 rounded-lg shadow-sm p-6 mb-6">
+              <h2 className="text-xl font-semibold mb-4">{t("vehicle.mainFeatures")}</h2>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("shop.transmission")}</p>
+                  <p className="font-medium">
+                    {vehicle.transmission === "automatic" ? t("shop.automatic") : t("shop.manual")}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("vehicle.year")}</p>
+                  <p className="font-medium">{vehicle.year}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("shop.power")}</p>
+                  <p className="font-medium">{vehicle.power} {t("shop.hp")}</p>
+                </div>
               </div>
             </div>
-
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Shield className="h-5 w-5 text-autop-red" />
+            
+            {/* CTA */}
+            <div className="flex gap-4 mb-6">
+              <Button onClick={addToCart} className="flex-1">
+                <Plus className="mr-2 h-4 w-4" />
+                {t("shop.addToCart")}
+              </Button>
+              <Button variant="outline" className="flex-1">
+                {t("vehicle.requestMoreInfo")}
+              </Button>
+            </div>
+            
+            {/* Warranty */}
+            <div className="bg-white/70 rounded-lg shadow-sm p-6 mb-6">
+              <h2 className="flex items-center text-xl font-semibold mb-4">
+                <Shield className="mr-2 h-5 w-5 text-autop-red" />
                 {t("vehicle.warranties")}
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.manufacturerWarranty")} {vehicle.year === 2025 ? t("vehicle.full") : t("vehicle.partial")}
+              </h2>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.manufacturerWarranty")} {vehicle.warranty ? t("vehicle.full") : t("vehicle.partial")}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.warrantyExtension")}
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.warrantyExtension")}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.assistance")}
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.assistance")}</span>
                 </li>
               </ul>
             </div>
-
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Wrench className="h-5 w-5 text-autop-red" />
+            
+            {/* Included services */}
+            <div className="bg-white/70 rounded-lg shadow-sm p-6 mb-6">
+              <h2 className="flex items-center text-xl font-semibold mb-4">
+                <Car className="mr-2 h-5 w-5 text-autop-red" />
                 {t("vehicle.includedServices")}
-              </h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.delivery")}
+              </h2>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.delivery")}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.tradeIn")}
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.tradeIn")}</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  {t("vehicle.financing")}
+                <li className="flex items-start">
+                  <Check className="mr-2 h-4 w-4 mt-1 text-autop-red" />
+                  <span>{t("vehicle.financing")}</span>
                 </li>
               </ul>
             </div>
-
-            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <Phone className="h-5 w-5 text-autop-red" />
+            
+            {/* Contact */}
+            <div className="bg-white/70 rounded-lg shadow-sm p-6">
+              <h2 className="flex items-center text-xl font-semibold mb-2">
+                <Phone className="mr-2 h-5 w-5 text-autop-red" />
                 {t("vehicle.directContact")}
-              </h3>
+              </h2>
               <p className="text-muted-foreground mb-4">
                 {t("vehicle.teamAvailable")}
               </p>
-              <Link to="/contact">
-                <Button variant="outline" className="w-full">
-                  {t("vehicle.contactAdvisor")}
-                </Button>
-              </Link>
+              <Button className="w-full">
+                {t("vehicle.contactAdvisor")}
+              </Button>
             </div>
           </div>
         </div>
