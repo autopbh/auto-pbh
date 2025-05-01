@@ -1,4 +1,3 @@
-
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -54,25 +53,35 @@ export const vehicles: Vehicle[] = [
   },
   {
     id: "v2",
-    brand: "BMW",
-    model: "Série 7 740i",
-    year: 2023,
-    mileage: 12000,
+    brand: "Audi",
+    model: "Q3 Ambiente 2.0 TFSi AWD",
+    year: 2016,
+    mileage: 55000,
     fuelType: "Essence",
-    engineCapacity: 3.0,
-    power: 381,
+    engineCapacity: 2.0,
+    power: 180,
     transmission: "automatic",
-    exteriorColor: "Bleu Tanzanite",
-    interiorColor: "Cuir Merino Cognac",
+    exteriorColor: "Blanc",
+    interiorColor: "Cuir Noir",
     features: [
-      "Pack Exécutif",
-      "Son Bowers & Wilkins",
-      "Commande Gestuelle",
-      "Toit Panoramique Sky Lounge LED",
-      "Éclairage Ambiant",
-      "Sièges Ventilés",
-      "Assistance à la Conduite Professionnelle",
-      "Assistant de Stationnement Plus"
+      "Toit Panoramique",
+      "Moteur 2.0 (EA888)",
+      "Boîte Automatique à Double Embrayage",
+      "Traction 4x4 Intégrale",
+      "Airbags Frontaux, Latéraux et Rideaux",
+      "Contrôle de Traction et de Stabilité",
+      "Assistant de Démarrage en Côte",
+      "Sièges en Cuir",
+      "Climatisation Digitale",
+      "Système Start/Stop",
+      "Palette de Changement de Vitesse",
+      "Feux de Jour LED",
+      "Feux Arrière LED",
+      "Capteurs de Stationnement Avant et Arrière",
+      "Caméra de Recul",
+      "Multimédia avec Bluetooth",
+      "Volant Multifonction",
+      "Pneus Neufs"
     ],
     previousOwners: 1,
     technicalInspection: {
@@ -80,19 +89,19 @@ export const vehicles: Vehicle[] = [
       validUntil: "2025-11-10",
       status: "passed"
     },
-    price: 92500,
+    price: 7000,
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "2-4 semaines",
     images: [
-      "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
-      "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
-      "/lovable-uploads/6f26994d-a59f-41da-be90-c2104cad1ccd.png"
+      "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png", 
+      "/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png",
+      "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png"
     ],
-    thumbnail: "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
-    description: "Cette BMW Série 7 allie luxe et performance dans un équilibre parfait. Avec son moteur puissant et ses technologies avancées, elle offre une expérience de conduite de première classe.",
-    options: ["Pack M Sport", "Pack Premium", "Pack Executive"]
+    thumbnail: "/lovable-uploads/1068bf95-3ca6-4fbb-b34b-e4e1940c56bf.png",
+    description: "Audi Q3 Ambiente 2.0 TFSi AWD avec seulement 55 000 km. Entièrement révisé avec rapport de vérification. Équipé d'un toit panoramique électrique, de 4 pneus neufs, moteur 2.0 (EA888) de 180 cv, boîte automatique à double embrayage à 7 vitesses, traction intégrale 4x4, et nombreux équipements de confort et sécurité.",
+    options: ["Toit Panoramique", "Traction Intégrale", "Caméra de Recul"]
   },
   {
     id: "v3",
