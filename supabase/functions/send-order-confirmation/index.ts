@@ -70,9 +70,9 @@ serve(async (req) => {
       </tr>
     `).join('');
 
-    // Send email to customer
+    // Send email to customer - Using Resend's default sender domain instead of autopbh.com
     const { data: customerEmailData, error: customerEmailError } = await resend.emails.send({
-      from: "AutoPBH <noreply@autopbh.com>",
+      from: "AutoPBH <onboarding@resend.dev>",
       to: customerEmail,
       subject: `Confirmation de commande - ${orderReference}`,
       html: `
@@ -139,9 +139,9 @@ serve(async (req) => {
       throw new Error(`Failed to send customer email: ${customerEmailError.message}`);
     }
     
-    // Send notification email to admin
+    // Send notification email to admin - Using Resend's default sender domain instead of autopbh.com
     const { data: adminEmailData, error: adminEmailError } = await resend.emails.send({
-      from: "AutoPBH <noreply@autopbh.com>",
+      from: "AutoPBH <onboarding@resend.dev>",
       to: "admin@autopbh.com", // Replace with your admin email
       subject: `Nouvelle commande: ${orderReference}`,
       html: `

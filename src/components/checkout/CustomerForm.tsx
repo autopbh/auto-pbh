@@ -58,7 +58,7 @@ const customerFormSchema = z.object({
   additionalNotes: z.string().optional(),
 });
 
-type CustomerFormValues = z.infer<typeof customerFormSchema>;
+export type CustomerFormValues = z.infer<typeof customerFormSchema>;
 
 interface CustomerFormProps {
   onSubmit: (data: CustomerFormValues) => void;
