@@ -87,7 +87,7 @@ const MobileMenu = () => {
               onClick={() => signOut()}
             >
               <LogIn className="w-5 h-5 mr-3 rotate-180" />
-              <span>Déconnexion</span>
+              <span>{t("auth.logout")}</span>
             </Button>
           )}
         </nav>
