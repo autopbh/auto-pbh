@@ -1,3 +1,4 @@
+
 import { Language } from "@/types";
 
 type TranslationDict = {
@@ -496,4 +497,10 @@ export const translations: TranslationsType = {
     "search.results": "resultado encontrado",
     "search.results_plural": "resultados encontrados",
     "search.noResults": "Nenhum resultado encontrado",
-    "search.
+    "search.noResultsDesc": "Nenhum veículo corresponde à sua pesquisa.",
+    "search.tryOther": "Tente com outros termos ou consulte o nosso catálogo completo.",
+    "search.viewCatalog": "Ver catálogo completo",
+    "search.assistance": "Assistência à pesquisa",
+    "search.voiceSearch": "Pesquisa por voz disponível"
+  }
+};
