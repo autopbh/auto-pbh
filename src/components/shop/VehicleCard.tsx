@@ -72,7 +72,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             {vehicle.availability === "in-stock" && (
               <Button size="sm" className="btn-primary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                Réserver ce Véhicule
+                Ajouter au panier
               </Button>
             )}
           </div>
