@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -26,10 +25,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -54,8 +55,8 @@ const VehicleDetail = () => {
     // Check if vehicle is already in cart
     if (currentCart.some(item => item.id === vehicle.id)) {
       toast({
-        title: "Véhicule déjà dans le panier",
-        description: "Ce véhicule est déjà dans votre panier.",
+        title: t("shop.alreadyInCart"),
+        description: t("shop.alreadyInCartDesc"),
       });
       return;
     }
@@ -72,8 +73,8 @@ const VehicleDetail = () => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     
     toast({
-      title: "Véhicule ajouté",
-      description: `${vehicle.brand} ${vehicle.model} a été ajouté à votre panier.`,
+      title: t("shop.vehicleAdded"),
+      description: t("shop.vehicleAddedDesc", { vehicle: `${vehicle.brand} ${vehicle.model}` }),
     });
   };
 
@@ -81,7 +82,7 @@ const VehicleDetail = () => {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-16 mt-20">
-          <p>Chargement...</p>
+          <p>{t("common.loading")}...</p>
         </div>
       </Layout>
     );
@@ -91,10 +92,10 @@ const VehicleDetail = () => {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-16 mt-20">
-          <p>Véhicule non trouvé</p>
+          <p>{t("vehicle.notFound")}</p>
           <Link to="/catalog" className="inline-flex items-center text-autop-red hover:underline mt-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour au catalogue
+            {t("vehicle.backToCatalog")}
           </Link>
         </div>
       </Layout>
@@ -106,7 +107,7 @@ const VehicleDetail = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <Link to="/catalog" className="inline-flex items-center text-muted-foreground hover:text-autop-red mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Retour au catalogue
+          {t("vehicle.backToCatalog")}
         </Link>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -146,28 +147,28 @@ const VehicleDetail = () => {
             
             <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.brand} {vehicle.model}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : 'ZÉRO KM'}</span>
+              <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : t("vehicle.zeroKm")}</span>
               <span>•</span>
               <span>{vehicle.fuelType}</span>
               <span>•</span>
-              <span>{vehicle.power} CH</span>
+              <span>{vehicle.power} {t("shop.hp")}</span>
             </div>
 
             <div className="prose prose-lg max-w-none space-y-6">
               <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-                <h2 className="text-2xl font-semibold mb-4 text-autop-red">Caractéristiques Principales</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-autop-red">{t("vehicle.mainFeatures")}</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex items-center gap-3">
                     <Calendar className="h-5 w-5 text-autop-red" />
-                    <span>Année : {vehicle.year}</span>
+                    <span>{t("vehicle.year")} : {vehicle.year}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Gauge className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : 'ZÉRO KM'}</span>
+                    <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : t("vehicle.zeroKm")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Power className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.power} CH</span>
+                    <span>{vehicle.power} {t("shop.hp")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Car className="h-5 w-5 text-autop-red" />
@@ -177,7 +178,7 @@ const VehicleDetail = () => {
               </section>
 
               <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-                <h2 className="text-2xl font-semibold mb-4 text-autop-red">Options et Équipements</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-autop-red">{t("vehicle.options")}</h2>
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {vehicle.features.map((feature, index) => (
                     <li key={index} className="flex items-center gap-2">
@@ -198,10 +199,10 @@ const VehicleDetail = () => {
               <div className="space-y-4">
                 <Button onClick={addToCart} className="w-full btn-primary">
                   <ShoppingCart className="mr-2 h-4 w-4" />
-                  Ajouter au panier
+                  {t("shop.addToCart")}
                 </Button>
                 <Link to="/contact">
-                  <Button variant="outline" className="w-full">Demander plus d'informations</Button>
+                  <Button variant="outline" className="w-full">{t("vehicle.requestMoreInfo")}</Button>
                 </Link>
               </div>
             </div>
@@ -209,20 +210,20 @@ const VehicleDetail = () => {
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Shield className="h-5 w-5 text-autop-red" />
-                Garanties
+                {t("vehicle.warranties")}
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Garantie constructeur {vehicle.year === 2025 ? "complète" : "partielle"}
+                  {t("vehicle.manufacturerWarranty")} {vehicle.year === 2025 ? t("vehicle.full") : t("vehicle.partial")}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Extension possible jusqu'à 36 mois
+                  {t("vehicle.warrantyExtension")}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Assistance 24/7 incluse
+                  {t("vehicle.assistance")}
                 </li>
               </ul>
             </div>
@@ -230,20 +231,20 @@ const VehicleDetail = () => {
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Wrench className="h-5 w-5 text-autop-red" />
-                Services Inclus
+                {t("vehicle.includedServices")}
               </h3>
               <ul className="space-y-3 text-muted-foreground">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Livraison possible dans toute l'Europe
+                  {t("vehicle.delivery")}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Reprise de votre ancien véhicule
+                  {t("vehicle.tradeIn")}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                  Solutions de financement personnalisées
+                  {t("vehicle.financing")}
                 </li>
               </ul>
             </div>
@@ -251,14 +252,14 @@ const VehicleDetail = () => {
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Phone className="h-5 w-5 text-autop-red" />
-                Contact Direct
+                {t("vehicle.directContact")}
               </h3>
               <p className="text-muted-foreground mb-4">
-                Notre équipe est à votre disposition pour répondre à toutes vos questions.
+                {t("vehicle.teamAvailable")}
               </p>
               <Link to="/contact">
                 <Button variant="outline" className="w-full">
-                  Contactez votre conseiller dédié
+                  {t("vehicle.contactAdvisor")}
                 </Button>
               </Link>
             </div>

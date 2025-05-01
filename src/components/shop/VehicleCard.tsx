@@ -4,6 +4,7 @@ import { Vehicle } from "@/types";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -11,6 +12,7 @@ interface VehicleCardProps {
 
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const imageUrl = vehicle.images && vehicle.images.length > 0 
     ? vehicle.images[0] 
     : "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop";
@@ -22,8 +24,8 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     // Check if vehicle is already in cart
     if (currentCart.some(item => item.id === vehicle.id)) {
       toast({
-        title: "Véhicule déjà dans le panier",
-        description: "Ce véhicule est déjà dans votre panier.",
+        title: t("shop.alreadyInCart"),
+        description: t("shop.alreadyInCartDesc"),
       });
       return;
     }
@@ -43,8 +45,8 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     window.dispatchEvent(new Event("storage"));
     
     toast({
-      title: "Véhicule ajouté",
-      description: `${vehicle.brand} ${vehicle.model} a été ajouté à votre panier.`,
+      title: t("shop.vehicleAdded"),
+      description: t("shop.vehicleAddedDesc", { vehicle: `${vehicle.brand} ${vehicle.model}` }),
     });
   };
 
@@ -59,12 +61,12 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           />
           {vehicle.availability === "reserved" && (
             <div className="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
-              En Réservation
+              {t("shop.reserved")}
             </div>
           )}
           {vehicle.availability === "sold" && (
             <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-              Vendu
+              {t("shop.sold")}
             </div>
           )}
         </Link>
@@ -87,12 +89,12 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           
           <div className="mt-4 space-y-2">
             <div className="flex justify-between text-sm">
-              <span>Transmission</span>
-              <span className="font-medium">{vehicle.transmission === 'automatic' ? 'Automatique' : 'Manuelle'}</span>
+              <span>{t("shop.transmission")}</span>
+              <span className="font-medium">{t(`shop.${vehicle.transmission}`)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span>Puissance</span>
-              <span className="font-medium">{vehicle.power} ch</span>
+              <span>{t("shop.power")}</span>
+              <span className="font-medium">{vehicle.power} {t("shop.hp")}</span>
             </div>
           </div>
         </div>
@@ -107,14 +109,14 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
             {vehicle.availability === "in-stock" && (
               <Button size="sm" className="btn-primary" onClick={addToCart}>
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                Ajouter au panier
+                {t("shop.addToCart")}
               </Button>
             )}
           </div>
           
           <Link to={`/vehicle/${vehicle.id}`} className="w-full">
             <Button variant="outline" className="w-full">
-              Découvrir en Détail
+              {t("shop.discoverDetails")}
             </Button>
           </Link>
         </div>
