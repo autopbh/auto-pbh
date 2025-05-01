@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Badge } from "@/components/ui/badge";
 import LanguageSelector from "@/components/common/LanguageSelector";
 import CartDropdown from "@/components/shop/CartDropdown";
 import MobileMenu from "@/components/layout/MobileMenu";
@@ -11,6 +12,7 @@ import MobileMenu from "@/components/layout/MobileMenu";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   // Change header style on scroll
   useEffect(() => {
@@ -25,6 +27,25 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Load cart items
+  useEffect(() => {
+    const loadCart = () => {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    };
+    
+    loadCart();
+    
+    // Set up event listener for storage changes (for multi-tab support)
+    window.addEventListener("storage", loadCart);
+    
+    return () => {
+      window.removeEventListener("storage", loadCart);
     };
   }, []);
 
@@ -88,6 +109,14 @@ const Header = () => {
               aria-label="Voir mes réservations"
             >
               <ShoppingCart className="h-5 w-5" />
+              {cartItems.length > 0 && (
+                <Badge 
+                  className="absolute -top-1 -right-1 min-w-[20px] h-5 flex items-center justify-center bg-autop-red text-white text-xs"
+                  variant="destructive"
+                >
+                  {cartItems.length}
+                </Badge>
+              )}
             </Button>
             {cartOpen && <CartDropdown />}
           </div>

@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ShoppingCart } from "lucide-react";
 
 const CartDropdown = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -29,7 +31,13 @@ const CartDropdown = () => {
   return (
     <div className="absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white dark:bg-autop-gray border border-border overflow-hidden z-50">
       <div className="py-2 px-4">
-        <h3 className="text-lg font-medium mb-2">Votre Panier</h3>
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-lg font-medium">Votre Panier</h3>
+          <Badge variant="outline" className="bg-autop-red/10 text-autop-red border-autop-red/30">
+            <ShoppingCart className="h-3 w-3 mr-1" /> {cartItems.length} {cartItems.length > 1 ? 'articles' : 'article'}
+          </Badge>
+        </div>
+        
         {cartItems.length === 0 ? (
           <p className="text-sm text-muted-foreground py-4">Votre panier est vide</p>
         ) : (
