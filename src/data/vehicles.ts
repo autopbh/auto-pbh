@@ -2,6 +2,62 @@ import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
   {
+    id: "v15",
+    brand: "Hyundai",
+    model: "HB20 Comfort Plus 1.0 Manual",
+    year: 2014,
+    mileage: 109000,
+    fuelType: "Essence/Flex",
+    engineCapacity: 1.0,
+    power: 80,
+    transmission: "manual",
+    exteriorColor: "Blanc",
+    interiorColor: "Noir",
+    features: [
+      "Rapport d'expertise",
+      "Pneus neufs",
+      "Moteur 1.0 Flex avec 80cv",
+      "Boîte manuelle à 5 vitesses",
+      "Direction assistée hydraulique",
+      "Climatisation",
+      "Sièges en tissu noir",
+      "Vitres électriques aux 4 portes",
+      "Verrouillage centralisé électrique",
+      "Airbags frontaux",
+      "Fixations ISOFIX",
+      "Système multimédia Android",
+      "Caméra de recul",
+      "Bluetooth et USB",
+      "Volant multifonction"
+    ],
+    previousOwners: 1,
+    technicalInspection: {
+      lastDate: "2024-03-20",
+      validUntil: "2026-03-20",
+      status: "passed"
+    },
+    price: 3000,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/c98a98ea-c66e-4b5a-868e-db2a8110e920.png",
+      "/lovable-uploads/055eb4f7-9df9-42c1-97f9-7012fe6602df.png",
+      "/lovable-uploads/fb42cb72-f09a-4367-9a4d-706aff956b2a.png",
+      "/lovable-uploads/6b0f1310-5d55-4830-bb4d-31baa93bf2a5.png", 
+      "/lovable-uploads/19fef20d-2383-4ee4-993a-908b88b7f14a.png",
+      "/lovable-uploads/84bbb547-7925-44ab-bce1-75f38a144f00.png",
+      "/lovable-uploads/a243040b-1690-42e7-9a6c-f7f2c4c48ccc.png",
+      "/lovable-uploads/7e708116-fcf9-46c0-8649-0f7281d74f46.png",
+      "/lovable-uploads/bf49b793-17da-4814-9473-eadfd7bb70c6.png",
+      "/lovable-uploads/e885b2b7-48c0-4dcd-9d66-dd2abefa4523.png"
+    ],
+    thumbnail: "/lovable-uploads/c98a98ea-c66e-4b5a-868e-db2a8110e920.png",
+    description: "Cette Hyundai HB20 Comfort Plus 1.0 Manual de 2014 avec 109.000 km est équipée d'un moteur 1.0 Flex de 80cv et d'une boîte manuelle à 5 vitesses. Dotée de la direction assistée hydraulique, climatisation, vitres électriques aux 4 portes, et équipée d'un système multimédia Android avec caméra de recul et connectivité Bluetooth et USB. Véhicule en excellent état avec rapport d'expertise et pneus neufs.",
+    options: ["Multimédia Android", "Caméra de recul", "Vitres électriques 4 portes"]
+  },
+  {
     id: "v14",
     brand: "Land Rover",
     model: "Range Rover Evoque Dynamic Si4 4x4",
@@ -59,7 +115,7 @@ export const vehicles: Vehicle[] = [
       "/lovable-uploads/4454b55e-dc3a-4b7d-a499-e39a975dfe7d.png"
     ],
     thumbnail: "/lovable-uploads/ce82cf3a-7922-46c0-bca6-c71831f8043c.png",
-    description: "Ce Range Rover Evoque Dynamic Si4 4x4 de 2013 avec 138.000 km est en excellent état avec rapport technique approuvé et 4 pneus neufs. Équipé d'un moteur 2.0 Turbo de 240cv, d'une boîte automatique à 6 vitesses, traction intégrale à la demande, jantes en alliage 19 pouces et de nombreux équipements de confort et sécurité comme le système audio Meridian et le toit panoramique.",
+    description: "Ce Range Rover Evoque Dynamic Si4 4x4 de 2013 avec 138.000 km est en excellent état avec rapport technique approuvé et 4 pneus neufs. Équipé d'un moteur 2.0 Turbo de 240cv, d'une boîte automatique à 6 rapports, traction intégrale à la demande, jantes en alliage 19 pouces et de nombreux équipements de confort et sécurité comme le système audio Meridian et le toit panoramique.",
     options: ["Toit Panoramique", "Système Audio Meridian", "Intérieur Bicolore"]
   },
   {
