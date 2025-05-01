@@ -27,6 +27,7 @@ const CartDropdown = () => {
   }, []);
   
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+  const itemCount = cartItems.length;
 
   return (
     <div className="absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white dark:bg-autop-gray border border-border overflow-hidden z-50">
@@ -34,7 +35,8 @@ const CartDropdown = () => {
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-lg font-medium">Votre Panier</h3>
           <Badge variant="outline" className="bg-autop-red/10 text-autop-red border-autop-red/30">
-            <ShoppingCart className="h-3 w-3 mr-1" /> {cartItems.length} {cartItems.length > 1 ? 'articles' : 'article'}
+            <ShoppingCart className="h-3 w-3 mr-1" /> 
+            {itemCount} {itemCount > 1 ? 'articles' : 'article'}
           </Badge>
         </div>
         
