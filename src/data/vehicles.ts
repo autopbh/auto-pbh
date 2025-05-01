@@ -497,4 +497,27 @@ export const vehicles: Vehicle[] = [
     technicalInspection: {
       lastDate: "2023-10-15",
       validUntil: "2025-10-15",
-      status: "
+      status: "passed"
+    },
+    price: 9500,
+    condition: "excellent",
+    availability: "in-stock",
+    currentLocation: "Porto, Portugal",
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/57eedb50-2cf0-40d6-9ae9-31f53898f096.png",
+      "/lovable-uploads/67afa19e-1fd5-42b0-94e4-c303c5a7fe37.png",
+      "/lovable-uploads/692174ba-1167-49fd-a8a4-66529a582684.png",
+      "/lovable-uploads/aa6ec589-8178-4c2d-a0d6-ea0802434da3.png",
+      "/lovable-uploads/e707e626-4ffe-4096-a49f-4cefadb3fb9f.png",
+      "/lovable-uploads/c8984467-f4c0-4cfd-80b5-cb271fc84a86.png",
+      "/lovable-uploads/81e0ecf9-e8a1-4559-83f8-84d3db07db19.png",
+      "/lovable-uploads/329f2951-91b4-4544-8d5f-47f1fa390f47.png",
+      "/lovable-uploads/bd0e3385-e569-4b6d-8d8b-593a4e0add78.png",
+      "/lovable-uploads/1f7ac2c1-6d00-40e6-9b30-3ef2d8c2dc36.png"
+    ],
+    thumbnail: "/lovable-uploads/57eedb50-2cf0-40d6-9ae9-31f53898f096.png",
+    description: "Ce Volkswagen T-Cross Highline 1.4TSI de 2021 avec 25.000 km est en excellent état. Équipé d'un moteur 1.4 Turbo de 150cv, boîte automatique à 6 vitesses, système audio Beats avec subwoofer, toit ouvrant panoramique électrique et nombreux équipements de confort et technologie.",
+    options: ["Pack Highline", "Toit Panoramique", "Système Audio Beats"]
+  }
+];
