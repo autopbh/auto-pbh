@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { User, Search, ShoppingCart, Home, Car, HelpCircle, Phone, Info, LogIn } from "lucide-react";
+import { User, Search, ShoppingCart, Home, Car, HelpCircle, Phone, Info, LogIn, BookmarkCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";

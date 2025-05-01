@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -36,7 +35,7 @@ import { UserProfile } from "@/types/auth";
 import { supabase } from "@/integrations/supabase/client";
 import { 
   User, 
-  BookmarkHeart, 
+  BookmarkCheck, 
   ClipboardList, 
   Settings,
   LogOut,
@@ -226,7 +225,7 @@ const Account = () => {
                 <span>Profil</span>
               </TabsTrigger>
               <TabsTrigger value="favorites" className="flex items-center gap-2">
-                <BookmarkHeart className="w-4 h-4" />
+                <BookmarkCheck className="w-4 h-4" />
                 <span>Favoris</span>
               </TabsTrigger>
               <TabsTrigger value="orders" className="flex items-center gap-2">
@@ -372,7 +371,7 @@ const Account = () => {
                 <CardContent>
                   {favorites.length === 0 ? (
                     <div className="text-center py-8">
-                      <BookmarkHeart className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
+                      <BookmarkCheck className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
                       <p className="text-muted-foreground">Vous n'avez pas encore de véhicules favoris.</p>
                       <p className="text-sm text-muted-foreground mt-2">
                         Parcourez notre catalogue et ajoutez des véhicules à vos favoris.
