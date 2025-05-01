@@ -13,12 +13,9 @@ interface VehicleCardProps {
 const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const { toast } = useToast();
   const { t } = useLanguage();
-  
-  // Utiliser l'image principale (thumbnail) si disponible, sinon la première image de la galerie
-  // Si aucune image n'est disponible, utiliser une image par défaut
-  const imageUrl = vehicle.thumbnail || 
-    (vehicle.images && vehicle.images.length > 0 ? vehicle.images[0] : 
-    "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop");
+  const imageUrl = vehicle.images && vehicle.images.length > 0 
+    ? vehicle.images[0] 
+    : "https://images.unsplash.com/photo-1583267746897-2cf4865e0729?q=80&w=2670&auto=format&fit=crop";
 
   const addToCart = () => {
     // Get current cart items from localStorage
@@ -47,6 +44,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     // Trigger a storage event for other tabs
     window.dispatchEvent(new Event("storage"));
     
+    // Correction ici : utiliser la syntaxe correcte pour les variables dans les traductions
     toast({
       title: t("shop.vehicleAdded"),
       description: t("shop.vehicleAddedDesc").replace("{vehicle}", `${vehicle.brand} ${vehicle.model}`),

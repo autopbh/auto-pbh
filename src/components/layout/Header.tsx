@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, ShoppingCart, User, Menu, LogIn } from "lucide-react";
+import { Search, ShoppingCart, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -9,14 +9,12 @@ import LanguageSelector from "@/components/common/LanguageSelector";
 import CartDropdown from "@/components/shop/CartDropdown";
 import MobileMenu from "@/components/layout/MobileMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const { t } = useLanguage();
-  const { user } = useAuth();
 
   // Change header style on scroll
   useEffect(() => {
@@ -125,29 +123,16 @@ const Header = () => {
             {cartOpen && <CartDropdown />}
           </div>
           
-          {user ? (
-            <Link to="/account">
-              <Button
-                variant="secondary"
-                size="icon"
-                className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
-                aria-label={t("nav.account")}
-              >
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
-          ) : (
-            <Link to="/auth">
-              <Button
-                variant="secondary"
-                size="icon"
-                className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
-                aria-label={t("nav.login")}
-              >
-                <LogIn className="h-5 w-5" />
-              </Button>
-            </Link>
-          )}
+          <Link to="/account">
+            <Button
+              variant="secondary"
+              size="icon"
+              className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
+              aria-label={t("nav.account")}
+            >
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
           
           {/* Mobile Menu */}
           <Sheet>

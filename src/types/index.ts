@@ -1,3 +1,5 @@
+
+
 export interface Vehicle {
   id: string;
   brand: string;
@@ -102,18 +104,3 @@ export interface LanguageOption {
   flag: string;
 }
 
-export interface TranslationsType {
-  [key: string]: {
-    [key: string]: string;
-  };
-}
-
-export interface TranslationDictionary {
-  [key: string]: string | TranslationDictionary;
-}
-
-export interface TranslationConfig {
-  fallbackLanguage: Language;
-  detectMissingKeys: boolean;
-  logMissingKeys: boolean;
-}
