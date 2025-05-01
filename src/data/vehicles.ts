@@ -1,3 +1,4 @@
+
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -433,7 +434,7 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "Immédiatement",
     images: [
-      "/lovable-uploads/3a7ebab3-eab6-4ddf-81b4-6b37e7b58f10.png", // Image principale
+      "/lovable-uploads/3a7ebab3-eab6-4ddf-81b4-6b37e7b58f10.png",
       "/lovable-uploads/4023b451-5238-4cf9-a480-21f448e8eef9.png",
       "/lovable-uploads/b174983c-af46-4123-ab17-b3fad20dc128.png",
       "/lovable-uploads/a7e88551-9d02-4e1a-9728-5fa90851551c.png",
@@ -498,4 +499,17 @@ export const vehicles: Vehicle[] = [
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
-    estimated
+    estimatedDelivery: "Immédiatement",
+    images: [
+      "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
+      "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
+      "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      "/lovable-uploads/6f26994d-a59f-41da-be90-c2104cad1ccd.png",
+      "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png",
+      "/lovable-uploads/844223f6-9e5e-430e-8c29-dcd896ecbd91.png"
+    ],
+    thumbnail: "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
+    description: "Ce Toyota Land Cruiser Prado 3.0 D-4D de 2020 avec 45.000 km est un SUV robuste et luxueux. Équipé d'un moteur diesel 3.0 de 177cv, transmission 4x4 permanente, 7 places, toit panoramique et nombreux équipements de confort et technologie.",
+    options: ["Pack Premium", "Système Multi-Terrain", "7 places"]
+  }
+];
