@@ -380,7 +380,7 @@ export const translations: TranslationsType = {
     "search.title": "Pesquisa",
     "search.advanced": "Pesquisa Avançada",
     "search.description": "Use o nosso motor de busca inteligente para encontrar o veículo que corresponde perfeitamente aos seus critérios na nossa seleção exclusiva.",
-    "search.placeholder": 'Digite "Mercedes Classe S 2023" ou explore seus critérios...',
+    "search.placeholder": 'Digite "Mercedes S-Class 2023" ou explore seus critérios...',
     "search.button": "Pesquisar",
     "search.byBrand": "Pesquisa por Marca",
     "search.models": "modelos",
@@ -567,4 +567,6 @@ export const translations: TranslationsType = {
     "nav.faq": "Unterstützung",
     "nav.search": "Suche",
     "nav.cart": "Warenkorb",
-    "nav.account
+    "nav.account": "Konto",
+  },
+};
