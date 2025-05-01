@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -51,7 +50,12 @@ const Search = () => {
 
     const normalizedQuery = query.trim().toLowerCase();
     
+    // Affichons les termes de recherche dans la console pour debug
+    console.log('Recherche pour:', normalizedQuery);
+    console.log('Véhicules disponibles:', vehicles.map(v => v.brand));
+    
     const filteredVehicles = vehicles.filter(vehicle => {
+      // Convertir tout en minuscules pour une comparaison insensible à la casse
       const brandMatch = vehicle.brand.toLowerCase().includes(normalizedQuery);
       const modelMatch = vehicle.model.toLowerCase().includes(normalizedQuery);
       const yearMatch = vehicle.year.toString().includes(normalizedQuery);
@@ -63,12 +67,19 @@ const Search = () => {
         option.toLowerCase().includes(normalizedQuery)
       );
       
+      // Debug log pour comprendre les correspondances
+      if (brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch) {
+        console.log('Match trouvé pour', vehicle.brand, vehicle.model);
+      }
+      
       return brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch;
     });
     
+    console.log('Résultats de recherche:', filteredVehicles.length, 'véhicules trouvés');
+    console.log('Véhicules trouvés:', filteredVehicles.map(v => `${v.brand} ${v.model}`));
+    
     setSearchResults(filteredVehicles);
     setHasSearched(true);
-    console.log('Search results:', filteredVehicles.length, 'vehicles found');
   };
 
   const handleCommandSelect = (value: string) => {
@@ -82,7 +93,8 @@ const Search = () => {
       "Mercedes", 
       "Audi", 
       "BMW", 
-      "Porsche", 
+      "Porsche",
+      "Jaguar", // Ajout explicite de Jaguar dans les suggestions
       "Toit panoramique",
       "SUV",
       "2023",
