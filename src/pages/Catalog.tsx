@@ -5,7 +5,6 @@ import { Search, Filter, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { vehicles } from "@/data/vehicles";
-import VehicleCard from "@/components/shop/VehicleCard";
 
 const Catalog = () => {
   const { toast } = useToast();
@@ -96,8 +95,30 @@ const Catalog = () => {
 
         {/* Grille de véhicules */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {vehicles.map((vehicle) => (
-            <VehicleCard key={vehicle.id} vehicle={vehicle} />
+          {displayVehicles.map((vehicle) => (
+            <div key={vehicle.id} className="bg-white dark:bg-autop-gray rounded-lg shadow-md overflow-hidden">
+              <div className="h-48 overflow-hidden">
+                <img 
+                  src={vehicle.image} 
+                  alt={vehicle.name} 
+                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">{vehicle.name}</h3>
+                <p className="text-muted-foreground mb-2">{vehicle.year} · Premium</p>
+                <p className="text-2xl font-bold text-autop-red mb-4">€{vehicle.price.toLocaleString()}</p>
+                <div className="flex justify-between">
+                  <Button asChild variant="outline">
+                    <a href={`/vehicle/${vehicle.id}`}>{t("catalog.viewDetails")}</a>
+                  </Button>
+                  <Button onClick={() => addToCart(vehicle)}>
+                    <Plus className="mr-2 h-4 w-4" />
+                    {t("shop.addToCart")}
+                  </Button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
