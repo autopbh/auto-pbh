@@ -121,8 +121,8 @@ export const vehicles: Vehicle[] = [
     engineCapacity: 5.0,
     power: 405,
     transmission: "automatic",
-    exteriorColor: "Blue Lightning",
-    interiorColor: "Cuir Noir",
+    exteriorColor: "Rouge",
+    interiorColor: "Cuir Noir/Marron",
     features: [
       "Moteur 5.0 Coyote V8 avec 405cv",
       "Boîte Automatique 10 Vitesses",
@@ -171,11 +171,19 @@ export const vehicles: Vehicle[] = [
     currentLocation: "Porto, Portugal",
     estimatedDelivery: "Immédiatement",
     images: [
-      "/lovable-uploads/bb8c411a-fcc6-478f-ad1d-165259777b4b.png",
-      "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
-      "/lovable-uploads/9bd15bc2-bfb1-4c1e-9109-36905330b679.png"
+      "/lovable-uploads/09592579-7f58-4e8f-b2b1-4706c983d9a7.png",
+      "/lovable-uploads/7ea375ba-c092-4d7a-af5a-ab9cee87b5eb.png",
+      "/lovable-uploads/e05bc6fd-0f7c-4103-833d-3c85357ba858.png",
+      "/lovable-uploads/6c90c56e-664a-473c-a0d7-0f0ddfb87883.png",
+      "/lovable-uploads/7c4341b4-1d5d-4a44-8938-5ee69605750a.png",
+      "/lovable-uploads/d21c5d00-c9c4-4f45-b733-70ca4ed56bc3.png",
+      "/lovable-uploads/2e69373e-b48e-4bda-8ae8-1f100e832eae.png",
+      "/lovable-uploads/0c709a1b-f3a2-4ade-8eaa-0f0c039fc13f.png",
+      "/lovable-uploads/0a19a405-ac32-49c4-bfae-e05c5f081fdd.png",
+      "/lovable-uploads/07cc7e11-90d9-490c-9ee5-e832b9ea9410.png",
+      "/lovable-uploads/72a9f046-d8c7-4b30-b755-06da54504899.png"
     ],
-    thumbnail: "/lovable-uploads/bb8c411a-fcc6-478f-ad1d-165259777b4b.png",
+    thumbnail: "/lovable-uploads/09592579-7f58-4e8f-b2b1-4706c983d9a7.png",
     description: "Ford F-150 Lariat 5.0 V8 2023 avec seulement 300 km. IPVA 2024 payé, facturé par Autop en mai 2024. Équipé d'un puissant moteur V8 Coyote de 405 cv, d'une boîte automatique 10 vitesses, traction intégrale 4x4 sélectionnable et de nombreux équipements de confort et technologie comme le système audio Bang&Olufsen, le toit panoramique et la caméra 360°.",
     options: ["Pack Lariat", "Pack Technologie", "Pack Confort"]
   },
