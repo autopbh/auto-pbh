@@ -1,23 +1,28 @@
 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const CartDropdown = () => {
-  // Mock cart items for the demo
-  const cartItems = [
-    {
-      id: "v1",
-      name: "Mercedes-Benz S-Class",
-      price: 68900,
-      image: "/images/mercedes-s-class-thumb.jpg"
-    },
-    {
-      id: "v3",
-      name: "Audi A8 L",
-      price: 79900,
-      image: "/images/audi-a8-thumb.jpg"
-    }
-  ];
+  const [cartItems, setCartItems] = useState([]);
+  
+  useEffect(() => {
+    const loadCart = () => {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    };
+    
+    loadCart();
+    
+    // Set up event listener for storage changes (for multi-tab support)
+    window.addEventListener("storage", loadCart);
+    
+    return () => {
+      window.removeEventListener("storage", loadCart);
+    };
+  }, []);
   
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 

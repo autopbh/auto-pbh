@@ -10,29 +10,31 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 
 const Cart = () => {
-  // Scroll to top on page load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Mock cart items for the demo (same as in CartDropdown)
-  const [cartItems, setCartItems] = useState([
-    {
-      id: "v1",
-      name: "Mercedes-Benz S-Class",
-      price: 68900,
-      image: "/images/mercedes-s-class-thumb.jpg"
-    },
-    {
-      id: "v3",
-      name: "Audi A8 L",
-      price: 79900,
-      image: "/images/audi-a8-thumb.jpg"
-    }
-  ]);
-
+  // Initialize cart state
+  const [cartItems, setCartItems] = useState([]);
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const { toast } = useToast();
+
+  // Load cart from localStorage on component mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    
+    const loadCart = () => {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    };
+    
+    loadCart();
+    
+    // Set up event listener for storage changes (for multi-tab support)
+    window.addEventListener("storage", loadCart);
+    
+    return () => {
+      window.removeEventListener("storage", loadCart);
+    };
+  }, []);
 
   // Calculer le total
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
@@ -58,8 +60,11 @@ const Cart = () => {
     setPaymentSubmitted(true);
   };
 
-  const handleRemoveItem = (id: string) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+  const handleRemoveItem = (id) => {
+    const updatedCart = cartItems.filter(item => item.id !== id);
+    setCartItems(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
     toast({
       title: "Article retiré",
       description: "L'article a été retiré de votre panier.",

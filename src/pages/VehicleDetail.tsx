@@ -1,8 +1,9 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import { 
   Car, 
   Calendar, 
@@ -11,15 +12,58 @@ import {
   Shield, 
   Wrench,
   Phone,
-  ArrowLeft
+  ArrowLeft,
+  ShoppingCart
 } from "lucide-react";
+
+// Mock vehicle data for the demo
+const mockVehicle = {
+  id: "v2",
+  name: "BMW Série 5 2023",
+  price: 49990,
+  image: "/images/bmw-5-series-thumb.jpg",
+  brand: "BMW",
+  model: "Série 5",
+  year: 2023,
+  mileage: 25000,
+  fuelType: "Diesel",
+  power: 300
+};
 
 const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const { toast } = useToast();
+  const [vehicle, setVehicle] = useState(mockVehicle);
   
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // In a real app, you would fetch the vehicle data using the ID
+    // For now, we'll use mock data
+  }, [id]);
+
+  const addToCart = () => {
+    // Get current cart items from localStorage
+    const currentCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    
+    // Check if vehicle is already in cart
+    if (currentCart.some(item => item.id === vehicle.id)) {
+      toast({
+        title: "Véhicule déjà dans le panier",
+        description: "Ce véhicule est déjà dans votre panier.",
+      });
+      return;
+    }
+    
+    // Add vehicle to cart
+    const updatedCart = [...currentCart, vehicle];
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    
+    toast({
+      title: "Véhicule ajouté",
+      description: `${vehicle.name} a été ajouté à votre panier.`,
+    });
+  };
 
   return (
     <Layout>
@@ -31,13 +75,13 @@ const VehicleDetail = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">BMW Série 5 2023</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{vehicle.name}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
-              <span>25 000 km</span>
+              <span>{vehicle.mileage.toLocaleString()} km</span>
               <span>•</span>
-              <span>Diesel</span>
+              <span>{vehicle.fuelType}</span>
               <span>•</span>
-              <span>300 CH</span>
+              <span>{vehicle.power} CH</span>
             </div>
 
             <div className="prose prose-lg max-w-none space-y-6">
@@ -46,19 +90,19 @@ const VehicleDetail = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex items-center gap-3">
                     <Calendar className="h-5 w-5 text-autop-red" />
-                    <span>Année : 2023</span>
+                    <span>Année : {vehicle.year}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Gauge className="h-5 w-5 text-autop-red" />
-                    <span>25 000 km</span>
+                    <span>{vehicle.mileage.toLocaleString()} km</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Power className="h-5 w-5 text-autop-red" />
-                    <span>300 CH</span>
+                    <span>{vehicle.power} CH</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Car className="h-5 w-5 text-autop-red" />
-                    <span>Diesel</span>
+                    <span>{vehicle.fuelType}</span>
                   </div>
                 </div>
               </section>
@@ -98,12 +142,13 @@ const VehicleDetail = () => {
           <div className="space-y-6">
             <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
               <div className="mb-4">
-                <span className="text-3xl font-bold text-autop-red">49 990 €</span>
+                <span className="text-3xl font-bold text-autop-red">€{vehicle.price.toLocaleString()}</span>
               </div>
               <div className="space-y-4">
-                <Link to="/contact">
-                  <Button className="w-full btn-primary">Réserver ce véhicule</Button>
-                </Link>
+                <Button onClick={addToCart} className="w-full btn-primary">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Ajouter au panier
+                </Button>
                 <Link to="/contact">
                   <Button variant="outline" className="w-full">Demander plus d'informations</Button>
                 </Link>
