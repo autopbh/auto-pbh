@@ -1,3 +1,4 @@
+
 import { Vehicle } from "../types";
 
 export const vehicles: Vehicle[] = [
@@ -498,4 +499,19 @@ export const vehicles: Vehicle[] = [
     condition: "excellent",
     availability: "in-stock",
     currentLocation: "Porto, Portugal",
-    estimated
+    estimatedDelivery: "3-4 semaines",
+    images: [
+      "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+      "/lovable-uploads/8e8098a6-34a4-4f27-ad19-b367b166c836.png",
+      "/lovable-uploads/ad93af63-a6e2-4a5e-97a9-05ffbcbbda31.png",
+      "/lovable-uploads/bbd5ba0b-6732-48ed-8e5f-36b5a57b3f59.png",
+      "/lovable-uploads/c846b54a-7bd2-49c0-b0cd-f6544a88bd6f.png",
+      "/lovable-uploads/e65f475b-cd7a-4f0d-92e2-a91a88ba0866.png",
+      "/lovable-uploads/659428ab-10b9-406c-a076-b0a12f500702.png",
+      "/lovable-uploads/7ec2f080-9b4d-457c-a48f-e7534f6cd457.png"
+    ],
+    thumbnail: "/lovable-uploads/563a475b-11eb-4bd0-b822-84c94f8545b4.png",
+    description: "Ce Toyota Land Cruiser Prado 3.0 D-4D de 2020 avec 45.000 km est en excellent état. Équipé d'un moteur diesel 3.0 D-4D de 177cv, transmission 4x4 permanente, 7 places et de nombreux équipements de confort et technologie.",
+    options: ["Pack Premium", "Toit Panoramique", "Système audio JBL Premium"]
+  }
+];
