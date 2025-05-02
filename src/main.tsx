@@ -25,6 +25,12 @@ function renderApp() {
       errorContainer.style.display = "none";
     }
     
+    // Hide loading indicator when app loads successfully
+    const loadingIndicator = document.getElementById("loading-indicator");
+    if (loadingIndicator) {
+      loadingIndicator.style.display = "none";
+    }
+    
     console.log("Application rendered successfully");
   } catch (error) {
     console.error("Error rendering the application:", error);
@@ -74,6 +80,7 @@ function showErrorMessage(error: unknown) {
   errorContainer.innerHTML = `
     <h2 style="color: #e63946; margin-bottom: 20px;">Erreur de chargement</h2>
     <p>Nous rencontrons un problème pour charger l'application.</p>
+    <p style="margin-bottom: 10px;">Le problème peut être lié au chargement des dépendances.</p>
     <p style="margin-bottom: 30px; font-family: monospace; background: #f8f8f8; padding: 10px; border-radius: 4px; max-width: 80%; overflow-wrap: break-word;">
       ${error instanceof Error ? error.message : 'Erreur inconnue'}
     </p>
