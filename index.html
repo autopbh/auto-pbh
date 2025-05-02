@@ -68,6 +68,13 @@
     
     <!-- Script tags - order is important -->
     <script>
+      // Preload important dependencies
+      const preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'script';
+      preloadLink.href = 'https://cdn.gpteng.co/gptengineer.js';
+      document.head.appendChild(preloadLink);
+
       // Track script loading
       window.scriptsLoaded = {
         gptengineer: false,
@@ -116,7 +123,7 @@
       }
     </script>
     
-    <!-- Load GPT Engineer script first -->
+    <!-- Load GPT Engineer script first (required for "Select" feature) -->
     <script 
       src="https://cdn.gpteng.co/gptengineer.js" 
       type="module" 
