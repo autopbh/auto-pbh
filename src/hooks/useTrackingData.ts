@@ -62,13 +62,30 @@ export function useTrackingData() {
     console.log("Recherche de commande avec le numéro:", orderNumber.trim());
     
     try {
-      // Amélioration: utiliser ilike pour une recherche insensible à la casse
-      const { data, error } = await supabase
+      // Première recherche: rechercher exactement le numéro de commande saisi
+      let { data, error } = await supabase
         .from('orders')
         .select('*')
         .ilike('order_number', orderNumber.trim())
         .maybeSingle();
         
+      // Si pas trouvé et que c'est un numéro ACOMPTE-, rechercher dans le champ référence
+      if (!data && orderNumber.trim().startsWith('ACOMPTE-')) {
+        const { data: dataByReference, error: errorByReference } = await supabase
+          .from('orders')
+          .select('*')
+          .eq('order_number', orderNumber.trim())
+          .maybeSingle();
+        
+        if (errorByReference) {
+          console.error("Error fetching order by reference:", errorByReference);
+        } else if (dataByReference) {
+          data = dataByReference;
+          error = null;
+        }
+      }
+      
+      // Si nous avons toujours une erreur
       if (error) {
         console.error("Error fetching order:", error);
         setShowNotFoundDialog(true);
@@ -137,6 +154,15 @@ export function useTrackingData() {
         
         setOrder(trackingOrder);
         setIsTracking(true);
+        
+        // Notification pour indiquer à l'utilisateur le numéro de commande utilisé
+        if (orderNumber.trim().startsWith('ACOMPTE-')) {
+          toast({
+            title: "Commande trouvée",
+            description: `Votre commande avec référence ${orderNumber.trim()} a été trouvée.`,
+            variant: "default"
+          });
+        }
       } else {
         console.log("Commande non trouvée:", orderNumber);
         setShowNotFoundDialog(true);
