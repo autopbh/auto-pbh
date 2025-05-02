@@ -1,15 +1,56 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PhoneCall, Mail, MapPin, Clock, Calendar, MessageSquare } from "lucide-react";
+import { PhoneCall, Mail, MapPin, Clock, Calendar, MessageSquare, Send, Check } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/components/ui/sonner";
 
 const Contact = () => {
-  // Scroll to top on page load
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formspreeId, setFormspreeId] = useState(""); // Placeholder for Formspree ID
+  
   useEffect(() => {
+    // Scroll to top on page load
     window.scrollTo(0, 0);
+    
+    // Replace with your Formspree form ID
+    // Example: setFormspreeId("xyyzbba");
+    setFormspreeId("xrgwkpql");
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const form = e.currentTarget;
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        form.reset();
+        toast.success("Message envoyé avec succès!");
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        throw new Error("Problème lors de l'envoi du formulaire");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Layout>
@@ -96,54 +137,100 @@ const Contact = () => {
               <Card className="h-full bg-white/70">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-semibold mb-6 text-autop-red border-b border-autop-red/20 pb-2">
-                    Service Premium
+                    Formulaire de Contact
                   </h2>
                   
-                  <div className="space-y-6">
-                    <div className="bg-gradient-to-r from-autop-red/10 to-transparent p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-2 flex items-center">
-                        <Calendar className="h-5 w-5 text-autop-red mr-2" />
-                        Rendez-vous Personnalisé
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        Nos experts vous accueillent dans notre showroom sur rendez-vous, à l'heure qui vous convient, 
-                        même en dehors des horaires d'ouverture standards.
-                      </p>
-                      <Button className="w-full bg-autop-red hover:bg-autop-red/90 text-white">
-                        Prendre Rendez-vous
-                      </Button>
-                    </div>
-                    
-                    <div className="bg-gradient-to-r from-autop-red/10 to-transparent p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-2 flex items-center">
-                        <MessageSquare className="h-5 w-5 text-autop-red mr-2" />
-                        Consultation Vidéo
-                      </h3>
-                      <p className="text-muted-foreground mb-4">
-                        Ne pouvez-vous pas vous déplacer ? Optez pour une consultation vidéo avec présentation 
-                        détaillée du véhicule qui vous intéresse par l'un de nos spécialistes.
-                      </p>
-                      <Button className="w-full bg-autop-red hover:bg-autop-red/90 text-white">
-                        Demander une Consultation
-                      </Button>
-                    </div>
-                    
-                    <div>
-                      <h3 className="font-semibold text-lg mb-3">Nos Conseillers Experts</h3>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <div className="bg-white p-4 rounded-lg border border-autop-red/10">
-                          <p className="font-medium">Paulo Henriques</p>
-                          <p className="text-sm text-muted-foreground">Directeur & Expert Véhicules de Collection</p>
-                          <p className="text-sm text-autop-red mt-2">Langues: FR, PT, EN, ES</p>
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border border-autop-red/10">
-                          <p className="font-medium">Marie Dubois</p>
-                          <p className="text-sm text-muted-foreground">Responsable Service Client Premium</p>
-                          <p className="text-sm text-autop-red mt-2">Langues: FR, EN, DE</p>
-                        </div>
+                  {!isSubmitted ? (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium mb-1">Nom</label>
+                        <Input 
+                          id="name" 
+                          name="name" 
+                          placeholder="Votre nom" 
+                          required 
+                          disabled={isSubmitting}
+                        />
                       </div>
+                      
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                        <Input 
+                          id="email" 
+                          name="email" 
+                          type="email" 
+                          placeholder="votre@email.com" 
+                          required 
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium mb-1">Téléphone</label>
+                        <Input 
+                          id="phone" 
+                          name="phone" 
+                          placeholder="+33 6 12 34 56 78" 
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="subject" className="block text-sm font-medium mb-1">Sujet</label>
+                        <Input 
+                          id="subject" 
+                          name="subject" 
+                          placeholder="Sujet de votre message" 
+                          required 
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+                        <Textarea 
+                          id="message" 
+                          name="message" 
+                          placeholder="Votre message..." 
+                          className="min-h-[120px]" 
+                          required 
+                          disabled={isSubmitting}
+                        />
+                      </div>
+                      
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-autop-red hover:bg-autop-red/90 text-white"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center">
+                            <span className="animate-spin mr-2 h-4 w-4 border-t-2 border-b-2 border-white rounded-full"></span>
+                            Envoi en cours...
+                          </span>
+                        ) : (
+                          <span className="flex items-center">
+                            <Send className="h-4 w-4 mr-2" />
+                            Envoyer le message
+                          </span>
+                        )}
+                      </Button>
+                      
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Vos données personnelles sont protégées conformément à notre politique de confidentialité.
+                      </p>
+                    </form>
+                  ) : (
+                    <div className="text-center py-10">
+                      <div className="bg-green-100 p-4 rounded-full inline-flex items-center justify-center mb-4">
+                        <Check className="h-8 w-8 text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">Merci pour votre message!</h3>
+                      <p className="text-muted-foreground">
+                        Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+                      </p>
                     </div>
-                  </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
