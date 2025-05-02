@@ -10,13 +10,16 @@ import FilterTags from "@/components/search/FilterTags";
 import SearchResults from "@/components/search/SearchResults";
 import SearchCommandDialog from "@/components/search/SearchCommandDialog";
 import SearchAssistance from "@/components/search/SearchAssistance";
+import { useToast } from "@/hooks/use-toast";
 
 const Search = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Vehicle[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
   // Scroll to top on page load
   useEffect(() => {
@@ -36,51 +39,147 @@ const Search = () => {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  const normalizeText = (text: string | number): string => {
+    return String(text).toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
+
   const handleSearch = (searchQuery: string = query) => {
-    if (!searchQuery.trim()) {
+    const normalizedQuery = normalizeText(searchQuery);
+    
+    if (!normalizedQuery) {
       setSearchResults([]);
       setHasSearched(false);
+      setActiveFilters([]);
       return;
     }
 
-    const normalizedQuery = searchQuery.trim().toLowerCase();
-    
-    // Debug logs
-    console.log('Recherche pour:', normalizedQuery);
-    console.log('Véhicules disponibles:', vehicles.map(v => v.brand));
-    
-    const filteredVehicles = vehicles.filter(vehicle => {
-      // Case-insensitive comparison
-      const brandMatch = vehicle.brand.toLowerCase().includes(normalizedQuery);
-      const modelMatch = vehicle.model.toLowerCase().includes(normalizedQuery);
-      const yearMatch = vehicle.year.toString().includes(normalizedQuery);
-      const colorMatch = vehicle.exteriorColor.toLowerCase().includes(normalizedQuery);
+    let filteredVehicles = vehicles.filter(vehicle => {
+      // Case-insensitive and accent-insensitive comparison
+      const brandMatch = normalizeText(vehicle.brand).includes(normalizedQuery);
+      const modelMatch = normalizeText(vehicle.model).includes(normalizedQuery);
+      const yearMatch = normalizeText(vehicle.year).includes(normalizedQuery);
+      const colorMatch = normalizeText(vehicle.exteriorColor).includes(normalizedQuery);
+      
+      // Search in features and options
       const featureMatch = vehicle.features.some(feature => 
-        feature.toLowerCase().includes(normalizedQuery)
+        normalizeText(feature).includes(normalizedQuery)
       );
       const optionMatch = vehicle.options.some(option => 
-        option.toLowerCase().includes(normalizedQuery)
+        normalizeText(option).includes(normalizedQuery)
       );
-      
-      // Debug log for matches
-      if (brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch) {
-        console.log('Match trouvé pour', vehicle.brand, vehicle.model);
-      }
       
       return brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch;
     });
     
-    console.log('Résultats de recherche:', filteredVehicles.length, 'véhicules trouvés');
-    console.log('Véhicules trouvés:', filteredVehicles.map(v => `${v.brand} ${v.model}`));
+    // Apply active filters if any
+    if (activeFilters.length > 0) {
+      filteredVehicles = filteredVehicles.filter(vehicle => {
+        return activeFilters.some(filter => {
+          const normalizedFilter = normalizeText(filter);
+          
+          // Match filter against various vehicle properties
+          return normalizeText(vehicle.brand).includes(normalizedFilter) ||
+            normalizeText(vehicle.model).includes(normalizedFilter) ||
+            normalizeText(vehicle.year).includes(normalizedFilter) ||
+            vehicle.features.some(f => normalizeText(f).includes(normalizedFilter)) ||
+            vehicle.options.some(o => normalizeText(o).includes(normalizedFilter));
+        });
+      });
+    }
     
     setSearchResults(filteredVehicles);
     setHasSearched(true);
+    
+    if (filteredVehicles.length === 0) {
+      toast({
+        title: t("search.noResults"),
+        description: t("search.tryOther"),
+      });
+    } else {
+      toast({
+        title: `${filteredVehicles.length} ${filteredVehicles.length > 1 
+          ? t("search.results_plural") 
+          : t("search.results")}`,
+        description: t("search.resultsFound"),
+      });
+    }
   };
 
   const handleCommandSelect = (value: string) => {
     setQuery(value);
     setOpen(false);
     handleSearch(value);
+  };
+
+  const handleFilterSelect = (filter: string) => {
+    // Toggle the filter
+    const newFilters = activeFilters.includes(filter)
+      ? activeFilters.filter(f => f !== filter)
+      : [...activeFilters, filter];
+      
+    setActiveFilters(newFilters);
+    
+    // If we have a query, re-run the search with new filters
+    if (query) {
+      const normalizedQuery = normalizeText(query);
+      
+      let filteredVehicles = vehicles.filter(vehicle => {
+        const brandMatch = normalizeText(vehicle.brand).includes(normalizedQuery);
+        const modelMatch = normalizeText(vehicle.model).includes(normalizedQuery);
+        const yearMatch = normalizeText(vehicle.year).includes(normalizedQuery);
+        const colorMatch = normalizeText(vehicle.exteriorColor).includes(normalizedQuery);
+        const featureMatch = vehicle.features.some(feature => 
+          normalizeText(feature).includes(normalizedQuery)
+        );
+        const optionMatch = vehicle.options.some(option => 
+          normalizeText(option).includes(normalizedQuery)
+        );
+        
+        return brandMatch || modelMatch || yearMatch || colorMatch || featureMatch || optionMatch;
+      });
+      
+      // Apply new filters
+      if (newFilters.length > 0) {
+        filteredVehicles = filteredVehicles.filter(vehicle => {
+          return newFilters.some(filter => {
+            const normalizedFilter = normalizeText(filter);
+            
+            return normalizeText(vehicle.brand).includes(normalizedFilter) ||
+              normalizeText(vehicle.model).includes(normalizedFilter) ||
+              normalizeText(vehicle.year).includes(normalizedFilter) ||
+              vehicle.features.some(f => normalizeText(f).includes(normalizedFilter)) ||
+              vehicle.options.some(o => normalizeText(o).includes(normalizedFilter));
+          });
+        });
+      }
+      
+      setSearchResults(filteredVehicles);
+      setHasSearched(true);
+    } else if (newFilters.length > 0) {
+      // If no query but we have filters, just filter the vehicles
+      const filteredVehicles = vehicles.filter(vehicle => {
+        return newFilters.some(filter => {
+          const normalizedFilter = normalizeText(filter);
+          
+          return normalizeText(vehicle.brand).includes(normalizedFilter) ||
+            normalizeText(vehicle.model).includes(normalizedFilter) ||
+            normalizeText(vehicle.year).includes(normalizedFilter) ||
+            vehicle.features.some(f => normalizeText(f).includes(normalizedFilter)) ||
+            vehicle.options.some(o => normalizeText(o).includes(normalizedFilter));
+        });
+      });
+      
+      setSearchResults(filteredVehicles);
+      setHasSearched(true);
+    } else {
+      // No query and no filters, reset results
+      setSearchResults([]);
+      setHasSearched(false);
+    }
+  };
+
+  const handleBrandSelect = (brand: string) => {
+    handleFilterSelect(brand);
   };
 
   return (
@@ -103,20 +202,30 @@ const Search = () => {
               />
             </div>
             
+            {activeFilters.length > 0 && (
+              <div className="mb-4 flex flex-wrap gap-2">
+                <span className="font-medium text-muted-foreground">{t("search.activeFilters")}: </span>
+                {activeFilters.map(filter => (
+                  <span 
+                    key={filter}
+                    className="bg-autop-red/10 text-autop-red px-3 py-1 rounded-full text-sm cursor-pointer hover:bg-autop-red/20 transition-colors flex items-center"
+                    onClick={() => handleFilterSelect(filter)}
+                  >
+                    {filter}
+                    <button className="ml-2">×</button>
+                  </span>
+                ))}
+              </div>
+            )}
+            
             <div className="grid md:grid-cols-2 gap-6">
               <BrandFilter 
-                onBrandSelect={(brand) => {
-                  setQuery(brand);
-                  handleSearch(brand);
-                }}
+                onBrandSelect={handleBrandSelect}
                 vehicles={vehicles}
               />
               
               <FilterTags 
-                onFilterSelect={(filter) => {
-                  setQuery(filter);
-                  handleSearch(filter);
-                }}
+                onFilterSelect={handleFilterSelect}
               />
             </div>
           </section>

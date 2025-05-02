@@ -17,6 +17,11 @@ const SearchBar = ({ onSearch, initialQuery = "" }: SearchBarProps) => {
     onSearch(query);
   };
 
+  const clearSearch = () => {
+    setQuery("");
+    onSearch("");
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-4">
       <div className="flex-1 relative">
@@ -33,6 +38,14 @@ const SearchBar = ({ onSearch, initialQuery = "" }: SearchBarProps) => {
             }
           }}
         />
+        {query && (
+          <button 
+            className="absolute right-4 top-3 text-muted-foreground hover:text-foreground"
+            onClick={clearSearch}
+          >
+            ×
+          </button>
+        )}
       </div>
       <Button className="md:w-auto" onClick={handleSearch}>
         <SearchIcon className="mr-2 h-4 w-4" />
