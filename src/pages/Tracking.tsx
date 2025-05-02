@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -73,13 +72,15 @@ const Tracking = () => {
     if (!orderNumber.trim()) return;
     
     setIsLoading(true);
+    console.log("Recherche de commande avec le numéro:", orderNumber.trim());
     
     try {
+      // Amélioration: utiliser ilike pour une recherche insensible à la casse
       const { data, error } = await supabase
         .from('orders')
         .select('*')
-        .eq('order_number', orderNumber.trim())
-        .single();
+        .ilike('order_number', orderNumber.trim())
+        .maybeSingle();
         
       if (error) {
         console.error("Error fetching order:", error);
@@ -90,21 +91,24 @@ const Tracking = () => {
       }
       
       if (data) {
+        console.log("Commande trouvée:", data);
         // Transform the data into a TrackingOrder with tracking info
+        const additionalOptions = data.additional_options as Record<string, any> | null;
+        const trackingInfo = additionalOptions?.tracking || {};
+
         const trackingOrder: TrackingOrder = {
           ...data,
-          trackingStatus: 'transport', // Example status
-          trackingProgress: 65, // Example progress percentage
-          // Ajout des nouvelles informations
-          orderDate: new Date(data.created_at).toLocaleDateString('fr-FR'),
-          estimatedDeliveryDate: '29 avril 2025',
-          lastUpdateDate: new Date().toLocaleDateString('fr-FR'),
-          currentLocation: {
+          trackingStatus: trackingInfo.status || 'transport',
+          trackingProgress: trackingInfo.progress || 65,
+          currentLocation: trackingInfo.currentLocation || {
             lat: 48.8566,
             lng: 2.3522,
             address: 'Centre logistique de Paris, 75008 Paris'
           },
-          trackingEvents: [
+          estimatedDeliveryDate: trackingInfo.estimatedDeliveryDate || '29 avril 2025',
+          orderDate: new Date(data.created_at).toLocaleDateString('fr-FR'),
+          lastUpdateDate: new Date().toLocaleDateString('fr-FR'),
+          trackingEvents: trackingInfo.events || [
             {
               id: '1',
               date: '15 avril 2025',
@@ -146,6 +150,10 @@ const Tracking = () => {
         
         setOrder(trackingOrder);
         setIsTracking(true);
+      } else {
+        console.log("Commande non trouvée:", orderNumber);
+        setShowNotFoundDialog(true);
+        setIsTracking(false);
       }
     } catch (error) {
       console.error("Error in tracking:", error);
