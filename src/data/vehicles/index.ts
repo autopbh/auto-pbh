@@ -11,8 +11,10 @@ import { bmw320i } from "./bmw-320i";
 import { rangeRoverEvoque } from "./range-rover-evoque";
 import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
+import { renaultMegane } from "./renault-megane";
 
 export const vehicles: Vehicle[] = [
+  renaultMegane, // Ajout de la nouvelle Renault Megane en tête de liste
   miniCountryman,
   mercedesCla,
   audiQ3,
