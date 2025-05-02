@@ -14,6 +14,7 @@ const ProfileForm = ({ profile, onUpdate, loading, userEmail }: ProfileFormProps
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (profile) {
@@ -23,10 +24,18 @@ const ProfileForm = ({ profile, onUpdate, loading, userEmail }: ProfileFormProps
     }
   }, [profile]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onUpdate(firstName, lastName, phone);
+    setIsSubmitting(true);
+    
+    try {
+      await onUpdate(firstName, lastName, phone);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const isLoading = loading || isSubmitting;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,8 +93,8 @@ const ProfileForm = ({ profile, onUpdate, loading, userEmail }: ProfileFormProps
         />
       </div>
       
-      <Button type="submit" disabled={loading} className="mt-4">
-        {loading ? "Mise à jour..." : "Mettre à jour le profil"}
+      <Button type="submit" disabled={isLoading} className="mt-4">
+        {isLoading ? "Mise à jour..." : "Mettre à jour le profil"}
       </Button>
     </form>
   );

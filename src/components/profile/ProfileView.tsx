@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import ProfileForm from "./ProfileForm";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProfileViewProps {
   profile: any;
@@ -17,6 +18,13 @@ const ProfileView = ({
   onSignOut,
   onUpdateProfile
 }: ProfileViewProps) => {
+  const { toast } = useToast();
+
+  const handleUpdateProfile = async (firstName: string, lastName: string, phone: string) => {
+    await onUpdateProfile(firstName, lastName, phone);
+    // No need to do anything else as toast is now handled in the useAuth hook
+  };
+
   return (
     <div className="container mx-auto px-4 py-16 mt-20">
       <div className="max-w-3xl mx-auto">
@@ -37,7 +45,7 @@ const ProfileView = ({
           {session && (
             <ProfileForm 
               profile={profile} 
-              onUpdate={onUpdateProfile} 
+              onUpdate={handleUpdateProfile} 
               loading={loading} 
               userEmail={session.user.email} 
             />

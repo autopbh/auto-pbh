@@ -214,6 +214,7 @@ export const useAuth = () => {
         description: "Vos informations ont été mises à jour avec succès",
       });
       
+      // Refetch the profile to update the local state
       await fetchProfile(session.user.id);
     } catch (error: any) {
       console.error("Profile update error:", error.message);
