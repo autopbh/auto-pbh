@@ -3,71 +3,100 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-// Function to handle script loading errors
-const handleError = (error) => {
-  console.error("Error rendering the application:", error);
+// Configuration pour les tentatives de rendu en cas d'échec
+const maxRetries = 3;
+const retryDelay = 1000;
+let retryCount = 0;
+
+// Fonction principale de rendu de l'application
+const renderApp = () => {
+  const rootEl = document.getElementById('root');
   
-  // Try to display an error message in the DOM if possible
-  const rootElement = document.getElementById("root");
-  if (rootElement) {
-    const errorElement = document.createElement('div');
-    errorElement.style.padding = '20px';
-    errorElement.style.color = 'red';
-    errorElement.innerHTML = `<h2>Application Error</h2><p>${error instanceof Error ? error.message : 'Unknown error'}</p>`;
-    rootElement.innerHTML = '';
-    rootElement.appendChild(errorElement);
+  if (!rootEl) {
+    console.error("Élément racine introuvable");
+    return;
+  }
+  
+  try {
+    const root = createRoot(rootEl);
+    root.render(<App />);
+    console.log("Application rendue avec succès");
+  } catch (error) {
+    console.error("Erreur lors du rendu de l'application:", error);
+    
+    // Afficher un message d'erreur dans l'interface utilisateur
+    const errorMessage = document.createElement('div');
+    errorMessage.style.padding = '20px';
+    errorMessage.style.color = 'red';
+    errorMessage.style.textAlign = 'center';
+    errorMessage.innerHTML = `
+      <h2>Erreur de chargement</h2>
+      <p>Une erreur s'est produite lors du chargement de l'application.</p>
+      <button onclick="window.location.reload(true)" 
+              style="padding: 10px 20px; background: #333; color: white; border: none; cursor: pointer; margin-top: 10px; border-radius: 4px;">
+        Rafraîchir la page
+      </button>
+    `;
+    
+    // Si nous n'avons pas dépassé le nombre maximum de tentatives, réessayons
+    if (retryCount < maxRetries) {
+      retryCount++;
+      console.log(`Tentative de rendu ${retryCount} sur ${maxRetries}...`);
+      setTimeout(renderApp, retryDelay);
+    } else {
+      // Si nous avons atteint le maximum de tentatives, afficher l'erreur
+      rootEl.innerHTML = '';
+      rootEl.appendChild(errorMessage);
+    }
   }
 };
 
-// Create a retry mechanism for script loading issues
-let retryCount = 0;
-const maxRetries = 3;
-const retryDelay = 1500;
-
-function attemptRender() {
-  try {
-    const rootElement = document.getElementById("root");
-    if (!rootElement) throw new Error("Failed to find the root element");
-    createRoot(rootElement).render(<App />);
-    console.log("Application rendered successfully");
-  } catch (error) {
-    handleError(error);
-    
-    // Retry logic for recoverable errors
-    if (retryCount < maxRetries) {
-      console.log(`Retrying render attempt ${retryCount + 1} of ${maxRetries}...`);
-      retryCount++;
-      setTimeout(attemptRender, retryDelay);
-    } else {
-      console.error("Maximum retry attempts reached. Please refresh the page.");
-    }
+// Fonction pour vider le cache de manière forcée
+const clearCache = () => {
+  if ('caches' in window) {
+    caches.keys().then(names => {
+      names.forEach(name => {
+        caches.delete(name);
+      });
+    });
   }
-}
+};
 
-// Make sure script loading is complete before rendering
-if (document.readyState === "loading") {
-  document.addEventListener('DOMContentLoaded', attemptRender);
-} else {
-  // DOM already loaded, try rendering immediately
-  attemptRender();
-}
-
-// Add enhanced global error handler
+// Gestionnaire d'erreurs global pour détecter les problèmes de scripts
 window.addEventListener('error', (event) => {
-  // Check for script loading errors specifically
-  if (event.error && 
-     (event.error.message.includes('Unexpected end of script') || 
+  // Vérifier si l'erreur concerne un script Vite
+  if (event.filename && (
       event.filename.includes('.vite/deps/') || 
-      event.error.message.includes('Failed to fetch dynamically imported module'))) {
+      event.message === 'Unexpected end of script'
+    )) {
+    console.error('Erreur de chargement de script détectée:', event);
     
-    console.error('Script loading error detected:', event.error);
-    
-    // Force reload the page to attempt recovery with cache busting
-    if (!window.location.href.includes('cache_bust')) {
+    // Si c'est la première fois que l'erreur se produit, essayer de recharger la page
+    if (!sessionStorage.getItem('scriptErrorRetry')) {
+      sessionStorage.setItem('scriptErrorRetry', '1');
+      clearCache();
+      console.log('Tentative de récupération: rechargement de la page...');
+      window.location.reload(true);
+    } 
+    // Si l'erreur persiste après rechargement, essayer un dernier rechargement en ajoutant 
+    // un paramètre pour éviter le cache
+    else if (sessionStorage.getItem('scriptErrorRetry') === '1') {
+      sessionStorage.setItem('scriptErrorRetry', '2');
+      console.log('Tentative de récupération finale: rechargement avec contournement du cache...');
+      
       const cacheBuster = Date.now();
-      console.log(`Attempting recovery with cache busting: ${cacheBuster}`);
-      const separator = window.location.href.includes('?') ? '&' : '?';
-      window.location.href = `${window.location.href}${separator}cache_bust=${cacheBuster}`;
+      if (!window.location.search.includes('no_cache')) {
+        window.location.href = window.location.pathname + 
+          (window.location.search ? window.location.search + '&' : '?') + 
+          'no_cache=' + cacheBuster;
+      }
     }
   }
 });
+
+// Démarrer le rendu une fois que le DOM est prêt
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderApp);
+} else {
+  renderApp();
+}
