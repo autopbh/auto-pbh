@@ -12,9 +12,13 @@ import { rangeRoverEvoque } from "./range-rover-evoque";
 import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
 import { renaultMegane } from "./renault-megane";
+import { renaultClioRS } from "./renault-clio-rs";
+import { peugeot208 } from "./peugeot-208";
 
 export const vehicles: Vehicle[] = [
-  renaultMegane, // Ajout de la nouvelle Renault Megane en tête de liste
+  peugeot208, // Ajout de la nouvelle Peugeot 208 en tête de liste
+  renaultClioRS,
+  renaultMegane,
   miniCountryman,
   mercedesCla,
   audiQ3,
