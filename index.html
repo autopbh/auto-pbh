@@ -25,7 +25,9 @@
 
   <body>
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Ensure the GPT Engineer script loads before our app -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" onerror="console.error('Failed to load GPT Engineer script')"></script>
+    <!-- Add crossorigin attribute for better error reporting -->
+    <script type="module" src="/src/main.tsx" crossorigin="anonymous" onerror="document.getElementById('root').innerHTML = '<div style=\'padding: 20px; color: red;\'><h2>Failed to load application</h2><p>Please try refreshing the page.</p></div>'"></script>
   </body>
 </html>
