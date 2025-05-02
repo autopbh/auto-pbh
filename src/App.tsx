@@ -27,7 +27,15 @@ import Cookies from "./pages/Cookies";
 import LegalNotice from "./pages/LegalNotice";
 import Admin from "./pages/Admin";
 
-const queryClient = new QueryClient();
+// Create a new QueryClient with stable configuration
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
