@@ -26,20 +26,31 @@ const Account = () => {
 
   useEffect(() => {
     // Check for session on mount
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session) {
-        fetchProfile(session.user.id);
+    const getInitialSession = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        setSession(session);
+        
+        if (session) {
+          await fetchProfile(session.user.id);
+        }
+      } catch (error: any) {
+        console.error("Error getting session:", error.message);
       }
-    });
+    };
+
+    getInitialSession();
 
     // Set up auth listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      async (event, session) => {
+        console.log("Auth state changed:", event, session);
         setSession(session);
+        
         if (session) {
-          fetchProfile(session.user.id);
-          navigate("/account");
+          await fetchProfile(session.user.id);
+        } else if (event === 'SIGNED_OUT') {
+          setProfile(null);
         }
       }
     );
@@ -48,7 +59,7 @@ const Account = () => {
     window.scrollTo(0, 0);
     
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, []);
 
   const fetchProfile = async (userId: string) => {
     try {
@@ -63,12 +74,16 @@ const Account = () => {
       }
       
       if (data) {
+        console.log("Profile data loaded:", data);
         setProfile(data);
         setFirstName(data.first_name || "");
         setLastName(data.last_name || "");
         setPhone(data.phone || "");
+      } else {
+        console.log("No profile found for user", userId);
       }
     } catch (error: any) {
+      console.error("Error fetching profile:", error.message);
       toast({
         title: "Erreur",
         description: error.message || "Erreur lors du chargement du profil",
@@ -104,6 +119,7 @@ const Account = () => {
         });
       }
     } catch (error: any) {
+      console.error("Signup error:", error.message);
       toast({
         title: "Erreur d'inscription",
         description: error.message || "Une erreur s'est produite lors de l'inscription",
@@ -135,6 +151,7 @@ const Account = () => {
         });
       }
     } catch (error: any) {
+      console.error("Login error:", error.message);
       toast({
         title: "Erreur de connexion",
         description: error.message || "Email ou mot de passe incorrect",
@@ -156,6 +173,7 @@ const Account = () => {
       setSession(null);
       setProfile(null);
     } catch (error: any) {
+      console.error("Signout error:", error.message);
       toast({
         title: "Erreur",
         description: error.message || "Une erreur s'est produite lors de la déconnexion",
@@ -170,9 +188,26 @@ const Account = () => {
     e.preventDefault();
     setLoading(true);
     
-    if (!session) return;
+    if (!session) {
+      toast({
+        title: "Erreur",
+        description: "Vous devez être connecté pour mettre à jour votre profil",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
     
     try {
+      // First, check if a profile exists
+      const { data: existingProfile, error: fetchError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", session.user.id)
+        .maybeSingle();
+        
+      if (fetchError) throw fetchError;
+      
       const updates = {
         id: session.user.id,
         first_name: firstName,
@@ -181,14 +216,22 @@ const Account = () => {
         updated_at: new Date().toISOString(),
       };
       
-      const { error } = await supabase
-        .from("profiles")
-        .update(updates)
-        .eq("id", session.user.id);
-        
-      if (error) {
-        throw error;
+      let result;
+      
+      if (existingProfile) {
+        // Update existing profile
+        result = await supabase
+          .from("profiles")
+          .update(updates)
+          .eq("id", session.user.id);
+      } else {
+        // Insert new profile
+        result = await supabase
+          .from("profiles")
+          .insert(updates);
       }
+      
+      if (result.error) throw result.error;
       
       toast({
         title: "Profil mis à jour",
@@ -197,6 +240,7 @@ const Account = () => {
       
       await fetchProfile(session.user.id);
     } catch (error: any) {
+      console.error("Profile update error:", error.message);
       toast({
         title: "Erreur",
         description: error.message || "Erreur lors de la mise à jour du profil",
