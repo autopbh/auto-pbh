@@ -14,9 +14,11 @@ import { toyotaCorolla } from "./toyota-corolla";
 import { renaultMegane } from "./renault-megane";
 import { renaultClioRS } from "./renault-clio-rs";
 import { peugeot208 } from "./peugeot-208";
+import { peugeot208Firefly } from "./peugeot-208-firefly";
 
 export const vehicles: Vehicle[] = [
-  peugeot208, // Ajout de la nouvelle Peugeot 208 en tête de liste
+  peugeot208Firefly, // Ajout de la nouvelle Peugeot 208 Firefly en tête de liste
+  peugeot208, 
   renaultClioRS,
   renaultMegane,
   miniCountryman,
