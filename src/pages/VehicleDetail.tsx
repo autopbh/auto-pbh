@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
@@ -15,8 +14,6 @@ import {
   Phone,
   ArrowLeft,
   ShoppingCart,
-  ChevronRight,
-  ChevronLeft
 } from "lucide-react";
 import { Vehicle } from "@/types";
 import {

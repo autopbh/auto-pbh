@@ -1,0 +1,73 @@
+
+import { Vehicle } from "../../types";
+
+export const bmw320i: Vehicle = {
+  id: "v7",
+  brand: "BMW",
+  model: "320i M Sport 2.0 Turbo Flex",
+  year: 2024,
+  mileage: 5940,
+  fuelType: "Essence/Flex",
+  engineCapacity: 2.0,
+  power: 184,
+  transmission: "automatic",
+  exteriorColor: "Gris Skyscraper",
+  interiorColor: "Cuir Rouge Bordeaux",
+  features: [
+    "Moteur 2.0 Turbo (B48) avec 184cv",
+    "Boîte automatique de 8 marchas",
+    "Jantes 19 pouces",
+    "Intérieur en cuir rouge bordeaux",
+    "Airbags frontaux, latéraux et rideaux",
+    "Phares et feux LED",
+    "Freinage automatique en manœuvres",
+    "Capteur de stationnement avant et arrière",
+    "Sièges avant à réglage électrique",
+    "Système audio Harman Kardon",
+    "Régulateur de vitesse adaptatif (ACC)",
+    "Démarrage du moteur à distance",
+    "Hayon arrière motorisé",
+    "Launch Control",
+    "Calandre avant active",
+    "Climatisation digitale 3 zones",
+    "Frein de stationnement électrique",
+    "Rétroviseurs à rabattement électrique",
+    "Phares et essuie-glace automatiques",
+    "Système multimédia avec écran intégré",
+    "Reconnaissance des panneaux routiers",
+    "Informations du véhicule via l'app My BMW",
+    "Head Up display",
+    "Apple CarPlay et Android Auto",
+    "Volant multifonction",
+    "Unique propriétaire",
+    "Prix sous la cote Fipe"
+  ],
+  previousOwners: 0,
+  technicalInspection: {
+    lastDate: "2024-01-10",
+    validUntil: "2026-01-10",
+    status: "passed"
+  },
+  price: 18000,
+  condition: "excellent",
+  availability: "in-stock",
+  currentLocation: "Porto, Portugal",
+  estimatedDelivery: "Immédiatement",
+  images: [
+    "/lovable-uploads/3a7ebab3-eab6-4ddf-81b4-6b37e7b58f10.png", // Image principale
+    "/lovable-uploads/4023b451-5238-4cf9-a480-21f448e8eef9.png",
+    "/lovable-uploads/b174983c-af46-4123-ab17-b3fad20dc128.png",
+    "/lovable-uploads/a7e88551-9d02-4e1a-9728-5fa90851551c.png",
+    "/lovable-uploads/ef79918c-8748-49eb-b75a-860058985fac.png",
+    "/lovable-uploads/149f7637-f61c-455c-b525-56e3cd9e5545.png",
+    "/lovable-uploads/c88dffc8-9292-425f-baf1-6aacc66185b7.png",
+    "/lovable-uploads/0e73336c-a3ba-4c6b-83e3-b8f7de02328c.png",
+    "/lovable-uploads/549dd5de-73db-40e8-a6be-bab63e8d4f01.png",
+    "/lovable-uploads/6bb00675-a8d7-473b-a51f-1251362964ba.png",
+    "/lovable-uploads/660fff14-0f8e-4e5b-8d30-05d65eacd962.png",
+    "/lovable-uploads/2b86fe69-5f91-4d62-9de2-72750b50753e.png"
+  ],
+  thumbnail: "/lovable-uploads/3a7ebab3-eab6-4ddf-81b4-6b37e7b58f10.png",
+  description: "Cette BMW 320i M Sport 2.0 Turbo Flex de 2024 avec seulement 5.940 km est en parfait état. Unique propriétaire, prix sous la cote Fipe. Equipée d'un moteur 2.0 Turbo (B48) de 184cv, boîte automatique à 8 vitesses, jantes 19 pouces, intérieur en cuir rouge bordeaux et nombreux équipements de confort et technologie.",
+  options: ["Pack M Sport", "Système Audio Harman Kardon", "Head Up Display"]
+};
