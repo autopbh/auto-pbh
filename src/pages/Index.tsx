@@ -8,13 +8,9 @@ import Advantages from "@/components/home/Advantages";
 import CallToAction from "@/components/home/CallToAction";
 
 const Index = () => {
-  // Scroll to top on page load with error handling
+  // Scroll to top on page load
   useEffect(() => {
-    try {
-      window.scrollTo(0, 0);
-    } catch (error) {
-      console.error("Failed to scroll to top:", error);
-    }
+    window.scrollTo(0, 0);
   }, []);
 
   return (

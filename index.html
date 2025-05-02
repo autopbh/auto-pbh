@@ -21,65 +21,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png" />
-    
-    <!-- Méta-tags anti-cache pour éviter les problèmes de mise en cache -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
   </head>
 
   <body>
-    <!-- Indicateur de chargement initial -->
-    <div id="root">
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; color: #333;">
-        <div style="text-align: center;">
-          <h2>Chargement de l'application...</h2>
-          <p>Veuillez patienter quelques instants.</p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Script de gestion d'erreur - s'exécute avant les autres scripts -->
-    <script>
-      // Vérifier si l'application a déjà échoué à charger
-      if (sessionStorage.getItem('loadFailed')) {
-        document.getElementById('root').innerHTML = 
-          '<div style="padding: 40px; color: #cc0000; text-align: center;">' +
-          '<h2>Erreur de chargement</h2>' +
-          '<p>Nous rencontrons un problème lors du chargement de l\'application.</p>' +
-          '<button onclick="window.location.reload(true)" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px;">Rafraîchir la page</button>' +
-          '<button onclick="sessionStorage.clear(); window.location.reload(true)" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; margin-left: 10px;">Réinitialiser et recharger</button>' +
-          '</div>';
-      }
-      
-      // Gestionnaire d'erreurs global pour les problèmes de chargement de script
-      window.addEventListener('error', function(e) {
-        console.error('Erreur détectée:', e.message);
-        
-        if (e.message.includes('Unexpected end of script') || 
-            (e.filename && e.filename.includes('.vite/deps/'))) {
-          console.error('Erreur de chargement de script détectée');
-          sessionStorage.setItem('loadFailed', 'true');
-          
-          // Afficher un message d'erreur et proposer de recharger
-          document.getElementById('root').innerHTML = 
-            '<div style="padding: 40px; color: #cc0000; text-align: center;">' +
-            '<h2>Erreur de chargement</h2>' +
-            '<p>Nous rencontrons un problème lors du chargement de l\'application.</p>' +
-            '<p><small>Erreur: ' + e.message + '</small></p>' + 
-            '<button onclick="window.location.reload(true)" style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px;">Rafraîchir la page</button>' +
-            '<button onclick="sessionStorage.clear(); window.location.reload(true)" style="padding: 10px 20px; background: #555; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; margin-left: 10px;">Réinitialiser et recharger</button>' +
-            '</div>';
-          
-          return true; // Empêcher la propagation de l'erreur
-        }
-      }, true);
-    </script>
-    
-    <!-- Chargement des scripts de l'application -->
-    <script type="module" src="/src/main.tsx" crossorigin="anonymous"></script>
-    
-    <!-- Script GPT Engineer - chargé après notre application pour éviter les conflits -->
+    <div id="root"></div>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
