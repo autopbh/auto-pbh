@@ -4,6 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add cache control headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>AUTO PBH | Véhicules d'occasion luxueux</title>
     <meta name="description" content="AUTO PBH - Votre concession de véhicules d'occasion luxueux à Rotterdam. Découvrez notre sélection de voitures premium avec livraison dans toute l'Europe." />
     <meta name="author" content="AUTO PBH" />
@@ -21,11 +25,111 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png" />
+    <style>
+      /* Initial loading indicator */
+      #loading-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9998;
+      }
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(230, 57, 70, 0.2);
+        border-top: 5px solid #e63946;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
 
   <body>
+    <!-- Loading indicator that will be hidden once the app loads -->
+    <div id="loading-indicator">
+      <div class="spinner"></div>
+      <p>Chargement d'AUTO PBH...</p>
+    </div>
+    
+    <!-- Root element for React app -->
     <div id="root"></div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Script tags - order is important -->
+    <script>
+      // Track script loading
+      window.scriptsLoaded = {
+        gptengineer: false,
+        mainApp: false
+      };
+      
+      // Hide loading indicator when app is ready
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loadingIndicator = document.getElementById('loading-indicator');
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+          }
+        }, 500);
+      });
+      
+      // Handle script loading errors
+      function handleScriptError(scriptName) {
+        console.error(`Failed to load script: ${scriptName}`);
+        const errorContainer = document.createElement('div');
+        errorContainer.id = 'script-error';
+        errorContainer.innerHTML = `
+          <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;padding:20px;text-align:center;">
+            <h2 style="color:#e63946;margin-bottom:20px;">Erreur de chargement</h2>
+            <p>Le script '${scriptName}' n'a pas pu être chargé correctement.</p>
+            <button onclick="window.location.reload();" style="background:#e63946;color:white;border:none;padding:10px 20px;border-radius:4px;margin-top:20px;cursor:pointer;">
+              Réessayer
+            </button>
+            <button onclick="clearCacheAndReload();" style="background:#333;color:white;border:none;padding:10px 20px;border-radius:4px;margin-top:10px;cursor:pointer;">
+              Réinitialiser et rafraîchir
+            </button>
+          </div>
+        `;
+        document.body.appendChild(errorContainer);
+      }
+      
+      // Clear cache and force reload
+      function clearCacheAndReload() {
+        localStorage.clear();
+        if ('caches' in window) {
+          caches.keys().then(names => {
+            names.forEach(name => caches.delete(name));
+          });
+        }
+        window.location.href = window.location.href + '?nocache=' + Date.now();
+      }
+    </script>
+    
+    <!-- Load GPT Engineer script first -->
+    <script 
+      src="https://cdn.gpteng.co/gptengineer.js" 
+      type="module" 
+      onerror="handleScriptError('GPT Engineer')"
+      onload="window.scriptsLoaded.gptengineer = true">
+    </script>
+    
+    <!-- Then load main app script -->
+    <script 
+      type="module" 
+      src="/src/main.tsx" 
+      onerror="handleScriptError('Application principale')"
+      onload="window.scriptsLoaded.mainApp = true">
+    </script>
   </body>
 </html>
