@@ -82,12 +82,25 @@ serve(async (req) => {
       </tr>
     `).join('');
 
-    // Send email to customer - Using Resend's default sender domain instead of autopbh.com
+    // First, verify if we can send to the client email or need to use a test approach
+    let primaryRecipient = customerEmail;
+    const isTestMode = !Deno.env.get("PRODUCTION_MODE");
+    const ownerEmail = Deno.env.get("OWNER_EMAIL") || "pbhauto@gmail.com";
+    
+    // In test mode, send to owner but include customer email in subject for tracking
+    if (isTestMode && customerEmail !== ownerEmail) {
+      console.log(`Test mode: Redirecting email to ${ownerEmail} instead of ${customerEmail}`);
+      primaryRecipient = ownerEmail;
+    }
+
+    // Send email to customer or test recipient
     console.log("Sending customer email...");
     const { data: customerEmailData, error: customerEmailError } = await resend.emails.send({
       from: "AutoPBH <onboarding@resend.dev>",
-      to: customerEmail,
-      subject: `Confirmation de commande - ${orderReference}`,
+      to: primaryRecipient,
+      subject: isTestMode && customerEmail !== ownerEmail 
+        ? `[TEST pour ${customerEmail}] Confirmation de commande - ${orderReference}` 
+        : `Confirmation de commande - ${orderReference}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="background-color: #f8f8f8; padding: 20px; margin-bottom: 20px; text-align: center;">
@@ -180,7 +193,7 @@ serve(async (req) => {
     console.log("Sending admin notification email...");
     const { data: adminEmailData, error: adminEmailError } = await resend.emails.send({
       from: "AutoPBH <onboarding@resend.dev>",
-      to: "admin@autopbh.com", // Replace with your admin email
+      to: ownerEmail, // Using the verified email instead of admin@autopbh.com
       subject: `Nouvelle commande: ${orderReference}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
