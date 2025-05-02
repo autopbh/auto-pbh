@@ -189,11 +189,12 @@ serve(async (req) => {
     
     console.log("Customer email sent successfully:", customerEmailData);
     
-    // Send notification email to admin - Using Resend's default sender domain instead of autopbh.com
+    // ALWAYS send notification email to admin regardless of test mode
     console.log("Sending admin notification email...");
     const { data: adminEmailData, error: adminEmailError } = await resend.emails.send({
       from: "AutoPBH <onboarding@resend.dev>",
-      to: ownerEmail, // Using the verified email instead of admin@autopbh.com
+      to: ownerEmail, // Always send to owner email
+      cc: Deno.env.get("SECONDARY_EMAIL") || "", // Optional CC to another email if configured
       subject: `Nouvelle commande: ${orderReference}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
