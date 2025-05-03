@@ -1,5 +1,8 @@
 
 import { Vehicle } from "../../types";
+import { volkswagenPoloRline } from "./volkswagen-polo-rline";
+import { peugeot208Firefly } from "./peugeot-208-firefly";
+import { peugeot208 } from "./peugeot-208";
 import { miniCountryman } from "./mini-countryman";
 import { mercedesCla } from "./mercedes-cla";
 import { audiQ3 } from "./audi-q3";
@@ -13,11 +16,10 @@ import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
 import { renaultMegane } from "./renault-megane";
 import { renaultClioRS } from "./renault-clio-rs";
-import { peugeot208 } from "./peugeot-208";
-import { peugeot208Firefly } from "./peugeot-208-firefly";
 
 export const vehicles: Vehicle[] = [
-  peugeot208Firefly, // Ajout de la nouvelle Peugeot 208 Firefly en tête de liste
+  volkswagenPoloRline, // Ajout du nouveau Volkswagen Polo Rline en tête de liste
+  peugeot208Firefly,
   peugeot208, 
   renaultClioRS,
   renaultMegane,
