@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -12,7 +11,7 @@ const FeaturedVehicles = () => {
   const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Utiliser les 3 premiers véhicules du fichier de données
+  // Utiliser les 3 premiers véhicules du fichier de données (les plus récents)
   const featuredVehicles: Vehicle[] = vehicles.slice(0, 3);
   
   const slidesPerView = { mobile: 1, tablet: 2, desktop: 3 };
