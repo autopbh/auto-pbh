@@ -1,8 +1,15 @@
 
 import { Vehicle } from "../../types";
+import { peugeot208Style } from "./peugeot-208-style";
+import { rangeRoverSportHSE } from "./range-rover-sport-hse";
+import { mercedesGLC220d } from "./mercedes-glc220d";
+import { volkswagenGolfGTI } from "./volkswagen-golf-gti";
+import { renaultCaptur } from "./renault-captur";
 import { volkswagenPoloRline } from "./volkswagen-polo-rline";
 import { peugeot208Firefly } from "./peugeot-208-firefly";
 import { peugeot208 } from "./peugeot-208";
+import { renaultClioRS } from "./renault-clio-rs";
+import { renaultMegane } from "./renault-megane";
 import { miniCountryman } from "./mini-countryman";
 import { mercedesCla } from "./mercedes-cla";
 import { audiQ3 } from "./audi-q3";
@@ -14,17 +21,16 @@ import { bmw320i } from "./bmw-320i";
 import { rangeRoverEvoque } from "./range-rover-evoque";
 import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
-import { renaultMegane } from "./renault-megane";
-import { renaultClioRS } from "./renault-clio-rs";
-import { renaultCaptur } from "./renault-captur";
-import { volkswagenGolfGTI } from "./volkswagen-golf-gti";
 
 export const vehicles: Vehicle[] = [
-  volkswagenGolfGTI, // Golf GTI ajoutée en premier
-  renaultCaptur, // Renault Captur ajoutée en deuxième
+  peugeot208Style, // Nouveau véhicule ajouté en première position
+  rangeRoverSportHSE,
+  mercedesGLC220d,
+  volkswagenGolfGTI,
+  renaultCaptur,
   volkswagenPoloRline,
   peugeot208Firefly,
-  peugeot208, 
+  peugeot208,
   renaultClioRS,
   renaultMegane,
   miniCountryman,
