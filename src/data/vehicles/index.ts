@@ -1,5 +1,6 @@
 
 import { Vehicle } from "../../types";
+import { audiRS6Avant } from "./audi-rs6-avant";
 import { peugeot208Style } from "./peugeot-208-style";
 import { rangeRoverSportHSE } from "./range-rover-sport-hse";
 import { mercedesGLC220d } from "./mercedes-glc220d";
@@ -23,7 +24,8 @@ import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
 
 export const vehicles: Vehicle[] = [
-  peugeot208Style, // Nouveau véhicule ajouté en première position
+  audiRS6Avant, // Nouveau véhicule ajouté en première position
+  peugeot208Style,
   rangeRoverSportHSE,
   mercedesGLC220d,
   volkswagenGolfGTI,
