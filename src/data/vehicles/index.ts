@@ -1,5 +1,6 @@
 
 import { Vehicle } from "../../types";
+import { mercedesA250Sport } from "./mercedes-a250-sport";
 import { miniCooperS } from "./mini-cooper-s";
 import { audiQ3PerformanceBlack } from "./audi-q3-performance-black";
 import { mercedesC200AMGLine } from "./mercedes-c200-amg-line";
@@ -29,7 +30,8 @@ import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
 
 export const vehicles: Vehicle[] = [
-  miniCooperS, // Nouveau véhicule ajouté en première position
+  mercedesA250Sport, // Nouveau véhicule ajouté en première position
+  miniCooperS,
   audiQ3PerformanceBlack,
   mercedesC200AMGLine,
   hyundaiCretaLimited,
