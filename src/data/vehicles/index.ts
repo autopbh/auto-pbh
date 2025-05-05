@@ -25,9 +25,11 @@ import { toyotaCorolla } from "./toyota-corolla";
 import { hyundaiCretaLimited } from "./hyundai-creta-limited";
 import { nissanKicksSL } from "./nissan-kicks-sl";
 import { mercedesC200AMGLine } from "./mercedes-c200-amg-line";
+import { audiQ3PerformanceBlack } from "./audi-q3-performance-black";
 
 export const vehicles: Vehicle[] = [
-  mercedesC200AMGLine, // Nouveau véhicule ajouté en première position
+  audiQ3PerformanceBlack, // Nouveau véhicule ajouté en première position
+  mercedesC200AMGLine,
   hyundaiCretaLimited,
   nissanKicksSL,
   audiRS6Avant,
