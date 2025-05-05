@@ -1,5 +1,10 @@
 
 import { Vehicle } from "../../types";
+import { miniCooperS } from "./mini-cooper-s";
+import { audiQ3PerformanceBlack } from "./audi-q3-performance-black";
+import { mercedesC200AMGLine } from "./mercedes-c200-amg-line";
+import { hyundaiCretaLimited } from "./hyundai-creta-limited";
+import { nissanKicksSL } from "./nissan-kicks-sl";
 import { audiRS6Avant } from "./audi-rs6-avant";
 import { peugeot208Style } from "./peugeot-208-style";
 import { rangeRoverSportHSE } from "./range-rover-sport-hse";
@@ -22,13 +27,10 @@ import { bmw320i } from "./bmw-320i";
 import { rangeRoverEvoque } from "./range-rover-evoque";
 import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
-import { hyundaiCretaLimited } from "./hyundai-creta-limited";
-import { nissanKicksSL } from "./nissan-kicks-sl";
-import { mercedesC200AMGLine } from "./mercedes-c200-amg-line";
-import { audiQ3PerformanceBlack } from "./audi-q3-performance-black";
 
 export const vehicles: Vehicle[] = [
-  audiQ3PerformanceBlack, // Nouveau véhicule ajouté en première position
+  miniCooperS, // Nouveau véhicule ajouté en première position
+  audiQ3PerformanceBlack,
   mercedesC200AMGLine,
   hyundaiCretaLimited,
   nissanKicksSL,
