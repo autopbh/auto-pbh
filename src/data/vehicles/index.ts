@@ -22,9 +22,15 @@ import { bmw320i } from "./bmw-320i";
 import { rangeRoverEvoque } from "./range-rover-evoque";
 import { volkswagenTCross } from "./volkswagen-tcross";
 import { toyotaCorolla } from "./toyota-corolla";
+import { hyundaiCretaLimited } from "./hyundai-creta-limited";
+import { nissanKicksSL } from "./nissan-kicks-sl";
+import { mercedesC200AMGLine } from "./mercedes-c200-amg-line";
 
 export const vehicles: Vehicle[] = [
-  audiRS6Avant, // Nouveau véhicule ajouté en première position
+  mercedesC200AMGLine, // Nouveau véhicule ajouté en première position
+  hyundaiCretaLimited,
+  nissanKicksSL,
+  audiRS6Avant,
   peugeot208Style,
   rangeRoverSportHSE,
   mercedesGLC220d,
