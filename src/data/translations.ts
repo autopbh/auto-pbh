@@ -1,3 +1,4 @@
+
 import { Language } from "@/types";
 
 type TranslationDict = {
@@ -550,4 +551,67 @@ export const translations: TranslationsType = {
     "catalog.warranty": "Disponible con garantía extendida",
     "catalog.advancedSearch": "Búsqueda Avanzada",
     "catalog.advancedSearchDesc": "Utilice nuestros filtros detallados para encontrar exactamente el vehículo que le corresponde.",
-    "catalog.customFilters":
+    "catalog.customFilters": "Filtros Personalizados",
+    "catalog.customFiltersDesc": "Refine su búsqueda por marca, modelo, año, kilometraje y mucho más.",
+    "catalog.viewDetails": "Ver detalles",
+
+    // Search page
+    "search.title": "Búsqueda",
+    "search.advanced": "Búsqueda Avanzada",
+    "search.description": "Use nuestro motor de búsqueda inteligente para encontrar el vehículo que coincide perfectamente con sus criterios en nuestra selección exclusiva.",
+    "search.placeholder": 'Escriba "Mercedes Clase S 2023" o escanee sus criterios...',
+    "search.button": "Buscar",
+    "search.byBrand": "Búsqueda por Marca",
+    "search.models": "modelos",
+    "search.filters": "Filtros Populares",
+    "search.results": "resultado encontrado",
+    "search.results_plural": "resultados encontrados",
+    "search.noResults": "No se encontraron resultados",
+    "search.noResultsDesc": "Ningún vehículo coincide con su búsqueda.",
+    "search.tryOther": "Pruebe con otros términos o consulte nuestro catálogo completo.",
+    "search.viewCatalog": "Ver catálogo completo",
+    "search.assistance": "Asistencia de búsqueda",
+    "search.voiceSearch": "Búsqueda por voz disponible",
+
+    // Financing page
+    "financing.title": "Soluciones de Financiación",
+    "financing.customFinancing": "Financiación Personalizada",
+    "financing.description": "AUTO PBH ofrece soluciones de financiación adaptadas a su situación financiera con nuestros bancos asociados excepcionales.",
+    "financing.privilegedRates": "Tarifas Privilegiadas",
+    "financing.ratesDescription": "Benefíciese de tarifas negociadas desde 2,9% con nuestras instituciones bancarias asociadas.",
+    "financing.instantSimulation": "Simulación Instantánea",
+    "financing.simulationDescription": "Obtenga una simulación personalizada en línea y reciba un acuerdo de principio en 2 horas.",
+    "financing.flexibleOptions": "Opciones Flexibles",
+    "financing.optionsDescription": "Elija entre crédito estándar, leasing a largo plazo o pago diferido según sus preferencias.",
+    "financing.simulateFinancing": "Simule su financiación",
+    "financing.useCalculator": "Use nuestra calculadora para obtener una estimación de sus pagos mensuales según el tipo de financiación elegido.",
+    "financing.vehiclePrice": "Precio del vehículo",
+    "financing.initialContribution": "Contribución inicial",
+    "financing.duration": "Duración (en meses)",
+    "financing.financingType": "Tipo de financiación",
+    "financing.selectType": "Seleccione un tipo de financiación",
+    "financing.standardCredit": "Crédito estándar",
+    "financing.leasing": "Leasing",
+    "financing.balloonPayment": "Pago globo",
+    "financing.calculateMonthlyPayment": "Calcular mi pago mensual",
+    "financing.estimatedMonthlyPayment": "Pago mensual estimado:",
+    "financing.disclaimer": "* Esta estimación se proporciona solo con fines informativos. El pago mensual final puede variar según la aprobación del crédito y otros factores.",
+    "financing.compareOptions": "Comparar opciones de financiación",
+    "financing.contactAdvisor": "Contactar con un asesor",
+    "financing.error": "Error de entrada",
+    "financing.errorValues": "Por favor, compruebe los valores introducidos.",
+    "financing.errorContribution": "La contribución inicial no puede ser mayor o igual al precio del vehículo.",
+    "financing.calculationDone": "Cálculo completado",
+    "financing.calculationSuccess": "Su pago mensual ha sido calculado con éxito."
+  },
+  de: {
+    // German translations would go here
+  },
+  it: {
+    // Italian translations would go here
+  },
+  nl: {
+    // Dutch translations would go here
+  }
+};
+
