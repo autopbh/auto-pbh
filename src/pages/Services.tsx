@@ -18,8 +18,11 @@ import {
   Sparkles
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -29,10 +32,9 @@ const Services = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Services d'Exception</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">{t("services.title")}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              AUTO PBH s'engage à offrir une expérience inégalée dans l'acquisition et l'entretien de véhicules premium.
-              Notre passion pour l'excellence se traduit par des services sur mesure.
+              {t("services.subtitle")}
             </p>
           </div>
           
@@ -43,24 +45,22 @@ const Services = () => {
                   <Car className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">Achat & Reprise de Véhicules Premium</h2>
-                  <p className="text-muted-foreground">Une expertise reconnue dans le secteur automobile haut de gamme</p>
+                  <h2 className="text-2xl font-semibold">{t("services.purchase.title")}</h2>
+                  <p className="text-muted-foreground">{t("services.purchase.subtitle")}</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Notre expertise dans le marché des véhicules premium vous garantit une transaction 
-                en toute sérénité. Notre processus rigoureux inclut :
+                {t("services.purchase.description")}
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <Card className="border-autop-red/20">
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      Évaluation Professionnelle
+                      {t("services.purchase.evaluation.title")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Analyse complète et gratuite de votre véhicule actuel par nos experts certifiés, 
-                      avec documentation détaillée et estimation optimale du prix de reprise.
+                      {t("services.purchase.evaluation.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -68,11 +68,10 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      Reprise Toutes Marques
+                      {t("services.purchase.tradein.title")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Nous reprenons votre véhicule quelle que soit sa marque ou son état, en vous offrant
-                      les meilleures conditions du marché et un processus simplifié.
+                      {t("services.purchase.tradein.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -80,11 +79,10 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      Transaction Sécurisée
+                      {t("services.purchase.transaction.title")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Paiement rapide et sécurisé, avec multiples options disponibles selon vos préférences,
-                      y compris virement bancaire instantané et transfert certifié.
+                      {t("services.purchase.transaction.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -92,11 +90,10 @@ const Services = () => {
                   <CardContent className="pt-6">
                     <h3 className="font-semibold text-lg mb-3 flex items-center">
                       <CheckCircle className="h-5 w-5 text-autop-red mr-2" />
-                      Gestion Administrative Complète
+                      {t("services.purchase.admin.title")}
                     </h3>
                     <p className="text-muted-foreground">
-                      Prise en charge de toutes les formalités administratives, y compris le changement de propriétaire,
-                      les documents d'exportation et l'immatriculation.
+                      {t("services.purchase.admin.description")}
                     </p>
                   </CardContent>
                 </Card>
@@ -109,53 +106,49 @@ const Services = () => {
                   <Truck className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">Livraison Clé en Main</h2>
-                  <p className="text-muted-foreground">Transport premium et personnalisé dans toute l'Europe</p>
+                  <h2 className="text-2xl font-semibold">{t("services.delivery.title")}</h2>
+                  <p className="text-muted-foreground">{t("services.delivery.subtitle")}</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Notre service de livraison premium couvre l'ensemble du territoire européen avec une attention particulière aux détails :
+                {t("services.delivery.description")}
               </p>
               
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    Transport Premium
+                    {t("services.delivery.premium.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Transport ultra-sécurisé dans des camions spécialisés fermés avec contrôle de température et équipement anti-vibrations. 
-                    Assurance complète pendant tout le trajet et manipulation par des équipes hautement formées.
+                    {t("services.delivery.premium.description")}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    Suivi Temps Réel
+                    {t("services.delivery.tracking.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Application dédiée pour suivre votre véhicule en temps réel, avec notifications à chaque étape importante. 
-                    Contact permanent avec notre équipe de coordinateurs logistiques multilingues.
+                    {t("services.delivery.tracking.description")}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    Service Personnalisé
+                    {t("services.delivery.personalized.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Livraison planifiée selon vos disponibilités, 7j/7, y compris en soirée et le week-end. 
-                    Présentation complète du véhicule et démonstration de ses fonctionnalités lors de la remise des clés.
+                    {t("services.delivery.personalized.description")}
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-white to-autop-red/5 p-6 rounded-lg border border-autop-red/10">
                   <h3 className="font-semibold text-lg mb-3 flex items-center">
                     <Award className="h-5 w-5 text-autop-red mr-2" />
-                    Documentation Complète
+                    {t("services.delivery.documentation.title")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Dossier complet remis avec le véhicule : historique détaillé, carnets d'entretien, garanties, 
-                    manuels techniques et certificats d'authenticité pour les modèles de collection.
+                    {t("services.delivery.documentation.description")}
                   </p>
                 </div>
               </div>
@@ -167,12 +160,12 @@ const Services = () => {
                   <Shield className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">Garantie Premium</h2>
-                  <p className="text-muted-foreground">Une protection complète pour votre tranquillité d'esprit</p>
+                  <h2 className="text-2xl font-semibold">{t("services.warranty.title")}</h2>
+                  <p className="text-muted-foreground">{t("services.warranty.subtitle")}</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-6">
-                Notre programme de garantie exclusive a été conçu pour répondre aux exigences les plus élevées :
+                {t("services.warranty.description")}
               </p>
               
               <div className="bg-autop-red/5 p-8 rounded-lg mb-6">
@@ -180,24 +173,24 @@ const Services = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
                       <Sparkles className="h-5 w-5 mr-2" />
-                      Couverture Mécanique Premium
+                      {t("services.warranty.mechanical.title")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>24 mois</strong> minimum sur moteur et boîte de vitesses</span>
+                        <span><strong>{t("services.warranty.mechanical.bullet1")}</strong></span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Extension possible jusqu'à <strong>36 mois</strong></span>
+                        <span>{t("services.warranty.mechanical.bullet2")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Diagnostic complet avant chaque intervention</span>
+                        <span>{t("services.warranty.mechanical.bullet3")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Pièces d'origine et main d'œuvre qualifiée</span>
+                        <span>{t("services.warranty.mechanical.bullet4")}</span>
                       </li>
                     </ul>
                   </div>
@@ -205,24 +198,24 @@ const Services = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
                       <Sparkles className="h-5 w-5 mr-2" />
-                      Couverture Électronique & Multimédia
+                      {t("services.warranty.electronic.title")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Garantie de <strong>12 mois</strong> sur tous les systèmes électroniques</span>
+                        <span><strong>{t("services.warranty.electronic.bullet1")}</strong></span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Systèmes de navigation et d'infodivertissement</span>
+                        <span>{t("services.warranty.electronic.bullet2")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Aides à la conduite et capteurs</span>
+                        <span>{t("services.warranty.electronic.bullet3")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Mises à jour logicielles incluses</span>
+                        <span>{t("services.warranty.electronic.bullet4")}</span>
                       </li>
                     </ul>
                   </div>
@@ -230,24 +223,24 @@ const Services = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
                       <Sparkles className="h-5 w-5 mr-2" />
-                      Assistance Exclusive
+                      {t("services.warranty.assistance.title")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Assistance routière <strong>24h/24, 7j/7</strong> dans toute l'Europe</span>
+                        <span><strong>{t("services.warranty.assistance.bullet1")}</strong></span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Dépannage et remorquage sans frais additionnels</span>
+                        <span>{t("services.warranty.assistance.bullet2")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Hébergement ou transport alternatif en cas d'immobilisation</span>
+                        <span>{t("services.warranty.assistance.bullet3")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Rapatriement du véhicule si nécessaire</span>
+                        <span>{t("services.warranty.assistance.bullet4")}</span>
                       </li>
                     </ul>
                   </div>
@@ -255,24 +248,24 @@ const Services = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 text-autop-red flex items-center">
                       <Sparkles className="h-5 w-5 mr-2" />
-                      Services Complémentaires
+                      {t("services.warranty.additional.title")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Véhicule de remplacement de catégorie équivalente</span>
+                        <span>{t("services.warranty.additional.bullet1")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Service de conciergerie dédié pour toute question</span>
+                        <span>{t("services.warranty.additional.bullet2")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Entretien préférentiel avec remise de 15%</span>
+                        <span>{t("services.warranty.additional.bullet3")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Bilan annuel offert avec diagnostic complet</span>
+                        <span>{t("services.warranty.additional.bullet4")}</span>
                       </li>
                     </ul>
                   </div>
@@ -281,7 +274,7 @@ const Services = () => {
                 <div className="mt-8 text-center">
                   <Link to="/warranty">
                     <Button className="bg-autop-red text-white hover:bg-autop-red/90">
-                      Découvrir notre programme de garantie complet
+                      {t("services.warranty.discover")}
                     </Button>
                   </Link>
                 </div>
@@ -294,47 +287,41 @@ const Services = () => {
                   <PhoneCall className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold">Assistance Personnalisée</h2>
-                  <p className="text-muted-foreground">Un service client d'exception à votre écoute</p>
+                  <h2 className="text-2xl font-semibold">{t("services.assistance.title")}</h2>
+                  <p className="text-muted-foreground">{t("services.assistance.subtitle")}</p>
                 </div>
               </div>
               <p className="text-lg text-muted-foreground mb-8">
-                Notre équipe d'experts est disponible pour vous accompagner dans toutes vos démarches automobiles :
+                {t("services.assistance.description")}
               </p>
               
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">Service Client Premium</h3>
+                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">{t("services.assistance.premium.title")}</h3>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      <span className="font-medium text-foreground">Conseillers dédiés</span> — Chaque client bénéficie d'un conseiller personnel, 
-                      expert dans les véhicules premium et formé pour répondre à vos exigences spécifiques.
+                      <span className="font-medium text-foreground">{t("services.assistance.premium.advisors")}</span> — {t("services.assistance.premium.advisors.description")}
                     </p>
                     <p>
-                      <span className="font-medium text-foreground">Service multilingue</span> — Nos conseillers parlent couramment français, 
-                      anglais, allemand, espagnol et portugais pour vous servir dans votre langue préférée.
+                      <span className="font-medium text-foreground">{t("services.assistance.premium.multilingual")}</span> — {t("services.assistance.premium.multilingual.description")}
                     </p>
                     <p>
-                      <span className="font-medium text-foreground">Disponibilité étendue</span> — Joignables 7j/7 de 8h à 22h par téléphone, 
-                      email, chat en ligne ou visioconférence selon votre préférence.
+                      <span className="font-medium text-foreground">{t("services.assistance.premium.availability")}</span> — {t("services.assistance.premium.availability.description")}
                     </p>
                   </div>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">Support Technique Spécialisé</h3>
+                  <h3 className="text-xl font-semibold mb-4 border-l-4 border-autop-red pl-4">{t("services.assistance.technical.title")}</h3>
                   <div className="space-y-4 text-muted-foreground">
                     <p>
-                      <span className="font-medium text-foreground">Techniciens certifiés</span> — Notre équipe technique est certifiée par les 
-                      constructeurs premium pour diagnostiquer et résoudre efficacement tout problème.
+                      <span className="font-medium text-foreground">{t("services.assistance.technical.certified")}</span> — {t("services.assistance.technical.certified.description")}
                     </p>
                     <p>
-                      <span className="font-medium text-foreground">Assistance à distance</span> — Diagnostic préliminaire par visioconférence 
-                      pour résoudre rapidement les problèmes mineurs sans déplacement.
+                      <span className="font-medium text-foreground">{t("services.assistance.technical.remote")}</span> — {t("services.assistance.technical.remote.description")}
                     </p>
                     <p>
-                      <span className="font-medium text-foreground">Intervention rapide</span> — En cas de besoin, déploiement d'équipes 
-                      techniques sous 24h dans toute l'Europe pour intervention sur site.
+                      <span className="font-medium text-foreground">{t("services.assistance.technical.rapid")}</span> — {t("services.assistance.technical.rapid.description")}
                     </p>
                   </div>
                 </div>
@@ -343,83 +330,82 @@ const Services = () => {
               <div className="bg-gradient-to-r from-autop-red/10 to-transparent p-6 rounded-lg">
                 <h3 className="font-semibold text-xl mb-3 flex items-center">
                   <UserCheck className="h-5 w-5 text-autop-red mr-2" />
-                  Notre Engagement Qualité
+                  {t("services.assistance.commitment.title")}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  L'excellence du service est au cœur de notre philosophie. Nous nous engageons à :
+                  {t("services.assistance.commitment.description")}
                 </p>
                 <div className="grid sm:grid-cols-3 gap-4 text-sm">
                   <div className="bg-white/50 p-4 rounded">
-                    <p className="font-medium text-center">Réponse sous 2h à toute demande</p>
+                    <p className="font-medium text-center">{t("services.assistance.commitment.response")}</p>
                   </div>
                   <div className="bg-white/50 p-4 rounded">
-                    <p className="font-medium text-center">Suivi personnalisé de chaque dossier</p>
+                    <p className="font-medium text-center">{t("services.assistance.commitment.followup")}</p>
                   </div>
                   <div className="bg-white/50 p-4 rounded">
-                    <p className="font-medium text-center">Satisfaction client garantie à 100%</p>
+                    <p className="font-medium text-center">{t("services.assistance.commitment.satisfaction")}</p>
                   </div>
                 </div>
               </div>
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-semibold mb-6 text-center">Services Complémentaires</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-center">{t("services.additional.title")}</h2>
               
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Banknote className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">Solutions de Financement</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t("services.additional.financing.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Financement personnalisé avec taux préférentiels, crédit-bail et leasing avec options d'achat flexibles.
+                    {t("services.additional.financing.description")}
                   </p>
                   <Link to="/financing" className="text-autop-red hover:underline text-sm font-medium">
-                    Découvrir nos offres
+                    {t("services.additional.financing.cta")}
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Wrench className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">Service Après-Vente</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t("services.additional.aftersales.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Entretien premium, réparations par techniciens certifiés et programme de maintenance sur mesure.
+                    {t("services.additional.aftersales.description")}
                   </p>
                   <Link to="/warranty" className="text-autop-red hover:underline text-sm font-medium">
-                    En savoir plus
+                    {t("services.additional.aftersales.cta")}
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Clock className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">Rendez-vous Express</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t("services.additional.express.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Service prioritaire sous 24h, consultation vidéo immédiate et assistance d'urgence.
+                    {t("services.additional.express.description")}
                   </p>
                   <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
-                    Prendre rendez-vous
+                    {t("services.additional.express.cta")}
                   </Link>
                 </div>
                 
                 <div className="bg-white/80 p-6 rounded-lg text-center shadow-sm border border-autop-red/10 hover:shadow-md transition-all">
                   <Map className="h-10 w-10 mx-auto mb-4 text-autop-red" />
-                  <h3 className="font-semibold text-lg mb-2">Service International</h3>
+                  <h3 className="font-semibold text-lg mb-2">{t("services.additional.international.title")}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Accompagnement pour importation/exportation, documentation multi-pays et conformité réglementaire.
+                    {t("services.additional.international.description")}
                   </p>
                   <Link to="/contact" className="text-autop-red hover:underline text-sm font-medium">
-                    Nous contacter
+                    {t("services.additional.international.cta")}
                   </Link>
                 </div>
               </div>
 
               <div className="bg-autop-red/5 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-semibold mb-4">Besoin d'un Service Sur Mesure ?</h3>
+                <h3 className="text-2xl font-semibold mb-4">{t("services.custom.title")}</h3>
                 <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Notre équipe d'experts est à votre disposition pour élaborer une solution
-                  parfaitement adaptée à vos exigences spécifiques.
+                  {t("services.custom.description")}
                 </p>
                 <Link to="/contact">
                   <Button size="lg" className="bg-autop-red hover:bg-autop-red/90 text-white">
-                    Contactez Notre Équipe Premium
+                    {t("services.custom.cta")}
                   </Button>
                 </Link>
               </div>
@@ -432,3 +418,4 @@ const Services = () => {
 };
 
 export default Services;
+
