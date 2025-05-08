@@ -1,13 +1,47 @@
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Calculator, CreditCard, CheckCircle } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 
 const Financing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [vehiclePrice, setVehiclePrice] = useState<number>(12000);
+  const [initialContribution, setInitialContribution] = useState<number>(2400);
+  const [duration, setDuration] = useState<number>(36);
+  const [financingType, setFinancingType] = useState<string>("credit");
+  const [monthlyPayment, setMonthlyPayment] = useState<number | null>(null);
+
+  const calculateMonthlyPayment = () => {
+    if (vehiclePrice <= 0 || initialContribution < 0 || duration <= 0) {
+      return;
+    }
+
+    const amount = vehiclePrice - initialContribution;
+    let rate = 0.029; // Taux par défaut (2.9%)
+
+    if (financingType === "leasing") {
+      rate = 0.025; // 2.5% pour leasing
+    } else if (financingType === "balloon") {
+      rate = 0.032; // 3.2% pour balloon
+    }
+
+    const monthlyRate = rate / 12;
+    const payment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
+    
+    setMonthlyPayment(parseFloat(payment.toFixed(2)));
+  };
 
   return (
     <Layout>
@@ -56,91 +90,100 @@ const Financing = () => {
           </section>
 
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Calculateur de Financement</h2>
+            <h1 className="text-4xl font-bold mb-4 text-center">Simulate your financing</h1>
+            <p className="text-lg text-center text-muted-foreground mb-12">
+              Use our calculator to get an estimate of your monthly payments based on the type of financing chosen.
+            </p>
             
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <label htmlFor="amount" className="block text-sm font-medium mb-2">
-                    Montant du véhicule (€)
-                  </label>
-                  <input 
-                    type="number" 
-                    id="amount" 
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-autop-red"
-                    placeholder="Ex: 120 000"
+            <div className="max-w-2xl mx-auto space-y-8">
+              <div className="space-y-2">
+                <label htmlFor="vehicle-price" className="text-xl font-medium">
+                  Vehicle price
+                </label>
+                <div className="flex items-center">
+                  <span className="text-xl mr-2">€</span>
+                  <Input
+                    id="vehicle-price"
+                    type="number"
+                    value={vehiclePrice}
+                    onChange={(e) => setVehiclePrice(Number(e.target.value))}
+                    className="text-xl p-6"
                   />
                 </div>
-                
-                <div>
-                  <label htmlFor="duration" className="block text-sm font-medium mb-2">
-                    Durée du financement (mois)
-                  </label>
-                  <select 
-                    id="duration" 
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-autop-red"
-                  >
-                    <option value="12">12 mois</option>
-                    <option value="24">24 mois</option>
-                    <option value="36">36 mois</option>
-                    <option value="48">48 mois</option>
-                    <option value="60">60 mois</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label htmlFor="rate" className="block text-sm font-medium mb-2">
-                    Taux d'intérêt (%)
-                  </label>
-                  <input 
-                    type="number" 
-                    id="rate" 
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-autop-red"
-                    placeholder="Ex: 2.9"
-                    step="0.1"
-                    defaultValue="2.9"
-                  />
-                </div>
-                
-                <Button className="w-full">
-                  Calculer ma mensualité
-                </Button>
               </div>
               
-              <div className="bg-autop-red/5 p-6 rounded-lg">
-                <h3 className="text-xl font-medium mb-4">Résultat de simulation</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b pb-2">
-                    <span>Montant financé:</span>
-                    <span className="font-semibold">120 000 €</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b pb-2">
-                    <span>Durée:</span>
-                    <span className="font-semibold">48 mois</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b pb-2">
-                    <span>Taux:</span>
-                    <span className="font-semibold">2.9%</span>
-                  </div>
-                  <div className="flex justify-between items-center text-lg pt-2">
-                    <span className="font-bold">Mensualité:</span>
-                    <span className="font-bold text-autop-red">2 649 €/mois</span>
-                  </div>
-                </div>
-                
-                <div className="mt-8 text-sm text-muted-foreground">
-                  <p>Exemple: Un Porsche Taycan à 120 000€ sur 48 mois = 2 649€/mois</p>
-                  <p className="mt-2 text-xs">
-                    * Simulation non contractuelle. Un crédit vous engage et doit être remboursé.
-                    Vérifiez vos capacités de remboursement avant de vous engager.
-                  </p>
+              <div className="space-y-2">
+                <label htmlFor="initial-contribution" className="text-xl font-medium">
+                  Initial contribution
+                </label>
+                <div className="flex items-center">
+                  <span className="text-xl mr-2">€</span>
+                  <Input
+                    id="initial-contribution"
+                    type="number"
+                    value={initialContribution}
+                    onChange={(e) => setInitialContribution(Number(e.target.value))}
+                    className="text-xl p-6"
+                  />
                 </div>
               </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="duration" className="text-xl font-medium">
+                  Duration (in months)
+                </label>
+                <Input
+                  id="duration"
+                  type="number"
+                  value={duration}
+                  onChange={(e) => setDuration(Number(e.target.value))}
+                  className="text-xl p-6"
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="financing-type" className="text-xl font-medium">
+                  Financing type
+                </label>
+                <Select
+                  value={financingType}
+                  onValueChange={setFinancingType}
+                >
+                  <SelectTrigger className="text-xl p-6 h-auto">
+                    <SelectValue placeholder="Select financing type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="credit">Traditional credit</SelectItem>
+                    <SelectItem value="leasing">Leasing</SelectItem>
+                    <SelectItem value="balloon">Balloon payment</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <Button 
+                onClick={calculateMonthlyPayment}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-xl py-6 h-auto"
+              >
+                Calculate my monthly payments
+              </Button>
+              
+              {monthlyPayment !== null && (
+                <div className="mt-8 p-6 border rounded-lg bg-blue-50">
+                  <h3 className="text-xl font-semibold mb-2">Monthly payment estimate:</h3>
+                  <p className="text-3xl font-bold text-blue-600">€ {monthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    * This is an estimate. Final payment may vary based on credit approval and other factors.
+                  </p>
+                </div>
+              )}
             </div>
             
-            <div className="mt-8 text-center">
+            <div className="mt-12 text-center">
+              <Button variant="outline" className="mr-4">
+                Compare financing options
+              </Button>
               <Button>
-                Demander un devis personnalisé
+                Contact a financing advisor
               </Button>
             </div>
           </section>
