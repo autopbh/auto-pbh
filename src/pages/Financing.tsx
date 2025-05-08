@@ -11,12 +11,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const Financing = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const { toast } = useToast();
   const [vehiclePrice, setVehiclePrice] = useState<number>(12000);
   const [initialContribution, setInitialContribution] = useState<number>(2400);
   const [duration, setDuration] = useState<number>(36);
@@ -25,6 +27,20 @@ const Financing = () => {
 
   const calculateMonthlyPayment = () => {
     if (vehiclePrice <= 0 || initialContribution < 0 || duration <= 0) {
+      toast({
+        title: "Erreur de saisie",
+        description: "Veuillez vérifier les valeurs saisies.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (initialContribution >= vehiclePrice) {
+      toast({
+        title: "Erreur de saisie",
+        description: "L'apport initial ne peut pas être supérieur ou égal au prix du véhicule.",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -41,6 +57,11 @@ const Financing = () => {
     const payment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
     
     setMonthlyPayment(parseFloat(payment.toFixed(2)));
+    
+    toast({
+      title: "Calcul effectué",
+      description: "Votre mensualité a été calculée avec succès.",
+    });
   };
 
   return (
@@ -90,15 +111,15 @@ const Financing = () => {
           </section>
 
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h1 className="text-4xl font-bold mb-4 text-center">Simulate your financing</h1>
+            <h1 className="text-4xl font-bold mb-4 text-center">Simulez votre financement</h1>
             <p className="text-lg text-center text-muted-foreground mb-12">
-              Use our calculator to get an estimate of your monthly payments based on the type of financing chosen.
+              Utilisez notre calculateur pour obtenir une estimation de vos mensualités selon le type de financement choisi.
             </p>
             
             <div className="max-w-2xl mx-auto space-y-8">
               <div className="space-y-2">
                 <label htmlFor="vehicle-price" className="text-xl font-medium">
-                  Vehicle price
+                  Prix du véhicule
                 </label>
                 <div className="flex items-center">
                   <span className="text-xl mr-2">€</span>
@@ -114,7 +135,7 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="initial-contribution" className="text-xl font-medium">
-                  Initial contribution
+                  Apport initial
                 </label>
                 <div className="flex items-center">
                   <span className="text-xl mr-2">€</span>
@@ -130,7 +151,7 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="duration" className="text-xl font-medium">
-                  Duration (in months)
+                  Durée (en mois)
                 </label>
                 <Input
                   id="duration"
@@ -143,36 +164,36 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="financing-type" className="text-xl font-medium">
-                  Financing type
+                  Type de financement
                 </label>
                 <Select
                   value={financingType}
                   onValueChange={setFinancingType}
                 >
                   <SelectTrigger className="text-xl p-6 h-auto">
-                    <SelectValue placeholder="Select financing type" />
+                    <SelectValue placeholder="Sélectionnez un type de financement" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="credit">Traditional credit</SelectItem>
+                    <SelectItem value="credit">Crédit classique</SelectItem>
                     <SelectItem value="leasing">Leasing</SelectItem>
-                    <SelectItem value="balloon">Balloon payment</SelectItem>
+                    <SelectItem value="balloon">Paiement ballon</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               
               <Button 
                 onClick={calculateMonthlyPayment}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-xl py-6 h-auto"
+                className="w-full bg-autop-red hover:bg-autop-red/90 text-xl py-6 h-auto"
               >
-                Calculate my monthly payments
+                Calculer ma mensualité
               </Button>
               
               {monthlyPayment !== null && (
                 <div className="mt-8 p-6 border rounded-lg bg-blue-50">
-                  <h3 className="text-xl font-semibold mb-2">Monthly payment estimate:</h3>
-                  <p className="text-3xl font-bold text-blue-600">€ {monthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                  <h3 className="text-xl font-semibold mb-2">Estimation de votre mensualité :</h3>
+                  <p className="text-3xl font-bold text-autop-red">€ {monthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                   <p className="text-sm text-muted-foreground mt-4">
-                    * This is an estimate. Final payment may vary based on credit approval and other factors.
+                    * Cette estimation est donnée à titre indicatif. La mensualité finale peut varier en fonction de l'approbation du crédit et d'autres facteurs.
                   </p>
                 </div>
               )}
@@ -180,10 +201,10 @@ const Financing = () => {
             
             <div className="mt-12 text-center">
               <Button variant="outline" className="mr-4">
-                Compare financing options
+                Comparer les options de financement
               </Button>
-              <Button>
-                Contact a financing advisor
+              <Button className="bg-autop-red hover:bg-autop-red/90">
+                Contacter un conseiller
               </Button>
             </div>
           </section>
