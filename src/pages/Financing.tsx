@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Financing = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const Financing = () => {
   }, []);
 
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [vehiclePrice, setVehiclePrice] = useState<number>(12000);
   const [initialContribution, setInitialContribution] = useState<number>(2400);
   const [duration, setDuration] = useState<number>(36);
@@ -28,8 +30,8 @@ const Financing = () => {
   const calculateMonthlyPayment = () => {
     if (vehiclePrice <= 0 || initialContribution < 0 || duration <= 0) {
       toast({
-        title: "Erreur de saisie",
-        description: "Veuillez vérifier les valeurs saisies.",
+        title: t("financing.error"),
+        description: t("financing.errorValues"),
         variant: "destructive",
       });
       return;
@@ -37,8 +39,8 @@ const Financing = () => {
 
     if (initialContribution >= vehiclePrice) {
       toast({
-        title: "Erreur de saisie",
-        description: "L'apport initial ne peut pas être supérieur ou égal au prix du véhicule.",
+        title: t("financing.error"),
+        description: t("financing.errorContribution"),
         variant: "destructive",
       });
       return;
@@ -59,8 +61,8 @@ const Financing = () => {
     setMonthlyPayment(parseFloat(payment.toFixed(2)));
     
     toast({
-      title: "Calcul effectué",
-      description: "Votre mensualité a été calculée avec succès.",
+      title: t("financing.calculationDone"),
+      description: t("financing.calculationSuccess"),
     });
   };
 
@@ -68,13 +70,12 @@ const Financing = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Solutions de Financement</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("financing.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Financement Sur-Mesure</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("financing.customFinancing")}</h2>
             <p className="text-lg mb-6">
-              AUTO PBH vous propose des solutions de financement adaptées à votre situation financière 
-              avec nos banques partenaires d'exception.
+              {t("financing.description")}
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -82,9 +83,9 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <CreditCard className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">Taux Privilégiés</h3>
+                <h3 className="text-xl font-medium mb-2">{t("financing.privilegedRates")}</h3>
                 <p className="text-muted-foreground">
-                  Bénéficiez de taux négociés dès 2.9% avec nos établissements bancaires partenaires.
+                  {t("financing.ratesDescription")}
                 </p>
               </div>
               
@@ -92,9 +93,9 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <Calculator className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">Simulation Instantanée</h3>
+                <h3 className="text-xl font-medium mb-2">{t("financing.instantSimulation")}</h3>
                 <p className="text-muted-foreground">
-                  Obtenez une simulation personnalisée en ligne et recevez un accord de principe sous 2 heures.
+                  {t("financing.simulationDescription")}
                 </p>
               </div>
               
@@ -102,24 +103,24 @@ const Financing = () => {
                 <div className="bg-autop-red/10 p-4 rounded-full mb-4">
                   <CheckCircle className="h-8 w-8 text-autop-red" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">Options Flexibles</h3>
+                <h3 className="text-xl font-medium mb-2">{t("financing.flexibleOptions")}</h3>
                 <p className="text-muted-foreground">
-                  Choisissez entre crédit classique, leasing longue durée ou paiement différé selon vos préférences.
+                  {t("financing.optionsDescription")}
                 </p>
               </div>
             </div>
           </section>
 
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h1 className="text-4xl font-bold mb-4 text-center">Simulez votre financement</h1>
+            <h1 className="text-4xl font-bold mb-4 text-center">{t("financing.simulateFinancing")}</h1>
             <p className="text-lg text-center text-muted-foreground mb-12">
-              Utilisez notre calculateur pour obtenir une estimation de vos mensualités selon le type de financement choisi.
+              {t("financing.useCalculator")}
             </p>
             
             <div className="max-w-2xl mx-auto space-y-8">
               <div className="space-y-2">
                 <label htmlFor="vehicle-price" className="text-xl font-medium">
-                  Prix du véhicule
+                  {t("financing.vehiclePrice")}
                 </label>
                 <div className="flex items-center">
                   <span className="text-xl mr-2">€</span>
@@ -135,7 +136,7 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="initial-contribution" className="text-xl font-medium">
-                  Apport initial
+                  {t("financing.initialContribution")}
                 </label>
                 <div className="flex items-center">
                   <span className="text-xl mr-2">€</span>
@@ -151,7 +152,7 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="duration" className="text-xl font-medium">
-                  Durée (en mois)
+                  {t("financing.duration")}
                 </label>
                 <Input
                   id="duration"
@@ -164,19 +165,19 @@ const Financing = () => {
               
               <div className="space-y-2">
                 <label htmlFor="financing-type" className="text-xl font-medium">
-                  Type de financement
+                  {t("financing.financingType")}
                 </label>
                 <Select
                   value={financingType}
                   onValueChange={setFinancingType}
                 >
                   <SelectTrigger className="text-xl p-6 h-auto">
-                    <SelectValue placeholder="Sélectionnez un type de financement" />
+                    <SelectValue placeholder={t("financing.selectType")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="credit">Crédit classique</SelectItem>
-                    <SelectItem value="leasing">Leasing</SelectItem>
-                    <SelectItem value="balloon">Paiement ballon</SelectItem>
+                    <SelectItem value="credit">{t("financing.standardCredit")}</SelectItem>
+                    <SelectItem value="leasing">{t("financing.leasing")}</SelectItem>
+                    <SelectItem value="balloon">{t("financing.balloonPayment")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -185,15 +186,15 @@ const Financing = () => {
                 onClick={calculateMonthlyPayment}
                 className="w-full bg-autop-red hover:bg-autop-red/90 text-xl py-6 h-auto"
               >
-                Calculer ma mensualité
+                {t("financing.calculateMonthlyPayment")}
               </Button>
               
               {monthlyPayment !== null && (
                 <div className="mt-8 p-6 border rounded-lg bg-blue-50">
-                  <h3 className="text-xl font-semibold mb-2">Estimation de votre mensualité :</h3>
+                  <h3 className="text-xl font-semibold mb-2">{t("financing.estimatedMonthlyPayment")}</h3>
                   <p className="text-3xl font-bold text-autop-red">€ {monthlyPayment.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                   <p className="text-sm text-muted-foreground mt-4">
-                    * Cette estimation est donnée à titre indicatif. La mensualité finale peut varier en fonction de l'approbation du crédit et d'autres facteurs.
+                    {t("financing.disclaimer")}
                   </p>
                 </div>
               )}
@@ -201,10 +202,10 @@ const Financing = () => {
             
             <div className="mt-12 text-center">
               <Button variant="outline" className="mr-4">
-                Comparer les options de financement
+                {t("financing.compareOptions")}
               </Button>
               <Button className="bg-autop-red hover:bg-autop-red/90">
-                Contacter un conseiller
+                {t("financing.contactAdvisor")}
               </Button>
             </div>
           </section>
