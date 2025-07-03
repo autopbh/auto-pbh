@@ -472,4 +472,13 @@ export const translations: TranslationsType = {
     "services.assistance.premium.advisors": "Dedicated Advisors",
     "services.assistance.premium.advisors.description": "Each client benefits from a personal advisor, expert in premium vehicles and trained to meet your specific requirements.",
     "services.assistance.premium.multilingual": "Multilingual Service",
-    "services.assistance.premium.multilingual.description": "Our advisors are fluent in French, English, German, Spanish, and Portuguese to serve
+    "services.assistance.premium.multilingual.description": "Our advisors are fluent in French, English, German, Spanish, and Portuguese to serve our international clientele."
+  },
+  
+  // Placeholders for other languages
+  pt: {},
+  es: {},
+  de: {},
+  it: {},
+  nl: {}
+};
