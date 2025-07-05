@@ -472,7 +472,42 @@ export const translations: TranslationsType = {
     "services.assistance.premium.advisors": "Dedicated Advisors",
     "services.assistance.premium.advisors.description": "Each client benefits from a personal advisor, expert in premium vehicles and trained to meet your specific requirements.",
     "services.assistance.premium.multilingual": "Multilingual Service",
-    "services.assistance.premium.multilingual.description": "Our advisors are fluent in French, English, German, Spanish, and Portuguese to serve our international clientele."
+    "services.assistance.premium.multilingual.description": "Our advisors are fluent in French, English, German, Spanish, and Portuguese to serve our international clientele.",
+
+    // Footer
+    "footer.description": "AUTO PBH - Automotive excellence at your service. Discover our exclusive selection of premium vehicles and enjoy a personalized buying experience.",
+    "footer.address": "Autolettestraat 10,",
+    "footer.city": "3063 NP Rotterdam,",
+    "footer.country": "Netherlands",
+    "footer.mainServices": "Main Services",
+    "footer.collection": "Our Premium Collection",
+    "footer.services": "Exceptional Services",
+    "footer.financing": "Personalized Financing Solutions",
+    "footer.faq": "Frequently Asked Questions",
+    "footer.contactPrivilege": "Contact Us",
+    "footer.customerService": "Premium Customer Service",
+    "footer.tracking": "Personalized Delivery Tracking",
+    "footer.warranty": "Premium Warranties",
+    "footer.returns": "Satisfaction Policy",
+    "footer.terms": "Terms of Service",
+    "footer.privacy": "Privacy",
+    "footer.cookies": "Cookie Management",
+    "footer.stayInformed": "Stay Informed",
+    "footer.newsletter": "Subscribe to our exclusive newsletter to receive first access to our latest acquisitions and privileged offers.",
+    "footer.emailPlaceholder": "Your email",
+    "footer.joinClub": "Join AUTO PBH Club",
+    "footer.copyright": "© {year} AUTO PBH. Automotive Excellence.",
+    "footer.legal": "Legal Notice",
+    "footer.dataProtection": "Data Protection",
+
+    // Tracking page
+    "tracking.title": "Delivery Tracking",
+    "tracking.service.description": "Track in real time the progress of the preparation and delivery of your exceptional vehicle. Our \"Golden Key Delivery\" service guarantees you a premium experience from start to finish.",
+    "tracking.orderNumber.title": "Where to find your order number?",
+    "tracking.orderNumber.description": "Your order number starts with \"PBH-\" and can be found in:",
+    "tracking.orderNumber.location1": "The confirmation email received at the time of purchase",
+    "tracking.orderNumber.location2": "The sales document signed with your advisor",
+    "tracking.orderNumber.location3": "Your customer area (\"My orders\" section)"
   },
   
   // Placeholders for other languages
