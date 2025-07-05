@@ -101,7 +101,7 @@ const Testimonials = () => {
                 className={`w-2 h-2 rounded-full transition-all ${
                   index === activeIndex ? "bg-autop-red w-6" : "bg-gray-300"
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={t("nav.goToTestimonial").replace("{index}", (index + 1).toString())}
               />
             ))}
             <Button

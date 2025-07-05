@@ -12,7 +12,7 @@ const CallToAction = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60 z-10" />
         <img
           src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2566&auto=format&fit=crop"
-          alt="Luxury car showroom"
+          alt={t("home.cta.alt")}
           className="w-full h-full object-cover"
         />
       </div>

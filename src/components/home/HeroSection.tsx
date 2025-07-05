@@ -95,7 +95,7 @@ const HeroSection = () => {
                   ? "bg-autop-red w-8" 
                   : "bg-white/50 hover:bg-white/80"
               }`}
-              aria-label={`View ${vehicles[index].brand} ${t(vehicles[index].model)}`}
+              aria-label={t("nav.viewVehicle").replace("{brand}", vehicles[index].brand).replace("{model}", t(vehicles[index].model))}
             />
           ))}
         </div>

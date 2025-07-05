@@ -46,6 +46,13 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Notre équipe d'experts est à votre disposition pour vous accompagner dans la sélection du véhicule qui correspondra parfaitement à vos exigences.",
     "home.cta.explore": "Explorer Notre Collection",
     "home.cta.contact": "Contact Privilégié",
+    "home.cta.alt": "Showroom automobile de luxe",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Slide précédent",
+    "nav.nextSlide": "Slide suivant", 
+    "nav.goToTestimonial": "Aller au témoignage {index}",
+    "nav.viewVehicle": "Voir {brand} {model}",
     
     // Shop and Vehicle
     "shop.transmission": "Transmission",
@@ -311,6 +318,13 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Our team of experts is at your disposal to assist you in selecting the vehicle that will perfectly match your requirements.",
     "home.cta.explore": "Explore Our Collection",
     "home.cta.contact": "Contact Us",
+    "home.cta.alt": "Luxury car showroom",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Previous slide",
+    "nav.nextSlide": "Next slide", 
+    "nav.goToTestimonial": "Go to testimonial {index}",
+    "nav.viewVehicle": "View {brand} {model}",
     
     // Shop and Vehicle
     "shop.transmission": "Transmission",
@@ -549,6 +563,16 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Descubra a nossa coleção exclusiva e encontre o veículo dos seus sonhos.",
     "home.cta.explore": "Explorar Coleção",
     "home.cta.contact": "Contactar-nos",
+    "home.cta.alt": "Showroom automóvel de luxo",
+
+    // Testimonials
+    "home.testimonials.title": "O que dizem os nossos clientes",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Slide anterior",
+    "nav.nextSlide": "Próximo slide", 
+    "nav.goToTestimonial": "Ir para testemunho {index}",
+    "nav.viewVehicle": "Ver {brand} {model}",
 
     // Footer
     "footer.description": "AUTO PBH - Excelência automóvel ao seu serviço. Descubra a nossa seleção exclusiva de veículos premium e desfrute de uma experiência de compra personalizada.",
@@ -616,6 +640,16 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Descubre nuestra colección exclusiva y encuentra el vehículo de tus sueños.",
     "home.cta.explore": "Explorar Colección",
     "home.cta.contact": "Contáctanos",
+    "home.cta.alt": "Showroom de coches de lujo",
+
+    // Testimonials
+    "home.testimonials.title": "Lo que dicen nuestros clientes",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Slide anterior",
+    "nav.nextSlide": "Siguiente slide", 
+    "nav.goToTestimonial": "Ir al testimonio {index}",
+    "nav.viewVehicle": "Ver {brand} {model}",
 
     // Footer
     "footer.description": "AUTO PBH - Excelencia automovilística a su servicio. Descubra nuestra selección exclusiva de vehículos premium y disfrute de una experiencia de compra personalizada.",
@@ -683,6 +717,16 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Entdecken Sie unsere exklusive Kollektion und finden Sie Ihr Traumfahrzeug.",
     "home.cta.explore": "Kollektion Erkunden",
     "home.cta.contact": "Kontaktieren Sie uns",
+    "home.cta.alt": "Luxusauto-Showroom",
+
+    // Testimonials
+    "home.testimonials.title": "Was unsere Kunden sagen",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Vorherige Folie",
+    "nav.nextSlide": "Nächste Folie", 
+    "nav.goToTestimonial": "Zu Testimonial {index} gehen",
+    "nav.viewVehicle": "{brand} {model} ansehen",
 
     // Footer
     "footer.description": "AUTO PBH - Automobilexzellenz zu Ihren Diensten. Entdecken Sie unsere exklusive Auswahl an Premium-Fahrzeugen und genießen Sie ein personalisiertes Kauferlebnis.",
@@ -750,6 +794,16 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Scopri la nostra collezione esclusiva e trova il veicolo dei tuoi sogni.",
     "home.cta.explore": "Esplora Collezione",
     "home.cta.contact": "Contattaci",
+    "home.cta.alt": "Showroom auto di lusso",
+
+    // Testimonials
+    "home.testimonials.title": "Cosa dicono i nostri clienti",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Slide precedente",
+    "nav.nextSlide": "Prossimo slide", 
+    "nav.goToTestimonial": "Vai alla testimonianza {index}",
+    "nav.viewVehicle": "Vedi {brand} {model}",
 
     // Footer
     "footer.description": "AUTO PBH - Eccellenza automobilistica al vostro servizio. Scoprite la nostra selezione esclusiva di veicoli premium e godetevi un'esperienza di acquisto personalizzata.",
@@ -817,6 +871,16 @@ export const translations: TranslationsType = {
     "home.cta.subtitle": "Ontdek onze exclusieve collectie en vind uw droomauto.",
     "home.cta.explore": "Collectie Verkennen",
     "home.cta.contact": "Contact Opnemen",
+    "home.cta.alt": "Luxe auto showroom",
+
+    // Testimonials
+    "home.testimonials.title": "Wat onze klanten zeggen",
+
+    // Navigation and accessibility
+    "nav.prevSlide": "Vorige slide",
+    "nav.nextSlide": "Volgende slide", 
+    "nav.goToTestimonial": "Ga naar getuigenis {index}",
+    "nav.viewVehicle": "{brand} {model} bekijken",
 
     // Footer
     "footer.description": "AUTO PBH - Automobielexcellentie tot uw dienst. Ontdek onze exclusieve selectie premium voertuigen en geniet van een gepersonaliseerde aankoopervaring.",

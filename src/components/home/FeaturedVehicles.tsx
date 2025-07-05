@@ -41,7 +41,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={prevSlide}
               className="rounded-full"
-              aria-label="Slide précédent"
+              aria-label={t("nav.prevSlide")}
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -50,7 +50,7 @@ const FeaturedVehicles = () => {
               size="icon"
               onClick={nextSlide}
               className="rounded-full"
-              aria-label="Prochain slide"
+              aria-label={t("nav.nextSlide")}
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
@@ -90,7 +90,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={prevSlide}
             className="rounded-full"
-            aria-label="Slide précédent"
+            aria-label={t("nav.prevSlide")}
           >
             <ChevronLeft className="h-5 w-5" />
           </Button>
@@ -99,7 +99,7 @@ const FeaturedVehicles = () => {
             size="icon"
             onClick={nextSlide}
             className="rounded-full"
-            aria-label="Prochain slide"
+            aria-label={t("nav.nextSlide")}
           >
             <ChevronRight className="h-5 w-5" />
           </Button>
