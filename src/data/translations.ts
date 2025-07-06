@@ -74,6 +74,7 @@ export const translations: TranslationsType = {
 
     // Common
     "common.loading": "Chargement",
+    "common.premium": "Premium",
     
     // Vehicle detail
     "vehicle.notFound": "Véhicule non trouvé",
@@ -349,6 +350,7 @@ export const translations: TranslationsType = {
 
     // Common
     "common.loading": "Loading",
+    "common.premium": "Premium",
     
     // Vehicle detail
     "vehicle.notFound": "Vehicle not found",
@@ -559,6 +561,40 @@ export const translations: TranslationsType = {
     "home.featured.subtitle": "Descubra a nossa seleção exclusiva de veículos premium",
     "home.featured.viewAll": "Ver Toda a Coleção",
 
+    // Catalog
+    "catalog.title": "Catálogo",
+    "catalog.description": "Explore a nossa seleção de veículos excecionais: BMW, Mercedes-Benz, Audi e Porsche. Filtre por marca, preço ou ano para encontrar o carro dos seus sonhos.",
+    "catalog.premiumCollection": "A Nossa Coleção Premium",
+    "catalog.selectionDescription": "Descubra uma seleção rigorosa dos mais belos modelos do mercado premium. Cada veículo da nossa coleção é:",
+    "catalog.inspected": "Minuciosamente inspecionado pelos nossos especialistas",
+    "catalog.history": "Acompanhado de um histórico completo",
+    "catalog.certified": "Certificado pela sua qualidade excecional",
+    "catalog.warranty": "Disponível com garantia alargada",
+    "catalog.advancedSearch": "Pesquisa Avançada",
+    "catalog.advancedSearchDesc": "Use os nossos filtros detalhados para encontrar exatamente o veículo que lhe convém.",
+    "catalog.customFilters": "Filtros Personalizados",
+    "catalog.customFiltersDesc": "Refine a sua pesquisa por marca, modelo, ano, quilometragem e muito mais.",
+    "catalog.viewDetails": "Ver detalhes",
+
+    // Shop and Vehicle
+    "shop.transmission": "Transmissão",
+    "shop.power": "Potência",
+    "shop.hp": "cv",
+    "shop.automatic": "Automática",
+    "shop.manual": "Manual",
+    "shop.addToCart": "Adicionar ao carrinho",
+    "shop.discoverDetails": "Descobrir Detalhes",
+    "shop.reserved": "Reservado",
+    "shop.sold": "Vendido",
+    "shop.alreadyInCart": "Veículo já no carrinho",
+    "shop.alreadyInCartDesc": "Este veículo já está no seu carrinho.",
+    "shop.vehicleAdded": "Veículo adicionado",
+    "shop.vehicleAddedDesc": "{vehicle} foi adicionado ao seu carrinho.",
+
+    // Common
+    "common.loading": "A carregar",
+    "common.premium": "Premium",
+
     "home.advantages.title": "Por que Escolher AUTO PBH?",
     "home.advantages.subtitle": "Uma experiência de compra premium com serviços exclusivos adaptados às suas necessidades.",
     "home.advantages.selection.title": "Seleção Rigorosa",
@@ -638,6 +674,40 @@ export const translations: TranslationsType = {
     "home.featured.title": "Vehículos Destacados",
     "home.featured.subtitle": "Descubre nuestra selección exclusiva de vehículos premium",
     "home.featured.viewAll": "Ver Toda la Colección",
+
+    // Catalog
+    "catalog.title": "Catálogo",
+    "catalog.description": "Explore nuestra selección de vehículos excepcionales: BMW, Mercedes-Benz, Audi y Porsche. Filtre por marca, precio o año para encontrar el coche de sus sueños.",
+    "catalog.premiumCollection": "Nuestra Colección Premium",
+    "catalog.selectionDescription": "Descubra una selección rigurosa de los más bellos modelos del mercado premium. Cada vehículo de nuestra colección es:",
+    "catalog.inspected": "Minuciosamente inspeccionado por nuestros especialistas",
+    "catalog.history": "Acompañado de un historial completo",
+    "catalog.certified": "Certificado por su calidad excepcional",
+    "catalog.warranty": "Disponible con garantía extendida",
+    "catalog.advancedSearch": "Búsqueda Avanzada",
+    "catalog.advancedSearchDesc": "Use nuestros filtros detallados para encontrar exactamente el vehículo que le conviene.",
+    "catalog.customFilters": "Filtros Personalizados",
+    "catalog.customFiltersDesc": "Refine su búsqueda por marca, modelo, año, kilometraje y mucho más.",
+    "catalog.viewDetails": "Ver detalles",
+
+    // Shop and Vehicle
+    "shop.transmission": "Transmisión",
+    "shop.power": "Potencia",
+    "shop.hp": "cv",
+    "shop.automatic": "Automática",
+    "shop.manual": "Manual",
+    "shop.addToCart": "Añadir al carrito",
+    "shop.discoverDetails": "Descubrir Detalles",
+    "shop.reserved": "Reservado",
+    "shop.sold": "Vendido",
+    "shop.alreadyInCart": "Vehículo ya en el carrito",
+    "shop.alreadyInCartDesc": "Este vehículo ya está en su carrito.",
+    "shop.vehicleAdded": "Vehículo añadido",
+    "shop.vehicleAddedDesc": "{vehicle} ha sido añadido a su carrito.",
+
+    // Common
+    "common.loading": "Cargando",
+    "common.premium": "Premium",
 
     "home.advantages.title": "¿Por qué Elegir AUTO PBH?",
     "home.advantages.subtitle": "Una experiencia de compra premium con servicios exclusivos adaptados a sus necesidades.",
@@ -719,6 +789,40 @@ export const translations: TranslationsType = {
     "home.featured.subtitle": "Entdecken Sie unsere exklusive Auswahl an Premium-Fahrzeugen",
     "home.featured.viewAll": "Gesamte Kollektion Ansehen",
 
+    // Catalog
+    "catalog.title": "Katalog",
+    "catalog.description": "Erkunden Sie unsere Auswahl an außergewöhnlichen Fahrzeugen: BMW, Mercedes-Benz, Audi und Porsche. Filtern Sie nach Marke, Preis oder Jahr, um das Auto Ihrer Träume zu finden.",
+    "catalog.premiumCollection": "Unsere Premium-Kollektion",
+    "catalog.selectionDescription": "Entdecken Sie eine rigorose Auswahl der schönsten Modelle des Premium-Marktes. Jedes Fahrzeug unserer Kollektion ist:",
+    "catalog.inspected": "Sorgfältig von unseren Experten inspiziert",
+    "catalog.history": "Mit einer vollständigen Historie begleitet",
+    "catalog.certified": "Für seine außergewöhnliche Qualität zertifiziert",
+    "catalog.warranty": "Mit erweiterter Garantie verfügbar",
+    "catalog.advancedSearch": "Erweiterte Suche",
+    "catalog.advancedSearchDesc": "Verwenden Sie unsere detaillierten Filter, um genau das Fahrzeug zu finden, das zu Ihnen passt.",
+    "catalog.customFilters": "Benutzerdefinierte Filter",
+    "catalog.customFiltersDesc": "Verfeinern Sie Ihre Suche nach Marke, Modell, Jahr, Kilometerstand und vielem mehr.",
+    "catalog.viewDetails": "Details anzeigen",
+
+    // Shop and Vehicle
+    "shop.transmission": "Getriebe",
+    "shop.power": "Leistung",
+    "shop.hp": "PS",
+    "shop.automatic": "Automatik",
+    "shop.manual": "Manuell",
+    "shop.addToCart": "In den Warenkorb",
+    "shop.discoverDetails": "Details entdecken",
+    "shop.reserved": "Reserviert",
+    "shop.sold": "Verkauft",
+    "shop.alreadyInCart": "Fahrzeug bereits im Warenkorb",
+    "shop.alreadyInCartDesc": "Dieses Fahrzeug ist bereits in Ihrem Warenkorb.",
+    "shop.vehicleAdded": "Fahrzeug hinzugefügt",
+    "shop.vehicleAddedDesc": "{vehicle} wurde zu Ihrem Warenkorb hinzugefügt.",
+
+    // Common
+    "common.loading": "Wird geladen",
+    "common.premium": "Premium",
+
     "home.advantages.title": "Warum AUTO PBH Wählen?",
     "home.advantages.subtitle": "Ein Premium-Kauferlebnis mit exklusiven Services, angepasst an Ihre Bedürfnisse.",
     "home.advantages.selection.title": "Strenge Auswahl",
@@ -799,6 +903,40 @@ export const translations: TranslationsType = {
     "home.featured.subtitle": "Scopri la nostra selezione esclusiva di veicoli premium",
     "home.featured.viewAll": "Vedi Tutta la Collezione",
 
+    // Catalog
+    "catalog.title": "Catalogo",
+    "catalog.description": "Esplora la nostra selezione di veicoli eccezionali: BMW, Mercedes-Benz, Audi e Porsche. Filtra per marca, prezzo o anno per trovare l'auto dei tuoi sogni.",
+    "catalog.premiumCollection": "La Nostra Collezione Premium",
+    "catalog.selectionDescription": "Scopri una selezione rigorosa dei più bei modelli del mercato premium. Ogni veicolo della nostra collezione è:",
+    "catalog.inspected": "Minuziosamente ispezionato dai nostri esperti",
+    "catalog.history": "Accompagnato da una cronologia completa",
+    "catalog.certified": "Certificato per la sua qualità eccezionale",
+    "catalog.warranty": "Disponibile con garanzia estesa",
+    "catalog.advancedSearch": "Ricerca Avanzata",
+    "catalog.advancedSearchDesc": "Usa i nostri filtri dettagliati per trovare esattamente il veicolo che fa per te.",
+    "catalog.customFilters": "Filtri Personalizzati",
+    "catalog.customFiltersDesc": "Affina la tua ricerca per marca, modello, anno, chilometraggio e molto altro.",
+    "catalog.viewDetails": "Visualizza dettagli",
+
+    // Shop and Vehicle
+    "shop.transmission": "Trasmissione",
+    "shop.power": "Potenza",
+    "shop.hp": "cv",
+    "shop.automatic": "Automatica",
+    "shop.manual": "Manuale",
+    "shop.addToCart": "Aggiungi al carrello",
+    "shop.discoverDetails": "Scopri Dettagli",
+    "shop.reserved": "Riservato",
+    "shop.sold": "Venduto",
+    "shop.alreadyInCart": "Veicolo già nel carrello",
+    "shop.alreadyInCartDesc": "Questo veicolo è già nel tuo carrello.",
+    "shop.vehicleAdded": "Veicolo aggiunto",
+    "shop.vehicleAddedDesc": "{vehicle} è stato aggiunto al tuo carrello.",
+
+    // Common
+    "common.loading": "Caricamento",
+    "common.premium": "Premium",
+
     "home.advantages.title": "Perché Scegliere AUTO PBH?",
     "home.advantages.subtitle": "Un'esperienza di acquisto premium con servizi esclusivi adattati alle tue esigenze.",
     "home.advantages.selection.title": "Selezione Rigorosa",
@@ -878,6 +1016,40 @@ export const translations: TranslationsType = {
     "home.featured.title": "Uitgelichte Voertuigen",
     "home.featured.subtitle": "Ontdek onze exclusieve selectie premium voertuigen",
     "home.featured.viewAll": "Hele Collectie Bekijken",
+
+    // Catalog
+    "catalog.title": "Catalogus",
+    "catalog.description": "Verken onze selectie uitzonderlijke voertuigen: BMW, Mercedes-Benz, Audi en Porsche. Filter op merk, prijs of jaar om de auto van uw dromen te vinden.",
+    "catalog.premiumCollection": "Onze Premium Collectie",
+    "catalog.selectionDescription": "Ontdek een rigoureuze selectie van de mooiste modellen van de premium markt. Elk voertuig in onze collectie is:",
+    "catalog.inspected": "Minutieus geïnspecteerd door onze specialisten",
+    "catalog.history": "Vergezeld van een volledige geschiedenis",
+    "catalog.certified": "Gecertificeerd voor zijn uitzonderlijke kwaliteit",
+    "catalog.warranty": "Beschikbaar met uitgebreide garantie",
+    "catalog.advancedSearch": "Geavanceerd Zoeken",
+    "catalog.advancedSearchDesc": "Gebruik onze gedetailleerde filters om precies het voertuig te vinden dat bij u past.",
+    "catalog.customFilters": "Aangepaste Filters",
+    "catalog.customFiltersDesc": "Verfijn uw zoekopdracht op merk, model, jaar, kilometerstand en veel meer.",
+    "catalog.viewDetails": "Details bekijken",
+
+    // Shop and Vehicle
+    "shop.transmission": "Transmissie",
+    "shop.power": "Vermogen", 
+    "shop.hp": "pk",
+    "shop.automatic": "Automatisch",
+    "shop.manual": "Handmatig",
+    "shop.addToCart": "Toevoegen aan winkelwagen",
+    "shop.discoverDetails": "Details Ontdekken",
+    "shop.reserved": "Gereserveerd",
+    "shop.sold": "Verkocht",
+    "shop.alreadyInCart": "Voertuig al in winkelwagen",
+    "shop.alreadyInCartDesc": "Dit voertuig staat al in uw winkelwagen.",
+    "shop.vehicleAdded": "Voertuig toegevoegd",
+    "shop.vehicleAddedDesc": "{vehicle} is toegevoegd aan uw winkelwagen.",
+
+    // Common
+    "common.loading": "Laden",
+    "common.premium": "Premium",
 
     "home.advantages.title": "Waarom AUTO PBH Kiezen?",
     "home.advantages.subtitle": "Een premium aankoopervaring met exclusieve diensten aangepast aan uw behoeften.",

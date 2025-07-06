@@ -106,7 +106,7 @@ const Catalog = () => {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{vehicle.name}</h3>
-                <p className="text-muted-foreground mb-2">{vehicle.year} · Premium</p>
+                <p className="text-muted-foreground mb-2">{vehicle.year} · {t("common.premium")}</p>
                 <p className="text-2xl font-bold text-autop-red mb-4">€{vehicle.price.toLocaleString()}</p>
                 <div className="flex justify-between">
                   <Button asChild variant="outline">
