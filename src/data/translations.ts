@@ -10,6 +10,9 @@ export type TranslationsType = {
 
 export const translations: TranslationsType = {
   fr: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.home": "Accueil",
     "nav.catalog": "Collection Premium",
@@ -282,6 +285,9 @@ export const translations: TranslationsType = {
     "tracking.orderNumber.location3": "Votre espace client (section \"Mes commandes\")",
   },
   en: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.home": "Home",
     "nav.catalog": "Premium Collection",
@@ -526,6 +532,9 @@ export const translations: TranslationsType = {
   
   // Portuguese translations
   pt: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.catalog": "Catálogo",
     "nav.services": "Serviços",
@@ -603,6 +612,9 @@ export const translations: TranslationsType = {
 
   // Spanish translations
   es: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.catalog": "Catálogo",
     "nav.services": "Servicios",
@@ -680,6 +692,9 @@ export const translations: TranslationsType = {
 
   // German translations
   de: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.catalog": "Katalog",
     "nav.services": "Dienstleistungen",
@@ -757,6 +772,9 @@ export const translations: TranslationsType = {
 
   // Italian translations
   it: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.catalog": "Catalogo",
     "nav.services": "Servizi",
@@ -834,6 +852,9 @@ export const translations: TranslationsType = {
 
   // Dutch translations
   nl: {
+    // Brand
+    "brand.name": "AUTO PBH",
+    
     // Navigation
     "nav.catalog": "Catalogus",
     "nav.services": "Diensten",

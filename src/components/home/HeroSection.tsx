@@ -11,21 +11,21 @@ const HeroSection = () => {
   const vehicles = [
     {
       id: "v1",
-      brand: "AUTOP",
+      brand: t("brand.name"),
       model: "home.hero.slide1.model",
       image: "/lovable-uploads/440bb6ab-fc1f-4420-b877-3e4a7ed2e682.png",
       description: "home.hero.slide1.description"
     },
     {
       id: "v2",
-      brand: "AUTOP",
+      brand: t("brand.name"),
       model: "home.hero.slide2.model",
       image: "/lovable-uploads/95d5931e-180d-4916-a890-ea58eaac5925.png",
       description: "home.hero.slide2.description"
     },
     {
       id: "v3",
-      brand: "AUTOP",
+      brand: t("brand.name"),
       model: "home.hero.slide3.model",
       image: "/lovable-uploads/bb8c411a-fcc6-478f-ad1d-165259777b4b.png",
       description: "home.hero.slide3.description"
