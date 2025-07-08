@@ -123,6 +123,16 @@ const Header = () => {
             {cartOpen && <CartDropdown />}
           </div>
           
+          <Link to="/account">
+            <Button
+              variant="secondary"
+              size="icon"
+              className="hidden md:flex bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border border-white/30 dark:border-black/30 shadow-sm"
+              aria-label={t("nav.account")}
+            >
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
           
           {/* Mobile Menu */}
           <Sheet>
