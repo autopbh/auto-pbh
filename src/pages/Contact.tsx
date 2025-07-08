@@ -6,11 +6,13 @@ import { PhoneCall, Mail, MapPin, Clock, Calendar, MessageSquare, Send, Check } 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formspreeId, setFormspreeId] = useState(""); // Placeholder for Formspree ID
+  const [formspreeId, setFormspreeId] = useState("");
   
   useEffect(() => {
     // Scroll to top on page load
@@ -37,14 +39,14 @@ const Contact = () => {
       if (response.ok) {
         setIsSubmitted(true);
         form.reset();
-        toast.success("Message envoyé avec succès!");
+        toast.success(t("contact.successMessage"));
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         throw new Error("Problème lors de l'envoi du formulaire");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
+      toast.error(t("contact.errorMessage"));
     } finally {
       setIsSubmitting(false);
     }
@@ -55,10 +57,9 @@ const Contact = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Contact Privilégié</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">{t("contact.title")}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions
-              et vous accompagner dans votre projet automobile.
+              {t("contact.subtitle")}
             </p>
           </div>
 
@@ -67,7 +68,7 @@ const Contact = () => {
               <Card className="h-full bg-white/70">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-semibold mb-6 text-autop-red border-b border-autop-red/20 pb-2">
-                    Contactez-Nous
+                    {t("contact.contactUs")}
                   </h2>
                   
                   <div className="space-y-6">
@@ -76,11 +77,11 @@ const Contact = () => {
                         <MapPin className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">Adresse</h3>
+                        <h3 className="font-semibold text-lg">{t("contact.address")}</h3>
                         <p className="text-muted-foreground">AUTO PBH</p>
                         <p className="text-muted-foreground">Autolettestraat 10</p>
                         <p className="text-muted-foreground">3063 NP Rotterdam</p>
-                        <p className="text-muted-foreground">Pays-Bas</p>
+                        <p className="text-muted-foreground">{t("contact.netherlands")}</p>
                       </div>
                     </div>
                     
@@ -89,10 +90,10 @@ const Contact = () => {
                         <PhoneCall className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">Téléphone</h3>
+                        <h3 className="font-semibold text-lg">{t("contact.phone")}</h3>
                         <p className="text-lg text-autop-red font-medium">+351 961 196 405</p>
                         <p className="text-sm text-muted-foreground">
-                          Service client disponible 7j/7 de 8h à 22h
+                          {t("contact.phoneDescription")}
                         </p>
                       </div>
                     </div>
@@ -102,10 +103,10 @@ const Contact = () => {
                         <Mail className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">Email</h3>
+                        <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
                         <p className="text-lg">pbhauto@gmail.com</p>
                         <p className="text-sm text-muted-foreground">
-                          Réponse garantie sous 2 heures durant nos horaires d'ouverture
+                          {t("contact.emailDescription")}
                         </p>
                       </div>
                     </div>
@@ -115,14 +116,14 @@ const Contact = () => {
                         <Clock className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg">Horaires d'Ouverture</h3>
+                        <h3 className="font-semibold text-lg">{t("contact.openingHours")}</h3>
                         <div className="grid grid-cols-2 gap-2 text-muted-foreground">
-                          <p>Lundi - Vendredi:</p>
-                          <p>9h - 19h</p>
-                          <p>Samedi:</p>
-                          <p>10h - 18h</p>
-                          <p>Dimanche:</p>
-                          <p>Sur rendez-vous</p>
+                          <p>{t("contact.mondayFriday")}</p>
+                          <p>{t("contact.mondayFridayHours")}</p>
+                          <p>{t("contact.saturday")}</p>
+                          <p>{t("contact.saturdayHours")}</p>
+                          <p>{t("contact.sunday")}</p>
+                          <p>{t("contact.sundayHours")}</p>
                         </div>
                       </div>
                     </div>
@@ -135,61 +136,61 @@ const Contact = () => {
               <Card className="h-full bg-white/70">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-semibold mb-6 text-autop-red border-b border-autop-red/20 pb-2">
-                    Formulaire de Contact
+                    {t("contact.form")}
                   </h2>
                   
                   {!isSubmitted ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium mb-1">Nom</label>
+                        <label htmlFor="name" className="block text-sm font-medium mb-1">{t("contact.name")}</label>
                         <Input 
                           id="name" 
                           name="name" 
-                          placeholder="Votre nom" 
+                          placeholder={t("contact.namePlaceholder")} 
                           required 
                           disabled={isSubmitting}
                         />
                       </div>
                       
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                        <label htmlFor="email" className="block text-sm font-medium mb-1">{t("contact.email")}</label>
                         <Input 
                           id="email" 
                           name="email" 
                           type="email" 
-                          placeholder="votre@email.com" 
+                          placeholder={t("contact.emailPlaceholder")} 
                           required 
                           disabled={isSubmitting}
                         />
                       </div>
                       
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium mb-1">Téléphone</label>
+                        <label htmlFor="phone" className="block text-sm font-medium mb-1">{t("contact.phone")}</label>
                         <Input 
                           id="phone" 
                           name="phone" 
-                          placeholder="+33 6 12 34 56 78" 
+                          placeholder={t("contact.phonePlaceholder")} 
                           disabled={isSubmitting}
                         />
                       </div>
                       
                       <div>
-                        <label htmlFor="subject" className="block text-sm font-medium mb-1">Sujet</label>
+                        <label htmlFor="subject" className="block text-sm font-medium mb-1">{t("contact.subject")}</label>
                         <Input 
                           id="subject" 
                           name="subject" 
-                          placeholder="Sujet de votre message" 
+                          placeholder={t("contact.subjectPlaceholder")} 
                           required 
                           disabled={isSubmitting}
                         />
                       </div>
                       
                       <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+                        <label htmlFor="message" className="block text-sm font-medium mb-1">{t("contact.message")}</label>
                         <Textarea 
                           id="message" 
                           name="message" 
-                          placeholder="Votre message..." 
+                          placeholder={t("contact.messagePlaceholder")} 
                           className="min-h-[120px]" 
                           required 
                           disabled={isSubmitting}
@@ -204,18 +205,18 @@ const Contact = () => {
                         {isSubmitting ? (
                           <span className="flex items-center">
                             <span className="animate-spin mr-2 h-4 w-4 border-t-2 border-b-2 border-white rounded-full"></span>
-                            Envoi en cours...
+                            {t("contact.sending")}
                           </span>
                         ) : (
                           <span className="flex items-center">
                             <Send className="h-4 w-4 mr-2" />
-                            Envoyer le message
+                            {t("contact.sendMessage")}
                           </span>
                         )}
                       </Button>
                       
                       <p className="text-xs text-muted-foreground mt-2">
-                        Vos données personnelles sont protégées conformément à notre politique de confidentialité.
+                        {t("contact.privacyNotice")}
                       </p>
                     </form>
                   ) : (
@@ -223,9 +224,9 @@ const Contact = () => {
                       <div className="bg-green-100 p-4 rounded-full inline-flex items-center justify-center mb-4">
                         <Check className="h-8 w-8 text-green-600" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2">Merci pour votre message!</h3>
+                      <h3 className="text-xl font-semibold mb-2">{t("contact.thankYouTitle")}</h3>
                       <p className="text-muted-foreground">
-                        Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+                        {t("contact.thankYouMessage")}
                       </p>
                     </div>
                   )}
@@ -235,7 +236,7 @@ const Contact = () => {
           </div>
           
           <section className="mb-16">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Comment Nous Trouver</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-center">{t("contact.howToFind")}</h2>
             <div className="rounded-lg overflow-hidden shadow-lg h-[400px] border-4 border-white">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2460.5935633350313!2d4.535982899999999!3d51.926462799999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c433453c2c9ad9%3A0x27e6f2d7b519b80e!2sAutolettestraat%2010%2C%203063%20NP%20Rotterdam%2C%20Netherlands!5e0!3m2!1sen!2sus!4v1703870509609!5m2!1sen!2sus"
@@ -251,15 +252,14 @@ const Contact = () => {
           </section>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm text-center">
-            <h2 className="text-2xl font-semibold mb-4">Assistance 24/7</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t("contact.assistance24")}</h2>
             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              En cas d'urgence, notre équipe d'assistance technique est disponible 24h/24 et 7j/7 
-              pour vous accompagner dans toute l'Europe.
+              {t("contact.assistanceDescription")}
             </p>
             <div className="flex justify-center">
               <Button size="lg" className="bg-autop-red hover:bg-autop-red/90 text-white">
                 <PhoneCall className="h-5 w-5 mr-2" />
-                Contacter l'Assistance
+                {t("contact.contactAssistance")}
               </Button>
             </div>
           </section>
