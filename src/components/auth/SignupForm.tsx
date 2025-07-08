@@ -26,28 +26,28 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label htmlFor="firstName" className="block text-sm font-medium">
-            Prénom
+            {t("account.firstName")}
           </label>
           <Input
             id="firstName"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Prénom"
+            placeholder={t("account.firstName")}
             required
           />
         </div>
         
         <div className="space-y-2">
           <label htmlFor="lastName" className="block text-sm font-medium">
-            Nom
+            {t("account.lastName")}
           </label>
           <Input
             id="lastName"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Nom"
+            placeholder={t("account.lastName")}
             required
           />
         </div>
@@ -62,7 +62,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="votre@email.com"
+          placeholder={t("account.emailPlaceholder")}
           required
         />
       </div>
@@ -76,24 +76,24 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="********"
+          placeholder={t("account.passwordPlaceholder")}
           required
         />
         <p className="text-xs text-gray-500 mt-1">
-          Le mot de passe doit contenir au moins 6 caractères
+          {t("account.passwordRequirement")}
         </p>
       </div>
       
       <div className="space-y-2">
         <label htmlFor="phone" className="block text-sm font-medium">
-          Téléphone
+          {t("account.phone")}
         </label>
         <Input
           id="phone"
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="+33 6 12 34 56 78"
+          placeholder={t("account.phonePlaceholder")}
         />
       </div>
       
@@ -102,7 +102,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
         className="w-full"
         disabled={loading}
       >
-        {loading ? "Chargement..." : t("account.signupButton")}
+        {loading ? t("account.loading") : t("account.signupButton")}
       </Button>
     </form>
   );

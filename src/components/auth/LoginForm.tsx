@@ -29,7 +29,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="votre@email.com"
+          placeholder={t("account.emailPlaceholder")}
           required
         />
       </div>
@@ -43,7 +43,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="********"
+          placeholder={t("account.passwordPlaceholder")}
           required
         />
       </div>
@@ -53,7 +53,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
         className="w-full"
         disabled={loading}
       >
-        {loading ? "Chargement..." : t("account.loginButton")}
+        {loading ? t("account.loading") : t("account.loginButton")}
       </Button>
     </form>
   );

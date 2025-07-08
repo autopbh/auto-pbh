@@ -318,6 +318,11 @@ export const translations: TranslationsType = {
     "account.ordersTab": "Commandes",
     "account.favoritesTab": "Favoris",
     "account.addressesTab": "Adresses",
+    "account.emailPlaceholder": "votre@email.com",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+33 6 12 34 56 78",
+    "account.passwordRequirement": "Le mot de passe doit contenir au moins 6 caractères",
+    "account.loading": "Chargement...",
     "footer.dataProtection": "Protection des Données",
 
     // Services page
@@ -785,6 +790,11 @@ export const translations: TranslationsType = {
     "account.ordersTab": "Orders",
     "account.favoritesTab": "Favorites",
     "account.addressesTab": "Addresses",
+    "account.emailPlaceholder": "your@email.com",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+1 555 123 4567",
+    "account.passwordRequirement": "Password must contain at least 6 characters",
+    "account.loading": "Loading...",
 
     // Tracking page
     "tracking.title": "Delivery Tracking",
