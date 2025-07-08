@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const useAuth = () => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
@@ -64,8 +66,8 @@ export const useAuth = () => {
     } catch (error: any) {
       console.error("Error fetching profile:", error.message);
       toast({
-        title: "Erreur",
-        description: error.message || "Erreur lors du chargement du profil",
+        title: t("messages.error"),
+        description: error.message || t("messages.profileLoadError"),
         variant: "destructive",
       });
     }
@@ -93,15 +95,15 @@ export const useAuth = () => {
 
       if (data) {
         toast({
-          title: "Inscription réussie",
-          description: "Veuillez vérifier votre email pour confirmer votre compte.",
+          title: t("messages.signupSuccess"),
+          description: t("messages.signupSuccessDesc"),
         });
       }
     } catch (error: any) {
       console.error("Signup error:", error.message);
       toast({
-        title: "Erreur d'inscription",
-        description: error.message || "Une erreur s'est produite lors de l'inscription",
+        title: t("messages.signupError"),
+        description: error.message || t("messages.signupError"),
         variant: "destructive",
       });
     } finally {
@@ -124,15 +126,15 @@ export const useAuth = () => {
 
       if (data.session) {
         toast({
-          title: "Connexion réussie",
-          description: "Vous êtes maintenant connecté",
+          title: t("messages.loginSuccess"),
+          description: t("messages.loginSuccessDesc"),
         });
       }
     } catch (error: any) {
       console.error("Login error:", error.message);
       toast({
-        title: "Erreur de connexion",
-        description: error.message || "Email ou mot de passe incorrect",
+        title: t("messages.loginError"),
+        description: error.message || t("messages.loginErrorDesc"),
         variant: "destructive",
       });
     } finally {
@@ -145,16 +147,16 @@ export const useAuth = () => {
     try {
       await supabase.auth.signOut();
       toast({
-        title: "Déconnexion réussie",
-        description: "Vous êtes maintenant déconnecté",
+        title: t("messages.signoutSuccess"),
+        description: t("messages.signoutSuccessDesc"),
       });
       setSession(null);
       setProfile(null);
     } catch (error: any) {
       console.error("Signout error:", error.message);
       toast({
-        title: "Erreur",
-        description: error.message || "Une erreur s'est produite lors de la déconnexion",
+        title: t("messages.error"),
+        description: error.message || t("messages.error"),
         variant: "destructive",
       });
     } finally {
@@ -167,8 +169,8 @@ export const useAuth = () => {
     
     if (!session) {
       toast({
-        title: "Erreur",
-        description: "Vous devez être connecté pour mettre à jour votre profil",
+        title: t("messages.error"),
+        description: t("messages.mustBeLoggedIn"),
         variant: "destructive",
       });
       setLoading(false);
@@ -211,8 +213,8 @@ export const useAuth = () => {
       if (result.error) throw result.error;
       
       toast({
-        title: "Profil mis à jour",
-        description: "Vos informations ont été mises à jour avec succès",
+        title: t("messages.profileUpdated"),
+        description: t("messages.profileUpdatedDesc"),
       });
       
       // Refetch the profile to update the local state
@@ -220,8 +222,8 @@ export const useAuth = () => {
     } catch (error: any) {
       console.error("Profile update error:", error.message);
       toast({
-        title: "Erreur",
-        description: error.message || "Erreur lors de la mise à jour du profil",
+        title: t("messages.error"),
+        description: error.message || t("messages.profileUpdateError"),
         variant: "destructive",
       });
     } finally {

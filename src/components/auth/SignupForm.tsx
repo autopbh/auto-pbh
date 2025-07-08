@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SignupFormProps {
   onSignup: (email: string, password: string, firstName: string, lastName: string, phone: string) => Promise<void>;
@@ -9,6 +10,7 @@ interface SignupFormProps {
 }
 
 const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -25,28 +27,28 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label htmlFor="firstName" className="block text-sm font-medium">
-            Prénom
+            {t("auth.firstName")}
           </label>
           <Input
             id="firstName"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Prénom"
+            placeholder={t("auth.firstName")}
             required
           />
         </div>
         
         <div className="space-y-2">
           <label htmlFor="lastName" className="block text-sm font-medium">
-            Nom
+            {t("auth.lastName")}
           </label>
           <Input
             id="lastName"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            placeholder="Nom"
+            placeholder={t("auth.lastName")}
             required
           />
         </div>
@@ -54,21 +56,21 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
       
       <div className="space-y-2">
         <label htmlFor="signupEmail" className="block text-sm font-medium">
-          Email
+          {t("auth.email")}
         </label>
         <Input
           id="signupEmail"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="votre@email.com"
+          placeholder={t("auth.email")}
           required
         />
       </div>
       
       <div className="space-y-2">
         <label htmlFor="signupPassword" className="block text-sm font-medium">
-          Mot de passe
+          {t("auth.password")}
         </label>
         <Input
           id="signupPassword"
@@ -78,21 +80,18 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
           placeholder="********"
           required
         />
-        <p className="text-xs text-gray-500 mt-1">
-          Le mot de passe doit contenir au moins 6 caractères
-        </p>
       </div>
       
       <div className="space-y-2">
         <label htmlFor="phone" className="block text-sm font-medium">
-          Téléphone
+          {t("auth.phone")}
         </label>
         <Input
           id="phone"
           type="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="+33 6 12 34 56 78"
+          placeholder={t("auth.phone")}
         />
       </div>
       
@@ -101,7 +100,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
         className="w-full"
         disabled={loading}
       >
-        {loading ? "Chargement..." : "S'inscrire"}
+        {loading ? "..." : t("auth.signupButton")}
       </Button>
     </form>
   );
