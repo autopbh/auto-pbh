@@ -53,7 +53,7 @@ const Tracking = () => {
               variant="outline" 
               className="text-xs"
             >
-              {debugMode ? "Masquer le mode débogage" : "Afficher le mode débogage"}
+              {debugMode ? t("tracking.hideDebugMode") : t("tracking.showDebugMode")}
             </Button>
           </div>
           

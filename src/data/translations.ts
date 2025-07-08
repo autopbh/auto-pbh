@@ -586,12 +586,8 @@ export const translations: TranslationsType = {
     "warranty.premiumAssistance": "Assistance routière premium incluse",
     "warranty.preferentialMaintenance": "Entretien préférentiel dans notre réseau",
     "warranty.transferableWarranty": "Transfert de garantie possible lors de la revente",
-    
-    // Additional Tracking page translations  
-    "tracking.personalizedTitle": "Suivi de Livraison Personnalisé",
-    "tracking.debugMode": "Mode débogage",
-    "tracking.hideDebug": "Masquer le mode débogage",
-    "tracking.showDebug": "Afficher le mode débogage",
+    "tracking.hideDebugMode": "Masquer le mode débogage",
+    "tracking.showDebugMode": "Afficher le mode débogage",
     
     // Returns page translations
     "returns.title": "Politique de Satisfaction",
