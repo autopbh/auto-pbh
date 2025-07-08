@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import AccountTabs from "./AccountTabs";
 
 interface ProfileViewProps {
@@ -18,18 +17,17 @@ const ProfileView = ({
   onSignOut,
   onUpdateProfile
 }: ProfileViewProps) => {
-  const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleUpdateProfile = async (firstName: string, lastName: string, phone: string) => {
     await onUpdateProfile(firstName, lastName, phone);
-    // No need to do anything else as toast is now handled in the useAuth hook
   };
 
   return (
     <div className="container mx-auto px-4 py-16 mt-20">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl md:text-5xl font-bold">Mon Compte</h1>
+          <h1 className="text-3xl md:text-5xl font-bold">{t("account.title")}</h1>
           <Button
             variant="outline"
             onClick={onSignOut}

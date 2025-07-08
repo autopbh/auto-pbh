@@ -297,6 +297,17 @@ export const translations: TranslationsType = {
     "footer.joinClub": "Rejoindre le Club AUTO PBH",
     "footer.copyright": "© {year} AUTO PBH. L'Excellence Automobile.",
     "footer.legal": "Mentions Légales",
+
+    // Account page
+    "account.title": "Mon Compte",
+    "account.login": "Connexion",
+    "account.signup": "Inscription",
+    "account.email": "Email",
+    "account.password": "Mot de passe",
+    "account.loginButton": "Se connecter",
+    "account.signupButton": "Créer un compte",
+    "account.forgotPassword": "Mot de passe oublié ?",
+    "account.dashboardWelcome": "Bienvenue sur votre tableau de bord",
     "footer.dataProtection": "Protection des Données",
 
     // Services page

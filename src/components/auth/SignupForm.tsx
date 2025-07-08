@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface SignupFormProps {
   onSignup: (email: string, password: string, firstName: string, lastName: string, phone: string) => Promise<void>;
@@ -9,6 +9,7 @@ interface SignupFormProps {
 }
 
 const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -54,7 +55,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
       
       <div className="space-y-2">
         <label htmlFor="signupEmail" className="block text-sm font-medium">
-          Email
+          {t("account.email")}
         </label>
         <Input
           id="signupEmail"
@@ -68,7 +69,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
       
       <div className="space-y-2">
         <label htmlFor="signupPassword" className="block text-sm font-medium">
-          Mot de passe
+          {t("account.password")}
         </label>
         <Input
           id="signupPassword"
@@ -101,7 +102,7 @@ const SignupForm = ({ onSignup, loading }: SignupFormProps) => {
         className="w-full"
         disabled={loading}
       >
-        {loading ? "Chargement..." : "S'inscrire"}
+        {loading ? "Chargement..." : t("account.signupButton")}
       </Button>
     </form>
   );

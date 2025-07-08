@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LoginFormProps {
   onLogin: (email: string, password: string) => Promise<void>;
@@ -9,6 +9,7 @@ interface LoginFormProps {
 }
 
 const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +22,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <label htmlFor="email" className="block text-sm font-medium">
-          Email
+          {t("account.email")}
         </label>
         <Input
           id="email"
@@ -35,7 +36,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
       
       <div className="space-y-2">
         <label htmlFor="password" className="block text-sm font-medium">
-          Mot de passe
+          {t("account.password")}
         </label>
         <Input
           id="password"
@@ -52,7 +53,7 @@ const LoginForm = ({ onLogin, loading }: LoginFormProps) => {
         className="w-full"
         disabled={loading}
       >
-        {loading ? "Chargement..." : "Se connecter"}
+        {loading ? "Chargement..." : t("account.loginButton")}
       </Button>
     </form>
   );
