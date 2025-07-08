@@ -40,13 +40,6 @@ const MobileMenu = () => {
             <span>{t("nav.cart")}</span>
           </Link>
           <Link
-            to="/account"
-            className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
-          >
-            <User className="w-5 h-5 mr-3" />
-            <span>{t("nav.account")}</span>
-          </Link>
-          <Link
             to="/about"
             className="flex items-center px-4 py-2 hover:bg-muted transition-colors"
           >
