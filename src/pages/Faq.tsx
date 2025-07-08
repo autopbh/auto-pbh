@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Accordion,
   AccordionContent,
@@ -10,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 const Faq = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -18,23 +21,23 @@ const Faq = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">FAQ</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("faq.title")}</h1>
           
           <div className="space-y-8">
             <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-semibold mb-6 text-autop-red">Questions Fréquentes</h2>
+              <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("faq.frequentQuestions")}</h2>
               
               <Accordion type="single" collapsible className="space-y-4">
                 <AccordionItem value="etat">
-                  <AccordionTrigger>Quel est l'état du véhicule et son kilométrage actuel ?</AccordionTrigger>
+                  <AccordionTrigger>{t("faq.vehicleState.question")}</AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">
-                      Tous nos véhicules sont inspectés par nos experts. Le kilométrage exact est indiqué sur chaque fiche produit (exemple : Audi A4 2021 – 45 000 km). L'état est classé comme :
+                      {t("faq.vehicleState.answer")}
                     </p>
                     <ul className="list-disc pl-6 mt-4 space-y-2 text-muted-foreground">
-                      <li><strong>Comme neuf</strong> (aucun défaut mécanique ou esthétique)</li>
-                      <li><strong>Très bon état</strong> (légères marques d'usage)</li>
-                      <li><strong>Bon état</strong> (petits défauts sans impact technique)</li>
+                      <li><strong>{t("faq.vehicleState.likeNew")}</strong></li>
+                      <li><strong>{t("faq.vehicleState.veryGood")}</strong></li>
+                      <li><strong>{t("faq.vehicleState.good")}</strong></li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
@@ -360,11 +363,11 @@ const Faq = () => {
             </section>
 
             <section className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-sm text-center">
-              <h2 className="text-xl font-semibold mb-4">Vous avez d'autres questions ?</h2>
+              <h2 className="text-xl font-semibold mb-4">{t("faq.moreQuestions")}</h2>
               <p className="text-muted-foreground mb-6">
-                Notre équipe est à votre disposition pour répondre à toutes vos interrogations.
+                {t("faq.moreQuestionsText")}
               </p>
-              <Button className="btn-primary">Contactez-nous</Button>
+              <Button className="btn-primary">{t("faq.contactUs")}</Button>
             </section>
           </div>
         </div>
