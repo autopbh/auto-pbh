@@ -588,6 +588,14 @@ export const translations: TranslationsType = {
     "warranty.transferableWarranty": "Transfert de garantie possible lors de la revente",
     "tracking.hideDebugMode": "Masquer le mode débogage",
     "tracking.showDebugMode": "Afficher le mode débogage",
+    "tracking.form.enterOrderNumber": "Veuillez saisir un numéro de commande",
+    "tracking.form.information": "Information",
+    "tracking.form.searchingWithReference": "Recherche de votre commande avec la référence d'acompte...",
+    "tracking.form.placeholder": "Saisissez votre numéro de commande (PBH- ou ACOMPTE-)",
+    "tracking.form.helpText": "Vous pouvez utiliser votre référence d'acompte (ACOMPTE-XXXXX) ou votre numéro de commande (PBH-XXXXX)",
+    "tracking.form.searching": "Recherche...",
+    "tracking.form.trackOrder": "Suivre ma commande",
+    "tracking.form.cantFindOrderNumber": "Je ne retrouve plus mon numéro de commande",
     
     // Returns page translations
     "returns.title": "Politique de Satisfaction",
@@ -904,6 +912,14 @@ export const translations: TranslationsType = {
     "terms.article3Content": "In accordance with European directive 2011/83/EU, the Buyer has a period of 14 days from vehicle delivery to exercise their right of withdrawal, without having to justify reasons or pay penalties. Return costs are borne by the Buyer.",
     "tracking.hideDebugMode": "Hide debug mode",
     "tracking.showDebugMode": "Show debug mode",
+    "tracking.form.enterOrderNumber": "Please enter an order number",
+    "tracking.form.information": "Information",
+    "tracking.form.searchingWithReference": "Searching for your order with the deposit reference...",
+    "tracking.form.placeholder": "Enter your order number (PBH- or ACOMPTE-)",
+    "tracking.form.helpText": "You can use your deposit reference (ACOMPTE-XXXXX) or your order number (PBH-XXXXX)",
+    "tracking.form.searching": "Searching...",
+    "tracking.form.trackOrder": "Track my order",
+    "tracking.form.cantFindOrderNumber": "I can't find my order number",
     "contact.contactAssistance": "Contact Assistance",
     // Catalog
     "catalog.title": "Catalog",
@@ -1553,6 +1569,14 @@ export const translations: TranslationsType = {
     "terms.article3Content": "Em conformidade com a directiva europeia 2011/83/UE, o Comprador dispõe de um prazo de 14 dias a partir da entrega do veículo para exercer o seu direito de rescisão, sem ter de justificar motivos nem pagar penalidades. Os custos de devolução são suportados pelo Comprador.",
     "tracking.hideDebugMode": "Ocultar modo de depuração",
     "tracking.showDebugMode": "Mostrar modo de depuração",
+    "tracking.form.enterOrderNumber": "Por favor, insira um número de pedido",
+    "tracking.form.information": "Informação",
+    "tracking.form.searchingWithReference": "Procurando seu pedido com a referência do depósito...",
+    "tracking.form.placeholder": "Digite seu número de pedido (PBH- ou ACOMPTE-)",
+    "tracking.form.helpText": "Você pode usar sua referência de depósito (ACOMPTE-XXXXX) ou seu número de pedido (PBH-XXXXX)",
+    "tracking.form.searching": "Procurando...",
+    "tracking.form.trackOrder": "Rastrear meu pedido",
+    "tracking.form.cantFindOrderNumber": "Não consigo encontrar meu número de pedido",
   },
 
   // Spanish translations
@@ -1949,6 +1973,14 @@ export const translations: TranslationsType = {
     "terms.article3Content": "Conforme a la directiva europea 2011/83/UE, el Comprador dispone de un plazo de 14 días desde la entrega del vehículo para ejercer su derecho de desistimiento, sin tener que justificar motivos ni pagar penalidades. Los gastos de devolución corren a cargo del Comprador.",
     "tracking.hideDebugMode": "Ocultar modo de depuración",
     "tracking.showDebugMode": "Mostrar modo de depuración",
+    "tracking.form.enterOrderNumber": "Por favor, ingrese un número de pedido",
+    "tracking.form.information": "Información",
+    "tracking.form.searchingWithReference": "Buscando su pedido con la referencia del depósito...",
+    "tracking.form.placeholder": "Ingrese su número de pedido (PBH- o ACOMPTE-)",
+    "tracking.form.helpText": "Puede usar su referencia de depósito (ACOMPTE-XXXXX) o su número de pedido (PBH-XXXXX)",
+    "tracking.form.searching": "Buscando...",
+    "tracking.form.trackOrder": "Rastrear mi pedido",
+    "tracking.form.cantFindOrderNumber": "No puedo encontrar mi número de pedido",
   },
 
   // German translations
@@ -2291,6 +2323,14 @@ export const translations: TranslationsType = {
     "terms.article3Content": "Gemäß der europäischen Richtlinie 2011/83/EU hat der Käufer eine Frist von 14 Tagen ab Fahrzeuglieferung, um sein Widerrufsrecht auszuüben, ohne Gründe rechtfertigen oder Strafen zahlen zu müssen. Die Rücksendekosten trägt der Käufer.",
     "tracking.hideDebugMode": "Debug-Modus ausblenden",
     "tracking.showDebugMode": "Debug-Modus anzeigen",
+    "tracking.form.enterOrderNumber": "Bitte geben Sie eine Bestellnummer ein",
+    "tracking.form.information": "Information",
+    "tracking.form.searchingWithReference": "Suche nach Ihrer Bestellung mit der Anzahlungsreferenz...",
+    "tracking.form.placeholder": "Geben Sie Ihre Bestellnummer ein (PBH- oder ACOMPTE-)",
+    "tracking.form.helpText": "Sie können Ihre Anzahlungsreferenz (ACOMPTE-XXXXX) oder Ihre Bestellnummer (PBH-XXXXX) verwenden",
+    "tracking.form.searching": "Suche...",
+    "tracking.form.trackOrder": "Meine Bestellung verfolgen",
+    "tracking.form.cantFindOrderNumber": "Ich kann meine Bestellnummer nicht finden",
   },
 
   // Italian translations
@@ -2633,6 +2673,14 @@ export const translations: TranslationsType = {
     "terms.article3Content": "Conformemente alla direttiva europea 2011/83/UE, l'Acquirente ha un periodo di 14 giorni dalla consegna del veicolo per esercitare il proprio diritto di recesso, senza dover giustificare motivi o pagare penali. I costi di restituzione sono a carico dell'Acquirente.",
     "tracking.hideDebugMode": "Nascondi modalità debug",
     "tracking.showDebugMode": "Mostra modalità debug",
+    "tracking.form.enterOrderNumber": "Si prega di inserire un numero d'ordine",
+    "tracking.form.information": "Informazione",
+    "tracking.form.searchingWithReference": "Ricerca del tuo ordine con il riferimento del deposito...",
+    "tracking.form.placeholder": "Inserisci il tuo numero d'ordine (PBH- o ACOMPTE-)",
+    "tracking.form.helpText": "Puoi usare il tuo riferimento di deposito (ACOMPTE-XXXXX) o il tuo numero d'ordine (PBH-XXXXX)",
+    "tracking.form.searching": "Ricerca...",
+    "tracking.form.trackOrder": "Traccia il mio ordine",
+    "tracking.form.cantFindOrderNumber": "Non riesco a trovare il mio numero d'ordine",
   },
 
   // Dutch translations
@@ -2975,5 +3023,13 @@ export const translations: TranslationsType = {
     "terms.article3Content": "Conform de Europese richtlijn 2011/83/EU heeft de Koper een termijn van 14 dagen vanaf de levering van het voertuig om zijn herroepingsrecht uit te oefenen, zonder redenen te hoeven rechtvaardigen of boetes te betalen. De retourkosten zijn voor rekening van de Koper.",
     "tracking.hideDebugMode": "Debug-modus verbergen",
     "tracking.showDebugMode": "Debug-modus tonen",
+    "tracking.form.enterOrderNumber": "Voer een bestelnummer in",
+    "tracking.form.information": "Informatie",
+    "tracking.form.searchingWithReference": "Zoeken naar uw bestelling met de aanbetaling referentie...",
+    "tracking.form.placeholder": "Voer uw bestelnummer in (PBH- of ACOMPTE-)",
+    "tracking.form.helpText": "U kunt uw aanbetaling referentie (ACOMPTE-XXXXX) of uw bestelnummer (PBH-XXXXX) gebruiken",
+    "tracking.form.searching": "Zoeken...",
+    "tracking.form.trackOrder": "Mijn bestelling volgen",
+    "tracking.form.cantFindOrderNumber": "Ik kan mijn bestelnummer niet vinden",
   }
 };

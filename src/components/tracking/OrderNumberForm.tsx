@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Mail, Search } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface OrderNumberFormProps {
   orderNumber: string;
@@ -22,6 +23,7 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
   showRecoveryForm,
   setShowRecoveryForm
 }) => {
+  const { t } = useLanguage();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Fonction pour valider et formater le numéro de commande
@@ -39,15 +41,15 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
     
     // Vérifier si le numéro de commande est vide
     if (!orderNumber.trim()) {
-      setErrorMessage("Veuillez saisir un numéro de commande");
+      setErrorMessage(t("tracking.form.enterOrderNumber"));
       return;
     }
     
     // Si le numéro commence par ACOMPTE-, informer l'utilisateur qu'on recherche la commande correspondante
     if (orderNumber.startsWith('ACOMPTE-')) {
       toast({
-        title: "Information",
-        description: "Recherche de votre commande avec la référence d'acompte...",
+        title: t("tracking.form.information"),
+        description: t("tracking.form.searchingWithReference"),
         variant: "default"
       });
     }
@@ -63,7 +65,7 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
           <div className="flex-1">
             <Input
               type="text"
-              placeholder="Saisissez votre numéro de commande (PBH- ou ACOMPTE-)"
+              placeholder={t("tracking.form.placeholder")}
               className={`w-full ${errorMessage ? 'border-red-500' : ''}`}
               value={orderNumber}
               onChange={handleOrderNumberChange}
@@ -73,7 +75,7 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
               <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
             )}
             <p className="text-xs text-gray-500 mt-1">
-              Vous pouvez utiliser votre référence d'acompte (ACOMPTE-XXXXX) ou votre numéro de commande (PBH-XXXXX)
+              {t("tracking.form.helpText")}
             </p>
           </div>
           <Button 
@@ -81,10 +83,10 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
             className="bg-autop-red hover:bg-autop-red/90 text-white"
             disabled={isLoading || !orderNumber.trim()}
           >
-            {isLoading ? "Recherche..." : (
+            {isLoading ? t("tracking.form.searching") : (
               <>
                 <Search className="h-4 w-4 mr-2" />
-                Suivre ma commande
+                {t("tracking.form.trackOrder")}
               </>
             )}
           </Button>
@@ -99,7 +101,7 @@ const OrderNumberForm: React.FC<OrderNumberFormProps> = ({
             disabled={isLoading}
           >
             <Mail className="h-4 w-4 mr-1" />
-            Je ne retrouve plus mon numéro de commande
+            {t("tracking.form.cantFindOrderNumber")}
           </button>
         </div>
       )}
