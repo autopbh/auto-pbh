@@ -14,7 +14,7 @@ import { Edit, Trash2 } from "lucide-react";
 interface OrdersTableProps {
   orders: Tables<"orders">[];
   isLoading: boolean;
-  onEditOrder: (order: Tables<"orders">) => void;
+  onEditOrder?: (order: Tables<"orders">) => void;
   onDeleteOrder: (orderId: string) => void;
 }
 
@@ -52,13 +52,15 @@ const OrdersTable = ({ orders, isLoading, onEditOrder, onDeleteOrder }: OrdersTa
               <TableCell>{new Date(order.created_at).toLocaleDateString('fr-FR')}</TableCell>
               <TableCell className="text-right">
                 <div className="flex justify-end space-x-2">
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    onClick={() => onEditOrder(order)}
-                  >
-                    <Edit className="h-4 w-4" />
-                  </Button>
+                  {onEditOrder && (
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      onClick={() => onEditOrder(order)}
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                  )}
                   <Button 
                     variant="ghost" 
                     size="icon"

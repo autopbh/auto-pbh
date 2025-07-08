@@ -19,7 +19,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import VehicleDetail from "./pages/VehicleDetail";
 import Financing from "./pages/Financing";
-import Tracking from "./pages/Tracking";
+
 import Warranty from "./pages/Warranty";
 import Returns from "./pages/Returns";
 import Terms from "./pages/Terms";
@@ -65,7 +65,7 @@ const App = () => (
             <Route path="/:lang/checkout" element={<Checkout />} />
             <Route path="/:lang/vehicle/:id" element={<VehicleDetail />} />
             <Route path="/:lang/financing" element={<Financing />} />
-            <Route path="/:lang/delivery-tracking" element={<Tracking />} />
+            
             <Route path="/:lang/warranty" element={<Warranty />} />
             <Route path="/:lang/returns" element={<Returns />} />
             <Route path="/:lang/terms" element={<Terms />} />
@@ -86,7 +86,7 @@ const App = () => (
             <Route path="/checkout" element={<RedirectToLanguage targetPath="/checkout" />} />
             <Route path="/vehicle/:id" element={<RedirectToLanguage targetPath="/vehicle/:id" />} />
             <Route path="/financing" element={<RedirectToLanguage targetPath="/financing" />} />
-            <Route path="/delivery-tracking" element={<RedirectToLanguage targetPath="/delivery-tracking" />} />
+            
             <Route path="/warranty" element={<RedirectToLanguage targetPath="/warranty" />} />
             <Route path="/returns" element={<RedirectToLanguage targetPath="/returns" />} />
             <Route path="/terms" element={<RedirectToLanguage targetPath="/terms" />} />

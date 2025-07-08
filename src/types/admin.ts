@@ -1,6 +1,5 @@
 
 import { Tables } from "@/integrations/supabase/types";
-import { TrackingEvent, TrackingOrder } from "@/types/tracking";
 import { z } from "zod";
 
 // Form schemas
