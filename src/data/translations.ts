@@ -572,6 +572,77 @@ export const translations: TranslationsType = {
     "faq.moreQuestions": "Vous avez d'autres questions ?",
     "faq.moreQuestionsText": "Notre équipe est à votre disposition pour répondre à toutes vos interrogations.",
     "faq.contactUs": "Contactez-nous",
+
+    // Warranty page translations
+    "warranty.title": "Programme Garantie Premium",
+    "warranty.subtitle": "Une protection complète et exclusive pour votre investissement automobile, conçue pour assurer votre tranquillité d'esprit en toutes circonstances.",
+    "warranty.excellenceCommitment": "Notre Engagement d'Excellence",
+    "warranty.description1": "Chez AUTO PBH, nous comprenons que l'acquisition d'un véhicule premium représente un investissement important. C'est pourquoi nous avons conçu le programme de garantie le plus complet du marché.",
+    "warranty.description2": "Notre garantie couvre non seulement les composants mécaniques essentiels, mais s'étend également aux systèmes électroniques sophistiqués qui équipent les véhicules premium modernes.",
+    "warranty.description3": "Chaque aspect de notre programme a été pensé pour vous offrir une protection maximale et un service d'exception en toutes circonstances.",
+    "warranty.integralProtection": "Protection Intégrale",
+    "warranty.mostComprehensive": "Le programme le plus complet du marché",
+    "warranty.extendedCoverage": "Couverture étendue sur les composants mécaniques et électroniques",
+    "warranty.premiumAssistance": "Assistance routière premium incluse",
+    "warranty.preferentialMaintenance": "Entretien préférentiel dans notre réseau",
+    "warranty.transferableWarranty": "Transfert de garantie possible lors de la revente",
+    
+    // Additional Tracking page translations  
+    "tracking.personalizedTitle": "Suivi de Livraison Personnalisé",
+    "tracking.debugMode": "Mode débogage",
+    "tracking.hideDebug": "Masquer le mode débogage",
+    "tracking.showDebug": "Afficher le mode débogage",
+    
+    // Returns page translations
+    "returns.title": "Politique de Satisfaction",
+    "returns.qualityCommitment": "Notre Engagement Qualité",
+    "returns.unsatisfiedQuote": "Insatisfait ? Nous reprenons votre véhicule sous 7 jours, sans frais. Conditions : kilométrage identique à la livraison.",
+    "returns.description": "Chez AUTO PBH, votre entière satisfaction est notre priorité absolue. Nous sommes tellement confiants dans la qualité de nos véhicules que nous vous offrons une garantie de satisfaction unique sur le marché automobile premium.",
+    "returns.sevenDaysTrial": "7 Jours d'Essai",
+    "returns.sevenDaysDescription": "Une semaine complète pour tester votre nouveau véhicule dans votre quotidien",
+    "returns.freeReturn": "Reprise Sans Frais",
+    "returns.freeReturnDescription": "Retour simple et rapide en cas d'insatisfaction, remboursement intégral",
+    "returns.transparencyGuarantee": "Garantie Transparence",
+    "returns.transparencyDescription": "Aucune question posée, nous respectons votre décision",
+    
+    // Terms page translations
+    "terms.title": "Conditions Générales de Service",
+    "terms.shortVersion": "Version Abrégée",
+    "terms.keyPoints": "Les points clés de nos conditions générales de service que vous devez connaître :",
+    "terms.withdrawalPeriod": "Délai de rétractation : 14 jours à compter de la livraison du véhicule",
+    "terms.jurisdiction": "Juridiction : Tribunal de Rotterdam, Pays-Bas",
+    "terms.legalWarranties": "Garanties légales : Conformément aux directives européennes en vigueur",
+    "terms.reservation": "Réservation : Acompte de 10% non remboursable sauf défaut du véhicule",
+    "terms.delivery": "Livraison : Délais indicatifs, non contractuels",
+    "terms.documents": "Documents : Carte grise et certificat de conformité fournis",
+    "terms.readFullVersion": "Lire la version complète",
+    
+    // Privacy page translations
+    "privacy.title": "Protection des Données",
+    "privacy.privacyPolicy": "Notre Politique de Confidentialité",
+    "privacy.description": "Chez AUTO PBH, nous accordons une importance capitale à la protection de vos données personnelles. Cette politique détaille quelles informations nous collectons, comment nous les utilisons et les mesures que nous prenons pour garantir leur sécurité.",
+    "privacy.dataCollected": "Données Collectées",
+    "privacy.dataUsage": "Utilisation des Données",
+    "privacy.dataProtection": "Protection des Données",
+    "privacy.dataRetention": "Conservation des Données",
+    "privacy.yourRights": "Vos Droits",
+    "privacy.contact": "Contact",
+    
+    // Cookies page translations
+    "cookies.title": "Gestion des Cookies",
+    "cookies.cookiePolicy": "Politique de Cookies",
+    "cookies.description1": "AUTO PBH utilise des cookies pour améliorer votre expérience sur notre site, personnaliser le contenu et les publicités, fournir des fonctionnalités de médias sociaux et analyser notre trafic.",
+    "cookies.description2": "Vous pouvez personnaliser vos préférences de cookies ci-dessous ou accepter tous les cookies pour profiter d'une expérience optimale sur notre site.",
+    "cookies.essential": "Cookies Essentiels",
+    "cookies.essentialDesc": "Nécessaires au fonctionnement du site",
+    "cookies.functional": "Cookies Fonctionnels",
+    "cookies.functionalDesc": "Pour des fonctionnalités améliorées et personnalisées",
+    "cookies.analytics": "Cookies Analytiques",
+    "cookies.analyticsDesc": "Pour l'analyse du trafic et l'amélioration du site",
+    "cookies.marketing": "Cookies Marketing",
+    "cookies.marketingDesc": "Pour des publicités ciblées selon vos centres d'intérêt",
+    "cookies.savePreferences": "Enregistrer mes préférences",
+    "cookies.acceptAll": "Accepter tous les cookies",
   },
   en: {
     // Brand

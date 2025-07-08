@@ -1,10 +1,13 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowLeftRight, ShieldCheck, CalendarClock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Returns = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -13,7 +16,7 @@ const Returns = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Politique de Satisfaction</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("returns.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
             <h2 className="text-2xl font-semibold mb-6 text-autop-red">Notre Engagement Qualité</h2>

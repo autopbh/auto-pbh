@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useTrackingData } from "@/hooks/useTrackingData";
 import ServiceDescription from "@/components/tracking/ServiceDescription";
@@ -11,6 +12,7 @@ import TrackingInformation from "@/components/tracking/TrackingInformation";
 import NotFoundDialog from "@/components/tracking/NotFoundDialog";
 
 const Tracking = () => {
+  const { t } = useLanguage();
   const {
     orderNumber,
     setOrderNumber,
@@ -42,7 +44,7 @@ const Tracking = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Suivi de Livraison Personnalisé</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("tracking.personalizedTitle")}</h1>
           
           {/* Mode débogage */}
           <div className="mb-6">

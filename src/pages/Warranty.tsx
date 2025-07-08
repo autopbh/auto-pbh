@@ -1,12 +1,15 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Shield, Clock, PhoneCall, Car, Wrench, CheckCircle, Award, Zap, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
 const Warranty = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,10 +19,9 @@ const Warranty = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Programme Garantie Premium</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">{t("warranty.title")}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Une protection complète et exclusive pour votre investissement automobile, 
-              conçue pour assurer votre tranquillité d'esprit en toutes circonstances.
+              {t("warranty.subtitle")}
             </p>
           </div>
           

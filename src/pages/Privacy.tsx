@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Shield, Lock, Database } from "lucide-react";
 
 const Privacy = () => {
