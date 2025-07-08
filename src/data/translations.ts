@@ -902,6 +902,8 @@ export const translations: TranslationsType = {
     "terms.article2Content": "Vehicle reservation is only final after payment of a deposit representing 10% of the total vehicle price. This deposit is non-refundable in case of cancellation by the Buyer, except if the vehicle has a defect not mentioned in the description or if the contractual delivery deadline is exceeded by more than 30 days.",
     "terms.article3Title": "Article 3 - Right of Withdrawal",
     "terms.article3Content": "In accordance with European directive 2011/83/EU, the Buyer has a period of 14 days from vehicle delivery to exercise their right of withdrawal, without having to justify reasons or pay penalties. Return costs are borne by the Buyer.",
+    "tracking.hideDebugMode": "Hide debug mode",
+    "tracking.showDebugMode": "Show debug mode",
     "contact.contactAssistance": "Contact Assistance",
     // Catalog
     "catalog.title": "Catalog",
@@ -1549,6 +1551,8 @@ export const translations: TranslationsType = {
     "terms.article2Content": "A reserva de um veículo só é definitiva após o pagamento de um depósito representando 10% do preço total do veículo. Este depósito não é reembolsável em caso de cancelamento pelo Comprador, exceto se o veículo apresentar um defeito não mencionado na descrição ou se o prazo de entrega contratual for excedido em mais de 30 dias.",
     "terms.article3Title": "Artigo 3 - Direito de Rescisão",
     "terms.article3Content": "Em conformidade com a directiva europeia 2011/83/UE, o Comprador dispõe de um prazo de 14 dias a partir da entrega do veículo para exercer o seu direito de rescisão, sem ter de justificar motivos nem pagar penalidades. Os custos de devolução são suportados pelo Comprador.",
+    "tracking.hideDebugMode": "Ocultar modo de depuração",
+    "tracking.showDebugMode": "Mostrar modo de depuração",
   },
 
   // Spanish translations
@@ -1943,6 +1947,8 @@ export const translations: TranslationsType = {
     "terms.article2Content": "La reserva de un vehículo solo es definitiva después del pago de un depósito que represente el 10% del precio total del vehículo. Este depósito no es reembolsable en caso de cancelación por parte del Comprador, excepto si el vehículo presenta un defecto no mencionado en la descripción o si el plazo de entrega contractual se excede en más de 30 días.",
     "terms.article3Title": "Artículo 3 - Derecho de Desistimiento",
     "terms.article3Content": "Conforme a la directiva europea 2011/83/UE, el Comprador dispone de un plazo de 14 días desde la entrega del vehículo para ejercer su derecho de desistimiento, sin tener que justificar motivos ni pagar penalidades. Los gastos de devolución corren a cargo del Comprador.",
+    "tracking.hideDebugMode": "Ocultar modo de depuración",
+    "tracking.showDebugMode": "Mostrar modo de depuración",
   },
 
   // German translations
@@ -2283,6 +2289,8 @@ export const translations: TranslationsType = {
     "terms.article2Content": "Die Reservierung eines Fahrzeugs ist erst nach Zahlung einer Anzahlung von 10% des Gesamtfahrzeugpreises endgültig. Diese Anzahlung ist bei Stornierung durch den Käufer nicht erstattbar, außer wenn das Fahrzeug einen nicht in der Beschreibung erwähnten Mangel aufweist oder wenn die vertragliche Lieferfrist um mehr als 30 Tage überschritten wird.",
     "terms.article3Title": "Artikel 3 - Widerrufsrecht",
     "terms.article3Content": "Gemäß der europäischen Richtlinie 2011/83/EU hat der Käufer eine Frist von 14 Tagen ab Fahrzeuglieferung, um sein Widerrufsrecht auszuüben, ohne Gründe rechtfertigen oder Strafen zahlen zu müssen. Die Rücksendekosten trägt der Käufer.",
+    "tracking.hideDebugMode": "Debug-Modus ausblenden",
+    "tracking.showDebugMode": "Debug-Modus anzeigen",
   },
 
   // Italian translations
@@ -2623,6 +2631,8 @@ export const translations: TranslationsType = {
     "terms.article2Content": "La prenotazione di un veicolo è definitiva solo dopo il versamento di un deposito pari al 10% del prezzo totale del veicolo. Questo deposito non è rimborsabile in caso di cancellazione da parte dell'Acquirente, tranne nel caso in cui il veicolo presenti un difetto non menzionato nella descrizione o se il termine di consegna contrattuale viene superato di oltre 30 giorni.",
     "terms.article3Title": "Articolo 3 - Diritto di Recesso",
     "terms.article3Content": "Conformemente alla direttiva europea 2011/83/UE, l'Acquirente ha un periodo di 14 giorni dalla consegna del veicolo per esercitare il proprio diritto di recesso, senza dover giustificare motivi o pagare penali. I costi di restituzione sono a carico dell'Acquirente.",
+    "tracking.hideDebugMode": "Nascondi modalità debug",
+    "tracking.showDebugMode": "Mostra modalità debug",
   },
 
   // Dutch translations
@@ -2963,5 +2973,7 @@ export const translations: TranslationsType = {
     "terms.article2Content": "De reservering van een voertuig is pas definitief na betaling van een aanbetaling van 10% van de totale voertuigprijs. Deze aanbetaling is niet terugbetaalbaar bij annulering door de Koper, behalve als het voertuig een defect heeft dat niet in de beschrijving wordt vermeld of als de contractuele leveringstermijn met meer dan 30 dagen wordt overschreden.",
     "terms.article3Title": "Artikel 3 - Herroepingsrecht",
     "terms.article3Content": "Conform de Europese richtlijn 2011/83/EU heeft de Koper een termijn van 14 dagen vanaf de levering van het voertuig om zijn herroepingsrecht uit te oefenen, zonder redenen te hoeven rechtvaardigen of boetes te betalen. De retourkosten zijn voor rekening van de Koper.",
+    "tracking.hideDebugMode": "Debug-modus verbergen",
+    "tracking.showDebugMode": "Debug-modus tonen",
   }
 };
