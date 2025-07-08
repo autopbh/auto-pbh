@@ -5,8 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Award, TrendingUp, Users, Shield, Heart, Target } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,9 +19,9 @@ const About = () => {
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-5xl mx-auto">
           <div className="mb-12 text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Notre Histoire</h1>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">{t("about.title")}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Depuis plus d'une décennie, AUTO PBH redéfinit l'excellence dans le secteur des véhicules premium.
+              {t("about.subtitle")}
             </p>
           </div>
           
@@ -26,37 +29,31 @@ const About = () => {
             <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
               <div className="md:w-1/2">
                 <h2 className="text-2xl font-semibold mb-4 text-autop-red border-b border-autop-red/20 pb-2">
-                  Une Passion Née en 2010
+                  {t("about.passion.title")}
                 </h2>
                 <div className="prose prose-lg text-muted-foreground">
                   <p className="mb-4">
-                    AUTO PBH a été fondé par Paulo Henriques, passionné d'automobiles premium et ancien directeur 
-                    commercial chez un constructeur de prestige. Sa vision : créer une entreprise où l'excellence,
-                    la transparence et le service personnalisé seraient au cœur de chaque transaction.
+                    {t("about.passion.text1")}
                   </p>
                   <p className="mb-4">
-                    Débutant avec une équipe restreinte de 5 experts et une sélection limitée de véhicules, 
-                    l'entreprise s'est rapidement distinguée par sa rigueur et son approche centrée sur le client, 
-                    devenant une référence pour les connaisseurs et collectionneurs exigeants.
+                    {t("about.passion.text2")}
                   </p>
                   <p>
-                    Aujourd'hui, AUTO PBH est fière de compter plus de 30 professionnels passionnés et 
-                    d'offrir un catalogue en constante évolution de véhicules soigneusement sélectionnés
-                    pour répondre aux plus hautes exigences de qualité et d'exclusivité.
+                    {t("about.passion.text3")}
                   </p>
                 </div>
               </div>
               <div className="md:w-1/2 bg-gradient-to-br from-autop-red/5 to-autop-red/10 p-6 rounded-lg">
-                <h3 className="font-semibold text-xl mb-4 text-center">Notre Évolution</h3>
+                <h3 className="font-semibold text-xl mb-4 text-center">{t("about.evolution.title")}</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="bg-white rounded-full h-10 w-10 flex items-center justify-center shrink-0">
                       <span className="font-bold text-autop-red">2010</span>
                     </div>
                     <div>
-                      <p className="font-semibold">Création d'AUTO PBH à Rotterdam</p>
+                      <p className="font-semibold">{t("about.evolution.2010")}</p>
                       <p className="text-sm text-muted-foreground">
-                        Fondation avec une vision d'excellence et une équipe de 5 passionnés
+                        {t("about.evolution.2010.desc")}
                       </p>
                     </div>
                   </div>
@@ -65,9 +62,9 @@ const About = () => {
                       <span className="font-bold text-autop-red">2013</span>
                     </div>
                     <div>
-                      <p className="font-semibold">Expansion européenne</p>
+                      <p className="font-semibold">{t("about.evolution.2013")}</p>
                       <p className="text-sm text-muted-foreground">
-                        Développement d'un réseau de partenaires dans 6 pays européens
+                        {t("about.evolution.2013.desc")}
                       </p>
                     </div>
                   </div>
@@ -76,9 +73,9 @@ const About = () => {
                       <span className="font-bold text-autop-red">2016</span>
                     </div>
                     <div>
-                      <p className="font-semibold">Lancement du programme de garantie premium</p>
+                      <p className="font-semibold">{t("about.evolution.2016")}</p>
                       <p className="text-sm text-muted-foreground">
-                        Création d'un programme de garantie sans précédent dans l'industrie
+                        {t("about.evolution.2016.desc")}
                       </p>
                     </div>
                   </div>
@@ -87,9 +84,9 @@ const About = () => {
                       <span className="font-bold text-autop-red">2019</span>
                     </div>
                     <div>
-                      <p className="font-semibold">Certification ISO 9001 pour notre qualité de service</p>
+                      <p className="font-semibold">{t("about.evolution.2019")}</p>
                       <p className="text-sm text-muted-foreground">
-                        Reconnaissance internationale de nos processus d'excellence
+                        {t("about.evolution.2019.desc")}
                       </p>
                     </div>
                   </div>
@@ -98,9 +95,9 @@ const About = () => {
                       <span className="font-bold text-autop-red">2022</span>
                     </div>
                     <div>
-                      <p className="font-semibold">Modernisation digitale et expérience client enrichie</p>
+                      <p className="font-semibold">{t("about.evolution.2022")}</p>
                       <p className="text-sm text-muted-foreground">
-                        Investissement majeur dans les technologies et l'expérience client omnicanale
+                        {t("about.evolution.2022.desc")}
                       </p>
                     </div>
                   </div>
@@ -110,7 +107,7 @@ const About = () => {
             
             <div className="my-12">
               <h2 className="text-2xl font-semibold mb-8 text-autop-red border-b border-autop-red/20 pb-2">
-                Notre Philosophie
+                {t("about.philosophy.title")}
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <Card className="border-autop-red/10">
@@ -118,10 +115,9 @@ const About = () => {
                     <div className="bg-autop-red/10 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Award className="h-8 w-8 text-autop-red" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Excellence</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t("about.philosophy.excellence")}</h3>
                     <p className="text-muted-foreground">
-                      Nous ne proposons que l'exceptionnel. Chaque véhicule est méticuleusement inspecté 
-                      selon plus de 200 points de contrôle et doit répondre à nos standards rigoureux.
+                      {t("about.philosophy.excellence.desc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -131,10 +127,9 @@ const About = () => {
                     <div className="bg-autop-red/10 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-8 w-8 text-autop-red" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Transparence</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t("about.philosophy.transparency")}</h3>
                     <p className="text-muted-foreground">
-                      Nous partageons l'historique complet de chaque véhicule, sans rien dissimuler. 
-                      Cette transparence totale est la base de la confiance que nos clients nous accordent.
+                      {t("about.philosophy.transparency.desc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -144,10 +139,9 @@ const About = () => {
                     <div className="bg-autop-red/10 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Heart className="h-8 w-8 text-autop-red" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">Passion</h3>
+                    <h3 className="font-semibold text-lg mb-2">{t("about.philosophy.passion")}</h3>
                     <p className="text-muted-foreground">
-                      Notre équipe partage une passion authentique pour l'automobile d'exception. 
-                      Cette passion se traduit par une connaissance approfondie et un service inégalé.
+                      {t("about.philosophy.passion.desc")}
                     </p>
                   </CardContent>
                 </Card>
@@ -156,7 +150,7 @@ const About = () => {
             
             <div className="my-12">
               <h2 className="text-2xl font-semibold mb-8 text-autop-red border-b border-autop-red/20 pb-2">
-                Notre Expertise
+                {t("about.expertise.title")}
               </h2>
               
               <div className="bg-gradient-to-br from-white to-autop-red/5 p-8 rounded-lg mb-8">
@@ -164,24 +158,24 @@ const About = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 flex items-center">
                       <TrendingUp className="h-5 w-5 text-autop-red mr-2" />
-                      Chiffres Clés
+                      {t("about.expertise.keyFigures")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Plus de 1500</strong> véhicules premium livrés depuis 2010</span>
+                        <span>{t("about.expertise.vehicles")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Réseau de partenaires</strong> dans 12 pays européens</span>
+                        <span>{t("about.expertise.network")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Taux de satisfaction client</strong> supérieur à 98%</span>
+                        <span>{t("about.expertise.satisfaction")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>30 experts</strong> passionnés à votre service</span>
+                        <span>{t("about.expertise.experts")}</span>
                       </li>
                     </ul>
                   </div>
@@ -189,24 +183,24 @@ const About = () => {
                   <div>
                     <h3 className="font-semibold text-xl mb-4 flex items-center">
                       <Users className="h-5 w-5 text-autop-red mr-2" />
-                      Notre équipe d'experts
+                      {t("about.expertise.teamTitle")}
                     </h3>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Conseillers certifiés</strong> par les plus grands constructeurs</span>
+                        <span>{t("about.expertise.advisors")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Techniciens qualifiés</strong> avec minimum 10 ans d'expérience</span>
+                        <span>{t("about.expertise.technicians")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Spécialistes en authenticité</strong> pour modèles de collection</span>
+                        <span>{t("about.expertise.specialists")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span><strong>Formation continue</strong> sur les nouvelles technologies</span>
+                        <span>{t("about.expertise.training")}</span>
                       </li>
                     </ul>
                   </div>
@@ -216,62 +210,61 @@ const About = () => {
             
             <div className="my-12">
               <h2 className="text-2xl font-semibold mb-8 text-autop-red border-b border-autop-red/20 pb-2">
-                Notre Engagement
+                {t("about.commitment.title")}
               </h2>
               
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="mb-6">
                   <h3 className="font-semibold text-xl mb-3 flex items-center">
                     <Target className="h-5 w-5 text-autop-red mr-2" />
-                    La Satisfaction Client au Centre de Notre Démarche
+                    {t("about.commitment.subtitle")}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Chez AUTO PBH, notre engagement va bien au-delà de la simple transaction commerciale. 
-                    Nous cultivons des relations durables basées sur la confiance et l'excellence du service.
+                    {t("about.commitment.text")}
                   </p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <div>
-                    <h4 className="font-semibold mb-3 border-l-3 border-autop-red pl-3">Nos Engagements Clients</h4>
+                    <h4 className="font-semibold mb-3 border-l-3 border-autop-red pl-3">{t("about.commitment.clients")}</h4>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Transparence totale sur l'historique et l'état des véhicules</span>
+                        <span>{t("about.commitment.transparency")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Prix compétitifs avec garantie du meilleur rapport qualité-prix</span>
+                        <span>{t("about.commitment.pricing")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Accompagnement personnalisé tout au long de votre parcours</span>
+                        <span>{t("about.commitment.support")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Suivi après-vente proactif et service réactif</span>
+                        <span>{t("about.commitment.afterSales")}</span>
                       </li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold mb-3 border-l-3 border-autop-red pl-3">Notre Responsabilité</h4>
+                    <h4 className="font-semibold mb-3 border-l-3 border-autop-red pl-3">{t("about.responsibility.title")}</h4>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Programme de compensation carbone pour réduire notre empreinte</span>
+                        <span>{t("about.responsibility.carbon")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Promotion des véhicules électriques et hybrides premium</span>
+                        <span>{t("about.responsibility.electric")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Pratiques commerciales éthiques et équitables</span>
+                        <span>{t("about.responsibility.ethics")}</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <span className="h-2 w-2 bg-autop-red rounded-full"></span>
-                        <span>Soutien à des initiatives caritatives locales et internationales</span>
+                        <span>{t("about.responsibility.charity")}</span>
                       </li>
                     </ul>
                   </div>
@@ -281,20 +274,19 @@ const About = () => {
           </section>
           
           <section className="bg-autop-red/5 p-8 rounded-lg text-center">
-            <h2 className="text-2xl font-semibold mb-4">Rejoignez l'Univers AUTO PBH</h2>
+            <h2 className="text-2xl font-semibold mb-4">{t("about.cta.title")}</h2>
             <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Découvrez notre sélection exceptionnelle de véhicules premium et laissez-nous vous accompagner
-              dans votre recherche du véhicule parfait.
+              {t("about.cta.subtitle")}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/catalog">
                 <Button size="lg" className="bg-autop-red hover:bg-autop-red/90 text-white">
-                  Explorer Notre Catalogue
+                  {t("about.cta.explore")}
                 </Button>
               </Link>
               <Link to="/contact">
                 <Button variant="outline" size="lg" className="border-autop-red text-autop-red hover:bg-autop-red/10">
-                  Contacter Un Expert
+                  {t("about.cta.contact")}
                 </Button>
               </Link>
             </div>
