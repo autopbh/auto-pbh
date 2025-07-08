@@ -1057,7 +1057,22 @@ export const translations: TranslationsType = {
     "account.loginButton": "Fazer Login",
     "account.signupButton": "Criar Conta",
     "account.forgotPassword": "Esqueceu a senha?",
-    "account.dashboardWelcome": "Bem-vindo ao seu painel"
+    "account.dashboardWelcome": "Bem-vindo ao seu painel",
+    "account.firstName": "Nome",
+    "account.lastName": "Sobrenome",
+    "account.phone": "Telefone",
+    "account.updateProfile": "Atualizar Perfil",
+    "account.updating": "Atualizando...",
+    "account.signOut": "Sair",
+    "account.profileTab": "Perfil",
+    "account.ordersTab": "Pedidos",
+    "account.favoritesTab": "Favoritos",
+    "account.addressesTab": "Endereços",
+    "account.emailPlaceholder": "seu@email.com",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+351 912 345 678",
+    "account.passwordRequirement": "A senha deve conter pelo menos 6 caracteres",
+    "account.loading": "Carregando..."
   },
 
   // Spanish translations
@@ -1311,7 +1326,22 @@ export const translations: TranslationsType = {
     "account.loginButton": "Entrar",
     "account.signupButton": "Crear Cuenta",
     "account.forgotPassword": "¿Olvidó la contraseña?",
-    "account.dashboardWelcome": "Bienvenido a su panel"
+    "account.dashboardWelcome": "Bienvenido a su panel",
+    "account.firstName": "Nombre",
+    "account.lastName": "Apellido",
+    "account.phone": "Teléfono",
+    "account.updateProfile": "Actualizar Perfil",
+    "account.updating": "Actualizando...",
+    "account.signOut": "Cerrar Sesión",
+    "account.profileTab": "Perfil",
+    "account.ordersTab": "Pedidos",
+    "account.favoritesTab": "Favoritos",
+    "account.addressesTab": "Direcciones",
+    "account.emailPlaceholder": "tu@email.com",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+34 612 345 678",
+    "account.passwordRequirement": "La contraseña debe contener al menos 6 caracteres",
+    "account.loading": "Cargando...",
   },
 
   // German translations
@@ -1565,7 +1595,22 @@ export const translations: TranslationsType = {
     "account.loginButton": "Einloggen",
     "account.signupButton": "Konto erstellen",
     "account.forgotPassword": "Passwort vergessen?",
-    "account.dashboardWelcome": "Willkommen in Ihrem Dashboard"
+    "account.dashboardWelcome": "Willkommen in Ihrem Dashboard",
+    "account.firstName": "Vorname",
+    "account.lastName": "Nachname",
+    "account.phone": "Telefon",
+    "account.updateProfile": "Profil Aktualisieren",
+    "account.updating": "Aktualisierung...",
+    "account.signOut": "Abmelden",
+    "account.profileTab": "Profil",
+    "account.ordersTab": "Bestellungen",
+    "account.favoritesTab": "Favoriten",
+    "account.addressesTab": "Adressen",
+    "account.emailPlaceholder": "ihre@email.de",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+49 172 123 4567",
+    "account.passwordRequirement": "Das Passwort muss mindestens 6 Zeichen enthalten",
+    "account.loading": "Laden..."
   },
 
   // Italian translations
@@ -1819,7 +1864,22 @@ export const translations: TranslationsType = {
     "account.loginButton": "Accedi",
     "account.signupButton": "Crea Account",
     "account.forgotPassword": "Password dimenticata?",
-    "account.dashboardWelcome": "Benvenuto nella tua dashboard"
+    "account.dashboardWelcome": "Benvenuto nella tua dashboard",
+    "account.firstName": "Nome",
+    "account.lastName": "Cognome",
+    "account.phone": "Telefono",
+    "account.updateProfile": "Aggiorna Profilo",
+    "account.updating": "Aggiornamento...",
+    "account.signOut": "Disconnetti",
+    "account.profileTab": "Profilo",
+    "account.ordersTab": "Ordini",
+    "account.favoritesTab": "Preferiti",
+    "account.addressesTab": "Indirizzi",
+    "account.emailPlaceholder": "tua@email.it",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+39 345 123 4567",
+    "account.passwordRequirement": "La password deve contenere almeno 6 caratteri",
+    "account.loading": "Caricamento..."
   },
 
   // Dutch translations
@@ -2073,6 +2133,21 @@ export const translations: TranslationsType = {
     "account.loginButton": "Inloggen",
     "account.signupButton": "Account Aanmaken",
     "account.forgotPassword": "Wachtwoord vergeten?",
-    "account.dashboardWelcome": "Welkom op uw dashboard"
+    "account.dashboardWelcome": "Welkom op uw dashboard",
+    "account.firstName": "Voornaam",
+    "account.lastName": "Achternaam",
+    "account.phone": "Telefoon",
+    "account.updateProfile": "Profiel Bijwerken",
+    "account.updating": "Bijwerken...",
+    "account.signOut": "Uitloggen",
+    "account.profileTab": "Profiel",
+    "account.ordersTab": "Bestellingen",
+    "account.favoritesTab": "Favorieten",
+    "account.addressesTab": "Adressen",
+    "account.emailPlaceholder": "uw@email.nl",
+    "account.passwordPlaceholder": "********",
+    "account.phonePlaceholder": "+31 6 12 34 56 78",
+    "account.passwordRequirement": "Het wachtwoord moet minimaal 6 karakters bevatten",
+    "account.loading": "Laden..."
   }
 };
