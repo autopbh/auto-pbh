@@ -8,7 +8,14 @@ interface FilterTagsProps {
 
 const FilterTags = ({ onFilterSelect }: FilterTagsProps) => {
   const { t } = useLanguage();
-  const filters = ["SUV Premium", "Moins de 50 000 km", "Toit panoramique", "Année 2022+", "Hybride", "Berlines"];
+  const filters = [
+    t("search.filter.suvPremium"), 
+    t("search.filter.lowMileage"), 
+    t("search.filter.panoramicRoof"), 
+    t("search.filter.recent"), 
+    t("search.filter.hybrid"), 
+    t("search.filter.sedan")
+  ];
 
   return (
     <div className="bg-white/70 rounded-lg p-6 shadow-sm">

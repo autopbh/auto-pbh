@@ -38,11 +38,11 @@ const SearchCommandDialog = ({
       "BMW", 
       "Porsche",
       "Jaguar",
-      "Toit panoramique",
-      "SUV",
+      t("search.suggestions.panoramicRoof"),
+      t("search.suggestions.suv"),
       "2023",
-      "hybride",
-      "automatique"
+      t("search.suggestions.hybrid"),
+      t("search.suggestions.automatic")
     ];
     
     const vehicleModels = vehicles.map(v => `${v.brand} ${v.model}`).slice(0, 5);

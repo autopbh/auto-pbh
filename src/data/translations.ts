@@ -130,6 +130,23 @@ export const translations: TranslationsType = {
     "search.viewCatalog": "Voir le catalogue complet",
     "search.assistance": "Assistance recherche",
     "search.voiceSearch": "Recherche vocale disponible",
+    "search.allVehicles": "Tous les véhicules",
+    "search.activeFilters": "Filtres actifs",
+    "search.resultsFound": "Résultats trouvés avec succès",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Toit panoramique",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Hybride",
+    "search.suggestions.automatic": "Automatique",
+    
+    // Search filters
+    "search.filter.suvPremium": "SUV Premium",
+    "search.filter.lowMileage": "Moins de 50 000 km",
+    "search.filter.panoramicRoof": "Toit panoramique",
+    "search.filter.recent": "Année 2022+",
+    "search.filter.hybrid": "Hybride",
+    "search.filter.sedan": "Berlines",
 
     // Financing page
     "financing.title": "Solutions de Financement",
@@ -406,6 +423,23 @@ export const translations: TranslationsType = {
     "search.viewCatalog": "View complete catalog",
     "search.assistance": "Search assistance",
     "search.voiceSearch": "Voice search available",
+    "search.allVehicles": "All vehicles",
+    "search.activeFilters": "Active filters",
+    "search.resultsFound": "Results found successfully",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Panoramic roof",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Hybrid",
+    "search.suggestions.automatic": "Automatic",
+    
+    // Search filters
+    "search.filter.suvPremium": "Premium SUV",
+    "search.filter.lowMileage": "Under 50,000 km",
+    "search.filter.panoramicRoof": "Panoramic roof",
+    "search.filter.recent": "Year 2022+",
+    "search.filter.hybrid": "Hybrid",
+    "search.filter.sedan": "Sedans",
 
     // Financing page
     "financing.title": "Financing Solutions",
@@ -531,7 +565,7 @@ export const translations: TranslationsType = {
     "tracking.orderNumber.location2": "The sales document signed with your advisor",
     "tracking.orderNumber.location3": "Your customer area (\"My orders\" section)"
   },
-  
+
   // Portuguese translations
   pt: {
     // Brand
@@ -590,6 +624,41 @@ export const translations: TranslationsType = {
     "shop.alreadyInCartDesc": "Este veículo já está no seu carrinho.",
     "shop.vehicleAdded": "Veículo adicionado",
     "shop.vehicleAddedDesc": "{vehicle} foi adicionado ao seu carrinho.",
+
+    // Search page
+    "search.title": "Pesquisar",
+    "search.advanced": "Pesquisa Avançada",
+    "search.description": "Use nosso motor de busca inteligente para encontrar o veículo que corresponde perfeitamente aos seus critérios da nossa seleção exclusiva.",
+    "search.placeholder": 'Digite "Mercedes Classe S 2023" ou escaneie seus critérios...',
+    "search.button": "Pesquisar",
+    "search.byBrand": "Pesquisar por Marca",
+    "search.models": "modelos",
+    "search.filters": "Filtros Populares",
+    "search.results": "resultado encontrado",
+    "search.results_plural": "resultados encontrados",
+    "search.noResults": "Nenhum resultado encontrado",
+    "search.noResultsDesc": "Nenhum veículo corresponde à sua pesquisa.",
+    "search.tryOther": "Tente com outros termos ou veja nosso catálogo completo.",
+    "search.viewCatalog": "Ver catálogo completo",
+    "search.assistance": "Assistência de pesquisa",
+    "search.voiceSearch": "Pesquisa por voz disponível",
+    "search.allVehicles": "Todos os veículos",
+    "search.activeFilters": "Filtros ativos",
+    "search.resultsFound": "Resultados encontrados com sucesso",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Teto panorâmico",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Híbrido",
+    "search.suggestions.automatic": "Automático",
+    
+    // Search filters
+    "search.filter.suvPremium": "SUV Premium",
+    "search.filter.lowMileage": "Menos de 50.000 km",
+    "search.filter.panoramicRoof": "Teto panorâmico",
+    "search.filter.recent": "Ano 2022+",
+    "search.filter.hybrid": "Híbrido",
+    "search.filter.sedan": "Sedãs",
 
     // Common
     "common.loading": "A carregar",
@@ -757,7 +826,42 @@ export const translations: TranslationsType = {
     "footer.joinClub": "Únete al Club AUTO PBH",
     "footer.copyright": "© {year} AUTO PBH. Excelencia Automovilística.",
     "footer.legal": "Aviso Legal",
-    "footer.dataProtection": "Protección de Datos"
+    "footer.dataProtection": "Protección de Datos",
+    
+    // Search page
+    "search.title": "Buscar",
+    "search.advanced": "Búsqueda Avanzada",
+    "search.description": "Utiliza nuestro motor de búsqueda inteligente para encontrar el vehículo que coincida perfectamente con tus criterios de nuestra selección exclusiva.",
+    "search.placeholder": 'Escribe "Mercedes Clase S 2023" o escanea tus criterios...',
+    "search.button": "Buscar",
+    "search.byBrand": "Buscar por Marca",
+    "search.models": "modelos",
+    "search.filters": "Filtros Populares",
+    "search.results": "resultado encontrado",
+    "search.results_plural": "resultados encontrados",
+    "search.noResults": "No se encontraron resultados",
+    "search.noResultsDesc": "Ningún vehículo coincide con tu búsqueda.",
+    "search.tryOther": "Prueba con otros términos o consulta nuestro catálogo completo.",
+    "search.viewCatalog": "Ver catálogo completo",
+    "search.assistance": "Asistencia de búsqueda",
+    "search.voiceSearch": "Búsqueda por voz disponible",
+    "search.allVehicles": "Todos los vehículos",
+    "search.activeFilters": "Filtros activos",
+    "search.resultsFound": "Resultados encontrados con éxito",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Techo panorámico",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Híbrido",
+    "search.suggestions.automatic": "Automático",
+    
+    // Search filters
+    "search.filter.suvPremium": "SUV Premium",
+    "search.filter.lowMileage": "Menos de 50.000 km",
+    "search.filter.panoramicRoof": "Techo panorámico",
+    "search.filter.recent": "Año 2022+",
+    "search.filter.hybrid": "Híbrido",
+    "search.filter.sedan": "Sedanes",
   },
 
   // German translations
@@ -871,7 +975,42 @@ export const translations: TranslationsType = {
     "footer.joinClub": "AUTO PBH Club Beitreten",
     "footer.copyright": "© {year} AUTO PBH. Automobilexzellenz.",
     "footer.legal": "Impressum",
-    "footer.dataProtection": "Datenschutz"
+    "footer.dataProtection": "Datenschutz",
+    
+    // Search page
+    "search.title": "Suchen",
+    "search.advanced": "Erweiterte Suche",
+    "search.description": "Verwenden Sie unsere intelligente Suchmaschine, um das Fahrzeug zu finden, das perfekt zu Ihren Kriterien aus unserer exklusiven Auswahl passt.",
+    "search.placeholder": 'Geben Sie "Mercedes S-Klasse 2023" ein oder scannen Sie Ihre Kriterien...',
+    "search.button": "Suchen",
+    "search.byBrand": "Nach Marke suchen",
+    "search.models": "Modelle",
+    "search.filters": "Beliebte Filter",
+    "search.results": "Ergebnis gefunden",
+    "search.results_plural": "Ergebnisse gefunden",
+    "search.noResults": "Keine Ergebnisse gefunden",
+    "search.noResultsDesc": "Kein Fahrzeug entspricht Ihrer Suche.",
+    "search.tryOther": "Versuchen Sie es mit anderen Begriffen oder durchsuchen Sie unseren vollständigen Katalog.",
+    "search.viewCatalog": "Vollständigen Katalog anzeigen",
+    "search.assistance": "Suchhilfe",
+    "search.voiceSearch": "Sprachsuche verfügbar",
+    "search.allVehicles": "Alle Fahrzeuge",
+    "search.activeFilters": "Aktive Filter",
+    "search.resultsFound": "Ergebnisse erfolgreich gefunden",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Panoramadach",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Hybrid",
+    "search.suggestions.automatic": "Automatik",
+    
+    // Search filters
+    "search.filter.suvPremium": "Premium SUV",
+    "search.filter.lowMileage": "Unter 50.000 km",
+    "search.filter.panoramicRoof": "Panoramadach",
+    "search.filter.recent": "Jahr 2022+",
+    "search.filter.hybrid": "Hybrid",
+    "search.filter.sedan": "Limousinen",
   },
 
   // Italian translations
@@ -932,6 +1071,41 @@ export const translations: TranslationsType = {
     "shop.alreadyInCartDesc": "Questo veicolo è già nel tuo carrello.",
     "shop.vehicleAdded": "Veicolo aggiunto",
     "shop.vehicleAddedDesc": "{vehicle} è stato aggiunto al tuo carrello.",
+
+    // Search page
+    "search.title": "Cerca",
+    "search.advanced": "Ricerca Avanzata",
+    "search.description": "Utilizza il nostro motore di ricerca intelligente per trovare il veicolo che corrisponde perfettamente ai tuoi criteri dalla nostra selezione esclusiva.",
+    "search.placeholder": 'Digita "Mercedes Classe S 2023" o scansiona i tuoi criteri...',
+    "search.button": "Cerca",
+    "search.byBrand": "Cerca per Marca",
+    "search.models": "modelli",
+    "search.filters": "Filtri Popolari",
+    "search.results": "risultato trovato",
+    "search.results_plural": "risultati trovati",
+    "search.noResults": "Nessun risultato trovato",
+    "search.noResultsDesc": "Nessun veicolo corrisponde alla tua ricerca.",
+    "search.tryOther": "Prova con altri termini o consulta il nostro catalogo completo.",
+    "search.viewCatalog": "Visualizza catalogo completo",
+    "search.assistance": "Assistenza ricerca",
+    "search.voiceSearch": "Ricerca vocale disponibile",
+    "search.allVehicles": "Tutti i veicoli",
+    "search.activeFilters": "Filtri attivi",
+    "search.resultsFound": "Risultati trovati con successo",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Tetto panoramico",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Ibrido",
+    "search.suggestions.automatic": "Automatico",
+    
+    // Search filters
+    "search.filter.suvPremium": "SUV Premium",
+    "search.filter.lowMileage": "Meno di 50.000 km",
+    "search.filter.panoramicRoof": "Tetto panoramico",
+    "search.filter.recent": "Anno 2022+",
+    "search.filter.hybrid": "Ibrido",
+    "search.filter.sedan": "Berline",
 
     // Common
     "common.loading": "Caricamento",
@@ -1046,6 +1220,41 @@ export const translations: TranslationsType = {
     "shop.alreadyInCartDesc": "Dit voertuig staat al in uw winkelwagen.",
     "shop.vehicleAdded": "Voertuig toegevoegd",
     "shop.vehicleAddedDesc": "{vehicle} is toegevoegd aan uw winkelwagen.",
+
+    // Search page
+    "search.title": "Zoeken",
+    "search.advanced": "Geavanceerd Zoeken",
+    "search.description": "Gebruik onze intelligente zoekmachine om het voertuig te vinden dat perfect past bij uw criteria uit onze exclusieve selectie.",
+    "search.placeholder": 'Typ "Mercedes S-Klasse 2023" of scan uw criteria...',
+    "search.button": "Zoeken",
+    "search.byBrand": "Zoeken op Merk",
+    "search.models": "modellen",
+    "search.filters": "Populaire Filters",
+    "search.results": "resultaat gevonden",
+    "search.results_plural": "resultaten gevonden",
+    "search.noResults": "Geen resultaten gevonden",
+    "search.noResultsDesc": "Geen voertuig komt overeen met uw zoekopdracht.",
+    "search.tryOther": "Probeer andere termen of bekijk onze volledige catalogus.",
+    "search.viewCatalog": "Volledige catalogus bekijken",
+    "search.assistance": "Zoekassistentie",
+    "search.voiceSearch": "Spraakzoeken beschikbaar",
+    "search.allVehicles": "Alle voertuigen",
+    "search.activeFilters": "Actieve filters",
+    "search.resultsFound": "Resultaten succesvol gevonden",
+    
+    // Search suggestions
+    "search.suggestions.panoramicRoof": "Panoramadak",
+    "search.suggestions.suv": "SUV",
+    "search.suggestions.hybrid": "Hybride",
+    "search.suggestions.automatic": "Automatisch",
+    
+    // Search filters
+    "search.filter.suvPremium": "Premium SUV",
+    "search.filter.lowMileage": "Minder dan 50.000 km",
+    "search.filter.panoramicRoof": "Panoramadak",
+    "search.filter.recent": "Jaar 2022+",
+    "search.filter.hybrid": "Hybride",
+    "search.filter.sedan": "Sedans",
 
     // Common
     "common.loading": "Laden",
