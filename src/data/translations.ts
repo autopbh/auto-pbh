@@ -308,6 +308,16 @@ export const translations: TranslationsType = {
     "account.signupButton": "Créer un compte",
     "account.forgotPassword": "Mot de passe oublié ?",
     "account.dashboardWelcome": "Bienvenue sur votre tableau de bord",
+    "account.firstName": "Prénom",
+    "account.lastName": "Nom",
+    "account.phone": "Téléphone",
+    "account.updateProfile": "Mettre à jour le profil",
+    "account.updating": "Mise à jour...",
+    "account.signOut": "Déconnexion",
+    "account.profileTab": "Profil",
+    "account.ordersTab": "Commandes",
+    "account.favoritesTab": "Favoris",
+    "account.addressesTab": "Adresses",
     "footer.dataProtection": "Protection des Données",
 
     // Services page
@@ -755,6 +765,27 @@ export const translations: TranslationsType = {
     "footer.legal": "Legal Notice",
     "footer.dataProtection": "Data Protection",
 
+    // Account page
+    "account.title": "My Account",
+    "account.login": "Login",
+    "account.signup": "Sign Up",
+    "account.email": "Email",
+    "account.password": "Password",
+    "account.loginButton": "Sign In",
+    "account.signupButton": "Create Account",
+    "account.forgotPassword": "Forgot Password?",
+    "account.dashboardWelcome": "Welcome to your dashboard",
+    "account.firstName": "First Name",
+    "account.lastName": "Last Name",
+    "account.phone": "Phone",
+    "account.updateProfile": "Update Profile",
+    "account.updating": "Updating...",
+    "account.signOut": "Sign Out",
+    "account.profileTab": "Profile",
+    "account.ordersTab": "Orders",
+    "account.favoritesTab": "Favorites",
+    "account.addressesTab": "Addresses",
+
     // Tracking page
     "tracking.title": "Delivery Tracking",
     "tracking.service.description": "Track in real time the progress of the preparation and delivery of your exceptional vehicle. Our \"Golden Key Delivery\" service guarantees you a premium experience from start to finish.",
@@ -1005,7 +1036,18 @@ export const translations: TranslationsType = {
     "about.cta.title": "Junte-se ao Universo AUTO PBH",
     "about.cta.subtitle": "Descubra nossa seleção excepcional de veículos premium e deixe-nos acompanhá-lo em sua busca pelo veículo perfeito.",
     "about.cta.explore": "Explorar Nosso Catálogo",
-    "about.cta.contact": "Contatar Um Especialista"
+    "about.cta.contact": "Contatar Um Especialista",
+
+    // Account page
+    "account.title": "Minha Conta",
+    "account.login": "Entrar",
+    "account.signup": "Registrar",
+    "account.email": "Email",
+    "account.password": "Senha",
+    "account.loginButton": "Fazer Login",
+    "account.signupButton": "Criar Conta",
+    "account.forgotPassword": "Esqueceu a senha?",
+    "account.dashboardWelcome": "Bem-vindo ao seu painel"
   },
 
   // Spanish translations
@@ -1248,7 +1290,18 @@ export const translations: TranslationsType = {
     "about.cta.title": "Únase al Universo AUTO PBH",
     "about.cta.subtitle": "Descubra nuestra selección excepcional de vehículos premium y permítanos acompañarlo en su búsqueda del vehículo perfecto.",
     "about.cta.explore": "Explorar Nuestro Catálogo",
-    "about.cta.contact": "Contactar Un Experto"
+    "about.cta.contact": "Contactar Un Experto",
+
+    // Account page
+    "account.title": "Mi Cuenta",
+    "account.login": "Iniciar Sesión",
+    "account.signup": "Registrarse",
+    "account.email": "Email",
+    "account.password": "Contraseña",
+    "account.loginButton": "Entrar",
+    "account.signupButton": "Crear Cuenta",
+    "account.forgotPassword": "¿Olvidó la contraseña?",
+    "account.dashboardWelcome": "Bienvenido a su panel"
   },
 
   // German translations
@@ -1491,7 +1544,18 @@ export const translations: TranslationsType = {
     "about.cta.title": "Treten Sie dem AUTO PBH Universum bei",
     "about.cta.subtitle": "Entdecken Sie unsere außergewöhnliche Auswahl an Premium-Fahrzeugen und lassen Sie uns Sie bei der Suche nach dem perfekten Fahrzeug begleiten.",
     "about.cta.explore": "Unseren Katalog erkunden",
-    "about.cta.contact": "Einen Experten kontaktieren"
+    "about.cta.contact": "Einen Experten kontaktieren",
+
+    // Account page
+    "account.title": "Mein Konto",
+    "account.login": "Anmelden",
+    "account.signup": "Registrieren",
+    "account.email": "E-Mail",
+    "account.password": "Passwort",
+    "account.loginButton": "Einloggen",
+    "account.signupButton": "Konto erstellen",
+    "account.forgotPassword": "Passwort vergessen?",
+    "account.dashboardWelcome": "Willkommen in Ihrem Dashboard"
   },
 
   // Italian translations
@@ -1734,7 +1798,18 @@ export const translations: TranslationsType = {
     "cart.and": "e la nostra",
     "cart.privacy": "politica sulla privacy",
     "cart.paymentSent": "Richiesta acconto inviata",
-    "cart.paymentSentDesc": "Effettua il bonifico entro 3 giorni per confermare la tua prenotazione."
+    "cart.paymentSentDesc": "Effettua il bonifico entro 3 giorni per confermare la tua prenotazione.",
+
+    // Account page
+    "account.title": "Il Mio Account",
+    "account.login": "Accedi",
+    "account.signup": "Registrati",
+    "account.email": "Email",
+    "account.password": "Password",
+    "account.loginButton": "Accedi",
+    "account.signupButton": "Crea Account",
+    "account.forgotPassword": "Password dimenticata?",
+    "account.dashboardWelcome": "Benvenuto nella tua dashboard"
   },
 
   // Dutch translations
@@ -1977,6 +2052,17 @@ export const translations: TranslationsType = {
     "about.cta.title": "Word Deel van het AUTO PBH Universum",
     "about.cta.subtitle": "Ontdek onze uitzonderlijke selectie premium voertuigen en laat ons u begeleiden in uw zoektocht naar het perfecte voertuig.",
     "about.cta.explore": "Onze Catalogus Verkennen",
-    "about.cta.contact": "Een Expert Contacteren"
+    "about.cta.contact": "Een Expert Contacteren",
+
+    // Account page
+    "account.title": "Mijn Account",
+    "account.login": "Inloggen",
+    "account.signup": "Registreren",
+    "account.email": "E-mail",
+    "account.password": "Wachtwoord",
+    "account.loginButton": "Inloggen",
+    "account.signupButton": "Account Aanmaken",
+    "account.forgotPassword": "Wachtwoord vergeten?",
+    "account.dashboardWelcome": "Welkom op uw dashboard"
   }
 };

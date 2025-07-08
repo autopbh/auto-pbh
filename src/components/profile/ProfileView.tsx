@@ -33,7 +33,7 @@ const ProfileView = ({
             onClick={onSignOut}
             disabled={loading}
           >
-            {loading ? "Chargement..." : "Déconnexion"}
+            {loading ? "Chargement..." : t("account.signOut")}
           </Button>
         </div>
         

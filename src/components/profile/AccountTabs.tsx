@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 import ProfileForm from "./ProfileForm";
 import OrderHistory from "./OrderHistory";
 import SavedVehicles from "./SavedVehicles";
@@ -13,6 +14,7 @@ interface AccountTabsProps {
 }
 
 const AccountTabs = ({ profile, session, loading, onUpdateProfile }: AccountTabsProps) => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("profile");
   
   const handleUpdateProfile = async (firstName: string, lastName: string, phone: string) => {
@@ -27,10 +29,10 @@ const AccountTabs = ({ profile, session, loading, onUpdateProfile }: AccountTabs
       className="w-full"
     >
       <TabsList className="grid grid-cols-4 mb-6">
-        <TabsTrigger value="profile">Profil</TabsTrigger>
-        <TabsTrigger value="orders">Commandes</TabsTrigger>
-        <TabsTrigger value="favorites">Favoris</TabsTrigger>
-        <TabsTrigger value="addresses">Adresses</TabsTrigger>
+        <TabsTrigger value="profile">{t("account.profileTab")}</TabsTrigger>
+        <TabsTrigger value="orders">{t("account.ordersTab")}</TabsTrigger>
+        <TabsTrigger value="favorites">{t("account.favoritesTab")}</TabsTrigger>
+        <TabsTrigger value="addresses">{t("account.addressesTab")}</TabsTrigger>
       </TabsList>
       
       <TabsContent value="profile" className="space-y-4">
