@@ -28,23 +28,18 @@ const Warranty = () => {
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-16">
             <div className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-autop-red border-b border-autop-red/20 pb-2">
-                Notre Engagement d'Excellence
+                {t("warranty.excellenceCommitment")}
               </h2>
               <div className="grid md:grid-cols-2 gap-8 mb-6">
                 <div>
                   <p className="text-lg mb-4">
-                    Chez AUTO PBH, nous comprenons que l'acquisition d'un véhicule premium représente un 
-                    investissement important. C'est pourquoi nous avons conçu le programme de garantie 
-                    le plus complet du marché.
+                    {t("warranty.commitment.paragraph1")}
                   </p>
                   <p className="text-lg mb-4">
-                    Notre garantie couvre non seulement les composants mécaniques essentiels, mais 
-                    s'étend également aux systèmes électroniques sophistiqués qui équipent les véhicules 
-                    premium modernes.
+                    {t("warranty.commitment.paragraph2")}
                   </p>
                   <p className="text-lg">
-                    Chaque aspect de notre programme a été pensé pour vous offrir une protection maximale 
-                    et un service d'exception en toutes circonstances.
+                    {t("warranty.commitment.paragraph3")}
                   </p>
                 </div>
                 
@@ -52,26 +47,26 @@ const Warranty = () => {
                   <div className="flex items-center gap-4 mb-4">
                     <Shield className="h-12 w-12 text-autop-red" />
                     <div>
-                      <h3 className="text-xl font-semibold">Protection Intégrale</h3>
-                      <p className="text-muted-foreground">Le programme le plus complet du marché</p>
+                      <h3 className="text-xl font-semibold">{t("warranty.integralProtection")}</h3>
+                      <p className="text-muted-foreground">{t("warranty.mostComprehensiveProgram")}</p>
                     </div>
                   </div>
                   <ul className="space-y-3 pl-4">
                     <li className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-autop-red shrink-0" />
-                      <span>Couverture étendue sur les composants mécaniques et électroniques</span>
+                      <span>{t("warranty.extendedCoverage")}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-autop-red shrink-0" />
-                      <span>Assistance routière premium incluse</span>
+                      <span>{t("warranty.premiumRoadside")}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-autop-red shrink-0" />
-                      <span>Entretien préférentiel dans notre réseau</span>
+                      <span>{t("warranty.preferentialMaintenance")}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-autop-red shrink-0" />
-                      <span>Transfert de garantie possible lors de la revente</span>
+                      <span>{t("warranty.transferableWarranty")}</span>
                     </li>
                   </ul>
                 </div>
@@ -80,7 +75,7 @@ const Warranty = () => {
             
             <div className="mb-12">
               <h2 className="text-2xl font-semibold mb-8 text-autop-red border-b border-autop-red/20 pb-2">
-                Couvertures Détaillées
+                {t("warranty.detailedCoverage")}
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8 mb-10">
@@ -88,9 +83,9 @@ const Warranty = () => {
                   <div className="bg-autop-red text-white p-4">
                     <div className="flex items-center gap-3">
                       <Shield className="h-6 w-6" />
-                      <h3 className="text-xl font-medium">Garantie Mécanique & Boîte</h3>
+                      <h3 className="text-xl font-medium">{t("warranty.mechanicalTransmissionWarranty")}</h3>
                     </div>
-                    <p className="mt-2 text-white/80 text-sm">La protection complète du cœur de votre véhicule</p>
+                    <p className="mt-2 text-white/80 text-sm">{t("warranty.mechanicalTransmissionDescription")}</p>
                   </div>
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -99,33 +94,33 @@ const Warranty = () => {
                           <Clock className="h-5 w-5 text-autop-red" />
                         </div>
                         <div>
-                          <p className="font-medium">Durée standard</p>
-                          <p className="text-2xl font-bold text-autop-red">24 mois</p>
+                          <p className="font-medium">{t("warranty.standardDuration")}</p>
+                          <p className="text-2xl font-bold text-autop-red">24 {t("warranty.months")}</p>
                         </div>
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-sm bg-gray-50 p-3 rounded-lg">
-                          <p className="font-medium">Extension possible</p>
-                          <p>Jusqu'à 36 mois</p>
+                          <p className="font-medium">{t("warranty.extensionPossible")}</p>
+                          <p>{t("warranty.upTo36Months")}</p>
                         </div>
                         <div className="text-sm bg-gray-50 p-3 rounded-lg">
-                          <p className="font-medium">Kilométrage</p>
-                          <p>Illimité</p>
+                          <p className="font-medium">{t("warranty.mileage")}</p>
+                          <p>{t("warranty.unlimited")}</p>
                         </div>
                       </div>
                       
                       <div className="pt-3">
-                        <h4 className="font-medium mb-2 border-l-4 border-autop-red pl-2">Composants couverts:</h4>
+                        <h4 className="font-medium mb-2 border-l-4 border-autop-red pl-2">{t("warranty.coveredComponents")}:</h4>
                         <ul className="space-y-1 text-muted-foreground pl-4 list-disc">
-                          <li>Bloc moteur et composants internes</li>
-                          <li>Culasse et joints de culasse</li>
-                          <li>Boîte de vitesses (manuelle et automatique)</li>
-                          <li>Pompes à huile et systèmes de refroidissement</li>
-                          <li>Arbres de transmission et différentiels</li>
-                          <li>Circuits d'alimentation et d'injection</li>
-                          <li>Turbocompresseurs et compresseurs</li>
-                          <li>Volant moteur et amortisseurs de torsion</li>
+                          <li>{t("warranty.engineBlock")}</li>
+                          <li>{t("warranty.cylinderHead")}</li>
+                          <li>{t("warranty.transmissionBox")}</li>
+                          <li>{t("warranty.oilPumps")}</li>
+                          <li>{t("warranty.driveShafts")}</li>
+                          <li>{t("warranty.fuelCircuits")}</li>
+                          <li>{t("warranty.turbochargers")}</li>
+                          <li>{t("warranty.flywheel")}</li>
                         </ul>
                       </div>
                     </div>
@@ -136,9 +131,9 @@ const Warranty = () => {
                   <div className="bg-autop-red text-white p-4">
                     <div className="flex items-center gap-3">
                       <Zap className="h-6 w-6" />
-                      <h3 className="text-xl font-medium">Garantie Électronique</h3>
+                      <h3 className="text-xl font-medium">{t("warranty.electronicWarranty")}</h3>
                     </div>
-                    <p className="mt-2 text-white/80 text-sm">Pour les systèmes technologiques avancés</p>
+                    <p className="mt-2 text-white/80 text-sm">{t("warranty.electronicWarrantyDescription")}</p>
                   </div>
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -147,33 +142,33 @@ const Warranty = () => {
                           <Clock className="h-5 w-5 text-autop-red" />
                         </div>
                         <div>
-                          <p className="font-medium">Durée standard</p>
-                          <p className="text-2xl font-bold text-autop-red">12 mois</p>
+                          <p className="font-medium">{t("warranty.standardDuration")}</p>
+                          <p className="text-2xl font-bold text-autop-red">12 {t("warranty.months")}</p>
                         </div>
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
                         <div className="text-sm bg-gray-50 p-3 rounded-lg">
-                          <p className="font-medium">Extension possible</p>
-                          <p>Jusqu'à 24 mois</p>
+                          <p className="font-medium">{t("warranty.extensionPossible")}</p>
+                          <p>{t("warranty.upTo24Months")}</p>
                         </div>
                         <div className="text-sm bg-gray-50 p-3 rounded-lg">
-                          <p className="font-medium">Mises à jour</p>
-                          <p>Incluses</p>
+                          <p className="font-medium">{t("warranty.updates")}</p>
+                          <p>{t("warranty.included")}</p>
                         </div>
                       </div>
                       
                       <div className="pt-3">
-                        <h4 className="font-medium mb-2 border-l-4 border-autop-red pl-2">Systèmes couverts:</h4>
+                        <h4 className="font-medium mb-2 border-l-4 border-autop-red pl-2">{t("warranty.coveredSystems")}:</h4>
                         <ul className="space-y-1 text-muted-foreground pl-4 list-disc">
-                          <li>Systèmes d'infodivertissement et navigation</li>
-                          <li>Tableaux de bord numériques et écrans tactiles</li>
-                          <li>Systèmes d'aide à la conduite (ADAS)</li>
-                          <li>Capteurs et caméras périphériques</li>
-                          <li>Systèmes de connectivité et télématique</li>
-                          <li>Calculateurs électroniques (ECU)</li>
-                          <li>Climatisation et systèmes de confort</li>
-                          <li>Systèmes audio premium</li>
+                          <li>{t("warranty.infotainmentSystems")}</li>
+                          <li>{t("warranty.digitalDashboards")}</li>
+                          <li>{t("warranty.drivingAidSystems")}</li>
+                          <li>{t("warranty.sensorsAndCameras")}</li>
+                          <li>{t("warranty.connectivitySystems")}</li>
+                          <li>{t("warranty.electronicUnits")}</li>
+                          <li>{t("warranty.climateControl")}</li>
+                          <li>{t("warranty.premiumAudio")}</li>
                         </ul>
                       </div>
                     </div>
@@ -186,14 +181,14 @@ const Warranty = () => {
                   <div className="bg-autop-red/10 h-16 w-16 flex items-center justify-center rounded-full mx-auto mb-4">
                     <PhoneCall className="h-8 w-8 text-autop-red" />
                   </div>
-                  <h3 className="text-lg font-medium mb-3">Assistance 24/7</h3>
+                  <h3 className="text-lg font-medium mb-3">{t("warranty.support24h")}</h3>
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <p>Service de dépannage et assistance disponible jour et nuit</p>
-                    <p>Couverture dans toute l'Europe</p>
-                    <p>Interlocuteurs multilingues</p>
+                    <p>{t("warranty.support24hDescription1")}</p>
+                    <p>{t("warranty.support24hDescription2")}</p>
+                    <p>{t("warranty.support24hDescription3")}</p>
                   </div>
                   <div className="text-sm font-medium text-autop-red">
-                    Temps de réponse moyen: 30 minutes
+                    {t("warranty.support24hResponseTime")}
                   </div>
                 </div>
                 
@@ -201,14 +196,14 @@ const Warranty = () => {
                   <div className="bg-autop-red/10 h-16 w-16 flex items-center justify-center rounded-full mx-auto mb-4">
                     <Car className="h-8 w-8 text-autop-red" />
                   </div>
-                  <h3 className="text-lg font-medium mb-3">Véhicule de Remplacement</h3>
+                  <h3 className="text-lg font-medium mb-3">{t("warranty.replacementVehicle")}</h3>
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <p>Prêt d'un véhicule de catégorie équivalente</p>
-                    <p>Disponible pendant toute la durée des réparations</p>
-                    <p>Livraison à domicile ou sur lieu de travail</p>
+                    <p>{t("warranty.replacementVehicleDescription1")}</p>
+                    <p>{t("warranty.replacementVehicleDescription2")}</p>
+                    <p>{t("warranty.replacementVehicleDescription3")}</p>
                   </div>
                   <div className="text-sm font-medium text-autop-red">
-                    Délai de mise à disposition: 3h maximum
+                    {t("warranty.replacementVehicleTime")}
                   </div>
                 </div>
                 
@@ -216,14 +211,14 @@ const Warranty = () => {
                   <div className="bg-autop-red/10 h-16 w-16 flex items-center justify-center rounded-full mx-auto mb-4">
                     <Wrench className="h-8 w-8 text-autop-red" />
                   </div>
-                  <h3 className="text-lg font-medium mb-3">Entretien Privilégié</h3>
+                  <h3 className="text-lg font-medium mb-3">{t("warranty.privilegedMaintenance")}</h3>
                   <div className="space-y-2 text-sm text-muted-foreground mb-4">
-                    <p>Remise de 15% sur les services d'entretien régulier</p>
-                    <p>Accès prioritaire dans notre réseau de partenaires</p>
-                    <p>Utilisation exclusive de pièces d'origine</p>
+                    <p>{t("warranty.privilegedMaintenanceDescription1")}</p>
+                    <p>{t("warranty.privilegedMaintenanceDescription2")}</p>
+                    <p>{t("warranty.privilegedMaintenanceDescription3")}</p>
                   </div>
                   <div className="text-sm font-medium text-autop-red">
-                    Prise en charge sous 24h garantie
+                    {t("warranty.privilegedMaintenanceTime")}
                   </div>
                 </div>
               </div>
@@ -231,58 +226,56 @@ const Warranty = () => {
               <div className="bg-autop-red/5 p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-4">
                   <AlertCircle className="h-5 w-5 text-autop-red" />
-                  <h3 className="text-xl font-semibold">À Noter</h3>
+                  <h3 className="text-xl font-semibold">{t("warranty.note")}</h3>
                 </div>
                 <p className="text-muted-foreground mb-3">
-                  Notre programme de garantie premium est conçu pour couvrir les pannes mécaniques et électroniques 
-                  résultant d'une utilisation normale du véhicule. Pour une tranquillité d'esprit maximale, nous 
-                  recommandons de:
+                  {t("warranty.noteDescription")}
                 </p>
                 <ul className="space-y-2 text-muted-foreground pl-4 list-disc">
-                  <li>Respecter le calendrier d'entretien recommandé par le constructeur</li>
-                  <li>Faire effectuer toutes les interventions dans notre réseau de partenaires agréés</li>
-                  <li>Signaler toute anomalie dès sa première manifestation</li>
-                  <li>Consulter les conditions détaillées du contrat pour connaître les exclusions spécifiques</li>
+                  <li>{t("warranty.noteItem1")}</li>
+                  <li>{t("warranty.noteItem2")}</li>
+                  <li>{t("warranty.noteItem3")}</li>
+                  <li>{t("warranty.noteItem4")}</li>
                 </ul>
               </div>
             </div>
             
             <div className="mb-10">
               <h2 className="text-2xl font-semibold mb-6 text-autop-red border-b border-autop-red/20 pb-2">
-                Programmes de Garantie
+                {t("warranty.warrantyPrograms")}
               </h2>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <Card className="border-autop-red/10">
                   <CardContent className="p-6">
                     <div className="mb-4">
-                      <h3 className="text-xl font-semibold mb-1">Standard</h3>
-                      <p className="text-muted-foreground text-sm">Inclus avec chaque véhicule</p>
+                      <h3 className="text-xl font-semibold mb-1">{t("warranty.standard")}</h3>
+                      <p className="text-muted-foreground text-sm">{t("warranty.standardDescription")}</p>
                       <div className="flex items-baseline mt-4 mb-2">
                         <span className="text-3xl font-bold">24</span>
-                        <span className="text-lg ml-1">mois</span>
+                        <span className="text-lg ml-1">{t("warranty.months")}</span>
                       </div>
                     </div>
                     <ul className="space-y-2 text-sm mb-6">
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Garantie mécanique complète</span>
+                        <span>{t("warranty.completeMechanicalWarranty")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>12 mois sur l'électronique</span>
+                        <span>{t("warranty.12MonthsElectronics")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Assistance routière de base</span>
+                        <span>{t("warranty.basicRoadsideAssistance")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Véhicule de remplacement (7 jours)</span>
+                        <span>{t("warranty.replacementVehicle7Days")}</span>
                       </li>
                     </ul>
                     <div>
-                      <p className="text-center text-muted-foreground text-sm">Inclus sans frais supplémentaires</p>
+                      <p className="text-center text-muted-foreground text-sm">{t("warranty.includedNoExtraCost")}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -290,43 +283,43 @@ const Warranty = () => {
                 <Card className="border-autop-red relative z-10 transform scale-105 shadow-lg">
                   <div className="absolute -top-4 inset-x-0 flex justify-center">
                     <span className="bg-autop-red text-white text-sm font-medium px-4 py-1 rounded-full">
-                      Recommandé
+                      {t("warranty.recommended")}
                     </span>
                   </div>
                   <CardContent className="p-6">
                     <div className="mb-4">
-                      <h3 className="text-xl font-semibold mb-1">Premium</h3>
-                      <p className="text-muted-foreground text-sm">Pour une protection optimale</p>
+                      <h3 className="text-xl font-semibold mb-1">{t("warranty.premium")}</h3>
+                      <p className="text-muted-foreground text-sm">{t("warranty.premiumDescription")}</p>
                       <div className="flex items-baseline mt-4 mb-2">
                         <span className="text-3xl font-bold">30</span>
-                        <span className="text-lg ml-1">mois</span>
+                        <span className="text-lg ml-1">{t("warranty.months")}</span>
                       </div>
                     </div>
                     <ul className="space-y-2 text-sm mb-6">
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Garantie mécanique étendue</span>
+                        <span>{t("warranty.extendedMechanicalWarranty")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>24 mois sur l'électronique</span>
+                        <span>{t("warranty.24MonthsElectronics")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Assistance routière premium</span>
+                        <span>{t("warranty.premiumRoadsideAssistance")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Véhicule de remplacement illimité</span>
+                        <span>{t("warranty.unlimitedReplacementVehicle")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>2 révisions complètes incluses</span>
+                        <span>{t("warranty.twoCompleteServices")}</span>
                       </li>
                     </ul>
                     <div className="text-center">
                       <Button className="w-full bg-autop-red hover:bg-autop-red/90 text-white">
-                        Sélectionner
+                        {t("warranty.select")}
                       </Button>
                     </div>
                   </CardContent>
@@ -335,42 +328,42 @@ const Warranty = () => {
                 <Card className="border-autop-red/10">
                   <CardContent className="p-6">
                     <div className="mb-4">
-                      <h3 className="text-xl font-semibold mb-1">Excellence</h3>
-                      <p className="text-muted-foreground text-sm">Protection maximale</p>
+                      <h3 className="text-xl font-semibold mb-1">{t("warranty.excellence")}</h3>
+                      <p className="text-muted-foreground text-sm">{t("warranty.excellenceDescription")}</p>
                       <div className="flex items-baseline mt-4 mb-2">
                         <span className="text-3xl font-bold">36</span>
-                        <span className="text-lg ml-1">mois</span>
+                        <span className="text-lg ml-1">{t("warranty.months")}</span>
                       </div>
                     </div>
                     <ul className="space-y-2 text-sm mb-6">
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Garantie mécanique complète</span>
+                        <span>{t("warranty.completeMechanicalWarranty")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>24 mois sur l'électronique</span>
+                        <span>{t("warranty.24MonthsElectronics")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Assistance VIP 24/7</span>
+                        <span>{t("warranty.vipAssistance")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Véhicule de remplacement premium</span>
+                        <span>{t("warranty.premiumReplacementVehicle")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Toutes révisions incluses</span>
+                        <span>{t("warranty.allServicesIncluded")}</span>
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="h-4 w-4 text-autop-red mr-2 shrink-0" />
-                        <span>Conciergerie automobile dédiée</span>
+                        <span>{t("warranty.dedicatedConcierge")}</span>
                       </li>
                     </ul>
                     <div className="text-center">
                       <Button variant="outline" className="w-full border-autop-red text-autop-red hover:bg-autop-red/10">
-                        Sélectionner
+                        {t("warranty.select")}
                       </Button>
                     </div>
                   </CardContent>
@@ -380,16 +373,15 @@ const Warranty = () => {
             
             <div className="border-t pt-8 text-center">
               <p className="text-muted-foreground mb-4 max-w-2xl mx-auto">
-                "Tous nos programmes de garantie sont soutenus par des assureurs de premier plan européens.
-                Nos contrats sont clairs, sans clause cachée et transparents dans leurs conditions d'application."
+                {t("warranty.finalQuote")}
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button className="bg-autop-red text-white hover:bg-autop-red/90">
-                  Télécharger le contrat de garantie
+                  {t("warranty.downloadContract")}
                 </Button>
                 <Link to="/contact">
                   <Button variant="outline" className="border-autop-red text-autop-red hover:bg-autop-red/10">
-                    Contacter un conseiller
+                    {t("warranty.contactAdvisor")}
                   </Button>
                 </Link>
               </div>
@@ -400,15 +392,14 @@ const Warranty = () => {
             <div className="max-w-3xl mx-auto">
               <div className="mb-6">
                 <Award className="h-12 w-12 mx-auto mb-4" />
-                <h2 className="text-2xl font-semibold mb-2">Notre Promesse</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("warranty.ourPromise")}</h2>
                 <p className="text-lg opacity-90">
-                  Nous nous engageons à offrir la garantie la plus complète et la plus transparente du marché.
-                  Si vous trouvez une meilleure couverture pour un véhicule équivalent, nous nous alignerons sur cette offre.
+                  {t("warranty.ourPromiseDescription")}
                 </p>
               </div>
               <Link to="/contact">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-                  Discuter avec un expert
+                  {t("warranty.discussWithExpert")}
                 </Button>
               </Link>
             </div>
