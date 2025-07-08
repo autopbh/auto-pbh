@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Search, ShoppingCart, User, Menu } from "lucide-react";
+import LocalizedLink from "@/components/common/LocalizedLink";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -60,38 +60,38 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <Link to="/" className="flex items-center">
+        <LocalizedLink to="/" className="flex items-center">
           <img
             src="/lovable-uploads/1bb4ee3a-2a2a-405c-855f-32b060970cb1.png"
             alt="AUTO PBH"
             className="h-12"
           />
-        </Link>
+        </LocalizedLink>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
+          <LocalizedLink to="/catalog" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             {t("nav.catalog")}
-          </Link>
-          <Link to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
+          </LocalizedLink>
+          <LocalizedLink to="/services" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             {t("nav.services")}
-          </Link>
-          <Link to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
+          </LocalizedLink>
+          <LocalizedLink to="/about" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             {t("nav.about")}
-          </Link>
-          <Link to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
+          </LocalizedLink>
+          <LocalizedLink to="/contact" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             {t("nav.contact")}
-          </Link>
-          <Link to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
+          </LocalizedLink>
+          <LocalizedLink to="/faq" className="navbar-link bg-white/80 dark:bg-black/80 px-4 py-2 rounded-md border border-white/30 dark:border-black/30 shadow-sm">
             {t("nav.faq")}
-          </Link>
+          </LocalizedLink>
         </nav>
 
         {/* Right Side Icons */}
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           
-          <Link to="/search">
+          <LocalizedLink to="/search">
             <Button 
               variant="secondary"
               size="icon"
@@ -100,7 +100,7 @@ const Header = () => {
             >
               <Search className="h-5 w-5" />
             </Button>
-          </Link>
+          </LocalizedLink>
           
           <div className="relative">
             <Button
@@ -123,7 +123,7 @@ const Header = () => {
             {cartOpen && <CartDropdown />}
           </div>
           
-          <Link to="/account">
+          <LocalizedLink to="/account">
             <Button
               variant="secondary"
               size="icon"
@@ -132,7 +132,7 @@ const Header = () => {
             >
               <User className="h-5 w-5" />
             </Button>
-          </Link>
+          </LocalizedLink>
           
           {/* Mobile Menu */}
           <Sheet>

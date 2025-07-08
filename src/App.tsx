@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import RedirectToLanguage from "./components/common/RedirectToLanguage";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Catalog from "./pages/Catalog";
@@ -43,35 +44,61 @@ const queryClient = new QueryClient({
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <LanguageProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+      <BrowserRouter>
+        <LanguageProvider>
+          <Toaster />
+          <Sonner />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={<Faq />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/vehicle/:id" element={<VehicleDetail />} />
-            <Route path="/financing" element={<Financing />} />
-            <Route path="/delivery-tracking" element={<Tracking />} />
-            <Route path="/warranty" element={<Warranty />} />
-            <Route path="/returns" element={<Returns />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/cookies" element={<Cookies />} />
-            <Route path="/legal-notice" element={<LegalNotice />} />
-            <Route path="/admin" element={<Admin />} />
+            {/* Redirect root to French */}
+            <Route path="/" element={<RedirectToLanguage />} />
+            
+            {/* Language-prefixed routes */}
+            <Route path="/:lang" element={<Index />} />
+            <Route path="/:lang/catalog" element={<Catalog />} />
+            <Route path="/:lang/services" element={<Services />} />
+            <Route path="/:lang/about" element={<About />} />
+            <Route path="/:lang/contact" element={<Contact />} />
+            <Route path="/:lang/faq" element={<Faq />} />
+            <Route path="/:lang/search" element={<Search />} />
+            <Route path="/:lang/account" element={<Account />} />
+            <Route path="/:lang/cart" element={<Cart />} />
+            <Route path="/:lang/checkout" element={<Checkout />} />
+            <Route path="/:lang/vehicle/:id" element={<VehicleDetail />} />
+            <Route path="/:lang/financing" element={<Financing />} />
+            <Route path="/:lang/delivery-tracking" element={<Tracking />} />
+            <Route path="/:lang/warranty" element={<Warranty />} />
+            <Route path="/:lang/returns" element={<Returns />} />
+            <Route path="/:lang/terms" element={<Terms />} />
+            <Route path="/:lang/privacy" element={<Privacy />} />
+            <Route path="/:lang/cookies" element={<Cookies />} />
+            <Route path="/:lang/legal-notice" element={<LegalNotice />} />
+            <Route path="/:lang/admin" element={<Admin />} />
+            
+            {/* Legacy routes without language prefix - redirect to French */}
+            <Route path="/catalog" element={<RedirectToLanguage targetPath="/catalog" />} />
+            <Route path="/services" element={<RedirectToLanguage targetPath="/services" />} />
+            <Route path="/about" element={<RedirectToLanguage targetPath="/about" />} />
+            <Route path="/contact" element={<RedirectToLanguage targetPath="/contact" />} />
+            <Route path="/faq" element={<RedirectToLanguage targetPath="/faq" />} />
+            <Route path="/search" element={<RedirectToLanguage targetPath="/search" />} />
+            <Route path="/account" element={<RedirectToLanguage targetPath="/account" />} />
+            <Route path="/cart" element={<RedirectToLanguage targetPath="/cart" />} />
+            <Route path="/checkout" element={<RedirectToLanguage targetPath="/checkout" />} />
+            <Route path="/vehicle/:id" element={<RedirectToLanguage targetPath="/vehicle/:id" />} />
+            <Route path="/financing" element={<RedirectToLanguage targetPath="/financing" />} />
+            <Route path="/delivery-tracking" element={<RedirectToLanguage targetPath="/delivery-tracking" />} />
+            <Route path="/warranty" element={<RedirectToLanguage targetPath="/warranty" />} />
+            <Route path="/returns" element={<RedirectToLanguage targetPath="/returns" />} />
+            <Route path="/terms" element={<RedirectToLanguage targetPath="/terms" />} />
+            <Route path="/privacy" element={<RedirectToLanguage targetPath="/privacy" />} />
+            <Route path="/cookies" element={<RedirectToLanguage targetPath="/cookies" />} />
+            <Route path="/legal-notice" element={<RedirectToLanguage targetPath="/legal-notice" />} />
+            <Route path="/admin" element={<RedirectToLanguage targetPath="/admin" />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </LanguageProvider>
+        </LanguageProvider>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
