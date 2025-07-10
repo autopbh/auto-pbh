@@ -1097,7 +1097,7 @@ export const translations: TranslationsType = {
     "tracking.form.searching": "Searching...",
     "tracking.form.trackOrder": "Track my order",
     "tracking.form.cantFindOrderNumber": "I can't find my order number",
-    "contact.contactAssistance": "Contact Assistance",
+    
     // Catalog
     "catalog.title": "Catalog",
     "catalog.description": "Explore our selection of exceptional vehicles: BMW, Mercedes-Benz, Audi and Porsche. Filter by brand, price or year to find the car of your dreams.",
