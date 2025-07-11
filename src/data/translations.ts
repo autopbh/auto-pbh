@@ -688,6 +688,13 @@ export const translations: TranslationsType = {
     "returns.freeReturnDescription": "Retour simple et rapide en cas d'insatisfaction, remboursement intégral",
     "returns.transparencyGuarantee": "Garantie Transparence",
     "returns.transparencyDescription": "Aucune question posée, nous respectons votre décision",
+    "returns.returnConditions": "Conditions de Retour",
+    "returns.condition1": "Le véhicule doit être retourné dans les 7 jours calendaires suivant la livraison",
+    "returns.condition2": "Le kilométrage doit être identique à celui indiqué lors de la livraison (tolérance de 100 km)",
+    "returns.condition3": "Le véhicule doit être retourné dans son état d'origine, sans dommages ni modifications",
+    "returns.condition4": "Tous les documents et accessoires fournis lors de la livraison doivent être restitués",
+    "returns.contactMessage": "Pour toute question concernant notre politique de retour, n'hésitez pas à contacter votre conseiller personnel.",
+    "returns.contactAdvisorButton": "Contacter mon conseiller",
     
     // Terms page translations
     "terms.title": "Conditions Générales de Service",
@@ -1390,7 +1397,26 @@ export const translations: TranslationsType = {
     "tracking.orderNumber.description": "Your order number starts with \"PBH-\" and can be found in:",
     "tracking.orderNumber.location1": "The confirmation email received at the time of purchase",
     "tracking.orderNumber.location2": "The sales document signed with your advisor",
-    "tracking.orderNumber.location3": "Your customer area (\"My orders\" section)"
+    "tracking.orderNumber.location3": "Your customer area (\"My orders\" section)",
+    
+    // Returns page translations
+    "returns.title": "Satisfaction Policy",
+    "returns.qualityCommitment": "Our Quality Commitment",
+    "returns.unsatisfiedQuote": "Unsatisfied? We take back your vehicle within 7 days, free of charge. Conditions: identical mileage to delivery.",
+    "returns.description": "At AUTO PBH, your complete satisfaction is our absolute priority. We are so confident in the quality of our vehicles that we offer you a unique satisfaction guarantee in the premium automotive market.",
+    "returns.sevenDaysTrial": "7-Day Trial",
+    "returns.sevenDaysDescription": "A full week to test your new vehicle in your daily life",
+    "returns.freeReturn": "Free Return",
+    "returns.freeReturnDescription": "Simple and fast return in case of dissatisfaction, full refund",
+    "returns.transparencyGuarantee": "Transparency Guarantee",
+    "returns.transparencyDescription": "No questions asked, we respect your decision",
+    "returns.returnConditions": "Return Conditions",
+    "returns.condition1": "The vehicle must be returned within 7 calendar days following delivery",
+    "returns.condition2": "The mileage must be identical to that indicated at delivery (tolerance of 100 km)",
+    "returns.condition3": "The vehicle must be returned in its original condition, without damage or modifications",
+    "returns.condition4": "All documents and accessories provided at delivery must be returned",
+    "returns.contactMessage": "For any questions regarding our return policy, please do not hesitate to contact your personal advisor.",
+    "returns.contactAdvisorButton": "Contact my advisor"
   },
 
   // Portuguese translations
@@ -1850,6 +1876,25 @@ export const translations: TranslationsType = {
     "tracking.form.searching": "Procurando...",
     "tracking.form.trackOrder": "Rastrear meu pedido",
     "tracking.form.cantFindOrderNumber": "Não consigo encontrar meu número de pedido",
+    
+    // Returns page translations
+    "returns.title": "Política de Satisfação",
+    "returns.qualityCommitment": "Nosso Compromisso de Qualidade",
+    "returns.unsatisfiedQuote": "Insatisfeito? Retomamos seu veículo em 7 dias, sem custos. Condições: quilometragem idêntica à entrega.",
+    "returns.description": "Na AUTO PBH, sua total satisfação é nossa prioridade absoluta. Estamos tão confiantes na qualidade de nossos veículos que oferecemos uma garantia de satisfação única no mercado automotivo premium.",
+    "returns.sevenDaysTrial": "Teste de 7 Dias",
+    "returns.sevenDaysDescription": "Uma semana completa para testar seu novo veículo no seu cotidiano",
+    "returns.freeReturn": "Devolução Gratuita",
+    "returns.freeReturnDescription": "Retorno simples e rápido em caso de insatisfação, reembolso integral",
+    "returns.transparencyGuarantee": "Garantia de Transparência",
+    "returns.transparencyDescription": "Nenhuma pergunta feita, respeitamos sua decisão",
+    "returns.returnConditions": "Condições de Devolução",
+    "returns.condition1": "O veículo deve ser devolvido dentro de 7 dias corridos após a entrega",
+    "returns.condition2": "A quilometragem deve ser idêntica à indicada na entrega (tolerância de 100 km)",
+    "returns.condition3": "O veículo deve ser devolvido em seu estado original, sem danos ou modificações",
+    "returns.condition4": "Todos os documentos e acessórios fornecidos na entrega devem ser devolvidos",
+    "returns.contactMessage": "Para qualquer pergunta sobre nossa política de devolução, não hesite em contatar seu consultor pessoal.",
+    "returns.contactAdvisorButton": "Contatar meu consultor"
   },
 
   // Spanish translations
@@ -2350,6 +2395,25 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "Nuestra Promesa",
     "warranty.ourPromiseDescription": "En AUTO PBH, cada garantía es una promesa. La promesa de que su inversión está protegida, que su movilidad está asegurada y que su satisfacción es nuestra prioridad.",
     "warranty.discussWithExpert": "Discutir con un Experto",
+    
+    // Returns page translations
+    "returns.title": "Política de Satisfacción",
+    "returns.qualityCommitment": "Nuestro Compromiso de Calidad",
+    "returns.unsatisfiedQuote": "¿Insatisfecho? Retomamos su vehículo en 7 días, sin costo. Condiciones: kilometraje idéntico a la entrega.",
+    "returns.description": "En AUTO PBH, su completa satisfacción es nuestra prioridad absoluta. Estamos tan seguros de la calidad de nuestros vehículos que le ofrecemos una garantía de satisfacción única en el mercado automotriz premium.",
+    "returns.sevenDaysTrial": "Prueba de 7 Días",
+    "returns.sevenDaysDescription": "Una semana completa para probar su nuevo vehículo en su vida diaria",
+    "returns.freeReturn": "Devolución Gratuita",
+    "returns.freeReturnDescription": "Retorno simple y rápido en caso de insatisfacción, reembolso completo",
+    "returns.transparencyGuarantee": "Garantía de Transparencia",
+    "returns.transparencyDescription": "Sin preguntas, respetamos su decisión",
+    "returns.returnConditions": "Condiciones de Devolución",
+    "returns.condition1": "El vehículo debe ser devuelto dentro de los 7 días calendario siguientes a la entrega",
+    "returns.condition2": "El kilometraje debe ser idéntico al indicado en la entrega (tolerancia de 100 km)",
+    "returns.condition3": "El vehículo debe ser devuelto en su estado original, sin daños ni modificaciones",
+    "returns.condition4": "Todos los documentos y accesorios proporcionados en la entrega deben ser devueltos",
+    "returns.contactMessage": "Para cualquier pregunta sobre nuestra política de devolución, no dude en contactar a su asesor personal.",
+    "returns.contactAdvisorButton": "Contactar mi asesor"
   },
 
   // German translations
@@ -2796,6 +2860,25 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "Unser Versprechen",
     "warranty.ourPromiseDescription": "Bei AUTO PBH ist jede Garantie ein Versprechen. Das Versprechen, dass Ihre Investition geschützt ist, dass Ihre Mobilität gesichert ist und dass Ihre Zufriedenheit unsere Priorität ist.",
     "warranty.discussWithExpert": "Mit einem Experten besprechen",
+    
+    // Returns page translations
+    "returns.title": "Zufriedenheitsrichtlinie",
+    "returns.qualityCommitment": "Unser Qualitätsversprechen",
+    "returns.unsatisfiedQuote": "Unzufrieden? Wir nehmen Ihr Fahrzeug innerhalb von 7 Tagen kostenlos zurück. Bedingungen: identische Kilometerzahl bei der Lieferung.",
+    "returns.description": "Bei AUTO PBH ist Ihre vollständige Zufriedenheit unsere absolute Priorität. Wir sind so überzeugt von der Qualität unserer Fahrzeuge, dass wir Ihnen eine einzigartige Zufriedenheitsgarantie auf dem Premium-Automobilmarkt bieten.",
+    "returns.sevenDaysTrial": "7-Tage-Test",
+    "returns.sevenDaysDescription": "Eine ganze Woche, um Ihr neues Fahrzeug in Ihrem Alltag zu testen",
+    "returns.freeReturn": "Kostenlose Rückgabe",
+    "returns.freeReturnDescription": "Einfache und schnelle Rückgabe bei Unzufriedenheit, vollständige Rückerstattung",
+    "returns.transparencyGuarantee": "Transparenzgarantie",
+    "returns.transparencyDescription": "Keine Fragen gestellt, wir respektieren Ihre Entscheidung",
+    "returns.returnConditions": "Rückgabebedingungen",
+    "returns.condition1": "Das Fahrzeug muss innerhalb von 7 Kalendertagen nach der Lieferung zurückgegeben werden",
+    "returns.condition2": "Die Kilometerzahl muss identisch mit der bei der Lieferung angegebenen sein (Toleranz von 100 km)",
+    "returns.condition3": "Das Fahrzeug muss in seinem ursprünglichen Zustand zurückgegeben werden, ohne Schäden oder Änderungen",
+    "returns.condition4": "Alle bei der Lieferung mitgelieferten Dokumente und Zubehörteile müssen zurückgegeben werden",
+    "returns.contactMessage": "Bei Fragen zu unserer Rückgaberichtlinie zögern Sie nicht, Ihren persönlichen Berater zu kontaktieren.",
+    "returns.contactAdvisorButton": "Meinen Berater kontaktieren"
   },
 
   // Italian translations
@@ -3242,6 +3325,25 @@ export const translations: TranslationsType = {
     "tracking.form.searching": "Ricerca...",
     "tracking.form.trackOrder": "Traccia il mio ordine",
     "tracking.form.cantFindOrderNumber": "Non riesco a trovare il mio numero d'ordine",
+    
+    // Returns page translations
+    "returns.title": "Politica di Soddisfazione",
+    "returns.qualityCommitment": "Il Nostro Impegno per la Qualità",
+    "returns.unsatisfiedQuote": "Insoddisfatto? Riprendiamo il vostro veicolo entro 7 giorni, senza costi. Condizioni: chilometraggio identico alla consegna.",
+    "returns.description": "In AUTO PBH, la vostra completa soddisfazione è la nostra priorità assoluta. Siamo così fiduciosi nella qualità dei nostri veicoli che vi offriamo una garanzia di soddisfazione unica nel mercato automobilistico premium.",
+    "returns.sevenDaysTrial": "Prova di 7 Giorni",
+    "returns.sevenDaysDescription": "Una settimana completa per testare il vostro nuovo veicolo nella vostra vita quotidiana",
+    "returns.freeReturn": "Reso Gratuito",
+    "returns.freeReturnDescription": "Reso semplice e veloce in caso di insoddisfazione, rimborso completo",
+    "returns.transparencyGuarantee": "Garanzia di Trasparenza",
+    "returns.transparencyDescription": "Nessuna domanda posta, rispettiamo la vostra decisione",
+    "returns.returnConditions": "Condizioni di Reso",
+    "returns.condition1": "Il veicolo deve essere restituito entro 7 giorni di calendario dalla consegna",
+    "returns.condition2": "Il chilometraggio deve essere identico a quello indicato alla consegna (tolleranza di 100 km)",
+    "returns.condition3": "Il veicolo deve essere restituito nel suo stato originale, senza danni o modifiche",
+    "returns.condition4": "Tutti i documenti e accessori forniti alla consegna devono essere restituiti",
+    "returns.contactMessage": "Per qualsiasi domanda riguardo alla nostra politica di reso, non esitate a contattare il vostro consulente personale.",
+    "returns.contactAdvisorButton": "Contatta il mio consulente"
   },
 
   // Dutch translations
@@ -3688,5 +3790,24 @@ export const translations: TranslationsType = {
     "tracking.form.searching": "Zoeken...",
     "tracking.form.trackOrder": "Mijn bestelling volgen",
     "tracking.form.cantFindOrderNumber": "Ik kan mijn bestelnummer niet vinden",
+    
+    // Returns page translations
+    "returns.title": "Tevredenheidsbeleid",
+    "returns.qualityCommitment": "Onze Kwaliteitsbelofte",
+    "returns.unsatisfiedQuote": "Ontevreden? Wij nemen uw voertuig binnen 7 dagen kosteloos terug. Voorwaarden: identieke kilometerstand bij levering.",
+    "returns.description": "Bij AUTO PBH is uw volledige tevredenheid onze absolute prioriteit. We zijn zo zeker van de kwaliteit van onze voertuigen dat we u een unieke tevredenheidsgarantie bieden op de premium automarkt.",
+    "returns.sevenDaysTrial": "7-Dagen Proefperiode",
+    "returns.sevenDaysDescription": "Een volledige week om uw nieuwe voertuig te testen in uw dagelijkse leven",
+    "returns.freeReturn": "Gratis Retour",
+    "returns.freeReturnDescription": "Eenvoudige en snelle retour bij ontevredenheid, volledige terugbetaling",
+    "returns.transparencyGuarantee": "Transparantiegarantie",
+    "returns.transparencyDescription": "Geen vragen gesteld, wij respecteren uw beslissing",
+    "returns.returnConditions": "Retourvoorwaarden",
+    "returns.condition1": "Het voertuig moet binnen 7 kalenderdagen na levering worden geretourneerd",
+    "returns.condition2": "De kilometerstand moet identiek zijn aan die aangegeven bij levering (tolerantie van 100 km)",
+    "returns.condition3": "Het voertuig moet in originele staat worden geretourneerd, zonder schade of wijzigingen",
+    "returns.condition4": "Alle documenten en accessoires die bij levering zijn verstrekt, moeten worden geretourneerd",
+    "returns.contactMessage": "Voor vragen betreffende ons retourbeleid, aarzel niet om contact op te nemen met uw persoonlijke adviseur.",
+    "returns.contactAdvisorButton": "Contact mijn adviseur"
   }
 };
