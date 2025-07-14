@@ -222,7 +222,10 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                   <FormControl>
                     <div className="flex">
                       <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
-                        {form.watch('phoneCountryCode') || '+33'}
+                        {(() => {
+                          const code = form.watch('phoneCountryCode') || '+33';
+                          return code.includes('-') ? code.split('-')[0] : code;
+                        })()}
                       </div>
                       <Input 
                         placeholder="06 12 34 56 78" 
