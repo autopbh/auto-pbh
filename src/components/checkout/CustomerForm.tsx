@@ -15,9 +15,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -66,6 +63,7 @@ interface CustomerFormProps {
 const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: CustomerFormProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [paymentMethod, setPaymentMethod] = useState<string>("");
+  const [installmentMonths, setInstallmentMonths] = useState<number | undefined>();
 
   // Date minimale (demain)
   const tomorrow = new Date();
@@ -378,23 +376,30 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
               <FormItem className="space-y-3">
                 <FormLabel>Le montant restant sera payé</FormLabel>
                 <FormControl>
-                  <RadioGroup
-                    onValueChange={(value) => {
-                      field.onChange(value);
-                      setPaymentMethod(value);
-                    }}
-                    defaultValue={field.value}
-                    className="flex flex-col space-y-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="delivery" id="delivery" />
-                      <Label htmlFor="delivery">À la livraison</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="installments" id="installments" />
-                      <Label htmlFor="installments">Par mensualités</Label>
-                    </div>
-                  </RadioGroup>
+                  <div className="flex flex-col space-y-2">
+                    <Button
+                      type="button"
+                      variant={paymentMethod === "delivery" ? "default" : "outline"}
+                      className="justify-start"
+                      onClick={() => {
+                        setPaymentMethod("delivery");
+                        field.onChange("delivery");
+                      }}
+                    >
+                      À la livraison
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={paymentMethod === "installments" ? "default" : "outline"}
+                      className="justify-start"
+                      onClick={() => {
+                        setPaymentMethod("installments");
+                        field.onChange("installments");
+                      }}
+                    >
+                      Par mensualités
+                    </Button>
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -409,18 +414,22 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                 <FormItem className="space-y-3">
                   <FormLabel>Durée des mensualités</FormLabel>
                   <FormControl>
-                    <RadioGroup
-                      onValueChange={(value) => field.onChange(parseInt(value, 10))}
-                      value={field.value?.toString()}
-                      className="grid grid-cols-2 md:grid-cols-4 gap-2"
-                    >
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {[6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84].map((months) => (
-                        <div key={months} className="flex items-center space-x-2">
-                          <RadioGroupItem value={months.toString()} id={`months-${months}`} />
-                          <Label htmlFor={`months-${months}`}>{months} mois</Label>
-                        </div>
+                        <Button
+                          key={months}
+                          type="button"
+                          variant={installmentMonths === months ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => {
+                            setInstallmentMonths(months);
+                            field.onChange(months);
+                          }}
+                        >
+                          {months} mois
+                        </Button>
                       ))}
-                    </RadioGroup>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
