@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -140,10 +140,13 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
     onSubmit(values);
   };
 
-  // Définit la date minimale à demain
-  const today = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
+  // Mémoisation de la date minimale pour éviter les re-calculs
+  const tomorrow = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    date.setHours(0, 0, 0, 0); // Réinitialise l'heure pour éviter les problèmes de comparaison
+    return date;
+  }, []);
 
   return (
     <Form {...form}>
