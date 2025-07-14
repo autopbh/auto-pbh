@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -49,6 +51,16 @@ const customerFormSchema = z.object({
       message: "Le pays est requis",
     }),
   }),
+  // Informations professionnelles
+  companyName: z.string().optional(),
+  jobTitle: z.string().optional(),
+  professionalAddress: z.string().optional(),
+  // Informations bancaires
+  bankName: z.string().optional(),
+  iban: z.string().optional(),
+  accountHolder: z.string().optional(),
+  // Mode de paiement
+  paymentMethod: z.enum(['delivery', 'installments']).optional(),
   deliveryDate: z.date({
     required_error: "Veuillez sélectionner une date",
   }),
@@ -82,6 +94,13 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
         postalCode: "",
         country: "France",
       },
+      companyName: "",
+      jobTitle: "",
+      professionalAddress: "",
+      bankName: "",
+      iban: "",
+      accountHolder: "",
+      paymentMethod: undefined,
       deliveryTimeWindow: "",
       additionalNotes: ""
     },
@@ -221,6 +240,128 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
           />
         </div>
 
+        <Separator className="my-6" />
+        <div className="space-y-4">
+          <h3 className="font-medium text-lg">Informations professionnelles</h3>
+          
+          <FormField
+            control={form.control}
+            name="companyName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nom de l'entreprise (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="SARL MonEntreprise" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="jobTitle"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Poste occupé (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Directeur commercial" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="professionalAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Adresse professionnelle (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="456 avenue des Affaires, 75008 Paris" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <Separator className="my-6" />
+        <div className="space-y-4">
+          <h3 className="font-medium text-lg">Informations bancaires</h3>
+          
+          <FormField
+            control={form.control}
+            name="bankName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nom de la banque (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Crédit Agricole" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="iban"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>IBAN (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          
+          <FormField
+            control={form.control}
+            name="accountHolder"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Titulaire du compte (optionnel)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Jean Dupont" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <Separator className="my-6" />
+        <div className="space-y-4">
+          <h3 className="font-medium text-lg">Mode de paiement</h3>
+          
+          <FormField
+            control={form.control}
+            name="paymentMethod"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Le montant restant sera payé</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Sélectionner le mode de paiement" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="delivery">À la livraison</SelectItem>
+                    <SelectItem value="installments">Par mensualités</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <Separator className="my-6" />
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Informations de livraison</h3>
           
