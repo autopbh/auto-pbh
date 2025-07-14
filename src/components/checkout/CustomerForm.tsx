@@ -33,7 +33,7 @@ const customerFormSchema = z.object({
     street: z.string().min(5, "L'adresse est requise (min. 5 caractères)"),
     city: z.string().min(2, "La ville est requise"),
     postalCode: z.string().min(5, "Le code postal est requis"),
-    country: z.string().min(1, "Veuillez sélectionner un pays"),
+    country: z.string().min(1, "Veuillez saisir un pays"),
   }),
   companyName: z.string().min(1, "Le nom de l'entreprise est requis"),
   jobTitle: z.string().min(1, "Le poste occupé est requis"),
@@ -269,26 +269,9 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Pays</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner un pays" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="bg-background border z-50">
-                    <SelectItem value="France">🇫🇷 France</SelectItem>
-                    <SelectItem value="Belgique">🇧🇪 Belgique</SelectItem>
-                    <SelectItem value="Suisse">🇨🇭 Suisse</SelectItem>
-                    <SelectItem value="Allemagne">🇩🇪 Allemagne</SelectItem>
-                    <SelectItem value="Italie">🇮🇹 Italie</SelectItem>
-                    <SelectItem value="Espagne">🇪🇸 Espagne</SelectItem>
-                    <SelectItem value="Portugal">🇵🇹 Portugal</SelectItem>
-                    <SelectItem value="Pays-Bas">🇳🇱 Pays-Bas</SelectItem>
-                    <SelectItem value="Royaume-Uni">🇬🇧 Royaume-Uni</SelectItem>
-                    <SelectItem value="Luxembourg">🇱🇺 Luxembourg</SelectItem>
-                    <SelectItem value="Autriche">🇦🇹 Autriche</SelectItem>
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Input placeholder="France" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
