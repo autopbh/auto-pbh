@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { 
@@ -124,6 +124,18 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
     },
   });
 
+  // Utilisation de useWatch pour éviter les re-rendus excessifs
+  const phoneCountryCode = useWatch({
+    control: form.control,
+    name: 'phoneCountryCode',
+    defaultValue: '+33'
+  });
+  
+  const paymentMethod = useWatch({
+    control: form.control,
+    name: 'paymentMethod'
+  });
+
   const handleSubmit = (values: CustomerFormValues) => {
     onSubmit(values);
   };
@@ -222,10 +234,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                   <FormControl>
                     <div className="flex">
                       <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
-                        {(() => {
-                          const code = form.watch('phoneCountryCode') || '+33';
-                          return code.includes('-') ? code.split('-')[0] : code;
-                        })()}
+                        {phoneCountryCode?.includes('-') ? phoneCountryCode.split('-')[0] : phoneCountryCode}
                       </div>
                       <Input 
                         placeholder="06 12 34 56 78" 
@@ -440,7 +449,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             )}
           />
           
-          {form.watch('paymentMethod') === 'installments' && (
+          {paymentMethod === 'installments' && (
             <FormField
               control={form.control}
               name="installmentMonths"
