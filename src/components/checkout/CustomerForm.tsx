@@ -1,5 +1,4 @@
-
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,66 +22,31 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 
-// Définition du schéma de validation
+// Schéma de validation avec Zod
 const customerFormSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "Le prénom doit comporter au moins 2 caractères",
-  }),
-  lastName: z.string().min(2, {
-    message: "Le nom doit comporter au moins 2 caractères",
-  }),
-  email: z.string().email({
-    message: "Veuillez entrer une adresse e-mail valide",
-  }),
-  phone: z.string().min(10, {
-    message: "Veuillez entrer un numéro de téléphone valide avec le code pays",
-  }),
-  phoneCountryCode: z.string().min(1, {
-    message: "Veuillez sélectionner un code pays",
-  }),
+  firstName: z.string().min(2, "Le prénom doit comporter au moins 2 caractères"),
+  lastName: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
+  email: z.string().email("Veuillez entrer une adresse e-mail valide"),
+  phone: z.string().min(10, "Veuillez entrer un numéro de téléphone valide"),
+  phoneCountryCode: z.string().min(1, "Veuillez sélectionner un code pays"),
   address: z.object({
-    street: z.string().min(5, {
-      message: "L'adresse est requise (min. 5 caractères)",
-    }),
-    city: z.string().min(2, {
-      message: "La ville est requise",
-    }),
-    postalCode: z.string().min(5, {
-      message: "Le code postal est requis",
-    }),
-    country: z.string().min(1, {
-      message: "Veuillez sélectionner un pays",
-    }),
+    street: z.string().min(5, "L'adresse est requise (min. 5 caractères)"),
+    city: z.string().min(2, "La ville est requise"),
+    postalCode: z.string().min(5, "Le code postal est requis"),
+    country: z.string().min(1, "Veuillez sélectionner un pays"),
   }),
-  // Informations professionnelles
-  companyName: z.string().min(1, {
-    message: "Le nom de l'entreprise est requis",
-  }),
-  jobTitle: z.string().min(1, {
-    message: "Le poste occupé est requis",
-  }),
-  professionalAddress: z.string().min(5, {
-    message: "L'adresse professionnelle est requise",
-  }),
-  // Informations bancaires
-  bankName: z.string().min(1, {
-    message: "Le nom de la banque est requis",
-  }),
-  iban: z.string().min(15, {
-    message: "L'IBAN est requis et doit être valide",
-  }),
-  accountHolder: z.string().min(1, {
-    message: "Le titulaire du compte est requis",
-  }),
-  // Mode de paiement
+  companyName: z.string().min(1, "Le nom de l'entreprise est requis"),
+  jobTitle: z.string().min(1, "Le poste occupé est requis"),
+  professionalAddress: z.string().min(5, "L'adresse professionnelle est requise"),
+  bankName: z.string().min(1, "Le nom de la banque est requis"),
+  iban: z.string().min(15, "L'IBAN est requis et doit être valide"),
+  accountHolder: z.string().min(1, "Le titulaire du compte est requis"),
   paymentMethod: z.enum(['delivery', 'installments']).optional(),
   installmentMonths: z.number().optional(),
   deliveryDate: z.date({
     required_error: "Veuillez sélectionner une date",
   }),
-  deliveryTimeWindow: z.string().min(1, {
-    message: "Veuillez indiquer vos disponibilités",
-  }),
+  deliveryTimeWindow: z.string().min(1, "Veuillez indiquer vos disponibilités"),
   additionalNotes: z.string().optional(),
 });
 
@@ -94,12 +58,72 @@ interface CustomerFormProps {
   isSubmitting?: boolean;
 }
 
-const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: CustomerFormProps) => {
-  const [date, setDate] = useState<Date | undefined>(defaultValues?.deliveryDate);
-  
+const COUNTRY_CODES = [
+  { value: "+33", label: "🇫🇷 France (+33)", key: "fr" },
+  { value: "+32", label: "🇧🇪 Belgique (+32)", key: "be" },
+  { value: "+41", label: "🇨🇭 Suisse (+41)", key: "ch" },
+  { value: "+49", label: "🇩🇪 Allemagne (+49)", key: "de" },
+  { value: "+39", label: "🇮🇹 Italie (+39)", key: "it" },
+  { value: "+34", label: "🇪🇸 Espagne (+34)", key: "es" },
+  { value: "+351", label: "🇵🇹 Portugal (+351)", key: "pt" },
+  { value: "+31", label: "🇳🇱 Pays-Bas (+31)", key: "nl" },
+  { value: "+44", label: "🇬🇧 Royaume-Uni (+44)", key: "gb" },
+  { value: "+1-us", label: "🇺🇸 États-Unis (+1)", key: "us" },
+  { value: "+1-ca", label: "🇨🇦 Canada (+1)", key: "ca" },
+];
+
+const COUNTRIES = [
+  { value: "France", label: "🇫🇷 France" },
+  { value: "Belgique", label: "🇧🇪 Belgique" },
+  { value: "Suisse", label: "🇨🇭 Suisse" },
+  { value: "Allemagne", label: "🇩🇪 Allemagne" },
+  { value: "Italie", label: "🇮🇹 Italie" },
+  { value: "Espagne", label: "🇪🇸 Espagne" },
+  { value: "Portugal", label: "🇵🇹 Portugal" },
+  { value: "Pays-Bas", label: "🇳🇱 Pays-Bas" },
+  { value: "Royaume-Uni", label: "🇬🇧 Royaume-Uni" },
+  { value: "Luxembourg", label: "🇱🇺 Luxembourg" },
+  { value: "Autriche", label: "🇦🇹 Autriche" },
+];
+
+const INSTALLMENT_OPTIONS = [
+  { value: 6, label: "6 mois" },
+  { value: 12, label: "12 mois" },
+  { value: 18, label: "18 mois" },
+  { value: 24, label: "24 mois" },
+  { value: 30, label: "30 mois" },
+  { value: 36, label: "36 mois" },
+  { value: 42, label: "42 mois" },
+  { value: 48, label: "48 mois" },
+  { value: 54, label: "54 mois" },
+  { value: 60, label: "60 mois" },
+  { value: 66, label: "66 mois" },
+  { value: 72, label: "72 mois" },
+  { value: 78, label: "78 mois" },
+  { value: 84, label: "84 mois" },
+];
+
+const CustomerForm: React.FC<CustomerFormProps> = ({ 
+  onSubmit, 
+  defaultValues, 
+  isSubmitting = false 
+}) => {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+    defaultValues?.deliveryDate
+  );
+
+  // Date minimale (demain)
+  const minDate = useMemo(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    return tomorrow;
+  }, []);
+
+  // Configuration du formulaire
   const form = useForm<CustomerFormValues>({
     resolver: zodResolver(customerFormSchema),
-    defaultValues: defaultValues || {
+    defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
@@ -120,109 +144,57 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
       paymentMethod: undefined,
       installmentMonths: undefined,
       deliveryTimeWindow: "",
-      additionalNotes: ""
+      additionalNotes: "",
+      ...defaultValues,
     },
   });
 
-  // Utilisation de useWatch pour éviter les re-rendus excessifs
-  const phoneCountryCode = useWatch({
+  // Surveillance optimisée des champs
+  const watchedPhoneCountryCode = useWatch({
     control: form.control,
     name: 'phoneCountryCode',
     defaultValue: '+33'
   });
-  
-  const paymentMethod = useWatch({
+
+  const watchedPaymentMethod = useWatch({
     control: form.control,
     name: 'paymentMethod'
   });
 
-  const handleSubmit = (values: CustomerFormValues) => {
-    onSubmit(values);
+  // Fonction de soumission
+  const handleFormSubmit = (values: CustomerFormValues) => {
+    try {
+      onSubmit(values);
+    } catch (error) {
+      console.error("Erreur lors de la soumission du formulaire:", error);
+    }
   };
 
-  // Mémoisation de la date minimale pour éviter les re-calculs
-  const tomorrow = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    date.setHours(0, 0, 0, 0); // Réinitialise l'heure pour éviter les problèmes de comparaison
-    return date;
-  }, []);
+  // Affichage du code pays pour le téléphone
+  const displayPhoneCode = useMemo(() => {
+    if (!watchedPhoneCountryCode) return '+33';
+    return watchedPhoneCountryCode.includes('-') 
+      ? watchedPhoneCountryCode.split('-')[0] 
+      : watchedPhoneCountryCode;
+  }, [watchedPhoneCountryCode]);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField
-            control={form.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Prénom</FormLabel>
-                <FormControl>
-                  <Input placeholder="Jean" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+        {/* Informations personnelles */}
+        <div className="space-y-4">
+          <h3 className="font-medium text-lg">Informations personnelles</h3>
           
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nom</FormLabel>
-                <FormControl>
-                  <Input placeholder="Dupont" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input type="email" placeholder="email@exemple.fr" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}
-              name="phoneCountryCode"
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Code pays</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Code pays" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem key="fr" value="+33">🇫🇷 France (+33)</SelectItem>
-                      <SelectItem key="be" value="+32">🇧🇪 Belgique (+32)</SelectItem>
-                      <SelectItem key="ch" value="+41">🇨🇭 Suisse (+41)</SelectItem>
-                      <SelectItem key="de" value="+49">🇩🇪 Allemagne (+49)</SelectItem>
-                      <SelectItem key="it" value="+39">🇮🇹 Italie (+39)</SelectItem>
-                      <SelectItem key="es" value="+34">🇪🇸 Espagne (+34)</SelectItem>
-                      <SelectItem key="pt" value="+351">🇵🇹 Portugal (+351)</SelectItem>
-                      <SelectItem key="nl" value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
-                      <SelectItem key="gb" value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
-                      <SelectItem key="us" value="+1-us">🇺🇸 États-Unis (+1)</SelectItem>
-                      <SelectItem key="ca" value="+1-ca">🇨🇦 Canada (+1)</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormLabel>Prénom</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Jean" {...field} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -230,29 +202,89 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             
             <FormField
               control={form.control}
-              name="phone"
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Numéro de téléphone</FormLabel>
+                  <FormLabel>Nom</FormLabel>
                   <FormControl>
-                    <div className="flex">
-                      <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
-                        {(phoneCountryCode && phoneCountryCode.includes('-')) ? phoneCountryCode.split('-')[0] : (phoneCountryCode || '+33')}
-                      </div>
-                      <Input 
-                        placeholder="06 12 34 56 78" 
-                        className="rounded-l-none"
-                        {...field} 
-                      />
-                    </div>
+                    <Input placeholder="Dupont" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input type="email" placeholder="email@exemple.fr" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="phoneCountryCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Code pays</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Code pays" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {COUNTRY_CODES.map((country) => (
+                          <SelectItem key={country.key} value={country.value}>
+                            {country.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Numéro de téléphone</FormLabel>
+                    <FormControl>
+                      <div className="flex">
+                        <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
+                          {displayPhoneCode}
+                        </div>
+                        <Input 
+                          placeholder="06 12 34 56 78" 
+                          className="rounded-l-none"
+                          {...field} 
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
         </div>
 
+        <Separator className="my-6" />
+
+        {/* Adresse de livraison */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Adresse de livraison</h3>
           
@@ -313,17 +345,11 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="France">🇫🇷 France</SelectItem>
-                    <SelectItem value="Belgique">🇧🇪 Belgique</SelectItem>
-                    <SelectItem value="Suisse">🇨🇭 Suisse</SelectItem>
-                    <SelectItem value="Allemagne">🇩🇪 Allemagne</SelectItem>
-                    <SelectItem value="Italie">🇮🇹 Italie</SelectItem>
-                    <SelectItem value="Espagne">🇪🇸 Espagne</SelectItem>
-                    <SelectItem value="Portugal">🇵🇹 Portugal</SelectItem>
-                    <SelectItem value="Pays-Bas">🇳🇱 Pays-Bas</SelectItem>
-                    <SelectItem value="Royaume-Uni">🇬🇧 Royaume-Uni</SelectItem>
-                    <SelectItem value="Luxembourg">🇱🇺 Luxembourg</SelectItem>
-                    <SelectItem value="Autriche">🇦🇹 Autriche</SelectItem>
+                    {COUNTRIES.map((country) => (
+                      <SelectItem key={country.value} value={country.value}>
+                        {country.label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -333,6 +359,8 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
         </div>
 
         <Separator className="my-6" />
+
+        {/* Informations professionnelles */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Informations professionnelles</h3>
           
@@ -380,6 +408,8 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
         </div>
 
         <Separator className="my-6" />
+
+        {/* Informations bancaires */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Informations bancaires</h3>
           
@@ -427,6 +457,8 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
         </div>
 
         <Separator className="my-6" />
+
+        {/* Mode de paiement */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Mode de paiement</h3>
           
@@ -452,34 +484,28 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             )}
           />
           
-          {paymentMethod === 'installments' && (
+          {watchedPaymentMethod === 'installments' && (
             <FormField
               control={form.control}
               name="installmentMonths"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Durée des mensualités</FormLabel>
-                  <Select onValueChange={(value) => field.onChange(parseInt(value))} value={field.value?.toString()}>
+                  <Select 
+                    onValueChange={(value) => field.onChange(parseInt(value, 10))} 
+                    value={field.value?.toString()}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Choisir la durée" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="6">6 mois</SelectItem>
-                      <SelectItem value="12">12 mois</SelectItem>
-                      <SelectItem value="18">18 mois</SelectItem>
-                      <SelectItem value="24">24 mois</SelectItem>
-                      <SelectItem value="30">30 mois</SelectItem>
-                      <SelectItem value="36">36 mois</SelectItem>
-                      <SelectItem value="42">42 mois</SelectItem>
-                      <SelectItem value="48">48 mois</SelectItem>
-                      <SelectItem value="54">54 mois</SelectItem>
-                      <SelectItem value="60">60 mois</SelectItem>
-                      <SelectItem value="66">66 mois</SelectItem>
-                      <SelectItem value="72">72 mois</SelectItem>
-                      <SelectItem value="78">78 mois</SelectItem>
-                      <SelectItem value="84">84 mois</SelectItem>
+                      {INSTALLMENT_OPTIONS.map((option) => (
+                        <SelectItem key={option.value} value={option.value.toString()}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -490,6 +516,8 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
         </div>
 
         <Separator className="my-6" />
+
+        {/* Informations de livraison */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Informations de livraison</h3>
           
@@ -503,7 +531,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant={"outline"}
+                        variant="outline"
                         className={cn(
                           "w-full pl-3 text-left font-normal",
                           !field.value && "text-muted-foreground"
@@ -524,9 +552,9 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                       selected={field.value}
                       onSelect={(date) => {
                         field.onChange(date);
-                        setDate(date);
+                        setSelectedDate(date);
                       }}
-                      disabled={(date) => date < tomorrow}
+                      disabled={(date) => date < minDate}
                       initialFocus
                     />
                   </PopoverContent>
@@ -569,9 +597,16 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
           />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Traitement en cours..." : "Continuer"}
-        </Button>
+        {/* Bouton de soumission */}
+        <div className="pt-6">
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Traitement en cours..." : "Continuer vers le récapitulatif"}
+          </Button>
+        </div>
       </form>
     </Form>
   );
