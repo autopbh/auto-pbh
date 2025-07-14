@@ -35,7 +35,10 @@ const customerFormSchema = z.object({
     message: "Veuillez entrer une adresse e-mail valide",
   }),
   phone: z.string().min(10, {
-    message: "Veuillez entrer un numéro de téléphone valide",
+    message: "Veuillez entrer un numéro de téléphone valide avec le code pays",
+  }),
+  phoneCountryCode: z.string().min(1, {
+    message: "Veuillez sélectionner un code pays",
   }),
   address: z.object({
     street: z.string().min(5, {
@@ -89,6 +92,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
       lastName: "",
       email: "",
       phone: "",
+      phoneCountryCode: "+33",
       address: {
         street: "",
         city: "",
@@ -165,19 +169,61 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             )}
           />
           
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Téléphone</FormLabel>
-                <FormControl>
-                  <Input placeholder="06 12 34 56 78" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="phoneCountryCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Code pays</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Code pays" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="+33">🇫🇷 France (+33)</SelectItem>
+                      <SelectItem value="+32">🇧🇪 Belgique (+32)</SelectItem>
+                      <SelectItem value="+41">🇨🇭 Suisse (+41)</SelectItem>
+                      <SelectItem value="+49">🇩🇪 Allemagne (+49)</SelectItem>
+                      <SelectItem value="+39">🇮🇹 Italie (+39)</SelectItem>
+                      <SelectItem value="+34">🇪🇸 Espagne (+34)</SelectItem>
+                      <SelectItem value="+351">🇵🇹 Portugal (+351)</SelectItem>
+                      <SelectItem value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
+                      <SelectItem value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
+                      <SelectItem value="+1">🇺🇸 États-Unis (+1)</SelectItem>
+                      <SelectItem value="+1">🇨🇦 Canada (+1)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Numéro de téléphone</FormLabel>
+                  <FormControl>
+                    <div className="flex">
+                      <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
+                        {form.watch('phoneCountryCode') || '+33'}
+                      </div>
+                      <Input 
+                        placeholder="06 12 34 56 78" 
+                        className="rounded-l-none"
+                        {...field} 
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
 
         <div className="space-y-4">
