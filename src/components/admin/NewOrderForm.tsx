@@ -13,6 +13,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 interface NewOrderFormProps {
   onSubmit: (values: NewOrderFormValues) => void;
@@ -28,7 +30,14 @@ const NewOrderForm = ({ onSubmit, onCancel, isLoading }: NewOrderFormProps) => {
       customer_email: "",
       customer_phone: "",
       vehicle_id: "",
-      price: 0
+      price: 0,
+      company_name: "",
+      job_title: "",
+      professional_address: "",
+      bank_name: "",
+      iban: "",
+      account_holder: "",
+      payment_method: undefined
     }
   });
 
@@ -104,6 +113,127 @@ const NewOrderForm = ({ onSubmit, onCancel, isLoading }: NewOrderFormProps) => {
                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
                 />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Separator className="my-6" />
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold">Informations professionnelles</h3>
+        </div>
+        
+        <FormField
+          control={form.control}
+          name="company_name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nom de l'entreprise</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="job_title"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Poste occupé</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="professional_address"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Adresse professionnelle</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Separator className="my-6" />
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold">Informations bancaires</h3>
+        </div>
+        
+        <FormField
+          control={form.control}
+          name="bank_name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nom de la banque</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="iban"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>IBAN</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
+        <FormField
+          control={form.control}
+          name="account_holder"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Titulaire du compte</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Separator className="my-6" />
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold">Mode de paiement</h3>
+        </div>
+        
+        <FormField
+          control={form.control}
+          name="payment_method"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Le montant restant sera payé</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionner le mode de paiement" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="delivery">À la livraison</SelectItem>
+                  <SelectItem value="installments">Par mensualités</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

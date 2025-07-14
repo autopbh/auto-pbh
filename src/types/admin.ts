@@ -28,7 +28,17 @@ export const newOrderFormSchema = z.object({
   customer_email: z.string().email({ message: "Email invalide" }),
   customer_phone: z.string().optional(),
   vehicle_id: z.string().optional(),
-  price: z.number().optional()
+  price: z.number().optional(),
+  // Informations professionnelles
+  company_name: z.string().optional(),
+  job_title: z.string().optional(),
+  professional_address: z.string().optional(),
+  // Informations bancaires
+  bank_name: z.string().optional(),
+  iban: z.string().optional(),
+  account_holder: z.string().optional(),
+  // Mode de paiement
+  payment_method: z.enum(['delivery', 'installments']).optional()
 });
 
 export const eventFormSchema = z.object({
