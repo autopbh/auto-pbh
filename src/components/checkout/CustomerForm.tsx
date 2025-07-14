@@ -195,17 +195,17 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="+33">🇫🇷 France (+33)</SelectItem>
-                      <SelectItem value="+32">🇧🇪 Belgique (+32)</SelectItem>
-                      <SelectItem value="+41">🇨🇭 Suisse (+41)</SelectItem>
-                      <SelectItem value="+49">🇩🇪 Allemagne (+49)</SelectItem>
-                      <SelectItem value="+39">🇮🇹 Italie (+39)</SelectItem>
-                      <SelectItem value="+34">🇪🇸 Espagne (+34)</SelectItem>
-                      <SelectItem value="+351">🇵🇹 Portugal (+351)</SelectItem>
-                      <SelectItem value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
-                      <SelectItem value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
-                      <SelectItem value="+1-us">🇺🇸 États-Unis (+1)</SelectItem>
-                      <SelectItem value="+1-ca">🇨🇦 Canada (+1)</SelectItem>
+                      <SelectItem key="fr" value="+33">🇫🇷 France (+33)</SelectItem>
+                      <SelectItem key="be" value="+32">🇧🇪 Belgique (+32)</SelectItem>
+                      <SelectItem key="ch" value="+41">🇨🇭 Suisse (+41)</SelectItem>
+                      <SelectItem key="de" value="+49">🇩🇪 Allemagne (+49)</SelectItem>
+                      <SelectItem key="it" value="+39">🇮🇹 Italie (+39)</SelectItem>
+                      <SelectItem key="es" value="+34">🇪🇸 Espagne (+34)</SelectItem>
+                      <SelectItem key="pt" value="+351">🇵🇹 Portugal (+351)</SelectItem>
+                      <SelectItem key="nl" value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
+                      <SelectItem key="gb" value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
+                      <SelectItem key="us" value="+1-us">🇺🇸 États-Unis (+1)</SelectItem>
+                      <SelectItem key="ca" value="+1-ca">🇨🇦 Canada (+1)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
