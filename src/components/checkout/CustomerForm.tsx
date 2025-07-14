@@ -27,6 +27,7 @@ const customerFormSchema = z.object({
   firstName: z.string().min(2, "Le prénom doit comporter au moins 2 caractères"),
   lastName: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
   email: z.string().email("Veuillez entrer une adresse e-mail valide"),
+  confirmEmail: z.string().email("Veuillez confirmer votre adresse e-mail"),
   phone: z.string().min(10, "Veuillez entrer un numéro de téléphone complet avec le code pays (ex: +33612345678)"),
   address: z.object({
     street: z.string().min(5, "L'adresse est requise (min. 5 caractères)"),
@@ -47,6 +48,9 @@ const customerFormSchema = z.object({
   }),
   deliveryTimeWindow: z.string().min(1, "Veuillez indiquer vos disponibilités"),
   additionalNotes: z.string().optional(),
+}).refine((data) => data.email === data.confirmEmail, {
+  message: "Les adresses e-mail ne correspondent pas",
+  path: ["confirmEmail"],
 });
 
 export type CustomerFormValues = z.infer<typeof customerFormSchema>;
@@ -71,6 +75,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
       firstName: "",
       lastName: "",
       email: "",
+      confirmEmail: "",
       phone: "",
       address: {
         street: "",
@@ -146,13 +151,41 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="email@exemple.fr" {...field} />
+                    <Input 
+                      type="email" 
+                      placeholder="email@exemple.fr" 
+                      onCopy={(e) => e.preventDefault()}
+                      onPaste={(e) => e.preventDefault()}
+                      {...field} 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             
+            <FormField
+              control={form.control}
+              name="confirmEmail"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirmation de l'email</FormLabel>
+                  <FormControl>
+                    <Input 
+                      type="email" 
+                      placeholder="Confirmez votre email" 
+                      onCopy={(e) => e.preventDefault()}
+                      onPaste={(e) => e.preventDefault()}
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
               control={form.control}
               name="phone"
