@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { useForm, useWatch } from "react-hook-form";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { 
@@ -22,7 +22,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 
-// Schéma de validation avec Zod
+// Schema de validation
 const customerFormSchema = z.object({
   firstName: z.string().min(2, "Le prénom doit comporter au moins 2 caractères"),
   lastName: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
@@ -58,69 +58,14 @@ interface CustomerFormProps {
   isSubmitting?: boolean;
 }
 
-const COUNTRY_CODES = [
-  { value: "+33", label: "🇫🇷 France (+33)", key: "fr" },
-  { value: "+32", label: "🇧🇪 Belgique (+32)", key: "be" },
-  { value: "+41", label: "🇨🇭 Suisse (+41)", key: "ch" },
-  { value: "+49", label: "🇩🇪 Allemagne (+49)", key: "de" },
-  { value: "+39", label: "🇮🇹 Italie (+39)", key: "it" },
-  { value: "+34", label: "🇪🇸 Espagne (+34)", key: "es" },
-  { value: "+351", label: "🇵🇹 Portugal (+351)", key: "pt" },
-  { value: "+31", label: "🇳🇱 Pays-Bas (+31)", key: "nl" },
-  { value: "+44", label: "🇬🇧 Royaume-Uni (+44)", key: "gb" },
-  { value: "+1-us", label: "🇺🇸 États-Unis (+1)", key: "us" },
-  { value: "+1-ca", label: "🇨🇦 Canada (+1)", key: "ca" },
-];
-
-const COUNTRIES = [
-  { value: "France", label: "🇫🇷 France" },
-  { value: "Belgique", label: "🇧🇪 Belgique" },
-  { value: "Suisse", label: "🇨🇭 Suisse" },
-  { value: "Allemagne", label: "🇩🇪 Allemagne" },
-  { value: "Italie", label: "🇮🇹 Italie" },
-  { value: "Espagne", label: "🇪🇸 Espagne" },
-  { value: "Portugal", label: "🇵🇹 Portugal" },
-  { value: "Pays-Bas", label: "🇳🇱 Pays-Bas" },
-  { value: "Royaume-Uni", label: "🇬🇧 Royaume-Uni" },
-  { value: "Luxembourg", label: "🇱🇺 Luxembourg" },
-  { value: "Autriche", label: "🇦🇹 Autriche" },
-];
-
-const INSTALLMENT_OPTIONS = [
-  { value: 6, label: "6 mois" },
-  { value: 12, label: "12 mois" },
-  { value: 18, label: "18 mois" },
-  { value: 24, label: "24 mois" },
-  { value: 30, label: "30 mois" },
-  { value: 36, label: "36 mois" },
-  { value: 42, label: "42 mois" },
-  { value: 48, label: "48 mois" },
-  { value: 54, label: "54 mois" },
-  { value: 60, label: "60 mois" },
-  { value: 66, label: "66 mois" },
-  { value: 72, label: "72 mois" },
-  { value: 78, label: "78 mois" },
-  { value: 84, label: "84 mois" },
-];
-
-const CustomerForm: React.FC<CustomerFormProps> = ({ 
-  onSubmit, 
-  defaultValues, 
-  isSubmitting = false 
-}) => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    defaultValues?.deliveryDate
-  );
+const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: CustomerFormProps) => {
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [paymentMethod, setPaymentMethod] = useState<string>("");
 
   // Date minimale (demain)
-  const minDate = useMemo(() => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
-    return tomorrow;
-  }, []);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
 
-  // Configuration du formulaire
   const form = useForm<CustomerFormValues>({
     resolver: zodResolver(customerFormSchema),
     defaultValues: {
@@ -149,38 +94,18 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
     },
   });
 
-  // Surveillance optimisée des champs
-  const watchedPhoneCountryCode = useWatch({
-    control: form.control,
-    name: 'phoneCountryCode',
-    defaultValue: '+33'
-  });
-
-  const watchedPaymentMethod = useWatch({
-    control: form.control,
-    name: 'paymentMethod'
-  });
-
-  // Fonction de soumission
-  const handleFormSubmit = (values: CustomerFormValues) => {
-    try {
-      onSubmit(values);
-    } catch (error) {
-      console.error("Erreur lors de la soumission du formulaire:", error);
-    }
+  const handleSubmit = (values: CustomerFormValues) => {
+    onSubmit(values);
   };
 
-  // Affichage du code pays pour le téléphone
-  const displayPhoneCode = useMemo(() => {
-    if (!watchedPhoneCountryCode) return '+33';
-    return watchedPhoneCountryCode.includes('-') 
-      ? watchedPhoneCountryCode.split('-')[0] 
-      : watchedPhoneCountryCode;
-  }, [watchedPhoneCountryCode]);
+  const handlePaymentMethodChange = (value: string) => {
+    setPaymentMethod(value);
+    form.setValue('paymentMethod', value as 'delivery' | 'installments');
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
         {/* Informations personnelles */}
         <div className="space-y-4">
           <h3 className="font-medium text-lg">Informations personnelles</h3>
@@ -243,12 +168,18 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                           <SelectValue placeholder="Code pays" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        {COUNTRY_CODES.map((country) => (
-                          <SelectItem key={country.key} value={country.value}>
-                            {country.label}
-                          </SelectItem>
-                        ))}
+                      <SelectContent className="bg-background border z-50">
+                        <SelectItem value="+33">🇫🇷 France (+33)</SelectItem>
+                        <SelectItem value="+32">🇧🇪 Belgique (+32)</SelectItem>
+                        <SelectItem value="+41">🇨🇭 Suisse (+41)</SelectItem>
+                        <SelectItem value="+49">🇩🇪 Allemagne (+49)</SelectItem>
+                        <SelectItem value="+39">🇮🇹 Italie (+39)</SelectItem>
+                        <SelectItem value="+34">🇪🇸 Espagne (+34)</SelectItem>
+                        <SelectItem value="+351">🇵🇹 Portugal (+351)</SelectItem>
+                        <SelectItem value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
+                        <SelectItem value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
+                        <SelectItem value="+1-us">🇺🇸 États-Unis (+1)</SelectItem>
+                        <SelectItem value="+1-ca">🇨🇦 Canada (+1)</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -265,7 +196,7 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                     <FormControl>
                       <div className="flex">
                         <div className="flex items-center px-3 border border-r-0 rounded-l-md bg-muted text-muted-foreground">
-                          {displayPhoneCode}
+                          +33
                         </div>
                         <Input 
                           placeholder="06 12 34 56 78" 
@@ -344,12 +275,18 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                       <SelectValue placeholder="Sélectionner un pays" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    {COUNTRIES.map((country) => (
-                      <SelectItem key={country.value} value={country.value}>
-                        {country.label}
-                      </SelectItem>
-                    ))}
+                  <SelectContent className="bg-background border z-50">
+                    <SelectItem value="France">🇫🇷 France</SelectItem>
+                    <SelectItem value="Belgique">🇧🇪 Belgique</SelectItem>
+                    <SelectItem value="Suisse">🇨🇭 Suisse</SelectItem>
+                    <SelectItem value="Allemagne">🇩🇪 Allemagne</SelectItem>
+                    <SelectItem value="Italie">🇮🇹 Italie</SelectItem>
+                    <SelectItem value="Espagne">🇪🇸 Espagne</SelectItem>
+                    <SelectItem value="Portugal">🇵🇹 Portugal</SelectItem>
+                    <SelectItem value="Pays-Bas">🇳🇱 Pays-Bas</SelectItem>
+                    <SelectItem value="Royaume-Uni">🇬🇧 Royaume-Uni</SelectItem>
+                    <SelectItem value="Luxembourg">🇱🇺 Luxembourg</SelectItem>
+                    <SelectItem value="Autriche">🇦🇹 Autriche</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -468,13 +405,13 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Le montant restant sera payé</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <Select onValueChange={handlePaymentMethodChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Sélectionner le mode de paiement" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-background border z-50">
                     <SelectItem value="delivery">À la livraison</SelectItem>
                     <SelectItem value="installments">Par mensualités</SelectItem>
                   </SelectContent>
@@ -484,7 +421,7 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
             )}
           />
           
-          {watchedPaymentMethod === 'installments' && (
+          {paymentMethod === 'installments' && (
             <FormField
               control={form.control}
               name="installmentMonths"
@@ -500,12 +437,21 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                         <SelectValue placeholder="Choisir la durée" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      {INSTALLMENT_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value.toString()}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
+                    <SelectContent className="bg-background border z-50">
+                      <SelectItem value="6">6 mois</SelectItem>
+                      <SelectItem value="12">12 mois</SelectItem>
+                      <SelectItem value="18">18 mois</SelectItem>
+                      <SelectItem value="24">24 mois</SelectItem>
+                      <SelectItem value="30">30 mois</SelectItem>
+                      <SelectItem value="36">36 mois</SelectItem>
+                      <SelectItem value="42">42 mois</SelectItem>
+                      <SelectItem value="48">48 mois</SelectItem>
+                      <SelectItem value="54">54 mois</SelectItem>
+                      <SelectItem value="60">60 mois</SelectItem>
+                      <SelectItem value="66">66 mois</SelectItem>
+                      <SelectItem value="72">72 mois</SelectItem>
+                      <SelectItem value="78">78 mois</SelectItem>
+                      <SelectItem value="84">84 mois</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -546,7 +492,7 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
+                  <PopoverContent className="w-auto p-0 bg-background border z-50" align="start">
                     <Calendar
                       mode="single"
                       selected={field.value}
@@ -554,8 +500,9 @@ const CustomerForm: React.FC<CustomerFormProps> = ({
                         field.onChange(date);
                         setSelectedDate(date);
                       }}
-                      disabled={(date) => date < minDate}
+                      disabled={(date) => date < tomorrow}
                       initialFocus
+                      className="p-3 pointer-events-auto"
                     />
                   </PopoverContent>
                 </Popover>
