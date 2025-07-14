@@ -75,9 +75,17 @@ const Checkout = () => {
   // Expected delivery date (based on customer selection or default to 5 days from now)
   const getDeliveryDate = () => {
     if (customerInfo?.deliveryDate) {
-      return new Date(customerInfo.deliveryDate);
+      // Si c'est déjà un objet Date, on le retourne directement
+      // Sinon on le convertit en Date
+      const date = customerInfo.deliveryDate instanceof Date 
+        ? customerInfo.deliveryDate 
+        : new Date(customerInfo.deliveryDate);
+      return isNaN(date.getTime()) ? getDefaultDate() : date;
     } 
-    
+    return getDefaultDate();
+  };
+  
+  const getDefaultDate = () => {
     const defaultDate = new Date();
     defaultDate.setDate(defaultDate.getDate() + 5);
     return defaultDate;
@@ -344,7 +352,7 @@ const Checkout = () => {
                       </div>
                       <div className="py-2 grid grid-cols-3">
                         <dt className="font-medium">Date souhaitée</dt>
-                        <dd className="col-span-2">{new Date(customerInfo.deliveryDate).toLocaleDateString('fr-FR')}</dd>
+                        <dd className="col-span-2">{getDeliveryDate().toLocaleDateString('fr-FR')}</dd>
                       </div>
                       <div className="py-2 grid grid-cols-3">
                         <dt className="font-medium">Créneau horaire</dt>
