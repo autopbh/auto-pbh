@@ -28,7 +28,7 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import PaymentReceiptUploader from "@/components/checkout/PaymentReceiptUploader";
-import CustomerForm from "@/components/checkout/CustomerForm";
+import SimpleCustomerForm, { CustomerData } from "@/components/SimpleCustomerForm";
 import { supabase } from "@/integrations/supabase/client";
 
 // Définition des étapes du processus de commande
@@ -259,20 +259,9 @@ const Checkout = () => {
               <CardDescription>Veuillez fournir vos coordonnées pour la livraison</CardDescription>
             </CardHeader>
             <CardContent>
-              <CustomerForm 
+              <SimpleCustomerForm 
                 onSubmit={handleCustomerFormSubmit}
-                defaultValues={{
-                  firstName: "",
-                  lastName: "",
-                  email: "",
-                  phone: "",
-                  address: {
-                    street: "",
-                    city: "",
-                    postalCode: "",
-                    country: "France",
-                  },
-                }}
+                isSubmitting={false}
               />
             </CardContent>
           </Card>
