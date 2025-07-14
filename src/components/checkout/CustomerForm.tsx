@@ -204,8 +204,8 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
                       <SelectItem value="+351">🇵🇹 Portugal (+351)</SelectItem>
                       <SelectItem value="+31">🇳🇱 Pays-Bas (+31)</SelectItem>
                       <SelectItem value="+44">🇬🇧 Royaume-Uni (+44)</SelectItem>
-                      <SelectItem value="+1">🇺🇸 États-Unis (+1)</SelectItem>
-                      <SelectItem value="+1">🇨🇦 Canada (+1)</SelectItem>
+                      <SelectItem value="+1-us">🇺🇸 États-Unis (+1)</SelectItem>
+                      <SelectItem value="+1-ca">🇨🇦 Canada (+1)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
