@@ -50,18 +50,30 @@ const customerFormSchema = z.object({
     postalCode: z.string().min(5, {
       message: "Le code postal est requis",
     }),
-    country: z.string().min(2, {
-      message: "Le pays est requis",
+    country: z.string().min(1, {
+      message: "Veuillez sélectionner un pays",
     }),
   }),
   // Informations professionnelles
-  companyName: z.string().optional(),
-  jobTitle: z.string().optional(),
-  professionalAddress: z.string().optional(),
+  companyName: z.string().min(1, {
+    message: "Le nom de l'entreprise est requis",
+  }),
+  jobTitle: z.string().min(1, {
+    message: "Le poste occupé est requis",
+  }),
+  professionalAddress: z.string().min(5, {
+    message: "L'adresse professionnelle est requise",
+  }),
   // Informations bancaires
-  bankName: z.string().optional(),
-  iban: z.string().optional(),
-  accountHolder: z.string().optional(),
+  bankName: z.string().min(1, {
+    message: "Le nom de la banque est requis",
+  }),
+  iban: z.string().min(15, {
+    message: "L'IBAN est requis et doit être valide",
+  }),
+  accountHolder: z.string().min(1, {
+    message: "Le titulaire du compte est requis",
+  }),
   // Mode de paiement
   paymentMethod: z.enum(['delivery', 'installments']).optional(),
   installmentMonths: z.number().optional(),
@@ -279,9 +291,26 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Pays</FormLabel>
-                <FormControl>
-                  <Input placeholder="France" {...field} />
-                </FormControl>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Sélectionner un pays" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="France">🇫🇷 France</SelectItem>
+                    <SelectItem value="Belgique">🇧🇪 Belgique</SelectItem>
+                    <SelectItem value="Suisse">🇨🇭 Suisse</SelectItem>
+                    <SelectItem value="Allemagne">🇩🇪 Allemagne</SelectItem>
+                    <SelectItem value="Italie">🇮🇹 Italie</SelectItem>
+                    <SelectItem value="Espagne">🇪🇸 Espagne</SelectItem>
+                    <SelectItem value="Portugal">🇵🇹 Portugal</SelectItem>
+                    <SelectItem value="Pays-Bas">🇳🇱 Pays-Bas</SelectItem>
+                    <SelectItem value="Royaume-Uni">🇬🇧 Royaume-Uni</SelectItem>
+                    <SelectItem value="Luxembourg">🇱🇺 Luxembourg</SelectItem>
+                    <SelectItem value="Autriche">🇦🇹 Autriche</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -297,7 +326,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="companyName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom de l'entreprise (optionnel)</FormLabel>
+                <FormLabel>Nom de l'entreprise</FormLabel>
                 <FormControl>
                   <Input placeholder="SARL MonEntreprise" {...field} />
                 </FormControl>
@@ -311,7 +340,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="jobTitle"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Poste occupé (optionnel)</FormLabel>
+                <FormLabel>Poste occupé</FormLabel>
                 <FormControl>
                   <Input placeholder="Directeur commercial" {...field} />
                 </FormControl>
@@ -325,7 +354,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="professionalAddress"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Adresse professionnelle (optionnel)</FormLabel>
+                <FormLabel>Adresse professionnelle</FormLabel>
                 <FormControl>
                   <Input placeholder="456 avenue des Affaires, 75008 Paris" {...field} />
                 </FormControl>
@@ -344,7 +373,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="bankName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom de la banque (optionnel)</FormLabel>
+                <FormLabel>Nom de la banque</FormLabel>
                 <FormControl>
                   <Input placeholder="Crédit Agricole" {...field} />
                 </FormControl>
@@ -358,7 +387,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="iban"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>IBAN (optionnel)</FormLabel>
+                <FormLabel>IBAN</FormLabel>
                 <FormControl>
                   <Input placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" {...field} />
                 </FormControl>
@@ -372,7 +401,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             name="accountHolder"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Titulaire du compte (optionnel)</FormLabel>
+                <FormLabel>Titulaire du compte</FormLabel>
                 <FormControl>
                   <Input placeholder="Jean Dupont" {...field} />
                 </FormControl>
