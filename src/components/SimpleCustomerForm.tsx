@@ -339,52 +339,33 @@ const SimpleCustomerForm: React.FC<Props> = ({ onSubmit, isSubmitting = false })
           <h2 className="text-xl font-bold mb-4 text-gray-800">Mode de paiement</h2>
           
           <div className="mb-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">Le montant restant sera payé :</p>
-            <div className="space-y-2">
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("delivery")}
-                className={`w-full p-3 rounded border text-left ${
-                  paymentMethod === "delivery" 
-                    ? "bg-blue-600 text-white border-blue-600" 
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                }`}
-              >
-                À la livraison
-              </button>
-              <button
-                type="button"
-                onClick={() => setPaymentMethod("installments")}
-                className={`w-full p-3 rounded border text-left ${
-                  paymentMethod === "installments" 
-                    ? "bg-blue-600 text-white border-blue-600" 
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                }`}
-              >
-                Par mensualités
-              </button>
-            </div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Le montant restant sera payé :</label>
+            <select
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Choisissez un mode de paiement</option>
+              <option value="delivery">À la livraison</option>
+              <option value="installments">Par mensualités</option>
+            </select>
           </div>
 
           {paymentMethod === "installments" && (
             <div className="mb-4">
-              <p className="text-sm font-medium text-gray-700 mb-2">Durée des mensualités :</p>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">Durée des mensualités :</label>
+              <select
+                value={selectedMonths || ""}
+                onChange={(e) => setSelectedMonths(Number(e.target.value))}
+                className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <option value="">Choisissez la durée</option>
                 {[6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72].map((months) => (
-                  <button
-                    key={months}
-                    type="button"
-                    onClick={() => setSelectedMonths(months)}
-                    className={`p-2 text-sm rounded border ${
-                      selectedMonths === months 
-                        ? "bg-blue-600 text-white border-blue-600" 
-                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
-                    }`}
-                  >
-                    {months}m
-                  </button>
+                  <option key={months} value={months}>
+                    {months} mois
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
           )}
         </div>
