@@ -16,6 +16,8 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -99,11 +101,6 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
 
   const handleSubmit = (values: CustomerFormValues) => {
     onSubmit(values);
-  };
-
-  const handlePaymentMethodChange = (value: string) => {
-    setPaymentMethod(value);
-    form.setValue('paymentMethod', value as 'delivery' | 'installments');
   };
 
   return (
@@ -378,19 +375,27 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
             control={form.control}
             name="paymentMethod"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="space-y-3">
                 <FormLabel>Le montant restant sera payé</FormLabel>
-                <Select onValueChange={handlePaymentMethodChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner le mode de paiement" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent className="bg-background border z-50">
-                    <SelectItem value="delivery">À la livraison</SelectItem>
-                    <SelectItem value="installments">Par mensualités</SelectItem>
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={(value) => {
+                      field.onChange(value);
+                      setPaymentMethod(value);
+                    }}
+                    defaultValue={field.value}
+                    className="flex flex-col space-y-2"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="delivery" id="delivery" />
+                      <Label htmlFor="delivery">À la livraison</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="installments" id="installments" />
+                      <Label htmlFor="installments">Par mensualités</Label>
+                    </div>
+                  </RadioGroup>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -401,34 +406,22 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
               control={form.control}
               name="installmentMonths"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="space-y-3">
                   <FormLabel>Durée des mensualités</FormLabel>
-                  <Select 
-                    onValueChange={(value) => field.onChange(parseInt(value, 10))} 
-                    value={field.value?.toString()}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Choisir la durée" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className="bg-background border z-50">
-                      <SelectItem value="6">6 mois</SelectItem>
-                      <SelectItem value="12">12 mois</SelectItem>
-                      <SelectItem value="18">18 mois</SelectItem>
-                      <SelectItem value="24">24 mois</SelectItem>
-                      <SelectItem value="30">30 mois</SelectItem>
-                      <SelectItem value="36">36 mois</SelectItem>
-                      <SelectItem value="42">42 mois</SelectItem>
-                      <SelectItem value="48">48 mois</SelectItem>
-                      <SelectItem value="54">54 mois</SelectItem>
-                      <SelectItem value="60">60 mois</SelectItem>
-                      <SelectItem value="66">66 mois</SelectItem>
-                      <SelectItem value="72">72 mois</SelectItem>
-                      <SelectItem value="78">78 mois</SelectItem>
-                      <SelectItem value="84">84 mois</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={(value) => field.onChange(parseInt(value, 10))}
+                      value={field.value?.toString()}
+                      className="grid grid-cols-2 md:grid-cols-4 gap-2"
+                    >
+                      {[6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84].map((months) => (
+                        <div key={months} className="flex items-center space-x-2">
+                          <RadioGroupItem value={months.toString()} id={`months-${months}`} />
+                          <Label htmlFor={`months-${months}`}>{months} mois</Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
