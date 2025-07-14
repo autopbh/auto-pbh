@@ -61,6 +61,7 @@ const customerFormSchema = z.object({
   accountHolder: z.string().optional(),
   // Mode de paiement
   paymentMethod: z.enum(['delivery', 'installments']).optional(),
+  installmentMonths: z.number().optional(),
   deliveryDate: z.date({
     required_error: "Veuillez sélectionner une date",
   }),
@@ -101,6 +102,7 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
       iban: "",
       accountHolder: "",
       paymentMethod: undefined,
+      installmentMonths: undefined,
       deliveryTimeWindow: "",
       additionalNotes: ""
     },
@@ -359,6 +361,42 @@ const CustomerForm = ({ onSubmit, defaultValues, isSubmitting = false }: Custome
               </FormItem>
             )}
           />
+          
+          {form.watch('paymentMethod') === 'installments' && (
+            <FormField
+              control={form.control}
+              name="installmentMonths"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Durée des mensualités</FormLabel>
+                  <Select onValueChange={(value) => field.onChange(parseInt(value))} value={field.value?.toString()}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choisir la durée" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="6">6 mois</SelectItem>
+                      <SelectItem value="12">12 mois</SelectItem>
+                      <SelectItem value="18">18 mois</SelectItem>
+                      <SelectItem value="24">24 mois</SelectItem>
+                      <SelectItem value="30">30 mois</SelectItem>
+                      <SelectItem value="36">36 mois</SelectItem>
+                      <SelectItem value="42">42 mois</SelectItem>
+                      <SelectItem value="48">48 mois</SelectItem>
+                      <SelectItem value="54">54 mois</SelectItem>
+                      <SelectItem value="60">60 mois</SelectItem>
+                      <SelectItem value="66">66 mois</SelectItem>
+                      <SelectItem value="72">72 mois</SelectItem>
+                      <SelectItem value="78">78 mois</SelectItem>
+                      <SelectItem value="84">84 mois</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
         </div>
 
         <Separator className="my-6" />
