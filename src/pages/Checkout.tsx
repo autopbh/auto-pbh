@@ -509,7 +509,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="emailConfirm">Confirmation e-mail *</Label>
+                  <Label htmlFor="emailConfirm">{t("checkout.confirmEmailLabel")} *</Label>
                   <Input 
                     id="emailConfirm"
                     type="email"
@@ -549,10 +549,10 @@ export default function Checkout() {
                       <RadioGroupItem value="delivery" id="delivery" />
                       <div className="flex-1">
                         <Label htmlFor="delivery" className="font-medium cursor-pointer">
-                          💰 Paiement intégral à la livraison
+                          {t("checkout.integralPaymentDelivery")}
                         </Label>
                         <p className="text-sm text-muted-foreground mt-1">
-                          Le solde complet de {formatPrice(total - depositAmount)} sera payé lors de la réception du véhicule
+                          {t("checkout.integralPaymentDesc").replace("{amount}", formatPrice(total - depositAmount))}
                         </p>
                       </div>
                     </div>
@@ -563,10 +563,10 @@ export default function Checkout() {
                       <RadioGroupItem value="installments" id="installments" />
                       <div className="flex-1">
                         <Label htmlFor="installments" className="font-medium cursor-pointer">
-                          📅 Paiement par mensualités
+                          {t("checkout.monthlyPaymentLabel")}
                         </Label>
                         <p className="text-sm text-muted-foreground mt-1">
-                          Le solde sera payé en mensualités de 6 à 84 mois selon votre capacité financière
+                          {t("checkout.monthlyPaymentDesc")}
                         </p>
                       </div>
                     </div>
@@ -577,11 +577,11 @@ export default function Checkout() {
                 {watchedPaymentMethod === 'installments' && (
                   <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                     <Label htmlFor="installmentMonths" className="text-blue-800 font-medium">
-                      Nombre de mois souhaité pour le financement *
+                      {t("checkout.installmentMonthsLabel")} *
                     </Label>
                     <Select onValueChange={(value) => setValue("installmentMonths", parseInt(value))}>
                       <SelectTrigger className="w-full mt-2">
-                        <SelectValue placeholder="Choisissez la durée de financement" />
+                        <SelectValue placeholder={t("checkout.selectFinancingDuration")} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="6">6 mois</SelectItem>
