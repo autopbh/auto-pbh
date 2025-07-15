@@ -273,7 +273,62 @@ export default function Checkout() {
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
                       <div className="p-3 border-b">
-                        <div className="grid grid-cols-2 gap-2 mb-2">
+                        <div className="grid grid-cols-3 gap-2 mb-2">
+                          <div>
+                            <Label className="text-xs">Jour</Label>
+                            <Select
+                              value={birthDate?.getDate()?.toString() || ""}
+                              onValueChange={(day) => {
+                                if (day) {
+                                  const newDate = new Date(birthDate || new Date());
+                                  newDate.setDate(parseInt(day));
+                                  setBirthDate(newDate);
+                                  setValue("birthDate", newDate);
+                                }
+                              }}
+                            >
+                              <SelectTrigger className="h-8">
+                                <SelectValue placeholder="Jour" />
+                              </SelectTrigger>
+                              <SelectContent className="max-h-[200px]">
+                                {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                                  <SelectItem key={day} value={day.toString()}>
+                                    {day.toString().padStart(2, '0')}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
+                          <div>
+                            <Label className="text-xs">Mois</Label>
+                            <Select
+                              value={birthDate?.getMonth()?.toString() || ""}
+                              onValueChange={(month) => {
+                                if (month) {
+                                  const newDate = new Date(birthDate || new Date());
+                                  newDate.setMonth(parseInt(month));
+                                  setBirthDate(newDate);
+                                  setValue("birthDate", newDate);
+                                }
+                              }}
+                            >
+                              <SelectTrigger className="h-8">
+                                <SelectValue placeholder="Mois" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {[
+                                  "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+                                  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+                                ].map((month, index) => (
+                                  <SelectItem key={index} value={index.toString()}>
+                                    {month}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          
                           <div>
                             <Label className="text-xs">Année</Label>
                             <Select
@@ -299,32 +354,6 @@ export default function Checkout() {
                                     </SelectItem>
                                   );
                                 })}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          <div>
-                            <Label className="text-xs">Mois</Label>
-                            <Select
-                              value={birthDate?.getMonth()?.toString() || ""}
-                              onValueChange={(month) => {
-                                if (month) {
-                                  const newDate = new Date(birthDate || new Date());
-                                  newDate.setMonth(parseInt(month));
-                                  setBirthDate(newDate);
-                                  setValue("birthDate", newDate);
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="h-8">
-                                <SelectValue placeholder="Mois" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {Array.from({ length: 12 }, (_, i) => (
-                                  <SelectItem key={i} value={i.toString()}>
-                                    {new Date(2000, i, 1).toLocaleDateString('fr-FR', { month: 'short' })}
-                                  </SelectItem>
-                                ))}
                               </SelectContent>
                             </Select>
                           </div>
