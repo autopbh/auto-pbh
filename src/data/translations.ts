@@ -3542,9 +3542,14 @@ export const translations: TranslationsType = {
     "nav.contact": "Kontakt",
     "nav.faq": "FAQ",
     "nav.search": "Suchen",
-    "nav.cart": "Warenkorb",
+    "nav.cart": "Warenkorb", 
     "nav.account": "Konto",
-
+    "nav.mainServices": "Hauptdienste",
+    "nav.financing": "Finanzierung",
+    "nav.warranty": "Garantie",
+    "nav.delivery": "Lieferung",
+    "nav.other": "Andere",
+    
     // Home page
     "home.hero.slide1.model": "PREMIUM",
     "home.hero.slide1.description": "Entdecken Sie unsere exklusive Kollektion von Premium-Fahrzeugen, ausgewählt von unseren Spezialisten.",
@@ -4355,7 +4360,6 @@ export const translations: TranslationsType = {
     "nav.financing": "Finanziamento",
     "nav.warranty": "Garanzia",
     "nav.delivery": "Consegna",
-    "nav.other": "Altri",
 
     // Home page
     "home.hero.slide1.model": "PREMIUM",
@@ -5144,7 +5148,7 @@ export const translations: TranslationsType = {
     "nav.faq": "FAQ",
     "nav.search": "Zoeken",
     "nav.cart": "Winkelwagen",
-    "nav.account": "Account",
+    "nav.account": "Account", 
 
     // Home page
     "home.hero.slide1.model": "PREMIUM",
