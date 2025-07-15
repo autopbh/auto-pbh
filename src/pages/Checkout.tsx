@@ -260,6 +260,54 @@ export default function Checkout() {
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
+                      <div className="p-3 border-b">
+                        <div className="flex gap-2">
+                          <Select
+                            value={birthDate?.getMonth().toString() || ""}
+                            onValueChange={(month) => {
+                              const newDate = new Date(birthDate || new Date());
+                              newDate.setMonth(parseInt(month));
+                              setBirthDate(newDate);
+                              setValue("birthDate", newDate);
+                            }}
+                          >
+                            <SelectTrigger className="w-32">
+                              <SelectValue placeholder="Mois" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {Array.from({ length: 12 }, (_, i) => (
+                                <SelectItem key={i} value={i.toString()}>
+                                  {new Date(2000, i, 1).toLocaleDateString('fr-FR', { month: 'long' })}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          
+                          <Select
+                            value={birthDate?.getFullYear().toString() || ""}
+                            onValueChange={(year) => {
+                              const newDate = new Date(birthDate || new Date());
+                              newDate.setFullYear(parseInt(year));
+                              setBirthDate(newDate);
+                              setValue("birthDate", newDate);
+                            }}
+                          >
+                            <SelectTrigger className="w-24">
+                              <SelectValue placeholder="Année" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {Array.from({ length: 100 }, (_, i) => {
+                                const year = new Date().getFullYear() - 18 - i;
+                                return (
+                                  <SelectItem key={year} value={year.toString()}>
+                                    {year}
+                                  </SelectItem>
+                                );
+                              })}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
                       <Calendar
                         mode="single"
                         selected={birthDate}
@@ -270,6 +318,8 @@ export default function Checkout() {
                         disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
                         initialFocus
                         className="pointer-events-auto"
+                        month={birthDate}
+                        onMonthChange={setBirthDate}
                       />
                     </PopoverContent>
                   </Popover>
@@ -612,14 +662,52 @@ export default function Checkout() {
                   </p>
                 </div>
 
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
-                  <h4 className="font-medium text-green-800 mb-2">💳 Coordonnées bancaires pour le virement</h4>
-                  <div className="space-y-2 text-sm text-green-700">
-                    <p><span className="font-medium">Bénéficiaire :</span> AURA AUTO GENESIS</p>
-                    <p><span className="font-medium">IBAN :</span> FR76 1234 5678 9012 3456 7890 123</p>
-                    <p><span className="font-medium">BIC/SWIFT :</span> BNPAFRPPXXX</p>
-                    <p><span className="font-medium">Banque :</span> BNP Paribas</p>
-                    <p><span className="font-medium">Motif :</span> Acompte commande véhicule - Ref: [VOTRE_REF]</p>
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-200 shadow-lg mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-green-500 text-white rounded-full p-2">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <h4 className="text-lg font-bold text-green-800">💳 Coordonnées bancaires pour le virement d'acompte</h4>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
+                      <p className="text-sm font-medium text-green-600 mb-1">Bénéficiaire</p>
+                      <p className="text-lg font-bold text-green-900">AURA AUTO GENESIS</p>
+                    </div>
+                    
+                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
+                      <p className="text-sm font-medium text-green-600 mb-1">Banque</p>
+                      <p className="text-lg font-bold text-green-900">BNP Paribas</p>
+                    </div>
+                    
+                    <div className="bg-white/80 p-4 rounded-lg border border-green-100 md:col-span-2">
+                      <p className="text-sm font-medium text-green-600 mb-1">IBAN</p>
+                      <p className="text-xl font-mono font-bold text-green-900 tracking-wider break-all">
+                        FR76 1234 5678 9012 3456 7890 123
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
+                      <p className="text-sm font-medium text-green-600 mb-1">BIC/SWIFT</p>
+                      <p className="text-lg font-mono font-bold text-green-900">BNPAFRPPXXX</p>
+                    </div>
+                    
+                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
+                      <p className="text-sm font-medium text-green-600 mb-1">Montant à virer</p>
+                      <p className="text-xl font-bold text-green-900">{formatPrice(depositAmount)}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p className="text-sm text-yellow-800">
+                      <span className="font-semibold">💡 Important :</span> Indiquez comme motif de virement : 
+                      <span className="font-mono bg-yellow-100 px-2 py-1 rounded ml-1">
+                        "Acompte commande véhicule - Ref: [VOTRE_REF]"
+                      </span>
+                    </p>
                   </div>
                 </div>
 
