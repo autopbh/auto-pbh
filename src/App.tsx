@@ -16,7 +16,7 @@ import Faq from "./pages/Faq";
 import Search from "./pages/Search";
 import Account from "./pages/Account";
 import Cart from "./pages/Cart";
-
+import Checkout from "./pages/Checkout";
 import VehicleDetail from "./pages/VehicleDetail";
 import Financing from "./pages/Financing";
 
@@ -62,7 +62,7 @@ const App = () => (
             <Route path="/:lang/search" element={<Search />} />
             <Route path="/:lang/account" element={<Account />} />
             <Route path="/:lang/cart" element={<Cart />} />
-            
+            <Route path="/:lang/checkout" element={<Checkout />} />
             <Route path="/:lang/vehicle/:id" element={<VehicleDetail />} />
             <Route path="/:lang/financing" element={<Financing />} />
             
@@ -83,7 +83,7 @@ const App = () => (
             <Route path="/search" element={<RedirectToLanguage targetPath="/search" />} />
             <Route path="/account" element={<RedirectToLanguage targetPath="/account" />} />
             <Route path="/cart" element={<RedirectToLanguage targetPath="/cart" />} />
-            
+            <Route path="/checkout" element={<RedirectToLanguage targetPath="/checkout" />} />
             <Route path="/vehicle/:id" element={<RedirectToLanguage targetPath="/vehicle/:id" />} />
             <Route path="/financing" element={<RedirectToLanguage targetPath="/financing" />} />
             
