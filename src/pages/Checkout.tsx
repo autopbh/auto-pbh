@@ -632,12 +632,12 @@ export default function Checkout() {
                     {t("checkout.professionalInfo")}
                   </CardTitle>
                   <p className="text-sm text-muted-foreground">
-                    Ces informations sont nécessaires pour le financement par mensualités
+                    {t("checkout.professionalInfoDesc")}
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <Label htmlFor="profession">Profession *</Label>
+                    <Label htmlFor="profession">{t("checkout.profession")} *</Label>
                     <Input 
                       id="profession"
                       {...register("profession")}
@@ -649,7 +649,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="employer">Employeur *</Label>
+                    <Label htmlFor="employer">{t("checkout.employer")} *</Label>
                     <Input 
                       id="employer"
                       {...register("employer")}
@@ -661,7 +661,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="employerAddress">Adresse de l'employeur *</Label>
+                    <Label htmlFor="employerAddress">{t("checkout.employerAddress")} *</Label>
                     <Textarea 
                       id="employerAddress"
                       {...register("employerAddress")}
@@ -673,7 +673,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="professionalId">Numéro d'identification professionnel *</Label>
+                    <Label htmlFor="professionalId">{t("checkout.professionalId")} *</Label>
                     <Input 
                       id="professionalId"
                       {...register("professionalId")}
@@ -685,7 +685,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="monthlySalary">Salaire mensuel net (€) *</Label>
+                    <Label htmlFor="monthlySalary">{t("checkout.monthlySalary")} *</Label>
                     <Input 
                       id="monthlySalary"
                       type="number"
@@ -711,7 +711,7 @@ export default function Checkout() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="accountHolder">Titulaire du compte *</Label>
+                  <Label htmlFor="accountHolder">{t("checkout.accountHolder")} *</Label>
                   <Input 
                     id="accountHolder"
                     {...register("accountHolder")}
@@ -723,7 +723,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="bankName">Nom de la banque *</Label>
+                  <Label htmlFor="bankName">{t("checkout.bankName")} *</Label>
                   <Input 
                     id="bankName"
                     {...register("bankName")}
@@ -772,7 +772,7 @@ export default function Checkout() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="deliveryRecipient">Nom du destinataire *</Label>
+                  <Label htmlFor="deliveryRecipient">{t("checkout.deliveryRecipient")} *</Label>
                   <Input 
                     id="deliveryRecipient"
                     {...register("deliveryRecipient")}
@@ -784,7 +784,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="deliveryStreet">Adresse complète de livraison *</Label>
+                  <Label htmlFor="deliveryStreet">{t("checkout.deliveryStreet")} *</Label>
                   <Textarea 
                     id="deliveryStreet"
                     {...register("deliveryStreet")}
@@ -846,7 +846,7 @@ export default function Checkout() {
               <CardContent className="space-y-4">
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <p className="text-blue-800 font-medium">
-                    ✅ Un acompte de 20% ({formatPrice(depositAmount)}) a déjà été payé pour confirmer la commande.
+                    ✅ {t("checkout.depositAlreadyPaid").replace("{amount}", formatPrice(depositAmount))}
                   </p>
                 </div>
 
@@ -857,12 +857,12 @@ export default function Checkout() {
                         <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <h4 className="font-medium text-green-800">💳 Coordonnées bancaires pour le virement</h4>
+                    <h4 className="font-medium text-green-800">💳 {t("checkout.bankingCoordinates")}</h4>
                   </div>
                   
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between items-center">
-                      <span className="text-green-700"><span className="font-medium">Bénéficiaire :</span> AURA AUTO GENESIS</span>
+                      <span className="text-green-700"><span className="font-medium">{t("checkout.beneficiary")} :</span> AURA AUTO GENESIS</span>
                       <Button
                         type="button"
                         variant="outline"
@@ -875,12 +875,12 @@ export default function Checkout() {
                         ) : (
                           <Copy className="h-3 w-3 mr-1" />
                         )}
-                        Copier
+                        {t("checkout.copy")}
                       </Button>
                     </div>
                     
                     <div className="flex justify-between items-center">
-                      <span className="text-green-700"><span className="font-medium">Banque :</span> BNP Paribas</span>
+                      <span className="text-green-700"><span className="font-medium">{t("checkout.bank")} :</span> BNP Paribas</span>
                       <Button
                         type="button"
                         variant="outline"
@@ -893,7 +893,7 @@ export default function Checkout() {
                         ) : (
                           <Copy className="h-3 w-3 mr-1" />
                         )}
-                        Copier
+                        {t("checkout.copy")}
                       </Button>
                     </div>
                     
@@ -914,7 +914,7 @@ export default function Checkout() {
                         ) : (
                           <Copy className="h-3 w-3 mr-1" />
                         )}
-                        Copier
+                        {t("checkout.copy")}
                       </Button>
                     </div>
                     
@@ -941,7 +941,7 @@ export default function Checkout() {
                     
                     <div className="flex justify-between items-center">
                       <span className="text-green-700">
-                        <span className="font-medium">Montant :</span> 
+                        <span className="font-medium">{t("checkout.amount")} :</span> 
                         <span className="font-bold ml-1">{formatPrice(depositAmount)}</span>
                       </span>
                       <Button
@@ -956,13 +956,13 @@ export default function Checkout() {
                         ) : (
                           <Copy className="h-3 w-3 mr-1" />
                         )}
-                        Copier
+                        {t("checkout.copy")}
                       </Button>
                     </div>
                     
                     <div className="flex justify-between items-center">
                       <span className="text-green-700">
-                        <span className="font-medium">Motif :</span> 
+                        <span className="font-medium">{t("checkout.reference")} :</span> 
                         <span className="text-xs">Acompte commande véhicule</span>
                       </span>
                       <Button
@@ -977,14 +977,14 @@ export default function Checkout() {
                         ) : (
                           <Copy className="h-3 w-3 mr-1" />
                         )}
-                        Copier
+                        {t("checkout.copy")}
                       </Button>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <Label>Méthode de paiement utilisée pour l'acompte *</Label>
+                  <Label>{t("checkout.paymentMethodUsed")} *</Label>
                   <RadioGroup 
                     onValueChange={(value) => setValue("paymentType", value as "transfer")}
                     defaultValue="transfer"
@@ -992,7 +992,7 @@ export default function Checkout() {
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="transfer" id="transfer" />
-                      <Label htmlFor="transfer">✅ Virement bancaire (effectué vers le compte ci-dessus)</Label>
+                      <Label htmlFor="transfer">✅ {t("checkout.bankTransfer")}</Label>
                     </div>
                   </RadioGroup>
                   {errors.paymentType && (
@@ -1001,13 +1001,13 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>📎 Preuve de paiement de l'acompte *</Label>
+                  <Label>📎 {t("checkout.paymentProof")} *</Label>
                   <PaymentReceiptUploader
                     onUploadComplete={(url) => setValue("paymentProof", url)}
                     orderReference={`ORDER-${Date.now()}`}
                   />
                   {errors.paymentProof && (
-                    <p className="text-sm text-destructive mt-1">Preuve de paiement requise</p>
+                    <p className="text-sm text-destructive mt-1">{t("checkout.paymentProofRequired")}</p>
                   )}
                 </div>
               </CardContent>
@@ -1040,27 +1040,27 @@ export default function Checkout() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="it" id="contract-it" />
-                    <Label htmlFor="contract-it">🇮🇹 Italien</Label>
+                    <Label htmlFor="contract-it">🇮🇹 {t("checkout.italian")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="pt" id="contract-pt" />
-                    <Label htmlFor="contract-pt">🇵🇹 Portugais</Label>
+                    <Label htmlFor="contract-pt">🇵🇹 {t("checkout.portuguese")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="de" id="contract-de" />
-                    <Label htmlFor="contract-de">🇩🇪 Allemand</Label>
+                    <Label htmlFor="contract-de">🇩🇪 {t("checkout.german")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="pl" id="contract-pl" />
-                    <Label htmlFor="contract-pl">🇵🇱 Polonais</Label>
+                    <Label htmlFor="contract-pl">🇵🇱 {t("checkout.polish")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="fi" id="contract-fi" />
-                    <Label htmlFor="contract-fi">🇫🇮 Finnois</Label>
+                    <Label htmlFor="contract-fi">🇫🇮 {t("checkout.finnish")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="el" id="contract-el" />
-                    <Label htmlFor="contract-el">🇬🇷 Grec</Label>
+                    <Label htmlFor="contract-el">🇬🇷 {t("checkout.greek")}</Label>
                   </div>
                 </RadioGroup>
                 {errors.contractLanguage && (
@@ -1074,7 +1074,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">8</span>
-                  Consentements obligatoires
+                  {t("checkout.mandatoryConsents")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -1085,7 +1085,7 @@ export default function Checkout() {
                     className={errors.dataAccuracy ? "border-destructive" : ""}
                   />
                   <Label htmlFor="dataAccuracy" className="text-sm leading-5">
-                    Je confirme que toutes les informations fournies sont exactes et complètes *
+                    {t("checkout.informationAccuracy")} *
                   </Label>
                 </div>
                 {errors.dataAccuracy && (
@@ -1099,7 +1099,7 @@ export default function Checkout() {
                     className={errors.depositConfirmation ? "border-destructive" : ""}
                   />
                   <Label htmlFor="depositConfirmation" className="text-sm leading-5">
-                    J'accepte que mon acompte de 20% valide définitivement ma commande *
+                    {t("checkout.depositValidatesOrder")} *
                   </Label>
                 </div>
                 {errors.depositConfirmation && (
@@ -1113,7 +1113,7 @@ export default function Checkout() {
                     className={errors.dataProcessing ? "border-destructive" : ""}
                   />
                   <Label htmlFor="dataProcessing" className="text-sm leading-5">
-                    J'accepte le traitement de mes données personnelles conformément à la réglementation en vigueur *
+                    {t("checkout.dataProcessingAcceptance")} *
                   </Label>
                 </div>
                 {errors.dataProcessing && (
@@ -1130,10 +1130,10 @@ export default function Checkout() {
                   className="w-full h-12 text-lg font-semibold" 
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Traitement en cours..." : `Valider la commande - Total: ${formatPrice(total)}`}
+                  {isSubmitting ? t("checkout.processing") : t("checkout.validateOrderTotal").replace("{total}", formatPrice(total))}
                 </Button>
                 <p className="text-sm text-muted-foreground text-center mt-4">
-                  En validant, vous confirmez votre commande et acceptez nos conditions générales de vente.
+                  {t("checkout.validationConfirmation")}
                 </p>
               </CardContent>
             </Card>
@@ -1144,15 +1144,15 @@ export default function Checkout() {
         <div className="xl:col-span-1">
           <Card className="sticky top-4">
             <CardHeader>
-              <CardTitle>📄 Récapitulatif de commande</CardTitle>
+              <CardTitle>{t("checkout.orderSummaryTitle")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex justify-between items-start py-3 border-b">
                   <div className="flex-1">
                     <p className="font-medium">{item.brand} {item.model}</p>
-                    <p className="text-sm text-muted-foreground">Année: {item.year}</p>
-                    <p className="text-sm text-muted-foreground">Ref: {item.id}</p>
+                    <p className="text-sm text-muted-foreground">{t("vehicle.year")}: {item.year}</p>
+                    <p className="text-sm text-muted-foreground">{t("common.reference")}: {item.id}</p>
                   </div>
                   <p className="font-medium">{formatPrice(item.price)}</p>
                 </div>
@@ -1160,30 +1160,30 @@ export default function Checkout() {
               
               <div className="space-y-2 pt-4 border-t">
                 <div className="flex justify-between items-center">
-                  <span>Sous-total</span>
+                  <span>{t("checkout.subtotal")}</span>
                   <span>{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between items-center text-green-600">
-                  <span>Acompte payé (20%)</span>
+                  <span>{t("checkout.depositAmount")}</span>
                   <span>-{formatPrice(depositAmount)}</span>
                 </div>
                 <div className="flex justify-between items-center text-lg font-bold border-t pt-2">
-                  <span>Solde à payer</span>
+                  <span>{t("checkout.remainingBalance")}</span>
                   <span>{formatPrice(total - depositAmount)}</span>
                 </div>
               </div>
 
               <div className="bg-gray-50 p-4 rounded-lg mt-4">
-                <h4 className="font-medium mb-2">🚚 Informations de livraison</h4>
+                <h4 className="font-medium mb-2">{t("checkout.deliveryInfo")}</h4>
                 <p className="text-sm text-muted-foreground">
-                  Livraison prévue sous 5 jours après validation du dossier et réception du solde.
+                  {t("checkout.deliveryExpected")}
                 </p>
               </div>
 
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-medium mb-2 text-blue-800">🔒 Sécurité des données</h4>
+                <h4 className="font-medium mb-2 text-blue-800">{t("checkout.dataSecurityTitle")}</h4>
                 <p className="text-sm text-blue-700">
-                  Toutes vos informations sont chiffrées et traitées de manière sécurisée conformément au RGPD.
+                  {t("checkout.dataSecurityDesc")}
                 </p>
               </div>
             </CardContent>
