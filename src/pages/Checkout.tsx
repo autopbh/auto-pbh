@@ -280,8 +280,9 @@ export default function Checkout() {
                               value={birthDate?.getDate()?.toString() || ""}
                               onValueChange={(day) => {
                                 if (day) {
-                                  const newDate = new Date(birthDate || new Date());
-                                  newDate.setDate(parseInt(day));
+                                  const currentYear = birthDate?.getFullYear() || new Date().getFullYear() - 25;
+                                  const currentMonth = birthDate?.getMonth() || 0;
+                                  const newDate = new Date(currentYear, currentMonth, parseInt(day));
                                   setBirthDate(newDate);
                                   setValue("birthDate", newDate);
                                 }
@@ -306,8 +307,9 @@ export default function Checkout() {
                               value={birthDate?.getMonth()?.toString() || ""}
                               onValueChange={(month) => {
                                 if (month) {
-                                  const newDate = new Date(birthDate || new Date());
-                                  newDate.setMonth(parseInt(month));
+                                  const currentYear = birthDate?.getFullYear() || new Date().getFullYear() - 25;
+                                  const currentDay = birthDate?.getDate() || 1;
+                                  const newDate = new Date(currentYear, parseInt(month), currentDay);
                                   setBirthDate(newDate);
                                   setValue("birthDate", newDate);
                                 }
@@ -335,8 +337,9 @@ export default function Checkout() {
                               value={birthDate?.getFullYear()?.toString() || ""}
                               onValueChange={(year) => {
                                 if (year) {
-                                  const newDate = new Date(birthDate || new Date());
-                                  newDate.setFullYear(parseInt(year));
+                                  const currentMonth = birthDate?.getMonth() || 0;
+                                  const currentDay = birthDate?.getDate() || 1;
+                                  const newDate = new Date(parseInt(year), currentMonth, currentDay);
                                   setBirthDate(newDate);
                                   setValue("birthDate", newDate);
                                 }
