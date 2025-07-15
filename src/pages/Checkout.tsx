@@ -25,24 +25,24 @@ const validateIBAN = (iban: string) => {
   return ibanRegex.test(iban.replace(/\s/g, '').toUpperCase());
 };
 
-const checkoutSchema = z.object({
+const createCheckoutSchema = (t: (key: string) => string) => z.object({
   // Informations personnelles
-  firstName: z.string().min(2, "Prénom requis"),
-  lastName: z.string().min(2, "Nom requis"),
-  gender: z.enum(["male", "female", "other"], { required_error: "Sexe requis" }),
-  birthDate: z.date({ required_error: "Date de naissance requise" }),
-  nationality: z.string().min(2, "Nationalité requise"),
-  street: z.string().min(5, "Adresse complète requise"),
-  postalCode: z.string().min(4, "Code postal requis"),
-  city: z.string().min(2, "Ville requise"),
-  country: z.string().min(2, "Pays requis"),
-  phone: z.string().min(10, "Téléphone avec indicatif requis"),
-  email: z.string().email("Email invalide"),
-  emailConfirm: z.string().email("Confirmation email invalide"),
+  firstName: z.string().min(2, t("validation.firstNameRequired")),
+  lastName: z.string().min(2, t("validation.lastNameRequired")),
+  gender: z.enum(["male", "female", "other"], { required_error: t("validation.genderRequired") }),
+  birthDate: z.date({ required_error: t("validation.birthDateRequired") }),
+  nationality: z.string().min(2, t("validation.nationalityRequired")),
+  street: z.string().min(5, t("validation.addressRequired")),
+  postalCode: z.string().min(4, t("validation.postalCodeRequired")),
+  city: z.string().min(2, t("validation.cityRequired")),
+  country: z.string().min(2, t("validation.countryRequired")),
+  phone: z.string().min(10, t("validation.phoneRequired")),
+  email: z.string().email(t("validation.emailInvalid")),
+  emailConfirm: z.string().email(t("validation.emailConfirmInvalid")),
   
   // Mode de paiement du solde (déplacé avant les infos professionnelles)
   paymentMethod: z.enum(['delivery', 'installments'], { 
-    required_error: "Veuillez choisir un mode de paiement pour le solde" 
+    required_error: t("validation.paymentMethodRequired") 
   }),
   
   // Nombre de mois pour les mensualités (conditionnel)
@@ -56,31 +56,31 @@ const checkoutSchema = z.object({
   monthlySalary: z.number().optional(),
   
   // Coordonnées bancaires
-  accountHolder: z.string().min(2, "Titulaire du compte requis"),
-  bankName: z.string().min(2, "Nom de la banque requis"),
-  iban: z.string().refine(validateIBAN, "IBAN invalide"),
-  bic: z.string().min(8, "BIC/SWIFT requis (8-11 caractères)"),
+  accountHolder: z.string().min(2, t("validation.accountHolderRequired")),
+  bankName: z.string().min(2, t("validation.bankNameRequired")),
+  iban: z.string().refine(validateIBAN, t("validation.ibanInvalid")),
+  bic: z.string().min(8, t("validation.bicRequired")),
   
   // Adresse de livraison
-  deliveryRecipient: z.string().min(2, "Nom du destinataire requis"),
-  deliveryStreet: z.string().min(5, "Adresse de livraison requise"),
-  deliveryPostalCode: z.string().min(4, "Code postal livraison requis"),
-  deliveryCity: z.string().min(2, "Ville de livraison requise"),
-  deliveryCountry: z.string().min(2, "Pays de livraison requis"),
+  deliveryRecipient: z.string().min(2, t("validation.deliveryRecipientRequired")),
+  deliveryStreet: z.string().min(5, t("validation.deliveryAddressRequired")),
+  deliveryPostalCode: z.string().min(4, t("validation.deliveryPostalCodeRequired")),
+  deliveryCity: z.string().min(2, t("validation.deliveryCityRequired")),
+  deliveryCountry: z.string().min(2, t("validation.deliveryCountryRequired")),
   
   // Paiement de l'acompte
-  paymentType: z.enum(["transfer"], { required_error: "Type de paiement requis" }),
-  paymentProof: z.string().min(1, "Preuve de paiement requise"),
+  paymentType: z.enum(["transfer"], { required_error: t("validation.paymentTypeRequired") }),
+  paymentProof: z.string().min(1, t("validation.paymentProofRequired")),
   
   // Langue du contrat
-  contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: "Langue du contrat requise" }),
+  contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: t("validation.contractLanguageRequired") }),
   
   // Consentements
-  dataAccuracy: z.boolean().refine(val => val === true, "Confirmation de l'exactitude des données requise"),
-  depositConfirmation: z.boolean().refine(val => val === true, "Acceptation validation commande par acompte requise"),
-  dataProcessing: z.boolean().refine(val => val === true, "Acceptation traitement données personnelles requise")
+  dataAccuracy: z.boolean().refine(val => val === true, t("validation.dataAccuracyRequired")),
+  depositConfirmation: z.boolean().refine(val => val === true, t("validation.depositConfirmationRequired")),
+  dataProcessing: z.boolean().refine(val => val === true, t("validation.dataProcessingRequired"))
 }).refine((data) => data.email === data.emailConfirm, {
-  message: "Les emails ne correspondent pas",
+  message: t("validation.emailsNoMatch"),
   path: ["emailConfirm"]
 }).refine((data) => {
   // Si paiement par mensualités, les infos professionnelles sont requises
@@ -94,11 +94,11 @@ const checkoutSchema = z.object({
   }
   return true;
 }, {
-  message: "Les informations professionnelles et le nombre de mois sont requis pour le paiement par mensualités",
+  message: t("validation.professionalInfoRequired"),
   path: ["profession"]
 });
 
-type CheckoutForm = z.infer<typeof checkoutSchema>;
+type CheckoutForm = z.infer<ReturnType<typeof createCheckoutSchema>>;
 
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
@@ -135,6 +135,8 @@ export default function Checkout() {
     return supportedLanguages.includes(currentLanguage as any) ? currentLanguage as any : "fr";
   };
 
+  const checkoutSchema = createCheckoutSchema(t);
+  
   const { register, handleSubmit, formState: { errors }, setValue, watch, control } = useForm<CheckoutForm>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
@@ -179,16 +181,16 @@ export default function Checkout() {
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
-            Retour au catalogue
+            {t("checkout.backToCatalog")}
           </Link>
         </div>
         <div className="text-center">
           <div className="bg-gray-50 p-8 rounded-lg">
             <ShoppingCart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h1 className="text-2xl font-bold mb-4">Panier vide</h1>
-            <p className="text-gray-600 mb-6">Votre panier est vide. Ajoutez des véhicules pour continuer.</p>
+            <h1 className="text-2xl font-bold mb-4">{t("checkout.emptyCart")}</h1>
+            <p className="text-gray-600 mb-6">{t("checkout.emptyCartMessage")}</p>
             <Link to={`/${currentLanguage}/catalog`}>
-              <Button>Parcourir le catalogue</Button>
+              <Button>{t("checkout.browseCatalog")}</Button>
             </Link>
           </div>
         </div>
@@ -205,7 +207,7 @@ export default function Checkout() {
           className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
-          Retour au catalogue
+          {t("checkout.backToCatalog")}
         </Link>
         
         <div className="flex items-center gap-4">
@@ -213,13 +215,13 @@ export default function Checkout() {
             to={`/${currentLanguage}`} 
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Accueil
+            {t("checkout.home")}
           </Link>
           <Link 
             to={`/${currentLanguage}/catalog`} 
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Catalogue
+            {t("checkout.catalog")}
           </Link>
         </div>
       </div>
@@ -302,7 +304,7 @@ export default function Checkout() {
                         )}
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {birthDate ? format(birthDate, "dd/MM/yyyy") : "Sélectionner une date"}
+                        {birthDate ? format(birthDate, "dd/MM/yyyy") : t("datePicker.selectDate")}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0" align="start">
