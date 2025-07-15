@@ -141,6 +141,7 @@ export default function Checkout() {
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       contractLanguage: getContractLanguage(), // Pré-sélectionner la langue actuelle du site
+      paymentType: "transfer", // Valeur par défaut pour le type de paiement
     }
   });
 
