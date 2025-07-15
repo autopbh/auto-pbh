@@ -162,7 +162,84 @@ export default function Checkout() {
       // Générer un numéro de commande unique
       const orderNumber = `PBH-${Date.now()}`;
       
-      // Préparer les données de la commande
+      // Préparer les données complètes pour Make
+      const makeData = {
+        orderNumber,
+        timestamp: new Date().toISOString(),
+        personalInfo: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          gender: data.gender,
+          birthDate: data.birthDate.toISOString(),
+          nationality: data.nationality,
+          address: {
+            street: data.street,
+            postalCode: data.postalCode,
+            city: data.city,
+            country: data.country,
+          },
+          phone: data.phone,
+          email: data.email,
+        },
+        paymentInfo: {
+          method: data.paymentMethod,
+          installmentMonths: data.installmentMonths,
+          type: data.paymentType,
+          proofUrl: data.paymentProof,
+          depositAmount: depositAmount,
+          totalAmount: total,
+          remainingBalance: total - depositAmount,
+        },
+        professionalInfo: data.paymentMethod === 'installments' ? {
+          profession: data.profession,
+          employer: data.employer,
+          employerAddress: data.employerAddress,
+          professionalId: data.professionalId,
+          monthlySalary: data.monthlySalary,
+        } : null,
+        bankDetails: {
+          accountHolder: data.accountHolder,
+          bankName: data.bankName,
+          iban: data.iban,
+          bic: data.bic,
+        },
+        deliveryAddress: {
+          recipient: data.deliveryRecipient,
+          street: data.deliveryStreet,
+          postalCode: data.deliveryPostalCode,
+          city: data.deliveryCity,
+          country: data.deliveryCountry,
+        },
+        contractLanguage: data.contractLanguage,
+        vehicleInfo: cartItems[0] || null,
+        consents: {
+          dataAccuracy: data.dataAccuracy,
+          depositConfirmation: data.depositConfirmation,
+          dataProcessing: data.dataProcessing,
+        }
+      };
+
+      // Envoyer vers Make webhook
+      try {
+        const makeResponse = await fetch('https://hook.eu2.make.com/6o9lh3uvtwi4xexl3j19tt4u27s7huse', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(makeData),
+        });
+
+        if (!makeResponse.ok) {
+          console.warn('Erreur lors de l\'envoi vers Make:', makeResponse.status);
+        } else {
+          console.log('Données envoyées vers Make avec succès');
+        }
+      } catch (makeError) {
+        console.warn('Erreur lors de l\'envoi vers Make:', makeError);
+        // Continue le processus même si Make échoue
+      }
+      
+      // Préparer les données de la commande pour Supabase
       const orderData = {
         order_number: orderNumber,
         customer_name: `${data.firstName} ${data.lastName}`,
@@ -172,40 +249,7 @@ export default function Checkout() {
         price: total,
         vehicle_id: cartItems[0]?.id || null,
         payment_receipt_url: data.paymentProof,
-        additional_options: {
-          personalInfo: {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            gender: data.gender,
-            birthDate: data.birthDate.toISOString(),
-            nationality: data.nationality,
-            address: `${data.street}, ${data.postalCode} ${data.city}, ${data.country}`,
-            phone: data.phone,
-            email: data.email,
-          },
-          paymentMethod: data.paymentMethod,
-          installmentMonths: data.installmentMonths,
-          professionalInfo: data.paymentMethod === 'installments' ? {
-            profession: data.profession,
-            employer: data.employer,
-            employerAddress: data.employerAddress,
-            professionalId: data.professionalId,
-            monthlySalary: data.monthlySalary,
-          } : null,
-          bankDetails: {
-            accountHolder: data.accountHolder,
-            bankName: data.bankName,
-            iban: data.iban,
-            bic: data.bic,
-          },
-          deliveryAddress: {
-            recipient: data.deliveryRecipient,
-            address: `${data.deliveryStreet}, ${data.deliveryPostalCode} ${data.deliveryCity}, ${data.deliveryCountry}`,
-          },
-          contractLanguage: data.contractLanguage,
-          depositAmount: depositAmount,
-          remainingBalance: total - depositAmount,
-        }
+        additional_options: makeData, // Stocker toutes les données complètes
       };
 
       // Insérer la commande dans Supabase
@@ -228,9 +272,6 @@ export default function Checkout() {
         title: "Commande validée !",
         description: `Votre commande ${orderNumber} a été enregistrée avec succès. Vous recevrez un email de confirmation sous peu.`,
       });
-      
-      // Rediriger vers une page de confirmation (optionnel)
-      // navigate(`/confirmation/${orderNumber}`);
       
     } catch (error) {
       console.error('Erreur lors de la création de la commande:', error);
