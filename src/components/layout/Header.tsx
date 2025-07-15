@@ -93,11 +93,6 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           
-          {/* Indicateur de traduction automatique */}
-          <div className="text-xs text-muted-foreground bg-white/20 dark:bg-black/20 px-2 py-1 rounded-md border border-white/20 dark:border-black/20">
-            🌐 Auto-translate
-          </div>
-          
           <LocalizedLink to="/search">
             <Button 
               variant="secondary"
