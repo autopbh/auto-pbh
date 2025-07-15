@@ -15,7 +15,7 @@ const AutoTranslate = () => {
     // Ajouter les styles CSS pour masquer l'interface Google Translate
     const style = document.createElement('style');
     style.textContent = `
-      /* Masquer complètement l'interface Google Translate */
+      /* Masquer l'interface Google Translate mais garder la fonctionnalité */
       .goog-te-gadget {
         display: none !important;
       }
@@ -36,8 +36,15 @@ const AutoTranslate = () => {
         display: none !important;
       }
       
+      /* Masquer mais garder accessible pour le JS */
       #google_translate_element {
-        display: none !important;
+        position: fixed !important;
+        top: -1000px !important;
+        left: -1000px !important;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
       }
       
       /* Éviter les problèmes de layout */
@@ -139,18 +146,14 @@ const AutoTranslate = () => {
 
   return (
     <>
-      {/* Élément masqué pour Google Translate */}
+      {/* Élément pour Google Translate - doit être visible pour fonctionner */}
       <div 
-        id="hidden_google_translate_element" 
-        style={{ 
-          position: 'absolute',
-          left: '-9999px',
-          top: '-9999px',
-          visibility: 'hidden',
-          height: '1px',
-          width: '1px',
-          overflow: 'hidden'
-        }}
+        id="hidden_google_translate_element"
+      />
+      
+      {/* ID alternatif au cas où */}
+      <div 
+        id="google_translate_element"
       />
     </>
   );
