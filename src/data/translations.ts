@@ -2037,6 +2037,10 @@ export const translations: TranslationsType = {
      "cart.paymentSentDesc": "Faça a transferência em 3 dias para confirmar sua reserva.",
 
     // Additional checkout fields - Portuguese
+    "checkout.gender": "Sexo",
+    "checkout.male": "Homem",
+    "checkout.female": "Mulher",
+    "checkout.other": "Outro",
     "checkout.nationality": "Nacionalidade",
     "checkout.street": "Endereço completo",
     "checkout.postalCode": "Código postal",
@@ -2672,6 +2676,10 @@ export const translations: TranslationsType = {
       "cart.paymentSentDesc": "Realice la transferencia en 3 días para confirmar su reserva.",
 
     // Additional checkout fields - Spanish
+    "checkout.gender": "Sexo",
+    "checkout.male": "Hombre",
+    "checkout.female": "Mujer",
+    "checkout.other": "Otro",
     "checkout.nationality": "Nacionalidad",
     "checkout.street": "Dirección completa",
     "checkout.postalCode": "Código postal",
@@ -3406,6 +3414,10 @@ export const translations: TranslationsType = {
      "cart.paymentSentDesc": "Bitte führen Sie die Überweisung innerhalb von 3 Tagen durch, um Ihre Reservierung zu bestätigen.",
 
     // Additional checkout fields - German
+    "checkout.gender": "Geschlecht",
+    "checkout.male": "Männlich",
+    "checkout.female": "Weiblich",
+    "checkout.other": "Andere",
     "checkout.nationality": "Staatsangehörigkeit",
     "checkout.street": "Vollständige Adresse",
     "checkout.postalCode": "Postleitzahl",
@@ -4140,6 +4152,10 @@ export const translations: TranslationsType = {
     "cart.paymentSentDesc": "Effettua il bonifico entro 3 giorni per confermare la tua prenotazione.",
 
     // Additional checkout fields - Italian
+    "checkout.gender": "Sesso",
+    "checkout.male": "Uomo",
+    "checkout.female": "Donna",
+    "checkout.other": "Altro",
     "checkout.nationality": "Nazionalità",
     "checkout.street": "Indirizzo completo", 
     "checkout.postalCode": "Codice postale",
@@ -4748,6 +4764,10 @@ export const translations: TranslationsType = {
       "cart.paymentSentDesc": "Maak de overschrijving binnen 3 dagen om uw reservering te bevestigen.",
 
     // Additional checkout fields - Dutch
+    "checkout.gender": "Geslacht",
+    "checkout.male": "Man",
+    "checkout.female": "Vrouw",
+    "checkout.other": "Anders",
     "checkout.nationality": "Nationaliteit",
     "checkout.street": "Volledig adres",
     "checkout.postalCode": "Postcode",
