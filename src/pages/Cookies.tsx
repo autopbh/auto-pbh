@@ -13,8 +13,10 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Cookie, Info } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Cookies = () => {
+  const { t } = useLanguage();
   const [preferences, setPreferences] = useState({
     essential: true,
     functional: true,
@@ -52,37 +54,34 @@ const Cookies = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Gestion des Cookies</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("cookies.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Politique de Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("cookies.policyTitle")}</h2>
             
             <div className="space-y-6 mb-8">
               <p className="text-lg">
-                AUTO PBH utilise des cookies pour améliorer votre expérience sur notre site, personnaliser le contenu et les publicités, 
-                fournir des fonctionnalités de médias sociaux et analyser notre trafic. Nous partageons également des informations sur 
-                votre utilisation de notre site avec nos partenaires de médias sociaux, de publicité et d'analyse.
+                {t("cookies.description1")}
               </p>
               
               <p className="text-lg">
-                Vous pouvez personnaliser vos préférences de cookies ci-dessous ou accepter tous les cookies pour profiter 
-                d'une expérience optimale sur notre site.
+                {t("cookies.description2")}
               </p>
             </div>
             
             <div className="space-y-6 mb-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
                 <div>
-                  <h3 className="font-semibold">Cookies Essentiels</h3>
-                  <p className="text-sm text-muted-foreground">Nécessaires au fonctionnement du site</p>
+                  <h3 className="font-semibold">{t("cookies.essential.title")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("cookies.essential.description")}</p>
                 </div>
                 <Switch checked={preferences.essential} disabled className="mt-2 sm:mt-0" />
               </div>
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
                 <div>
-                  <h3 className="font-semibold">Cookies Fonctionnels</h3>
-                  <p className="text-sm text-muted-foreground">Pour des fonctionnalités améliorées et personnalisées</p>
+                  <h3 className="font-semibold">{t("cookies.functional.title")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("cookies.functional.description")}</p>
                 </div>
                 <Switch 
                   checked={preferences.functional} 
@@ -93,8 +92,8 @@ const Cookies = () => {
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4">
                 <div>
-                  <h3 className="font-semibold">Cookies Analytiques</h3>
-                  <p className="text-sm text-muted-foreground">Pour l'analyse du trafic et l'amélioration du site</p>
+                  <h3 className="font-semibold">{t("cookies.analytics.title")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("cookies.analytics.description")}</p>
                 </div>
                 <Switch 
                   checked={preferences.analytics} 
@@ -105,8 +104,8 @@ const Cookies = () => {
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between">
                 <div>
-                  <h3 className="font-semibold">Cookies Marketing</h3>
-                  <p className="text-sm text-muted-foreground">Pour des publicités ciblées selon vos centres d'intérêt</p>
+                  <h3 className="font-semibold">{t("cookies.marketing.title")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("cookies.marketing.description")}</p>
                 </div>
                 <Switch 
                   checked={preferences.marketing} 
@@ -118,16 +117,16 @@ const Cookies = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <Button onClick={handleSavePreferences}>
-                Enregistrer mes préférences
+                {t("cookies.savePreferences")}
               </Button>
               <Button variant="outline" onClick={handleAcceptAll}>
-                Accepter tous les cookies
+                {t("cookies.acceptAll")}
               </Button>
             </div>
           </section>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Liste Détaillée des Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("cookies.detailList")}</h2>
             
             <div className="space-y-6">
               <Dialog>
@@ -136,7 +135,7 @@ const Cookies = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Cookie className="h-5 w-5 text-autop-red" />
-                        <h3 className="font-medium">Cookies Essentiels</h3>
+                        <h3 className="font-medium">{t("cookies.essential.title")}</h3>
                       </div>
                       <Info className="h-5 w-5" />
                     </div>
@@ -144,25 +143,25 @@ const Cookies = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Cookies Essentiels</DialogTitle>
+                    <DialogTitle>{t("cookies.essential.title")}</DialogTitle>
                     <DialogDescription>
-                      Ces cookies sont nécessaires au fonctionnement de notre site et ne peuvent pas être désactivés.
+                      {t("cookies.essential.dialogDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div className="border-b pb-3">
                       <h4 className="font-medium">session_id</h4>
-                      <p className="text-sm text-muted-foreground">Durée: Session</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Identifie votre session sur le site</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.session")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.essential.sessionId")}</p>
                     </div>
                     <div className="border-b pb-3">
                       <h4 className="font-medium">csrf_token</h4>
-                      <p className="text-sm text-muted-foreground">Durée: Session</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Sécurise les formulaires contre les attaques CSRF</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.session")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.essential.csrfToken")}</p>
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button>Fermer</Button>
+                    <Button>{t("cookies.close")}</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -173,7 +172,7 @@ const Cookies = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Cookie className="h-5 w-5 text-autop-red" />
-                        <h3 className="font-medium">Cookies Fonctionnels</h3>
+                        <h3 className="font-medium">{t("cookies.functional.title")}</h3>
                       </div>
                       <Info className="h-5 w-5" />
                     </div>
@@ -181,25 +180,25 @@ const Cookies = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Cookies Fonctionnels</DialogTitle>
+                    <DialogTitle>{t("cookies.functional.title")}</DialogTitle>
                     <DialogDescription>
-                      Ces cookies permettent d'améliorer les fonctionnalités et la personnalisation de votre expérience.
+                      {t("cookies.functional.dialogDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div className="border-b pb-3">
                       <h4 className="font-medium">preferences</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 1 an</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Sauvegarde vos préférences (langue, devise, etc.)</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.oneYear")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.functional.preferences")}</p>
                     </div>
                     <div className="border-b pb-3">
                       <h4 className="font-medium">recent_views</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 30 jours</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Mémorise les véhicules consultés récemment</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.thirtyDays")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.functional.recentViews")}</p>
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button>Fermer</Button>
+                    <Button>{t("cookies.close")}</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -210,7 +209,7 @@ const Cookies = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Cookie className="h-5 w-5 text-autop-red" />
-                        <h3 className="font-medium">Cookies Analytiques</h3>
+                        <h3 className="font-medium">{t("cookies.analytics.title")}</h3>
                       </div>
                       <Info className="h-5 w-5" />
                     </div>
@@ -218,25 +217,25 @@ const Cookies = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Cookies Analytiques</DialogTitle>
+                    <DialogTitle>{t("cookies.analytics.title")}</DialogTitle>
                     <DialogDescription>
-                      Ces cookies nous permettent d'analyser l'utilisation du site pour en améliorer les performances et l'expérience.
+                      {t("cookies.analytics.dialogDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div className="border-b pb-3">
                       <h4 className="font-medium">_ga</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 2 ans</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Google Analytics - Mesure l'audience</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.twoYears")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.analytics.ga")}</p>
                     </div>
                     <div className="border-b pb-3">
                       <h4 className="font-medium">_gid</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 24 heures</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Google Analytics - Distingue les utilisateurs</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.twentyFourHours")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.analytics.gid")}</p>
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button>Fermer</Button>
+                    <Button>{t("cookies.close")}</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
@@ -247,7 +246,7 @@ const Cookies = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Cookie className="h-5 w-5 text-autop-red" />
-                        <h3 className="font-medium">Cookies Marketing</h3>
+                        <h3 className="font-medium">{t("cookies.marketing.title")}</h3>
                       </div>
                       <Info className="h-5 w-5" />
                     </div>
@@ -255,25 +254,25 @@ const Cookies = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Cookies Marketing</DialogTitle>
+                    <DialogTitle>{t("cookies.marketing.title")}</DialogTitle>
                     <DialogDescription>
-                      Ces cookies sont utilisés pour afficher des publicités pertinentes selon vos centres d'intérêt.
+                      {t("cookies.marketing.dialogDescription")}
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div className="border-b pb-3">
                       <h4 className="font-medium">_fbp</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 90 jours</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Facebook - Suivi des conversions</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.ninetyDays")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.marketing.fbp")}</p>
                     </div>
                     <div className="border-b pb-3">
                       <h4 className="font-medium">_gcl_au</h4>
-                      <p className="text-sm text-muted-foreground">Durée: 90 jours</p>
-                      <p className="text-sm text-muted-foreground">Fonction: Google Ads - Mesure l'efficacité publicitaire</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.duration")}: {t("cookies.ninetyDays")}</p>
+                      <p className="text-sm text-muted-foreground">{t("cookies.function")}: {t("cookies.marketing.gclAu")}</p>
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button>Fermer</Button>
+                    <Button>{t("cookies.close")}</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
