@@ -72,9 +72,7 @@ const CartDropdown = () => {
                 <Link to="/cart">
                   <Button className="w-full" variant="outline">{t("cart.viewCart")}</Button>
                 </Link>
-                <Link to="/checkout">
-                  <Button className="w-full btn-primary">{t("cart.order")}</Button>
-                </Link>
+                <Button className="w-full btn-primary" disabled>{t("cart.order")} (Bientôt)</Button>
               </div>
             </div>
           </>
