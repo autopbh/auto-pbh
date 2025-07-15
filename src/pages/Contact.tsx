@@ -42,7 +42,7 @@ const Contact = () => {
         toast.success(t("contact.successMessage"));
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
-        throw new Error("Problème lors de l'envoi du formulaire");
+        throw new Error(t("contact.errorMessage"));
       }
     } catch (error) {
       console.error("Error submitting form:", error);
