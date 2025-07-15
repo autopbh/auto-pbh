@@ -986,7 +986,6 @@ export const translations: TranslationsType = {
     "terms.readFullVersion": "Lire la version complète",
     
   },
-  },
   en: {
     // Brand
     "brand.name": "AUTO PBH",
@@ -5703,5 +5702,3 @@ export const translations: TranslationsType = {
     "legal.mediationDetails": "In overeenstemming met de bepalingen van het Consumentenwetboek betreffende de minnelijke regeling van geschillen, is AUTO PBH aangesloten bij de Europese Bemiddelingsdienst. U kunt gratis gebruik maken van de bemiddelingsdienst via de website www.mediationeurope-consommation.eu"
   }
 };
-
-export default translations;
