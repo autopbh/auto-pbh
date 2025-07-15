@@ -40,7 +40,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const langCode = pathSegments[0];
     
-    const supportedLanguages: Language[] = ['fr', 'en', 'pt', 'es', 'de', 'it', 'nl'];
+    const supportedLanguages: Language[] = ['fr', 'en', 'pt', 'es', 'de', 'it', 'pl', 'gr', 'fi'];
     
     if (supportedLanguages.includes(langCode as Language)) {
       return langCode as Language;
@@ -86,7 +86,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const pathSegments = location.pathname.split('/').filter(Boolean);
     
     // Remove current language from path if it exists
-    if (['fr', 'en', 'pt', 'es', 'de', 'it', 'nl'].includes(pathSegments[0])) {
+    if (['fr', 'en', 'pt', 'es', 'de', 'it', 'pl', 'gr', 'fi'].includes(pathSegments[0])) {
       pathSegments.shift();
     }
     
