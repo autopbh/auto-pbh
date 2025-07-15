@@ -23,6 +23,11 @@ export const translations: TranslationsType = {
     "nav.search": "Recherche",
     "nav.cart": "Panier",
     "nav.account": "Compte",
+    "nav.mainServices": "Services Principaux",
+    "nav.financing": "Financement",
+    "nav.warranty": "Garantie",
+    "nav.delivery": "Livraison",
+    "nav.other": "Autres",
 
     // Home page
     "home.hero.discover": "Découvrez Notre Collection",
@@ -1007,6 +1012,12 @@ export const translations: TranslationsType = {
     "nav.search": "Search",
     "nav.cart": "Cart",
     "nav.account": "Account",
+    "nav.mainServices": "Main Services",
+    "nav.financing": "Financing",
+    "nav.warranty": "Warranty",
+    "nav.delivery": "Delivery",
+    "nav.other": "Other",
+    
 
     // Home page
     "home.hero.discover": "Discover Our Collection",
@@ -1974,6 +1985,12 @@ export const translations: TranslationsType = {
     "nav.search": "Pesquisar",
     "nav.cart": "Carrinho",
     "nav.account": "Conta",
+    "nav.mainServices": "Serviços Principais",
+    "nav.financing": "Financiamento",
+    "nav.warranty": "Garantia",
+    "nav.delivery": "Entrega",
+    "nav.other": "Outros",
+    "nav.home": "Accueil",
 
     // Home page
     "home.hero.slide1.model": "PREMIUM",
@@ -2699,6 +2716,11 @@ export const translations: TranslationsType = {
     "nav.search": "Buscar",
     "nav.cart": "Carrito",
     "nav.account": "Cuenta",
+    "nav.mainServices": "Servicios Principales",
+    "nav.financing": "Financiación",
+    "nav.warranty": "Garantía",
+    "nav.delivery": "Entrega",
+    "nav.other": "Otros",
 
     // Home page
     "home.hero.slide1.model": "PREMIUM",
@@ -4329,6 +4351,11 @@ export const translations: TranslationsType = {
     "nav.search": "Cerca",
     "nav.cart": "Carrello",
     "nav.account": "Account",
+    "nav.mainServices": "Servizi Principali", 
+    "nav.financing": "Finanziamento",
+    "nav.warranty": "Garanzia",
+    "nav.delivery": "Consegna",
+    "nav.other": "Altri",
 
     // Home page
     "home.hero.slide1.model": "PREMIUM",
