@@ -129,8 +129,17 @@ export default function Checkout() {
     }).format(price);
   };
 
+  // Mapper la langue actuelle vers une langue supportée par le formulaire
+  const getContractLanguage = (): "fr" | "en" | "es" | "it" | "pt" | "de" | "pl" | "fi" | "el" => {
+    const supportedLanguages = ["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"] as const;
+    return supportedLanguages.includes(currentLanguage as any) ? currentLanguage as any : "fr";
+  };
+
   const { register, handleSubmit, formState: { errors }, setValue, watch, control } = useForm<CheckoutForm>({
-    resolver: zodResolver(checkoutSchema)
+    resolver: zodResolver(checkoutSchema),
+    defaultValues: {
+      contractLanguage: getContractLanguage(), // Pré-sélectionner la langue actuelle du site
+    }
   });
 
   const watchedPaymentType = watch("paymentType");
