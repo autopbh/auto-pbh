@@ -266,22 +266,22 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>Sexe *</Label>
+                  <Label>{t("checkout.gender")} *</Label>
                   <RadioGroup 
                     onValueChange={(value) => setValue("gender", value as "male" | "female" | "other")}
                     className="flex gap-6 mt-2"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="male" id="male" />
-                      <Label htmlFor="male">Homme</Label>
+                      <Label htmlFor="male">{t("checkout.male")}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="female" id="female" />
-                      <Label htmlFor="female">Femme</Label>
+                      <Label htmlFor="female">{t("checkout.female")}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="other" id="other" />
-                      <Label htmlFor="other">Autre</Label>
+                      <Label htmlFor="other">{t("checkout.other")}</Label>
                     </div>
                   </RadioGroup>
                   {errors.gender && (
@@ -290,7 +290,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>Date de naissance *</Label>
+                  <Label>{t("checkout.birthDate")} *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
@@ -417,7 +417,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="nationality">Nationalité *</Label>
+                  <Label htmlFor="nationality">{t("checkout.nationality")} *</Label>
                   <Input 
                     id="nationality"
                     {...register("nationality")}
@@ -429,7 +429,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="street">Adresse complète (rue, numéro) *</Label>
+                  <Label htmlFor="street">{t("checkout.street")} *</Label>
                   <Input 
                     id="street"
                     {...register("street")}
@@ -442,7 +442,7 @@ export default function Checkout() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <Label htmlFor="postalCode">Code postal *</Label>
+                    <Label htmlFor="postalCode">{t("checkout.postalCode")} *</Label>
                     <Input 
                       id="postalCode"
                       {...register("postalCode")}
@@ -454,7 +454,7 @@ export default function Checkout() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="city">Ville *</Label>
+                    <Label htmlFor="city">{t("checkout.city")} *</Label>
                     <Input 
                       id="city"
                       {...register("city")}
@@ -466,7 +466,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="country">Pays *</Label>
+                    <Label htmlFor="country">{t("checkout.country")} *</Label>
                     <Input 
                       id="country"
                       {...register("country")}
@@ -479,7 +479,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="phone">Téléphone (avec indicatif) *</Label>
+                  <Label htmlFor="phone">{t("checkout.phoneWithCode")} *</Label>
                   <Input 
                     id="phone"
                     placeholder="+33 6 12 34 56 78"
@@ -536,7 +536,7 @@ export default function Checkout() {
                   {t("checkout.paymentMethod")}
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  Comment souhaitez-vous payer le solde de {formatPrice(total - depositAmount)} ?
+                  {t("checkout.paymentMethodDesc")}
                 </p>
               </CardHeader>
               <CardContent>
@@ -797,7 +797,7 @@ export default function Checkout() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <Label htmlFor="deliveryPostalCode">Code postal *</Label>
+                    <Label htmlFor="deliveryPostalCode">{t("checkout.deliveryPostalCode")} *</Label>
                     <Input 
                       id="deliveryPostalCode"
                       {...register("deliveryPostalCode")}
@@ -809,7 +809,7 @@ export default function Checkout() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="deliveryCity">Ville *</Label>
+                    <Label htmlFor="deliveryCity">{t("checkout.deliveryCity")} *</Label>
                     <Input 
                       id="deliveryCity"
                       {...register("deliveryCity")}
@@ -821,7 +821,7 @@ export default function Checkout() {
                   </div>
 
                   <div>
-                    <Label htmlFor="deliveryCountry">Pays *</Label>
+                    <Label htmlFor="deliveryCountry">{t("checkout.deliveryCountry")} *</Label>
                     <Input 
                       id="deliveryCountry"
                       {...register("deliveryCountry")}

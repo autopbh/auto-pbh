@@ -308,6 +308,25 @@ export const translations: TranslationsType = {
     "checkout.trackOrder": "Suivre ma commande",
     "checkout.required": "requis",
     "checkout.months": "mois",
+    
+    // Additional checkout fields
+    "checkout.gender": "Sexe",
+    "checkout.male": "Homme",
+    "checkout.female": "Femme",
+    "checkout.other": "Autre",
+    "checkout.nationality": "Nationalité",
+    "checkout.address": "Adresse",
+    "checkout.street": "Adresse complète",
+    "checkout.postalCode": "Code postal",
+    "checkout.city": "Ville",
+    "checkout.country": "Pays",
+    "checkout.phoneWithCode": "Téléphone (avec indicatif)",
+    "checkout.confirmEmailLabel": "Confirmer l'email",
+    "checkout.paymentMethodQuestion": "Comment souhaitez-vous payer le solde de {amount} ?",
+    "checkout.deliveryPaymentLabel": "💳 Paiement à la livraison (sous 5 jours)",
+    "checkout.installmentPaymentLabel": "📅 Paiement par mensualités (6-84 mois)",
+    "checkout.accountHolder": "Titulaire du compte",
+    "checkout.bankName": "Nom de la banque",
 
     // About page
     "about.title": "Notre Histoire",
@@ -1385,6 +1404,25 @@ export const translations: TranslationsType = {
     "checkout.trackOrder": "Track my order",
     "checkout.required": "required",
     "checkout.months": "months",
+    
+    // Additional checkout fields
+    "checkout.gender": "Gender",
+    "checkout.male": "Male",
+    "checkout.female": "Female",
+    "checkout.other": "Other",
+    "checkout.nationality": "Nationality",
+    "checkout.address": "Address",
+    "checkout.street": "Complete address",
+    "checkout.postalCode": "Postal code",
+    "checkout.city": "City",
+    "checkout.country": "Country",
+    "checkout.phoneWithCode": "Phone (with country code)",
+    "checkout.confirmEmailLabel": "Confirm email",
+    "checkout.paymentMethodQuestion": "How would you like to pay the balance of {amount}?",
+    "checkout.deliveryPaymentLabel": "💳 Payment upon delivery (within 5 days)",
+    "checkout.installmentPaymentLabel": "📅 Installment payment (6-84 months)",
+    "checkout.accountHolder": "Account holder",
+    "checkout.bankName": "Bank name",
 
     // About page
     "about.title": "Our Story",
