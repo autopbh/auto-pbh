@@ -2121,6 +2121,10 @@ export const translations: TranslationsType = {
     "checkout.selectDate": "Selecionar uma data",
     "checkout.uploadPaymentProof": "Enviar comprovante de pagamento",
     
+    // Additional missing checkout fields - Portuguese
+    "checkout.downloadPaymentProof": "Descarregar comprovante de pagamento",
+    "checkout.acceptedFormats": "Formatos aceitos: JPG, PNG, HEIC (Máx: 5MB)",
+    
     "checkout.orderSummary": "Resumo do pedido",
     "checkout.orderSummaryDesc": "Verifique os detalhes do seu pedido antes de finalizar",
     "checkout.subtotal": "Subtotal",
@@ -2770,6 +2774,10 @@ export const translations: TranslationsType = {
     "validation.dataProcessingRequired": "Aceptación de procesamiento de datos personales requerida",
     "validation.emailsNoMatch": "Los emails no coinciden",
     "validation.professionalInfoRequired": "La información profesional y el número de meses son requeridos para pagos a plazos",
+    
+    // Additional missing checkout fields - Spanish
+    "checkout.downloadPaymentProof": "Descargar comprobante de pago",
+    "checkout.acceptedFormats": "Formatos aceptados: JPG, PNG, HEIC (Máx: 5MB)",
     
     // Date picker
     "datePicker.selectDate": "Seleccionar una fecha",
@@ -3515,11 +3523,15 @@ export const translations: TranslationsType = {
     "validation.emailsNoMatch": "E-Mails stimmen nicht überein",
     "validation.professionalInfoRequired": "Berufsinformationen und Monatsanzahl sind für Ratenzahlungen erforderlich",
     
+    // Additional missing checkout fields - German
+    "checkout.downloadPaymentProof": "Zahlungsnachweis herunterladen",
+    "checkout.acceptedFormats": "Akzeptierte Formate: JPG, PNG, HEIC (Max: 5MB)",
+    
     // Date picker - German
     "datePicker.selectDate": "Datum auswählen",
     "datePicker.day": "Tag",
     "datePicker.month": "Monat",
-    "datePicker.year": "Jahr", 
+    "datePicker.year": "Jahr",
     "datePicker.january": "Januar",
     "datePicker.february": "Februar",
     "datePicker.march": "März",
@@ -4254,6 +4266,10 @@ export const translations: TranslationsType = {
     "checkout.orderCompleteSubmitted": "Ordine completo inviato:",
     "checkout.depositMotif": "Acconto ordine veicolo",
     
+    // Additional checkout fields for Italian
+    "checkout.confirmEmailLabel": "Conferma email",
+    "checkout.downloadPaymentProof": "Scarica la prova di pagamento",
+    
     // Account page
     "account.title": "Il Mio Account",
     "account.login": "Accedi",
@@ -4806,6 +4822,10 @@ export const translations: TranslationsType = {
     "checkout.trackOrder": "Mijn bestelling volgen",
     "checkout.required": "vereist",
     "checkout.months": "maanden",
+    
+    // Additional missing checkout fields - Dutch
+    "checkout.downloadPaymentProof": "Betalingsbewijs downloaden",
+    "checkout.acceptedFormats": "Geaccepteerde formaten: JPG, PNG, HEIC (Max: 5MB)",
 
     // About page
     "about.title": "Ons Verhaal",
