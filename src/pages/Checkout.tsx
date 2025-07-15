@@ -63,6 +63,11 @@ const checkoutSchema = z.object({
   paymentType: z.enum(["transfer"], { required_error: "Type de paiement requis" }),
   paymentProof: z.instanceof(File, { message: "Preuve de paiement requise" }),
   
+  // Mode de paiement du solde
+  paymentMethod: z.enum(['delivery', 'installments'], { 
+    required_error: "Veuillez choisir un mode de paiement pour le solde" 
+  }),
+  
   // Langue du contrat
   contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: "Langue du contrat requise" }),
   
@@ -885,11 +890,61 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 6. Langue du contrat */}
+            {/* 6. Mode de paiement du solde */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">6</span>
+                  Mode de paiement du solde restant
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Comment souhaitez-vous payer le solde de {formatPrice(total - depositAmount)} ?
+                </p>
+              </CardHeader>
+              <CardContent>
+                <RadioGroup 
+                  onValueChange={(value) => setValue("paymentMethod", value as "delivery" | "installments")}
+                  className="space-y-4"
+                >
+                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <RadioGroupItem value="delivery" id="delivery" />
+                      <div className="flex-1">
+                        <Label htmlFor="delivery" className="font-medium cursor-pointer">
+                          💰 Paiement intégral à la livraison
+                        </Label>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Le solde complet de {formatPrice(total - depositAmount)} sera payé lors de la réception du véhicule
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <RadioGroupItem value="installments" id="installments" />
+                      <div className="flex-1">
+                        <Label htmlFor="installments" className="font-medium cursor-pointer">
+                          📅 Paiement par mensualités
+                        </Label>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Le solde sera payé en mensualités (conditions à définir avec notre équipe)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </RadioGroup>
+                {errors.paymentMethod && (
+                  <p className="text-sm text-destructive mt-2">{errors.paymentMethod.message}</p>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* 7. Langue du contrat */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">7</span>
                   Langue du contrat souhaitée
                 </CardTitle>
               </CardHeader>
@@ -941,11 +996,11 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 7. Consentements */}
+            {/* 8. Consentements */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">7</span>
+                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">8</span>
                   Consentements obligatoires
                 </CardTitle>
               </CardHeader>
