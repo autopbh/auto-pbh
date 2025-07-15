@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Upload, ArrowLeft, ShoppingCart } from "lucide-react";
+import { CalendarIcon, Upload, ArrowLeft, ShoppingCart, Copy, Check } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -83,6 +83,7 @@ export default function Checkout() {
   const [birthDate, setBirthDate] = useState<Date>();
   const [emailConfirmValue, setEmailConfirmValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
+  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { t, currentLanguage } = useLanguage();
 
   useEffect(() => {
@@ -117,6 +118,17 @@ export default function Checkout() {
     console.log("Commande complète soumise:", data);
     // Logique de traitement de la commande ici
     setIsSubmitting(false);
+  };
+
+  // Fonction de copie dans le presse-papiers
+  const copyToClipboard = async (text: string, field: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 2000);
+    } catch (err) {
+      console.error('Erreur lors de la copie:', err);
+    }
   };
 
   // Empêcher le copier-coller pour la confirmation email
@@ -662,52 +674,75 @@ export default function Checkout() {
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border-2 border-green-200 shadow-lg mb-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="bg-green-500 text-white rounded-full p-2">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="bg-green-500 text-white rounded-full p-1">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <h4 className="text-lg font-bold text-green-800">💳 Coordonnées bancaires pour le virement d'acompte</h4>
+                    <h4 className="font-medium text-green-800">💳 Coordonnées bancaires pour le virement</h4>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
-                      <p className="text-sm font-medium text-green-600 mb-1">Bénéficiaire</p>
-                      <p className="text-lg font-bold text-green-900">AURA AUTO GENESIS</p>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="text-green-700"><span className="font-medium">Bénéficiaire :</span> AURA AUTO GENESIS</span>
                     </div>
                     
-                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
-                      <p className="text-sm font-medium text-green-600 mb-1">Banque</p>
-                      <p className="text-lg font-bold text-green-900">BNP Paribas</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-green-700"><span className="font-medium">Banque :</span> BNP Paribas</span>
                     </div>
                     
-                    <div className="bg-white/80 p-4 rounded-lg border border-green-100 md:col-span-2">
-                      <p className="text-sm font-medium text-green-600 mb-1">IBAN</p>
-                      <p className="text-xl font-mono font-bold text-green-900 tracking-wider break-all">
-                        FR76 1234 5678 9012 3456 7890 123
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
-                      <p className="text-sm font-medium text-green-600 mb-1">BIC/SWIFT</p>
-                      <p className="text-lg font-mono font-bold text-green-900">BNPAFRPPXXX</p>
-                    </div>
-                    
-                    <div className="bg-white/80 p-4 rounded-lg border border-green-100">
-                      <p className="text-sm font-medium text-green-600 mb-1">Montant à virer</p>
-                      <p className="text-xl font-bold text-green-900">{formatPrice(depositAmount)}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <p className="text-sm text-yellow-800">
-                      <span className="font-semibold">💡 Important :</span> Indiquez comme motif de virement : 
-                      <span className="font-mono bg-yellow-100 px-2 py-1 rounded ml-1">
-                        "Acompte commande véhicule - Ref: [VOTRE_REF]"
+                    <div className="flex justify-between items-center group">
+                      <span className="text-green-700">
+                        <span className="font-medium">IBAN :</span> 
+                        <span className="font-mono ml-1">FR76 1234 5678 9012 3456 7890 123</span>
                       </span>
-                    </p>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("FR76123456789012345678900123", "iban")}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                      >
+                        {copiedField === "iban" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                    
+                    <div className="flex justify-between items-center group">
+                      <span className="text-green-700">
+                        <span className="font-medium">BIC/SWIFT :</span> 
+                        <span className="font-mono ml-1">BNPAFRPPXXX</span>
+                      </span>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard("BNPAFRPPXXX", "bic")}
+                        className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                      >
+                        {copiedField === "bic" ? (
+                          <Check className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <span className="text-green-700">
+                        <span className="font-medium">Montant :</span> 
+                        <span className="font-bold ml-1">{formatPrice(depositAmount)}</span>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                    <span className="font-medium">💡 Motif :</span> "Acompte commande véhicule - Ref: [VOTRE_REF]"
                   </div>
                 </div>
 
