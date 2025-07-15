@@ -4256,9 +4256,6 @@ export const translations: TranslationsType = {
     
     // Account page
     "account.title": "Il Mio Account",
-
-    // Account page
-    "account.title": "Il Mio Account",
     "account.login": "Accedi",
     "account.signup": "Registrati",
     "account.email": "Email",
