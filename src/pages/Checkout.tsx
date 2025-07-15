@@ -39,12 +39,17 @@ const checkoutSchema = z.object({
   email: z.string().email("Email invalide"),
   emailConfirm: z.string().email("Confirmation email invalide"),
   
-  // Informations professionnelles
-  profession: z.string().min(2, "Profession requise"),
-  employer: z.string().min(2, "Employeur requis"),
-  employerAddress: z.string().min(5, "Adresse employeur requise"),
-  professionalId: z.string().min(2, "Numéro identification professionnel requis"),
-  monthlySalary: z.number().min(1, "Salaire mensuel requis"),
+  // Mode de paiement du solde (déplacé avant les infos professionnelles)
+  paymentMethod: z.enum(['delivery', 'installments'], { 
+    required_error: "Veuillez choisir un mode de paiement pour le solde" 
+  }),
+  
+  // Informations professionnelles (conditionnelles)
+  profession: z.string().optional(),
+  employer: z.string().optional(),
+  employerAddress: z.string().optional(),
+  professionalId: z.string().optional(),
+  monthlySalary: z.number().optional(),
   
   // Coordonnées bancaires
   accountHolder: z.string().min(2, "Titulaire du compte requis"),
@@ -63,11 +68,6 @@ const checkoutSchema = z.object({
   paymentType: z.enum(["transfer"], { required_error: "Type de paiement requis" }),
   paymentProof: z.instanceof(File, { message: "Preuve de paiement requise" }),
   
-  // Mode de paiement du solde
-  paymentMethod: z.enum(['delivery', 'installments'], { 
-    required_error: "Veuillez choisir un mode de paiement pour le solde" 
-  }),
-  
   // Langue du contrat
   contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: "Langue du contrat requise" }),
   
@@ -78,6 +78,19 @@ const checkoutSchema = z.object({
 }).refine((data) => data.email === data.emailConfirm, {
   message: "Les emails ne correspondent pas",
   path: ["emailConfirm"]
+}).refine((data) => {
+  // Si paiement par mensualités, les infos professionnelles sont requises
+  if (data.paymentMethod === 'installments') {
+    return data.profession && data.profession.length >= 2 &&
+           data.employer && data.employer.length >= 2 &&
+           data.employerAddress && data.employerAddress.length >= 5 &&
+           data.professionalId && data.professionalId.length >= 2 &&
+           data.monthlySalary && data.monthlySalary >= 1;
+  }
+  return true;
+}, {
+  message: "Les informations professionnelles sont requises pour le paiement par mensualités",
+  path: ["profession"]
 });
 
 type CheckoutForm = z.infer<typeof checkoutSchema>;
@@ -116,6 +129,7 @@ export default function Checkout() {
   });
 
   const watchedPaymentType = watch("paymentType");
+  const watchedPaymentMethod = watch("paymentMethod");
   const watchedContractLanguage = watch("contractLanguage");
 
   const onSubmit = async (data: CheckoutForm) => {
@@ -499,84 +513,139 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 2. Informations professionnelles */}
+            {/* 2. Mode de paiement du solde */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
-                  Informations professionnelles
+                  Mode de paiement du solde restant
                 </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Comment souhaitez-vous payer le solde de {formatPrice(total - depositAmount)} ?
+                </p>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="profession">Profession *</Label>
-                  <Input 
-                    id="profession"
-                    {...register("profession")}
-                    className={errors.profession ? "border-destructive" : ""}
-                  />
-                  {errors.profession && (
-                    <p className="text-sm text-destructive mt-1">{errors.profession.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="employer">Employeur *</Label>
-                  <Input 
-                    id="employer"
-                    {...register("employer")}
-                    className={errors.employer ? "border-destructive" : ""}
-                  />
-                  {errors.employer && (
-                    <p className="text-sm text-destructive mt-1">{errors.employer.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="employerAddress">Adresse de l'employeur *</Label>
-                  <Textarea 
-                    id="employerAddress"
-                    {...register("employerAddress")}
-                    className={errors.employerAddress ? "border-destructive" : ""}
-                  />
-                  {errors.employerAddress && (
-                    <p className="text-sm text-destructive mt-1">{errors.employerAddress.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="professionalId">Numéro d'identification professionnel *</Label>
-                  <Input 
-                    id="professionalId"
-                    {...register("professionalId")}
-                    className={errors.professionalId ? "border-destructive" : ""}
-                  />
-                  {errors.professionalId && (
-                    <p className="text-sm text-destructive mt-1">{errors.professionalId.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="monthlySalary">Salaire mensuel net (€) *</Label>
-                  <Input 
-                    id="monthlySalary"
-                    type="number"
-                    step="0.01"
-                    {...register("monthlySalary", { valueAsNumber: true })}
-                    className={errors.monthlySalary ? "border-destructive" : ""}
-                  />
-                  {errors.monthlySalary && (
-                    <p className="text-sm text-destructive mt-1">{errors.monthlySalary.message}</p>
-                  )}
-                </div>
+              <CardContent>
+                <RadioGroup 
+                  onValueChange={(value) => setValue("paymentMethod", value as "delivery" | "installments")}
+                  className="space-y-4"
+                >
+                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <RadioGroupItem value="delivery" id="delivery" />
+                      <div className="flex-1">
+                        <Label htmlFor="delivery" className="font-medium cursor-pointer">
+                          💰 Paiement intégral à la livraison
+                        </Label>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Le solde complet de {formatPrice(total - depositAmount)} sera payé lors de la réception du véhicule
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <RadioGroupItem value="installments" id="installments" />
+                      <div className="flex-1">
+                        <Label htmlFor="installments" className="font-medium cursor-pointer">
+                          📅 Paiement par mensualités
+                        </Label>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          Le solde sera payé en mensualités (conditions à définir avec notre équipe)
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </RadioGroup>
+                {errors.paymentMethod && (
+                  <p className="text-sm text-destructive mt-2">{errors.paymentMethod.message}</p>
+                )}
               </CardContent>
             </Card>
 
-            {/* 3. Coordonnées bancaires */}
+            {/* 3. Informations professionnelles (conditionnelles) */}
+            {watchedPaymentMethod === 'installments' && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                    Informations professionnelles
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    Ces informations sont nécessaires pour le financement par mensualités
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="profession">Profession *</Label>
+                    <Input 
+                      id="profession"
+                      {...register("profession")}
+                      className={errors.profession ? "border-destructive" : ""}
+                    />
+                    {errors.profession && (
+                      <p className="text-sm text-destructive mt-1">{errors.profession.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="employer">Employeur *</Label>
+                    <Input 
+                      id="employer"
+                      {...register("employer")}
+                      className={errors.employer ? "border-destructive" : ""}
+                    />
+                    {errors.employer && (
+                      <p className="text-sm text-destructive mt-1">{errors.employer.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="employerAddress">Adresse de l'employeur *</Label>
+                    <Textarea 
+                      id="employerAddress"
+                      {...register("employerAddress")}
+                      className={errors.employerAddress ? "border-destructive" : ""}
+                    />
+                    {errors.employerAddress && (
+                      <p className="text-sm text-destructive mt-1">{errors.employerAddress.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="professionalId">Numéro d'identification professionnel *</Label>
+                    <Input 
+                      id="professionalId"
+                      {...register("professionalId")}
+                      className={errors.professionalId ? "border-destructive" : ""}
+                    />
+                    {errors.professionalId && (
+                      <p className="text-sm text-destructive mt-1">{errors.professionalId.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="monthlySalary">Salaire mensuel net (€) *</Label>
+                    <Input 
+                      id="monthlySalary"
+                      type="number"
+                      step="0.01"
+                      {...register("monthlySalary", { valueAsNumber: true })}
+                      className={errors.monthlySalary ? "border-destructive" : ""}
+                    />
+                    {errors.monthlySalary && (
+                      <p className="text-sm text-destructive mt-1">{errors.monthlySalary.message}</p>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* 4. Coordonnées bancaires */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</span>
                   Coordonnées bancaires
                 </CardTitle>
               </CardHeader>
@@ -633,11 +702,11 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 4. Adresse de livraison */}
+            {/* 5. Adresse de livraison */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</span>
+                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">5</span>
                   Adresse de livraison
                 </CardTitle>
               </CardHeader>
@@ -706,11 +775,11 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 5. Paiement de l'acompte */}
+            {/* 6. Paiement de l'acompte */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">5</span>
+                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">6</span>
                   Paiement de l'acompte
                 </CardTitle>
               </CardHeader>
@@ -890,56 +959,6 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 6. Mode de paiement du solde */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">6</span>
-                  Mode de paiement du solde restant
-                </CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  Comment souhaitez-vous payer le solde de {formatPrice(total - depositAmount)} ?
-                </p>
-              </CardHeader>
-              <CardContent>
-                <RadioGroup 
-                  onValueChange={(value) => setValue("paymentMethod", value as "delivery" | "installments")}
-                  className="space-y-4"
-                >
-                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="delivery" id="delivery" />
-                      <div className="flex-1">
-                        <Label htmlFor="delivery" className="font-medium cursor-pointer">
-                          💰 Paiement intégral à la livraison
-                        </Label>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Le solde complet de {formatPrice(total - depositAmount)} sera payé lors de la réception du véhicule
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="installments" id="installments" />
-                      <div className="flex-1">
-                        <Label htmlFor="installments" className="font-medium cursor-pointer">
-                          📅 Paiement par mensualités
-                        </Label>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          Le solde sera payé en mensualités (conditions à définir avec notre équipe)
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </RadioGroup>
-                {errors.paymentMethod && (
-                  <p className="text-sm text-destructive mt-2">{errors.paymentMethod.message}</p>
-                )}
-              </CardContent>
-            </Card>
-
             {/* 7. Langue du contrat */}
             <Card>
               <CardHeader>
@@ -1103,7 +1122,7 @@ export default function Checkout() {
               <div className="bg-gray-50 p-4 rounded-lg mt-4">
                 <h4 className="font-medium mb-2">🚚 Informations de livraison</h4>
                 <p className="text-sm text-muted-foreground">
-                  Livraison prévue sous 2-4 semaines après validation du dossier et réception du solde.
+                  Livraison prévue sous 5 jours après validation du dossier et réception du solde.
                 </p>
               </div>
 
