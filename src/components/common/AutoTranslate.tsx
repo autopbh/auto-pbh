@@ -86,71 +86,54 @@ const AutoTranslate = () => {
 
   // Déclencher la traduction automatique basée sur la langue sélectionnée
   useEffect(() => {
-    const translatePage = () => {
-      if (window.google && window.google.translate) {
-        const langMapping: { [key: string]: string } = {
-          'fr': 'fr',
-          'en': 'en',
-          'es': 'es', 
-          'pt': 'pt',
-          'de': 'de',
-          'it': 'it',
-          'nl': 'nl',
-          'pl': 'pl',
-          'fi': 'fi',
-          'el': 'el'
-        };
+    const triggerTranslation = () => {
+      if (!window.google || !window.google.translate) return;
 
-        const targetLang = langMapping[currentLanguage];
-        
-        // Si la langue n'est pas le français, déclencher la traduction
-        if (targetLang && targetLang !== 'fr') {
-          setTimeout(() => {
-            try {
-              // Méthode directe pour déclencher la traduction
-              const translateElement = new window.google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                includedLanguages: 'fr,en,es,pt,de,it,nl,pl,fi,el',
-                layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-              });
+      const langMapping: { [key: string]: string } = {
+        'fr': 'fr',
+        'en': 'en',
+        'es': 'es', 
+        'pt': 'pt',
+        'de': 'de',
+        'it': 'it',
+        'nl': 'nl',
+        'pl': 'pl',
+        'fi': 'fi',
+        'el': 'el'
+      };
 
-              // Déclencher la traduction programmatiquement
-              window.google.translate.TranslateElement.prototype.translate('fr', targetLang);
-            } catch (error) {
-              console.log('Traduction Google en cours...');
-            }
-          }, 1500);
-        } else if (targetLang === 'fr') {
-          // Restaurer la version française originale
-          setTimeout(() => {
-            try {
-              window.google.translate.TranslateElement.prototype.translate(currentLanguage, 'fr');
-            } catch (error) {
-              // Recharger la page pour revenir au français si nécessaire
-              if (document.querySelector('.goog-te-combo')) {
-                const selectElement = document.querySelector('.goog-te-combo') as HTMLSelectElement;
-                if (selectElement && selectElement.value !== 'fr') {
-                  selectElement.value = 'fr';
-                  selectElement.dispatchEvent(new Event('change'));
-                }
-              }
-            }
-          }, 500);
+      const targetLang = langMapping[currentLanguage];
+      
+      if (!targetLang) return;
+
+      // Trouver le sélecteur Google Translate
+      const selectElement = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+      
+      if (selectElement) {
+        // Changer la valeur et déclencher l'événement
+        if (selectElement.value !== targetLang) {
+          selectElement.value = targetLang;
+          const event = new Event('change', { bubbles: true });
+          selectElement.dispatchEvent(event);
         }
       }
     };
 
-    // Attendre que Google Translate soit chargé
-    const checkGoogleTranslate = setInterval(() => {
-      if (window.google && window.google.translate) {
-        translatePage();
-        clearInterval(checkGoogleTranslate);
-      }
-    }, 500);
+    // Attendre que l'élément soit disponible
+    const waitForGoogleTranslate = () => {
+      const checkElement = () => {
+        const selectElement = document.querySelector('.goog-te-combo');
+        if (selectElement && window.google && window.google.translate) {
+          triggerTranslation();
+        } else {
+          setTimeout(checkElement, 500);
+        }
+      };
+      checkElement();
+    };
 
-    // Nettoyer l'interval après 10 secondes
-    setTimeout(() => clearInterval(checkGoogleTranslate), 10000);
+    // Délai pour laisser Google Translate s'initialiser
+    setTimeout(waitForGoogleTranslate, 1000);
 
   }, [currentLanguage]);
 
