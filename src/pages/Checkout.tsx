@@ -986,20 +986,13 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>{t("checkout.paymentMethodUsed")} *</Label>
-                  <RadioGroup 
-                    onValueChange={(value) => setValue("paymentType", value as "transfer")}
-                    defaultValue="transfer"
-                    className="mt-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="transfer" id="transfer" />
-                      <Label htmlFor="transfer">✅ {t("checkout.bankTransfer")}</Label>
+                  <Label className="text-sm font-medium">{t("checkout.paymentMethodUsed")}</Label>
+                  <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-center space-x-2 text-green-700">
+                      <span className="text-lg">✅</span>
+                      <span className="font-medium">{t("checkout.bankTransfer")}</span>
                     </div>
-                  </RadioGroup>
-                  {errors.paymentType && (
-                    <p className="text-sm text-destructive mt-1">{errors.paymentType.message}</p>
-                  )}
+                  </div>
                 </div>
 
                 <div>

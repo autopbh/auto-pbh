@@ -47,19 +47,6 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
     setFileName(file.name);
     
     try {
-      // Get current user
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
-        toast({
-          title: "Erreur d'authentification",
-          description: "Vous devez être connecté pour télécharger un fichier",
-          variant: "destructive"
-        });
-        setIsUploading(false);
-        return;
-      }
-
       // Create a preview of the image
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -69,7 +56,7 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
 
       // Upload to Supabase Storage
       const fileExt = file.name.split('.').pop();
-      const fileName = `${user.id}/${orderReference}_${Date.now()}.${fileExt}`;
+      const fileName = `${orderReference}_${Date.now()}.${fileExt}`;
       
       const { data, error } = await supabase.storage
         .from('payment-receipts')
