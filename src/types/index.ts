@@ -96,9 +96,7 @@ export type Language =
   | 'es' 
   | 'de' 
   | 'it' 
-  | 'pl' 
-  | 'gr' 
-  | 'fi';
+  | 'nl';
 
 export interface LanguageOption {
   code: Language;

@@ -33,18 +33,8 @@ export const languages: LanguageOption[] = [
     flag: "🇮🇹"
   },
   {
-    code: "pl",
-    name: "Polski",
-    flag: "🇵🇱"
-  },
-  {
-    code: "gr",
-    name: "Ελληνικά",
-    flag: "🇬🇷"
-  },
-  {
-    code: "fi",
-    name: "Suomi",
-    flag: "🇫🇮"
+    code: "nl",
+    name: "Nederlands",
+    flag: "🇳🇱"
   }
 ];
