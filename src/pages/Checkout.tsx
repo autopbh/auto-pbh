@@ -687,49 +687,79 @@ export default function Checkout() {
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between items-center">
                       <span className="text-green-700"><span className="font-medium">Bénéficiaire :</span> AURA AUTO GENESIS</span>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard("AURA AUTO GENESIS", "beneficiaire")}
+                        className="h-7 px-2 text-xs"
+                      >
+                        {copiedField === "beneficiaire" ? (
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
+                        ) : (
+                          <Copy className="h-3 w-3 mr-1" />
+                        )}
+                        Copier
+                      </Button>
                     </div>
                     
                     <div className="flex justify-between items-center">
                       <span className="text-green-700"><span className="font-medium">Banque :</span> BNP Paribas</span>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard("BNP Paribas", "banque")}
+                        className="h-7 px-2 text-xs"
+                      >
+                        {copiedField === "banque" ? (
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
+                        ) : (
+                          <Copy className="h-3 w-3 mr-1" />
+                        )}
+                        Copier
+                      </Button>
                     </div>
                     
-                    <div className="flex justify-between items-center group">
+                    <div className="flex justify-between items-center">
                       <span className="text-green-700">
                         <span className="font-medium">IBAN :</span> 
                         <span className="font-mono ml-1">FR76 1234 5678 9012 3456 7890 123</span>
                       </span>
                       <Button
                         type="button"
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={() => copyToClipboard("FR76123456789012345678900123", "iban")}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                        className="h-7 px-2 text-xs"
                       >
                         {copiedField === "iban" ? (
-                          <Check className="h-3 w-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
                         ) : (
-                          <Copy className="h-3 w-3" />
+                          <Copy className="h-3 w-3 mr-1" />
                         )}
+                        Copier
                       </Button>
                     </div>
                     
-                    <div className="flex justify-between items-center group">
+                    <div className="flex justify-between items-center">
                       <span className="text-green-700">
                         <span className="font-medium">BIC/SWIFT :</span> 
                         <span className="font-mono ml-1">BNPAFRPPXXX</span>
                       </span>
                       <Button
                         type="button"
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={() => copyToClipboard("BNPAFRPPXXX", "bic")}
-                        className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0"
+                        className="h-7 px-2 text-xs"
                       >
                         {copiedField === "bic" ? (
-                          <Check className="h-3 w-3 text-green-600" />
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
                         ) : (
-                          <Copy className="h-3 w-3" />
+                          <Copy className="h-3 w-3 mr-1" />
                         )}
+                        Copier
                       </Button>
                     </div>
                     
@@ -738,11 +768,42 @@ export default function Checkout() {
                         <span className="font-medium">Montant :</span> 
                         <span className="font-bold ml-1">{formatPrice(depositAmount)}</span>
                       </span>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard(depositAmount.toString(), "montant")}
+                        className="h-7 px-2 text-xs"
+                      >
+                        {copiedField === "montant" ? (
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
+                        ) : (
+                          <Copy className="h-3 w-3 mr-1" />
+                        )}
+                        Copier
+                      </Button>
                     </div>
-                  </div>
-                  
-                  <div className="mt-3 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
-                    <span className="font-medium">💡 Motif :</span> "Acompte commande véhicule - Ref: [VOTRE_REF]"
+                    
+                    <div className="flex justify-between items-center">
+                      <span className="text-green-700">
+                        <span className="font-medium">Motif :</span> 
+                        <span className="text-xs">Acompte commande véhicule</span>
+                      </span>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => copyToClipboard("Acompte commande véhicule", "motif")}
+                        className="h-7 px-2 text-xs"
+                      >
+                        {copiedField === "motif" ? (
+                          <Check className="h-3 w-3 text-green-600 mr-1" />
+                        ) : (
+                          <Copy className="h-3 w-3 mr-1" />
+                        )}
+                        Copier
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
