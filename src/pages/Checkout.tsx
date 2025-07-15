@@ -12,10 +12,11 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Upload } from "lucide-react";
+import { CalendarIcon, Upload, ArrowLeft, ShoppingCart } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 // Validation IBAN simplifiée
 const validateIBAN = (iban: string) => {
@@ -126,9 +127,24 @@ export default function Checkout() {
   if (cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
+        <div className="mb-6">
+          <Link 
+            to={`/${currentLanguage}/catalog`} 
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Retour au catalogue
+          </Link>
+        </div>
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Panier vide</h1>
-          <p>Votre panier est vide. Ajoutez des véhicules pour continuer.</p>
+          <div className="bg-gray-50 p-8 rounded-lg">
+            <ShoppingCart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h1 className="text-2xl font-bold mb-4">Panier vide</h1>
+            <p className="text-gray-600 mb-6">Votre panier est vide. Ajoutez des véhicules pour continuer.</p>
+            <Link to={`/${currentLanguage}/catalog`}>
+              <Button>Parcourir le catalogue</Button>
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -136,6 +152,32 @@ export default function Checkout() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
+      {/* Barre de navigation */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <Link 
+          to={`/${currentLanguage}/catalog`} 
+          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Retour au catalogue
+        </Link>
+        
+        <div className="flex items-center gap-4">
+          <Link 
+            to={`/${currentLanguage}`} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Accueil
+          </Link>
+          <Link 
+            to={`/${currentLanguage}/catalog`} 
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Catalogue
+          </Link>
+        </div>
+      </div>
+      
       <h1 className="text-3xl font-bold mb-8 text-center">Commande de véhicule - Formulaire complet</h1>
       
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
