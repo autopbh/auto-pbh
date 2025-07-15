@@ -154,10 +154,11 @@ export default function Checkout() {
   const watchedContractLanguage = watch("contractLanguage");
 
   const onSubmit = async (data: CheckoutForm) => {
+    console.log("🚀 DEBUT onSubmit - Données reçues:", data);
     setIsSubmitting(true);
     
     try {
-      console.log("Soumission de la commande:", data);
+      console.log("✅ Soumission de la commande:", data);
       
       // Générer un numéro de commande unique
       const orderNumber = `PBH-${Date.now()}`;
@@ -360,7 +361,11 @@ export default function Checkout() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         {/* Formulaire principal */}
         <div className="xl:col-span-2">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={handleSubmit((data) => {
+            console.log("🎯 FORM SUBMIT - Données du formulaire:", data);
+            console.log("🔍 Erreurs de validation:", errors);
+            return onSubmit(data);
+          })} className="space-y-8">
             {/* 1. Informations personnelles */}
             <Card>
               <CardHeader>
