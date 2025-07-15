@@ -1,8 +1,11 @@
 
 import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LegalNotice = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -11,73 +14,58 @@ const LegalNotice = () => {
     <Layout>
       <div className="container mx-auto px-4 py-16 mt-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-8">Mentions Légales</h1>
+          <h1 className="text-3xl md:text-5xl font-bold mb-8">{t("legal.title")}</h1>
           
           <section className="bg-white/50 backdrop-blur-sm p-8 rounded-lg shadow-sm mb-8">
-            <h2 className="text-2xl font-semibold mb-6 text-autop-red">Informations Légales</h2>
+            <h2 className="text-2xl font-semibold mb-6 text-autop-red">{t("legal.company")}</h2>
             
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-semibold mb-2">Raison Sociale</h3>
-                <p className="text-muted-foreground">
-                  AUTO PBH<br />
-                  Société à responsabilité limitée (SARL)<br />
-                  Capital social : 100 000 €<br />
-                  Immatriculation au Registre du Commerce des Pays-Bas : KVK 87654321<br />
-                  Numéro de TVA intracommunautaire : NL123456789B01
+                <h3 className="text-xl font-semibold mb-2">{t("legal.companyName")}</h3>
+                <p className="text-muted-foreground whitespace-pre-line">
+                  {t("legal.companyDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Siège Social</h3>
-                <p className="text-muted-foreground">
-                  Autolettestraat 10<br />
-                  3063 NP Rotterdam<br />
-                  Pays-Bas
+                <h3 className="text-xl font-semibold mb-2">{t("legal.address")}</h3>
+                <p className="text-muted-foreground whitespace-pre-line">
+                  {t("legal.addressDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Contact</h3>
-                <p className="text-muted-foreground">
-                  Téléphone : +351 961 196 405<br />
-                  Email : pbhauto@gmail.com
+                <h3 className="text-xl font-semibold mb-2">{t("legal.contact")}</h3>
+                <p className="text-muted-foreground whitespace-pre-line">
+                  {t("legal.contactDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Direction de la Publication</h3>
+                <h3 className="text-xl font-semibold mb-2">{t("legal.publisher")}</h3>
                 <p className="text-muted-foreground">
-                  M. Pierre B., en qualité de gérant de AUTO PBH.
+                  {t("legal.publisherDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Hébergement</h3>
-                <p className="text-muted-foreground">
-                  Le site www.autopbh.com est hébergé par:<br />
-                  Société Lovable Technology<br />
-                  2093 Philadelphia Pike #5620<br />
-                  Claymont, DE 19703<br />
-                  États-Unis
+                <h3 className="text-xl font-semibold mb-2">{t("legal.hosting")}</h3>
+                <p className="text-muted-foreground whitespace-pre-line">
+                  {t("legal.hostingDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Propriété Intellectuelle</h3>
+                <h3 className="text-xl font-semibold mb-2">{t("legal.intellectual")}</h3>
                 <p className="text-muted-foreground">
-                  L'ensemble du contenu du site www.autopbh.com (images, textes, logos, graphismes, etc.) est la propriété 
-                  exclusive de AUTO PBH ou de ses partenaires. Toute reproduction partielle ou totale du contenu est strictement 
-                  interdite sans autorisation préalable.
+                  {t("legal.intellectualDetails")}
                 </p>
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-2">Médiation et Litiges</h3>
+                <h3 className="text-xl font-semibold mb-2">{t("legal.mediation")}</h3>
                 <p className="text-muted-foreground">
-                  Conformément aux dispositions du Code de la consommation concernant le règlement amiable des litiges, 
-                  AUTO PBH adhère au Service du Médiateur européen. Vous pouvez recourir gratuitement au service de médiation 
-                  accessible via le site www.mediationeurope-consommation.eu
+                  {t("legal.mediationDetails")}
                 </p>
               </div>
             </div>

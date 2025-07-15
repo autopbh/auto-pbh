@@ -955,6 +955,24 @@ export const translations: TranslationsType = {
     "privacy.contact": "Contact",
     "privacy.contactDescription": "Pour toute question relative à la protection de vos données personnelles ou pour exercer vos droits, vous pouvez nous contacter à l'adresse : privacy@autopbh.com ou par courrier à notre adresse postale.",
     
+    // Legal Notice
+    "legal.title": "Mentions Légales",
+    "legal.company": "Informations Légales",
+    "legal.companyName": "Raison Sociale",
+    "legal.companyDetails": "AUTO PBH\nSociété à responsabilité limitée (SARL)\nCapital social : 100 000 €\nImmatriculation au Registre du Commerce des Pays-Bas : KVK 87654321\nNuméro de TVA intracommunautaire : NL123456789B01",
+    "legal.address": "Siège Social",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nPays-Bas",
+    "legal.contact": "Contact",
+    "legal.contactDetails": "Téléphone : +351 961 196 405\nEmail : pbhauto@gmail.com",
+    "legal.publisher": "Direction de la Publication",
+    "legal.publisherDetails": "M. Pierre B., en qualité de gérant de AUTO PBH.",
+    "legal.hosting": "Hébergement",
+    "legal.hostingDetails": "Le site www.autopbh.com est hébergé par:\nSociété Lovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nÉtats-Unis",
+    "legal.intellectual": "Propriété Intellectuelle",
+    "legal.intellectualDetails": "L'ensemble du contenu du site www.autopbh.com (images, textes, logos, graphismes, etc.) est la propriété exclusive de AUTO PBH ou de ses partenaires. Toute reproduction partielle ou totale du contenu est strictement interdite sans autorisation préalable.",
+    "legal.mediation": "Médiation et Litiges",
+    "legal.mediationDetails": "Conformément aux dispositions du Code de la consommation concernant le règlement amiable des litiges, AUTO PBH adhère au Service du Médiateur européen. Vous pouvez recourir gratuitement au service de médiation accessible via le site www.mediationeurope-consommation.eu",
+    
     // Terms page translations
     "terms.title": "Conditions Générales de Service",
     "terms.shortVersion": "Version Abrégée",
@@ -1908,7 +1926,25 @@ export const translations: TranslationsType = {
     "privacy.portabilityRight": "Right to portability",
     "privacy.oppositionRight": "Right to object",
     "privacy.contact": "Contact",
-    "privacy.contactDescription": "For any questions regarding the protection of your personal data or to exercise your rights, you can contact us at: privacy@autopbh.com or by mail to our postal address."
+    "privacy.contactDescription": "For any questions regarding the protection of your personal data or to exercise your rights, you can contact us at: privacy@autopbh.com or by mail to our postal address.",
+    
+    // Legal Notice
+    "legal.title": "Legal Notice",
+    "legal.company": "Legal Information",
+    "legal.companyName": "Company Name",
+    "legal.companyDetails": "AUTO PBH\nLimited Liability Company (SARL)\nShare capital: €100,000\nRegistration in the Dutch Trade Register: KVK 87654321\nIntra-Community VAT number: NL123456789B01",
+    "legal.address": "Registered Office",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nNetherlands",
+    "legal.contact": "Contact",
+    "legal.contactDetails": "Phone: +351 961 196 405\nEmail: pbhauto@gmail.com",
+    "legal.publisher": "Publication Director",
+    "legal.publisherDetails": "Mr. Pierre B., as manager of AUTO PBH.",
+    "legal.hosting": "Hosting",
+    "legal.hostingDetails": "The website www.autopbh.com is hosted by:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nUnited States",
+    "legal.intellectual": "Intellectual Property",
+    "legal.intellectualDetails": "All content of the website www.autopbh.com (images, texts, logos, graphics, etc.) is the exclusive property of AUTO PBH or its partners. Any partial or total reproduction of the content is strictly prohibited without prior authorization.",
+    "legal.mediation": "Mediation and Disputes",
+    "legal.mediationDetails": "In accordance with the provisions of the Consumer Code concerning the amicable settlement of disputes, AUTO PBH adheres to the European Mediator Service. You can use the mediation service free of charge accessible via the website www.mediationeurope-consommation.eu"
   },
 
   // Portuguese translations
@@ -2585,7 +2621,25 @@ export const translations: TranslationsType = {
     "privacy.portabilityRight": "Direito à portabilidade",
     "privacy.oppositionRight": "Direito de oposição",
     "privacy.contact": "Contato",
-    "privacy.contactDescription": "Para qualquer questão relacionada à proteção dos seus dados pessoais ou para exercer seus direitos, você pode nos contatar em: privacy@autopbh.com ou por correio em nosso endereço postal."
+    "privacy.contactDescription": "Para qualquer questão relacionada à proteção dos seus dados pessoais ou para exercer seus direitos, você pode nos contatar em: privacy@autopbh.com ou por correio em nosso endereço postal.",
+    
+    // Legal Notice
+    "legal.title": "Avisos Legais",
+    "legal.company": "Informações Legais",
+    "legal.companyName": "Razão Social",
+    "legal.companyDetails": "AUTO PBH\nSociedade de responsabilidade limitada (SARL)\nCapital social: € 100.000\nRegistro no Registro Comercial dos Países Baixos: KVK 87654321\nNúmero de IVA intracomunitário: NL123456789B01",
+    "legal.address": "Sede Social",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nPaíses Baixos",
+    "legal.contact": "Contato",
+    "legal.contactDetails": "Telefone: +351 961 196 405\nEmail: pbhauto@gmail.com",
+    "legal.publisher": "Direção da Publicação",
+    "legal.publisherDetails": "Sr. Pierre B., como gerente da AUTO PBH.",
+    "legal.hosting": "Hospedagem",
+    "legal.hostingDetails": "O site www.autopbh.com é hospedado por:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nEstados Unidos",
+    "legal.intellectual": "Propriedade Intelectual",
+    "legal.intellectualDetails": "Todo o conteúdo do site www.autopbh.com (imagens, textos, logotipos, gráficos, etc.) é propriedade exclusiva da AUTO PBH ou de seus parceiros. Qualquer reprodução parcial ou total do conteúdo é estritamente proibida sem autorização prévia.",
+    "legal.mediation": "Mediação e Litígios",
+    "legal.mediationDetails": "De acordo com as disposições do Código do Consumidor sobre a resolução amigável de litígios, a AUTO PBH adere ao Serviço de Mediador Europeu. Você pode usar gratuitamente o serviço de mediação acessível através do site www.mediationeurope-consommation.eu"
   },
 
   // Spanish translations
@@ -3361,7 +3415,25 @@ export const translations: TranslationsType = {
     "privacy.portabilityRight": "Derecho a la portabilidad",
     "privacy.oppositionRight": "Derecho de oposición",
     "privacy.contact": "Contacto",
-    "privacy.contactDescription": "Para cualquier pregunta relacionada con la protección de sus datos personales o para ejercer sus derechos, puede contactarnos en: privacy@autopbh.com o por correo a nuestra dirección postal."
+    "privacy.contactDescription": "Para cualquier pregunta relacionada con la protección de sus datos personales o para ejercer sus derechos, puede contactarnos en: privacy@autopbh.com o por correo a nuestra dirección postal.",
+    
+    // Legal Notice
+    "legal.title": "Aviso Legal",
+    "legal.company": "Información Legal",
+    "legal.companyName": "Razón Social",
+    "legal.companyDetails": "AUTO PBH\nSociedad de responsabilidad limitada (SARL)\nCapital social: 100.000 €\nRegistro en el Registro Mercantil de los Países Bajos: KVK 87654321\nNúmero de IVA intracomunitario: NL123456789B01",
+    "legal.address": "Domicilio Social",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nPaíses Bajos",
+    "legal.contact": "Contacto",
+    "legal.contactDetails": "Teléfono: +351 961 196 405\nEmail: pbhauto@gmail.com",
+    "legal.publisher": "Dirección de la Publicación",
+    "legal.publisherDetails": "Sr. Pierre B., como gerente de AUTO PBH.",
+    "legal.hosting": "Alojamiento",
+    "legal.hostingDetails": "El sitio web www.autopbh.com está alojado por:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nEstados Unidos",
+    "legal.intellectual": "Propiedad Intelectual",
+    "legal.intellectualDetails": "Todo el contenido del sitio web www.autopbh.com (imágenes, textos, logotipos, gráficos, etc.) es propiedad exclusiva de AUTO PBH o de sus socios. Cualquier reproducción parcial o total del contenido está estrictamente prohibida sin autorización previa.",
+    "legal.mediation": "Mediación y Disputas",
+    "legal.mediationDetails": "De acuerdo con las disposiciones del Código del Consumidor sobre la resolución amistosa de disputas, AUTO PBH se adhiere al Servicio de Mediador Europeo. Puede usar gratuitamente el servicio de mediación accesible a través del sitio web www.mediationeurope-consommation.eu"
   },
 
   // German translations
@@ -4121,7 +4193,25 @@ export const translations: TranslationsType = {
     "privacy.portabilityRight": "Recht auf Datenübertragbarkeit",
     "privacy.oppositionRight": "Widerspruchsrecht",
     "privacy.contact": "Kontakt",
-    "privacy.contactDescription": "Bei Fragen zum Schutz Ihrer persönlichen Daten oder zur Ausübung Ihrer Rechte können Sie uns unter privacy@autopbh.com oder per Post an unsere Postanschrift kontaktieren."
+    "privacy.contactDescription": "Bei Fragen zum Schutz Ihrer persönlichen Daten oder zur Ausübung Ihrer Rechte können Sie uns unter privacy@autopbh.com oder per Post an unsere Postanschrift kontaktieren.",
+    
+    // Legal Notice
+    "legal.title": "Impressum",
+    "legal.company": "Rechtliche Informationen",
+    "legal.companyName": "Firmenname",
+    "legal.companyDetails": "AUTO PBH\nGesellschaft mit beschränkter Haftung (SARL)\nStammkapital: 100.000 €\nEintragung im niederländischen Handelsregister: KVK 87654321\nUmsatzsteuer-Identifikationsnummer: NL123456789B01",
+    "legal.address": "Firmensitz",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nNiederlande",
+    "legal.contact": "Kontakt",
+    "legal.contactDetails": "Telefon: +351 961 196 405\nE-Mail: pbhauto@gmail.com",
+    "legal.publisher": "Verantwortlicher für den Inhalt",
+    "legal.publisherDetails": "Herr Pierre B., als Geschäftsführer von AUTO PBH.",
+    "legal.hosting": "Hosting",
+    "legal.hostingDetails": "Die Website www.autopbh.com wird gehostet von:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nVereinigte Staaten",
+    "legal.intellectual": "Geistiges Eigentum",
+    "legal.intellectualDetails": "Alle Inhalte der Website www.autopbh.com (Bilder, Texte, Logos, Grafiken usw.) sind ausschließliches Eigentum von AUTO PBH oder ihren Partnern. Jede teilweise oder vollständige Reproduktion des Inhalts ist ohne vorherige Genehmigung strengstens untersagt.",
+    "legal.mediation": "Mediation und Streitigkeiten",
+    "legal.mediationDetails": "In Übereinstimmung mit den Bestimmungen des Verbrauchergesetzbuchs zur gütlichen Beilegung von Streitigkeiten hält sich AUTO PBH an den Europäischen Mediationsdienst. Sie können den kostenlosen Mediationsdienst über die Website www.mediationeurope-consommation.eu nutzen"
   },
 
   // Italian translations
@@ -4863,7 +4953,25 @@ export const translations: TranslationsType = {
     "privacy.portabilityRight": "Diritto alla portabilità",
     "privacy.oppositionRight": "Diritto di opposizione",
     "privacy.contact": "Contatto",
-    "privacy.contactDescription": "Per qualsiasi domanda relativa alla protezione dei vostri dati personali o per esercitare i vostri diritti, potete contattarci all'indirizzo: privacy@autopbh.com o per posta al nostro indirizzo postale."
+    "privacy.contactDescription": "Per qualsiasi domanda relativa alla protezione dei vostri dati personali o per esercitare i vostri diritti, potete contattarci all'indirizzo: privacy@autopbh.com o per posta al nostro indirizzo postale.",
+    
+    // Legal Notice
+    "legal.title": "Note Legali",
+    "legal.company": "Informazioni Legali",
+    "legal.companyName": "Ragione Sociale",
+    "legal.companyDetails": "AUTO PBH\nSocietà a responsabilità limitata (SARL)\nCapitale sociale: € 100.000\nIscrizione al Registro delle Imprese dei Paesi Bassi: KVK 87654321\nNumero di partita IVA intracomunitaria: NL123456789B01",
+    "legal.address": "Sede Legale",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nPaesi Bassi",
+    "legal.contact": "Contatto",
+    "legal.contactDetails": "Telefono: +351 961 196 405\nEmail: pbhauto@gmail.com",
+    "legal.publisher": "Direzione della Pubblicazione",
+    "legal.publisherDetails": "Sig. Pierre B., in qualità di amministratore di AUTO PBH.",
+    "legal.hosting": "Hosting",
+    "legal.hostingDetails": "Il sito www.autopbh.com è ospitato da:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nStati Uniti",
+    "legal.intellectual": "Proprietà Intellettuale",
+    "legal.intellectualDetails": "Tutto il contenuto del sito www.autopbh.com (immagini, testi, loghi, grafici, ecc.) è di proprietà esclusiva di AUTO PBH o dei suoi partner. Qualsiasi riproduzione parziale o totale del contenuto è severamente vietata senza autorizzazione preventiva.",
+    "legal.mediation": "Mediazione e Controversie",
+    "legal.mediationDetails": "In conformità alle disposizioni del Codice del Consumo riguardanti la risoluzione amichevole delle controversie, AUTO PBH aderisce al Servizio di Mediatore Europeo. È possibile utilizzare gratuitamente il servizio di mediazione accessibile tramite il sito www.mediationeurope-consommation.eu",
   },
 
   // Dutch translations
@@ -5531,7 +5639,68 @@ export const translations: TranslationsType = {
     "returns.condition3": "Het voertuig moet in originele staat worden geretourneerd, zonder schade of wijzigingen",
     "returns.condition4": "Alle documenten en accessoires die bij levering zijn verstrekt, moeten worden geretourneerd",
     "returns.contactMessage": "Voor vragen betreffende ons retourbeleid, aarzel niet om contact op te nemen met uw persoonlijke adviseur.",
-    "returns.contactAdvisorButton": "Contact mijn adviseur"
+    "returns.contactAdvisorButton": "Contact mijn adviseur",
+    
+    // Privacy page translations
+    "privacy.title": "Gegevensbescherming",
+    "privacy.lastUpdated": "Laatst bijgewerkt: 15 januari 2025",
+    "privacy.introduction": "AUTO PBH hecht veel waarde aan de bescherming van uw persoonlijke gegevens. Deze privacyverklaring beschrijft hoe we uw persoonlijke informatie verzamelen, gebruiken en beschermen wanneer u onze website bezoekt of onze diensten gebruikt.",
+    "privacy.dataController": "Verwerkingsverantwoordelijke",
+    "privacy.controllerInfo": "AUTO PBH, geregistreerd in het Nederlandse Handelsregister onder nummer KVK 87654321, met maatschappelijke zetel gelegen te Autolettestraat 10, 3063 NP Rotterdam, Nederland, is de verwerkingsverantwoordelijke van uw persoonlijke gegevens.",
+    "privacy.dataCollected": "Verzamelde gegevens",
+    "privacy.personalData": "Persoonlijke gegevens",
+    "privacy.personalDataDesc": "Wanneer u contact met ons opneemt of een voertuig bestelt, kunnen we de volgende persoonlijke gegevens verzamelen: naam, voornaam, e-mailadres, telefoonnummer, postadres, geboortedatum en financiële informatie nodig voor de transactie.",
+    "privacy.navigationData": "Navigatiegegevens",
+    "privacy.navigationDataDesc": "We verzamelen automatisch bepaalde informatie wanneer u onze website bezoekt, waaronder uw IP-adres, browsertype, bezochte pagina's en de tijd die op elke pagina wordt doorgebracht.",
+    "privacy.cookies": "Cookies",
+    "privacy.cookiesDesc": "Onze website gebruikt cookies om uw ervaring te verbeteren. Voor meer informatie over ons cookiegebruik raadpleegt u ons cookiebeleid.",
+    "privacy.useOfData": "Gebruik van gegevens",
+    "privacy.useDescription": "Wij gebruiken uw persoonlijke gegevens voor de volgende doeleinden:",
+    "privacy.orderProcessing": "Verwerking van uw voertuigbestellingen",
+    "privacy.customerService": "Klantenservice en technische ondersteuning",
+    "privacy.marketing": "Verzending van commerciële informatie (met uw toestemming)",
+    "privacy.legalObligations": "Naleving van onze wettelijke verplichtingen",
+    "privacy.websiteImprovement": "Verbetering van onze website en diensten",
+    "privacy.legalBasis": "Rechtsgrondslag",
+    "privacy.legalBasisDesc": "De verwerking van uw persoonlijke gegevens is gebaseerd op:",
+    "privacy.contractExecution": "Uitvoering van het koopcontract",
+    "privacy.legalCompliance": "Naleving van wettelijke verplichtingen",
+    "privacy.legitimateInterest": "Onze gerechtvaardigde belangen voor klantenservice en websiteverbetering",
+    "privacy.consent": "Uw toestemming voor marketingcommunicatie",
+    "privacy.dataSharing": "Delen van gegevens",
+    "privacy.dataProtection": "AUTO PBH deelt uw persoonlijke gegevens niet met derden, behalve:",
+    "privacy.serviceProviders": "Met onze vertrouwde serviceproviders die ons helpen bij onze bedrijfsvoering",
+    "privacy.legalRequirements": "Wanneer wettelijk vereist door overheidsinstanties",
+    "privacy.businessTransfer": "In geval van fusie, overname of verkoop van activa",
+    "privacy.dataRetention": "Gegevensbewaring",
+    "privacy.retentionDescription": "Uw persoonlijke gegevens worden bewaard voor de tijd die nodig is om de doeleinden te vervullen waarvoor ze zijn verzameld, in overeenstemming met de Algemene Verordening Gegevensbescherming (AVG). Aan aankopen gerelateerde gegevens worden 10 jaar bewaard voor boekhoudkundige en fiscale doeleinden.",
+    "privacy.yourRights": "Uw rechten",
+    "privacy.rightsDescription": "Onder de AVG heeft u de volgende rechten betreffende uw persoonlijke gegevens:",
+    "privacy.accessRight": "Recht op toegang en rectificatie",
+    "privacy.erasureRight": "Recht op verwijdering (\"recht op vergetelheid\")",
+    "privacy.limitationRight": "Recht op beperking van verwerking",
+    "privacy.portabilityRight": "Recht op overdraagbaarheid",
+    "privacy.oppositionRight": "Recht van bezwaar",
+    "privacy.contact": "Contact",
+    "privacy.contactDescription": "Voor vragen betreffende de bescherming van uw persoonlijke gegevens of om uw rechten uit te oefenen, kunt u contact met ons opnemen via: privacy@autopbh.com of per post op ons postadres.",
+
+    // Legal Notice
+    "legal.title": "Wettelijke vermeldingen",
+    "legal.company": "Bedrijfsinformatie",
+    "legal.companyName": "Handelsnaam",
+    "legal.companyDetails": "AUTO PBH\nBesloten vennootschap (SARL)\nAandelenkapitaal: € 100.000\nInschrijving in het Nederlandse Handelsregister: KVK 87654321\nBtw-nummer: NL123456789B01",
+    "legal.address": "Hoofdkantoor",
+    "legal.addressDetails": "Autolettestraat 10\n3063 NP Rotterdam\nNederland",
+    "legal.contact": "Contact",
+    "legal.contactDetails": "Telefoon: +351 961 196 405\nE-mail: pbhauto@gmail.com",
+    "legal.publisher": "Directie van de publicatie",
+    "legal.publisherDetails": "De heer Pierre B., als manager van AUTO PBH.",
+    "legal.hosting": "Hosting",
+    "legal.hostingDetails": "De website www.autopbh.com wordt gehost door:\nLovable Technology\n2093 Philadelphia Pike #5620\nClaymont, DE 19703\nVerenigde Staten",
+    "legal.intellectual": "Intellectuele eigendom",
+    "legal.intellectualDetails": "Alle inhoud van de website www.autopbh.com (afbeeldingen, teksten, logo's, grafische elementen, enz.) is het exclusieve eigendom van AUTO PBH of haar partners. Gedeeltelijke of volledige reproductie van de inhoud is strikt verboden zonder voorafgaande toestemming.",
+    "legal.mediation": "Bemiddeling en geschillen",
+    "legal.mediationDetails": "In overeenstemming met de bepalingen van het Consumentenwetboek betreffende de minnelijke regeling van geschillen, is AUTO PBH aangesloten bij de Europese Bemiddelingsdienst. U kunt gratis gebruik maken van de bemiddelingsdienst via de website www.mediationeurope-consommation.eu"
   }
 };
 
