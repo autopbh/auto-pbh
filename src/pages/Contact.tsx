@@ -91,7 +91,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">{t("contact.phone")}</h3>
-                        <p className="text-lg text-autop-red font-medium">+351 961 196 405</p>
+                        <p className="text-lg text-autop-red font-medium">+393761762290</p>
                         <p className="text-sm text-muted-foreground">
                           {t("contact.phoneDescription")}
                         </p>
@@ -104,7 +104,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-lg">{t("contact.email")}</h3>
-                        <p className="text-lg">pbhauto@gmail.com</p>
+                        <p className="text-lg">contact@autopbh.com</p>
                         <p className="text-sm text-muted-foreground">
                           {t("contact.emailDescription")}
                         </p>

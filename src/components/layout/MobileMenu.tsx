@@ -124,8 +124,8 @@ const MobileMenu = () => {
           <p className="text-sm text-muted-foreground">
             AUTO PBH - Autolettestraat 10, 3063 NP Rotterdam
           </p>
-          <p className="text-sm text-autop-red">+351 961 196 405</p>
-          <p className="text-sm text-muted-foreground">pbhauto@gmail.com</p>
+          <p className="text-sm text-autop-red">+393761762290</p>
+          <p className="text-sm text-muted-foreground">contact@autopbh.com</p>
         </div>
       </div>
     </div>
