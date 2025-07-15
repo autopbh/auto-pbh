@@ -224,7 +224,7 @@ export default function Checkout() {
         </div>
       </div>
       
-      <h1 className="text-3xl font-bold mb-8 text-center">Commande de véhicule - Formulaire complet</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">{t("checkout.title")}</h1>
       
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         {/* Formulaire principal */}
@@ -235,13 +235,13 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</span>
-                  Informations personnelles
+                  {t("checkout.personalInfo")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName">Prénom *</Label>
+                    <Label htmlFor="firstName">{t("checkout.firstName")} *</Label>
                     <Input 
                       id="firstName"
                       {...register("firstName")}
@@ -253,7 +253,7 @@ export default function Checkout() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="lastName">Nom *</Label>
+                    <Label htmlFor="lastName">{t("checkout.lastName")} *</Label>
                     <Input 
                       id="lastName"
                       {...register("lastName")}
@@ -492,7 +492,7 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Adresse e-mail *</Label>
+                  <Label htmlFor="email">{t("checkout.email")} *</Label>
                   <Input 
                     id="email"
                     type="email"
@@ -533,7 +533,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
-                  Mode de paiement du solde restant
+                  {t("checkout.paymentMethod")}
                 </CardTitle>
                 <p className="text-sm text-muted-foreground">
                   Comment souhaitez-vous payer le solde de {formatPrice(total - depositAmount)} ?
@@ -629,7 +629,7 @@ export default function Checkout() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
-                    Informations professionnelles
+                    {t("checkout.professionalInfo")}
                   </CardTitle>
                   <p className="text-sm text-muted-foreground">
                     Ces informations sont nécessaires pour le financement par mensualités
@@ -706,7 +706,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</span>
-                  Coordonnées bancaires
+                  {t("checkout.bankDetails")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -767,7 +767,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">5</span>
-                  Adresse de livraison
+                  {t("checkout.deliveryAddress")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -840,7 +840,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">6</span>
-                  Paiement de l'acompte
+                  {t("checkout.depositPayment")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -1018,7 +1018,7 @@ export default function Checkout() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">7</span>
-                  Langue du contrat souhaitée
+                  {t("checkout.contractLanguage")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -1028,15 +1028,15 @@ export default function Checkout() {
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="fr" id="contract-fr" />
-                    <Label htmlFor="contract-fr">🇫🇷 Français</Label>
+                    <Label htmlFor="contract-fr">🇫🇷 {t("checkout.french")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="en" id="contract-en" />
-                    <Label htmlFor="contract-en">🇬🇧 Anglais</Label>
+                    <Label htmlFor="contract-en">🇬🇧 {t("checkout.english")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="es" id="contract-es" />
-                    <Label htmlFor="contract-es">🇪🇸 Espagnol</Label>
+                    <Label htmlFor="contract-es">🇪🇸 {t("checkout.spanish")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="it" id="contract-it" />
