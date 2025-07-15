@@ -17,6 +17,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
+import PaymentReceiptUploader from "@/components/checkout/PaymentReceiptUploader";
 
 // Validation IBAN simplifiée
 const validateIBAN = (iban: string) => {
@@ -69,7 +70,7 @@ const checkoutSchema = z.object({
   
   // Paiement de l'acompte
   paymentType: z.enum(["transfer"], { required_error: "Type de paiement requis" }),
-  paymentProof: z.instanceof(File, { message: "Preuve de paiement requise" }),
+  paymentProof: z.string().min(1, "Preuve de paiement requise"),
   
   // Langue du contrat
   contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: "Langue du contrat requise" }),
@@ -991,19 +992,13 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label htmlFor="paymentProof">📎 Preuve de paiement de l'acompte *</Label>
-                  <Input 
-                    id="paymentProof"
-                    type="file"
-                    accept="image/*,.pdf"
-                    {...register("paymentProof")}
-                    className={errors.paymentProof ? "border-destructive" : ""}
+                  <Label>📎 Preuve de paiement de l'acompte *</Label>
+                  <PaymentReceiptUploader
+                    onUploadComplete={(url) => setValue("paymentProof", url)}
+                    orderReference={`ORDER-${Date.now()}`}
                   />
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Formats acceptés : JPG, PNG, PDF (max 5MB)
-                  </p>
                   {errors.paymentProof && (
-                    <p className="text-sm text-destructive mt-1">{errors.paymentProof.message}</p>
+                    <p className="text-sm text-destructive mt-1">Preuve de paiement requise</p>
                   )}
                 </div>
               </CardContent>
