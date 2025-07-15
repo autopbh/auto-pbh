@@ -44,6 +44,9 @@ const checkoutSchema = z.object({
     required_error: "Veuillez choisir un mode de paiement pour le solde" 
   }),
   
+  // Nombre de mois pour les mensualités (conditionnel)
+  installmentMonths: z.number().optional(),
+  
   // Informations professionnelles (conditionnelles)
   profession: z.string().optional(),
   employer: z.string().optional(),
@@ -85,11 +88,12 @@ const checkoutSchema = z.object({
            data.employer && data.employer.length >= 2 &&
            data.employerAddress && data.employerAddress.length >= 5 &&
            data.professionalId && data.professionalId.length >= 2 &&
-           data.monthlySalary && data.monthlySalary >= 1;
+           data.monthlySalary && data.monthlySalary >= 1 &&
+           data.installmentMonths && data.installmentMonths >= 6 && data.installmentMonths <= 84;
   }
   return true;
 }, {
-  message: "Les informations professionnelles sont requises pour le paiement par mensualités",
+  message: "Les informations professionnelles et le nombre de mois sont requis pour le paiement par mensualités",
   path: ["profession"]
 });
 
@@ -130,6 +134,7 @@ export default function Checkout() {
 
   const watchedPaymentType = watch("paymentType");
   const watchedPaymentMethod = watch("paymentMethod");
+  const watchedInstallmentMonths = watch("installmentMonths");
   const watchedContractLanguage = watch("contractLanguage");
 
   const onSubmit = async (data: CheckoutForm) => {
@@ -557,6 +562,51 @@ export default function Checkout() {
                     </div>
                   </div>
                 </RadioGroup>
+                
+                {/* Sélection du nombre de mois si mensualités choisies */}
+                {watchedPaymentMethod === 'installments' && (
+                  <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <Label htmlFor="installmentMonths" className="text-blue-800 font-medium">
+                      Nombre de mois souhaité pour le financement *
+                    </Label>
+                    <Select onValueChange={(value) => setValue("installmentMonths", parseInt(value))}>
+                      <SelectTrigger className="w-full mt-2">
+                        <SelectValue placeholder="Choisissez la durée de financement" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="6">6 mois</SelectItem>
+                        <SelectItem value="12">12 mois</SelectItem>
+                        <SelectItem value="18">18 mois</SelectItem>
+                        <SelectItem value="24">24 mois</SelectItem>
+                        <SelectItem value="30">30 mois</SelectItem>
+                        <SelectItem value="36">36 mois</SelectItem>
+                        <SelectItem value="42">42 mois</SelectItem>
+                        <SelectItem value="48">48 mois</SelectItem>
+                        <SelectItem value="54">54 mois</SelectItem>
+                        <SelectItem value="60">60 mois</SelectItem>
+                        <SelectItem value="66">66 mois</SelectItem>
+                        <SelectItem value="72">72 mois</SelectItem>
+                        <SelectItem value="78">78 mois</SelectItem>
+                        <SelectItem value="84">84 mois</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.installmentMonths && (
+                      <p className="text-sm text-destructive mt-1">{errors.installmentMonths.message}</p>
+                    )}
+                    
+                    {watchedPaymentMethod === 'installments' && watchedInstallmentMonths && (
+                      <div className="mt-3 p-3 bg-white border rounded text-sm">
+                        <p className="text-green-700">
+                          <strong>Mensualité estimée :</strong> {formatPrice((total - depositAmount) / watchedInstallmentMonths)}
+                        </p>
+                        <p className="text-gray-600 text-xs mt-1">
+                          * Montant indicatif, les conditions exactes seront définies avec notre équipe
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+                
                 {errors.paymentMethod && (
                   <p className="text-sm text-destructive mt-2">{errors.paymentMethod.message}</p>
                 )}
