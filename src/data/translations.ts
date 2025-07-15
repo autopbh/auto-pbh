@@ -2036,6 +2036,17 @@ export const translations: TranslationsType = {
     "cart.paymentSent": "Solicitação de entrada enviada",
      "cart.paymentSentDesc": "Faça a transferência em 3 dias para confirmar sua reserva.",
 
+    // Additional checkout fields - Portuguese
+    "checkout.nationality": "Nacionalidade",
+    "checkout.street": "Endereço completo",
+    "checkout.postalCode": "Código postal",
+    "checkout.city": "Cidade",
+    "checkout.country": "País",
+    "checkout.phoneWithCode": "Telefone (com código do país)",
+    "checkout.confirmEmailLabel": "Confirmar e-mail",
+    "checkout.accountHolder": "Titular da conta",
+    "checkout.bankName": "Nome do banco",
+
     // Checkout page
     "checkout.title": "Finalizar pedido",
     "checkout.backToCart": "Voltar ao carrinho",
@@ -2658,7 +2669,18 @@ export const translations: TranslationsType = {
     "cart.and": "y nuestra",
     "cart.privacy": "política de privacidad",
     "cart.paymentSent": "Solicitud de depósito enviada",
-     "cart.paymentSentDesc": "Realice la transferencia en 3 días para confirmar su reserva.",
+      "cart.paymentSentDesc": "Realice la transferencia en 3 días para confirmar su reserva.",
+
+    // Additional checkout fields - Spanish
+    "checkout.nationality": "Nacionalidad",
+    "checkout.street": "Dirección completa",
+    "checkout.postalCode": "Código postal",
+    "checkout.city": "Ciudad",
+    "checkout.country": "País",
+    "checkout.phoneWithCode": "Teléfono (con código de país)",
+    "checkout.confirmEmailLabel": "Confirmar correo electrónico",
+    "checkout.accountHolder": "Titular de la cuenta",
+    "checkout.bankName": "Nombre del banco",
 
     // Checkout page
     "checkout.title": "Finalizar pedido",
@@ -3383,6 +3405,17 @@ export const translations: TranslationsType = {
     "cart.paymentSent": "Anzahlungsanfrage gesendet",
      "cart.paymentSentDesc": "Bitte führen Sie die Überweisung innerhalb von 3 Tagen durch, um Ihre Reservierung zu bestätigen.",
 
+    // Additional checkout fields - German
+    "checkout.nationality": "Staatsangehörigkeit",
+    "checkout.street": "Vollständige Adresse",
+    "checkout.postalCode": "Postleitzahl",
+    "checkout.city": "Stadt",
+    "checkout.country": "Land",
+    "checkout.phoneWithCode": "Telefon (mit Ländervorwahl)",
+    "checkout.confirmEmailLabel": "E-Mail bestätigen",
+    "checkout.accountHolder": "Kontoinhaber",
+    "checkout.bankName": "Bankname",
+
     // Checkout page
     "checkout.title": "Bestellung abschließen",
     "checkout.backToCart": "Zurück zum Warenkorb",
@@ -4106,6 +4139,17 @@ export const translations: TranslationsType = {
     "cart.paymentSent": "Richiesta acconto inviata",
     "cart.paymentSentDesc": "Effettua il bonifico entro 3 giorni per confermare la tua prenotazione.",
 
+    // Additional checkout fields - Italian
+    "checkout.nationality": "Nazionalità",
+    "checkout.street": "Indirizzo completo", 
+    "checkout.postalCode": "Codice postale",
+    "checkout.city": "Città",
+    "checkout.country": "Paese",
+    "checkout.phoneWithCode": "Telefono (con prefisso internazionale)",
+    "checkout.confirmEmailLabel": "Conferma email",
+    "checkout.accountHolder": "Titolare del conto",
+    "checkout.bankName": "Nome della banca",
+
     // Checkout page
     "checkout.title": "Finalizza ordine",
     "checkout.backToCart": "Torna al carrello",
@@ -4182,17 +4226,6 @@ export const translations: TranslationsType = {
     "checkout.workDuration": "Durata impiego",
     "checkout.selectProfession": "Seleziona professione",
     "checkout.selectWorkDuration": "Seleziona durata",
-    "checkout.accountHolder": "Titolare del conto",
-    "checkout.bankName": "Nome della banca",
-    "checkout.fullAddress": "Indirizzo completo",
-    "checkout.postalCode": "Codice postale",
-    "checkout.city": "Città",
-    "checkout.country": "Paese",
-    "checkout.gender": "Sesso",
-    "checkout.male": "Uomo",
-    "checkout.female": "Donna",
-    "checkout.other": "Altro",
-    "checkout.nationality": "Nazionalità",
     "checkout.uploadPaymentProof": "Carica il giustificativo di pagamento",
     "checkout.acceptedFormats": "Formati accettati: JPG, PNG, HEIC (Max: 5MB)",
     "checkout.dutch": "Olandese",
@@ -4267,7 +4300,6 @@ export const translations: TranslationsType = {
     "checkout.depositMotif": "Acconto ordine veicolo",
     
     // Additional checkout fields for Italian
-    "checkout.confirmEmailLabel": "Conferma email",
     "checkout.downloadPaymentProof": "Scarica la prova di pagamento",
     
     // Account page
@@ -4713,7 +4745,18 @@ export const translations: TranslationsType = {
     "cart.and": "en ons",
     "cart.privacy": "privacybeleid",
     "cart.paymentSent": "Aanbetalingsverzoek verzonden",
-     "cart.paymentSentDesc": "Maak de overschrijving binnen 3 dagen om uw reservering te bevestigen.",
+      "cart.paymentSentDesc": "Maak de overschrijving binnen 3 dagen om uw reservering te bevestigen.",
+
+    // Additional checkout fields - Dutch
+    "checkout.nationality": "Nationaliteit",
+    "checkout.street": "Volledig adres",
+    "checkout.postalCode": "Postcode",
+    "checkout.city": "Stad",
+    "checkout.country": "Land",
+    "checkout.phoneWithCode": "Telefoon (met landcode)",
+    "checkout.confirmEmailLabel": "E-mail bevestigen",
+    "checkout.accountHolder": "Rekeninghouder",
+    "checkout.bankName": "Banknaam",
 
     // Checkout page
     "checkout.title": "Bestelling afronden",
