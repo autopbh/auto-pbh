@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PaymentReceiptUploaderProps {
   onUploadComplete: (url: string) => void;
@@ -17,7 +18,7 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     
     if (!file) return;
@@ -45,27 +46,61 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
     setIsUploading(true);
     setFileName(file.name);
     
-    // Create a preview of the image
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const result = reader.result as string;
-      setPreview(result);
+    try {
+      // Get current user
+      const { data: { user } } = await supabase.auth.getUser();
       
-      // Simulate upload delay (in a real app, you would upload to a server)
-      setTimeout(() => {
-        setIsUploading(false);
-        // Here we would normally get back a URL from the server
-        // For now we'll use the local preview URL
-        onUploadComplete(result);
-        
+      if (!user) {
         toast({
-          title: "Preuve de paiement téléchargée",
-          description: `Fichier "${file.name}" téléchargé avec succès.`
+          title: "Erreur d'authentification",
+          description: "Vous devez être connecté pour télécharger un fichier",
+          variant: "destructive"
         });
-      }, 1500);
-    };
-    
-    reader.readAsDataURL(file);
+        setIsUploading(false);
+        return;
+      }
+
+      // Create a preview of the image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+
+      // Upload to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}/${orderReference}_${Date.now()}.${fileExt}`;
+      
+      const { data, error } = await supabase.storage
+        .from('payment-receipts')
+        .upload(fileName, file);
+
+      if (error) {
+        throw error;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('payment-receipts')
+        .getPublicUrl(fileName);
+
+      setIsUploading(false);
+      onUploadComplete(publicUrl);
+      
+      toast({
+        title: "Preuve de paiement téléchargée",
+        description: `Fichier "${file.name}" téléchargé avec succès.`
+      });
+
+    } catch (error) {
+      console.error('Upload error:', error);
+      setIsUploading(false);
+      toast({
+        title: "Erreur de téléchargement",
+        description: "Une erreur est survenue lors du téléchargement. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    }
   };
   
   const triggerFileInput = () => {
