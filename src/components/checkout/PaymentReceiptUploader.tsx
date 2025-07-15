@@ -13,6 +13,7 @@ interface PaymentReceiptUploaderProps {
 const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentReceiptUploaderProps) => {
   const [isUploading, setIsUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   
@@ -42,6 +43,7 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
     }
     
     setIsUploading(true);
+    setFileName(file.name);
     
     // Create a preview of the image
     const reader = new FileReader();
@@ -58,7 +60,7 @@ const PaymentReceiptUploader = ({ onUploadComplete, orderReference }: PaymentRec
         
         toast({
           title: "Preuve de paiement téléchargée",
-          description: "Nous avons bien reçu votre justificatif de paiement."
+          description: `Fichier "${file.name}" téléchargé avec succès.`
         });
       }, 1500);
     };
