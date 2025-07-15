@@ -59,7 +59,7 @@ const checkoutSchema = z.object({
   deliveryCountry: z.string().min(2, "Pays de livraison requis"),
   
   // Paiement de l'acompte
-  paymentType: z.enum(["transfer", "card", "other"], { required_error: "Type de paiement requis" }),
+  paymentType: z.enum(["transfer"], { required_error: "Type de paiement requis" }),
   paymentProof: z.instanceof(File, { message: "Preuve de paiement requise" }),
   
   // Langue du contrat
@@ -570,23 +570,27 @@ export default function Checkout() {
                   </p>
                 </div>
 
+                <div className="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                  <h4 className="font-medium text-green-800 mb-2">💳 Coordonnées bancaires pour le virement</h4>
+                  <div className="space-y-2 text-sm text-green-700">
+                    <p><span className="font-medium">Bénéficiaire :</span> AURA AUTO GENESIS</p>
+                    <p><span className="font-medium">IBAN :</span> FR76 1234 5678 9012 3456 7890 123</p>
+                    <p><span className="font-medium">BIC/SWIFT :</span> BNPAFRPPXXX</p>
+                    <p><span className="font-medium">Banque :</span> BNP Paribas</p>
+                    <p><span className="font-medium">Motif :</span> Acompte commande véhicule - Ref: [VOTRE_REF]</p>
+                  </div>
+                </div>
+
                 <div>
-                  <Label>Type de paiement de l'acompte *</Label>
+                  <Label>Méthode de paiement utilisée pour l'acompte *</Label>
                   <RadioGroup 
-                    onValueChange={(value) => setValue("paymentType", value as "transfer" | "card" | "other")}
+                    onValueChange={(value) => setValue("paymentType", value as "transfer")}
+                    defaultValue="transfer"
                     className="mt-2"
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="transfer" id="transfer" />
-                      <Label htmlFor="transfer">Virement bancaire</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="card" id="card" />
-                      <Label htmlFor="card">Carte bancaire</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="other" id="other" />
-                      <Label htmlFor="other">Autre</Label>
+                      <Label htmlFor="transfer">✅ Virement bancaire (effectué vers le compte ci-dessus)</Label>
                     </div>
                   </RadioGroup>
                   {errors.paymentType && (
