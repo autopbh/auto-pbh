@@ -551,7 +551,7 @@ export default function Checkout() {
                           📅 Paiement par mensualités
                         </Label>
                         <p className="text-sm text-muted-foreground mt-1">
-                          Le solde sera payé en mensualités (conditions à définir avec notre équipe)
+                          Le solde sera payé en mensualités de 6 à 84 mois selon votre capacité financière
                         </p>
                       </div>
                     </div>
