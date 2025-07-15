@@ -584,20 +584,20 @@ export default function Checkout() {
                         <SelectValue placeholder={t("checkout.selectFinancingDuration")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="6">6 mois</SelectItem>
-                        <SelectItem value="12">12 mois</SelectItem>
-                        <SelectItem value="18">18 mois</SelectItem>
-                        <SelectItem value="24">24 mois</SelectItem>
-                        <SelectItem value="30">30 mois</SelectItem>
-                        <SelectItem value="36">36 mois</SelectItem>
-                        <SelectItem value="42">42 mois</SelectItem>
-                        <SelectItem value="48">48 mois</SelectItem>
-                        <SelectItem value="54">54 mois</SelectItem>
-                        <SelectItem value="60">60 mois</SelectItem>
-                        <SelectItem value="66">66 mois</SelectItem>
-                        <SelectItem value="72">72 mois</SelectItem>
-                        <SelectItem value="78">78 mois</SelectItem>
-                        <SelectItem value="84">84 mois</SelectItem>
+                        <SelectItem value="6">6 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="12">12 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="18">18 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="24">24 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="30">30 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="36">36 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="42">42 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="48">48 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="54">54 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="60">60 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="66">66 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="72">72 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="78">78 {t("checkout.months")}</SelectItem>
+                        <SelectItem value="84">84 {t("checkout.months")}</SelectItem>
                       </SelectContent>
                     </Select>
                     {errors.installmentMonths && (
