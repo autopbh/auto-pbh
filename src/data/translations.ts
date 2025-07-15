@@ -97,6 +97,13 @@ export const translations: TranslationsType = {
     "vehicle.directContact": "Contact Direct",
     "vehicle.teamAvailable": "Notre équipe est à votre disposition pour répondre à toutes vos questions.",
     "vehicle.contactAdvisor": "Contactez votre conseiller dédié",
+
+    // Fuel types
+    "fuel.essence": "Essence",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Essence/Flex",
+    "fuel.petrol": "Essence",
+    
     
     // Contact page
     "contact.title": "Contact Privilégié",
@@ -1074,6 +1081,13 @@ export const translations: TranslationsType = {
     "vehicle.directContact": "Direct Contact",
     "vehicle.teamAvailable": "Our team is at your disposal to answer all your questions.",
     "vehicle.contactAdvisor": "Contact your dedicated advisor",
+
+    // Fuel types
+    "fuel.essence": "Petrol",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Petrol/Flex",
+    "fuel.petrol": "Petrol",
+    
     
     // Contact page
     "contact.title": "Contact Us",
@@ -2513,6 +2527,35 @@ export const translations: TranslationsType = {
     "warranty.ourPromiseDescription": "Na AUTO PBH, toda garantia é uma promessa. A promessa de que seu investimento está protegido, que sua mobilidade está assegurada e que sua satisfação é nossa prioridade.",
     "warranty.discussWithExpert": "Discutir com um Especialista",
 
+    // Vehicle detail
+    "vehicle.notFound": "Veículo não encontrado",
+    "vehicle.backToCatalog": "Voltar ao catálogo",
+    "vehicle.zeroKm": "ZERO KM",
+    "vehicle.mainFeatures": "Características Principais",
+    "vehicle.year": "Ano",
+    "vehicle.options": "Opções e Equipamentos",
+    "vehicle.requestMoreInfo": "Solicitar mais informações",
+    "vehicle.warranties": "Garantias",
+    "vehicle.manufacturerWarranty": "Garantia do fabricante",
+    "vehicle.full": "completa",
+    "vehicle.partial": "parcial",
+    "vehicle.warrantyExtension": "Extensão disponível até 36 meses",
+    "vehicle.assistance": "Assistência 24/7 incluída",
+    "vehicle.includedServices": "Serviços Incluídos",
+    "vehicle.delivery": "Entrega disponível em toda a Europa",
+    "vehicle.tradeIn": "Retoma do seu veículo antigo",
+    "vehicle.financing": "Soluções de financiamento personalizadas",
+    "vehicle.directContact": "Contato Direto",
+    "vehicle.teamAvailable": "Nossa equipe está à sua disposição para responder a todas as suas perguntas.",
+    "vehicle.contactAdvisor": "Contate seu consultor dedicado",
+
+    // Fuel types
+    "fuel.essence": "Gasolina",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Gasolina/Flex",
+    "fuel.petrol": "Gasolina",
+    
+
     // FAQ translations
     "faq.title": "FAQ",
     "faq.frequentQuestions": "Perguntas Frequentes",
@@ -3363,6 +3406,35 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "Nuestra Promesa",
     "warranty.ourPromiseDescription": "En AUTO PBH, cada garantía es una promesa. La promesa de que su inversión está protegida, que su movilidad está asegurada y que su satisfacción es nuestra prioridad.",
     "warranty.discussWithExpert": "Discutir con un Experto",
+
+    // Vehicle detail
+    "vehicle.notFound": "Vehículo no encontrado",
+    "vehicle.backToCatalog": "Volver al catálogo",
+    "vehicle.zeroKm": "CERO KM",
+    "vehicle.mainFeatures": "Características Principales",
+    "vehicle.year": "Año",
+    "vehicle.options": "Opciones y Equipamientos",
+    "vehicle.requestMoreInfo": "Solicitar más información",
+    "vehicle.warranties": "Garantías",
+    "vehicle.manufacturerWarranty": "Garantía del fabricante",
+    "vehicle.full": "completa",
+    "vehicle.partial": "parcial",
+    "vehicle.warrantyExtension": "Extensión disponible hasta 36 meses",
+    "vehicle.assistance": "Asistencia 24/7 incluida",
+    "vehicle.includedServices": "Servicios Incluidos",
+    "vehicle.delivery": "Entrega disponible en toda Europa",
+    "vehicle.tradeIn": "Retoma de su vehículo anterior",
+    "vehicle.financing": "Soluciones de financiamiento personalizadas",
+    "vehicle.directContact": "Contacto Directo",
+    "vehicle.teamAvailable": "Nuestro equipo está a su disposición para responder a todas sus preguntas.",
+    "vehicle.contactAdvisor": "Contacte a su asesor dedicado",
+
+    // Fuel types
+    "fuel.essence": "Gasolina",
+    "fuel.diesel": "Diésel",
+    "fuel.essenceFlex": "Gasolina/Flex",
+    "fuel.petrol": "Gasolina",
+    
     
     // Returns page translations
     "returns.title": "Política de Satisfacción",
@@ -4141,6 +4213,35 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "Unser Versprechen",
     "warranty.ourPromiseDescription": "Bei AUTO PBH ist jede Garantie ein Versprechen. Das Versprechen, dass Ihre Investition geschützt ist, dass Ihre Mobilität gesichert ist und dass Ihre Zufriedenheit unsere Priorität ist.",
     "warranty.discussWithExpert": "Mit einem Experten besprechen",
+
+    // Vehicle detail
+    "vehicle.notFound": "Fahrzeug nicht gefunden",
+    "vehicle.backToCatalog": "Zurück zum Katalog",
+    "vehicle.zeroKm": "NULL KM",
+    "vehicle.mainFeatures": "Hauptmerkmale",
+    "vehicle.year": "Jahr",
+    "vehicle.options": "Optionen und Ausstattung",
+    "vehicle.requestMoreInfo": "Weitere Informationen anfordern",
+    "vehicle.warranties": "Garantien",
+    "vehicle.manufacturerWarranty": "Herstellergarantie",
+    "vehicle.full": "vollständig",
+    "vehicle.partial": "teilweise",
+    "vehicle.warrantyExtension": "Verlängerung bis zu 36 Monate möglich",
+    "vehicle.assistance": "24/7-Assistance inklusive",
+    "vehicle.includedServices": "Enthaltene Dienste",
+    "vehicle.delivery": "Lieferung in ganz Europa möglich",
+    "vehicle.tradeIn": "Inzahlungnahme Ihres alten Fahrzeugs",
+    "vehicle.financing": "Maßgeschneiderte Finanzierungslösungen",
+    "vehicle.directContact": "Direkter Kontakt",
+    "vehicle.teamAvailable": "Unser Team steht Ihnen zur Verfügung, um alle Ihre Fragen zu beantworten.",
+    "vehicle.contactAdvisor": "Kontaktieren Sie Ihren dedizierten Berater",
+
+    // Fuel types
+    "fuel.essence": "Benzin",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Benzin/Flex",
+    "fuel.petrol": "Benzin",
+    
     
     // Returns page translations
     "returns.title": "Zufriedenheitsrichtlinie",
@@ -4820,6 +4921,35 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "La Nostra Promessa",
     "warranty.ourPromiseDescription": "In AUTO PBH, ogni garanzia è una promessa. La promessa che il vostro investimento è protetto, che la vostra mobilità è assicurata e che la vostra soddisfazione è la nostra priorità.",
     "warranty.discussWithExpert": "Discuti con un Esperto",
+
+    // Vehicle detail
+    "vehicle.notFound": "Veicolo non trovato",
+    "vehicle.backToCatalog": "Torna al catalogo",
+    "vehicle.zeroKm": "ZERO KM",
+    "vehicle.mainFeatures": "Caratteristiche Principali",
+    "vehicle.year": "Anno",
+    "vehicle.options": "Opzioni e Equipaggiamenti",
+    "vehicle.requestMoreInfo": "Richiedi più informazioni",
+    "vehicle.warranties": "Garanzie",
+    "vehicle.manufacturerWarranty": "Garanzia del costruttore",
+    "vehicle.full": "completa",
+    "vehicle.partial": "parziale",
+    "vehicle.warrantyExtension": "Estensione disponibile fino a 36 mesi",
+    "vehicle.assistance": "Assistenza 24/7 inclusa",
+    "vehicle.includedServices": "Servizi Inclusi",
+    "vehicle.delivery": "Consegna disponibile in tutta Europa",
+    "vehicle.tradeIn": "Ritiro del vostro vecchio veicolo",
+    "vehicle.financing": "Soluzioni di finanziamento personalizzate",
+    "vehicle.directContact": "Contatto Diretto",
+    "vehicle.teamAvailable": "Il nostro team è a vostra disposizione per rispondere a tutte le vostre domande.",
+    "vehicle.contactAdvisor": "Contattate il vostro consulente dedicato",
+
+    // Fuel types
+    "fuel.essence": "Benzina",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Benzina/Flex",
+    "fuel.petrol": "Benzina",
+    
 
     // FAQ translations
     "faq.title": "FAQ",
@@ -5540,6 +5670,35 @@ export const translations: TranslationsType = {
     "warranty.ourPromise": "Onze Belofte",
     "warranty.ourPromiseDescription": "Bij AUTO PBH is elke garantie een belofte. De belofte dat uw investering beschermd is, dat uw mobiliteit verzekerd is en dat uw tevredenheid onze prioriteit is.",
     "warranty.discussWithExpert": "Bespreek met een Expert",
+
+    // Vehicle detail
+    "vehicle.notFound": "Voertuig niet gevonden",
+    "vehicle.backToCatalog": "Terug naar catalogus",
+    "vehicle.zeroKm": "ZERO KM",
+    "vehicle.mainFeatures": "Hoofdkenmerken",
+    "vehicle.year": "Jaar",
+    "vehicle.options": "Opties en Uitrusting",
+    "vehicle.requestMoreInfo": "Meer informatie aanvragen",
+    "vehicle.warranties": "Garanties",
+    "vehicle.manufacturerWarranty": "Fabrieksgarantie",
+    "vehicle.full": "volledig",
+    "vehicle.partial": "gedeeltelijk",
+    "vehicle.warrantyExtension": "Verlenging mogelijk tot 36 maanden",
+    "vehicle.assistance": "24/7 assistentie inbegrepen",
+    "vehicle.includedServices": "Inbegrepen Diensten",
+    "vehicle.delivery": "Levering mogelijk in heel Europa",
+    "vehicle.tradeIn": "Inruil van uw oude voertuig",
+    "vehicle.financing": "Gepersonaliseerde financieringsoplossingen",
+    "vehicle.directContact": "Direct Contact",
+    "vehicle.teamAvailable": "Ons team staat tot uw beschikking om al uw vragen te beantwoorden.",
+    "vehicle.contactAdvisor": "Contacteer uw toegewijde adviseur",
+
+    // Fuel types
+    "fuel.essence": "Benzine",
+    "fuel.diesel": "Diesel",
+    "fuel.essenceFlex": "Benzine/Flex",
+    "fuel.petrol": "Benzine",
+    
 
     // FAQ translations
     "faq.title": "FAQ",

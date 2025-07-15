@@ -29,6 +29,17 @@ const VehicleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
   const { t } = useLanguage();
+  
+  // Function to translate fuel types
+  const translateFuelType = (fuelType: string) => {
+    const fuelMap: { [key: string]: string } = {
+      'Essence': t('fuel.essence'),
+      'Diesel': t('fuel.diesel'), 
+      'Essence/Flex': t('fuel.essenceFlex'),
+      'Petrol': t('fuel.petrol')
+    };
+    return fuelMap[fuelType] || fuelType;
+  };
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -148,7 +159,7 @@ const VehicleDetail = () => {
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-8">
               <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : t("vehicle.zeroKm")}</span>
               <span>•</span>
-              <span>{vehicle.fuelType}</span>
+              <span>{translateFuelType(vehicle.fuelType)}</span>
               <span>•</span>
               <span>{vehicle.power} {t("shop.hp")}</span>
             </div>
@@ -171,7 +182,7 @@ const VehicleDetail = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <Car className="h-5 w-5 text-autop-red" />
-                    <span>{vehicle.fuelType}</span>
+                    <span>{translateFuelType(vehicle.fuelType)}</span>
                   </div>
                 </div>
               </section>
