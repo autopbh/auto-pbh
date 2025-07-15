@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import LanguageSelector from "@/components/common/LanguageSelector";
+import GoogleTranslate from "@/components/common/GoogleTranslate";
+import AutoTranslate from "@/components/common/AutoTranslate";
 import CartDropdown from "@/components/shop/CartDropdown";
 import MobileMenu from "@/components/layout/MobileMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -91,6 +93,11 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <LanguageSelector />
           
+          {/* Indicateur de traduction automatique */}
+          <div className="text-xs text-muted-foreground bg-white/20 dark:bg-black/20 px-2 py-1 rounded-md border border-white/20 dark:border-black/20">
+            🌐 Auto-translate
+          </div>
+          
           <LocalizedLink to="/search">
             <Button 
               variant="secondary"
@@ -151,6 +158,9 @@ const Header = () => {
           </Sheet>
         </div>
       </div>
+      
+      {/* Composant de traduction automatique masqué */}
+      <AutoTranslate />
     </header>
   );
 };
