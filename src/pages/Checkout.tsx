@@ -16,6 +16,8 @@ import { CalendarIcon, Upload, ArrowLeft, ShoppingCart, Copy, Check } from "luci
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import PaymentReceiptUploader from "@/components/checkout/PaymentReceiptUploader";
 
@@ -108,6 +110,7 @@ export default function Checkout() {
   const [emailValue, setEmailValue] = useState("");
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const { t, currentLanguage } = useLanguage();
+  const { toast } = useToast();
 
   useEffect(() => {
     const loadCart = () => {
@@ -152,9 +155,93 @@ export default function Checkout() {
 
   const onSubmit = async (data: CheckoutForm) => {
     setIsSubmitting(true);
-    console.log("Commande complète soumise:", data);
-    // Logique de traitement de la commande ici
-    setIsSubmitting(false);
+    
+    try {
+      console.log("Soumission de la commande:", data);
+      
+      // Générer un numéro de commande unique
+      const orderNumber = `PBH-${Date.now()}`;
+      
+      // Préparer les données de la commande
+      const orderData = {
+        order_number: orderNumber,
+        customer_name: `${data.firstName} ${data.lastName}`,
+        customer_email: data.email,
+        customer_phone: data.phone,
+        status: 'pending',
+        price: total,
+        vehicle_id: cartItems[0]?.id || null,
+        payment_receipt_url: data.paymentProof,
+        additional_options: {
+          personalInfo: {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            gender: data.gender,
+            birthDate: data.birthDate.toISOString(),
+            nationality: data.nationality,
+            address: `${data.street}, ${data.postalCode} ${data.city}, ${data.country}`,
+            phone: data.phone,
+            email: data.email,
+          },
+          paymentMethod: data.paymentMethod,
+          installmentMonths: data.installmentMonths,
+          professionalInfo: data.paymentMethod === 'installments' ? {
+            profession: data.profession,
+            employer: data.employer,
+            employerAddress: data.employerAddress,
+            professionalId: data.professionalId,
+            monthlySalary: data.monthlySalary,
+          } : null,
+          bankDetails: {
+            accountHolder: data.accountHolder,
+            bankName: data.bankName,
+            iban: data.iban,
+            bic: data.bic,
+          },
+          deliveryAddress: {
+            recipient: data.deliveryRecipient,
+            address: `${data.deliveryStreet}, ${data.deliveryPostalCode} ${data.deliveryCity}, ${data.deliveryCountry}`,
+          },
+          contractLanguage: data.contractLanguage,
+          depositAmount: depositAmount,
+          remainingBalance: total - depositAmount,
+        }
+      };
+
+      // Insérer la commande dans Supabase
+      const { data: insertedOrder, error } = await supabase
+        .from('orders')
+        .insert([orderData])
+        .select();
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("Commande créée avec succès:", insertedOrder);
+      
+      // Vider le panier
+      localStorage.removeItem('cart');
+      
+      // Afficher un message de succès
+      toast({
+        title: "Commande validée !",
+        description: `Votre commande ${orderNumber} a été enregistrée avec succès. Vous recevrez un email de confirmation sous peu.`,
+      });
+      
+      // Rediriger vers une page de confirmation (optionnel)
+      // navigate(`/confirmation/${orderNumber}`);
+      
+    } catch (error) {
+      console.error('Erreur lors de la création de la commande:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la validation de votre commande. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Fonction de copie dans le presse-papiers
