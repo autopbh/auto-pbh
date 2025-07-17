@@ -73,12 +73,7 @@ const createCheckoutSchema = (t: (key: string) => string) => z.object({
   paymentProof: z.string().min(1, t("validation.paymentProofRequired")),
   
   // Langue du contrat
-  contractLanguage: z.string().min(1, t("validation.contractLanguageRequired")),
-  
-  // Consentements
-  dataAccuracy: z.boolean().refine(val => val === true, t("validation.dataAccuracyRequired")),
-  depositConfirmation: z.boolean().refine(val => val === true, t("validation.depositConfirmationRequired")),
-  dataProcessing: z.boolean().refine(val => val === true, t("validation.dataProcessingRequired"))
+  contractLanguage: z.string().min(1, t("validation.contractLanguageRequired"))
 }).refine((data) => data.email === data.emailConfirm, {
   message: t("validation.emailsNoMatch"),
   path: ["emailConfirm"]
@@ -207,12 +202,7 @@ export default function Checkout() {
           country: data.deliveryCountry,
         },
         contractLanguage: data.contractLanguage,
-        vehicleInfo: cartItems[0] || null,
-        consents: {
-          dataAccuracy: data.dataAccuracy,
-          depositConfirmation: data.depositConfirmation,
-          dataProcessing: data.dataProcessing,
-        }
+        vehicleInfo: cartItems[0] || null
       };
 
       // Envoyer vers Make webhook
@@ -1062,56 +1052,32 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* 8. Consentements */}
+            {/* 8. Conditions d'engagement */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">8</span>
-                  {t("checkout.mandatoryConsents")}
+                  Conditions d'engagement
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-2">
-                  <Checkbox 
-                    id="dataAccuracy"
-                    onCheckedChange={(checked) => setValue("dataAccuracy", checked as boolean)}
-                    className={errors.dataAccuracy ? "border-destructive" : ""}
-                  />
-                  <Label htmlFor="dataAccuracy" className="text-sm leading-5">
-                    {t("checkout.informationAccuracy")} *
-                  </Label>
+              <CardContent>
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-500 text-white rounded-full p-1 mt-1">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-blue-800 mb-2">Information importante</h4>
+                      <p className="text-sm text-blue-700 leading-relaxed">
+                        En confirmant votre commande, vous acceptez automatiquement nos conditions générales de vente, 
+                        confirmez l'exactitude des informations fournies, validez que le versement de l'acompte engage définitivement votre commande 
+                        et consentez au traitement de vos données personnelles dans le cadre de cette transaction.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                {errors.dataAccuracy && (
-                  <p className="text-sm text-destructive">{errors.dataAccuracy.message}</p>
-                )}
-
-                <div className="flex items-start space-x-2">
-                  <Checkbox 
-                    id="depositConfirmation"
-                    onCheckedChange={(checked) => setValue("depositConfirmation", checked as boolean)}
-                    className={errors.depositConfirmation ? "border-destructive" : ""}
-                  />
-                  <Label htmlFor="depositConfirmation" className="text-sm leading-5">
-                    {t("checkout.depositValidatesOrder")} *
-                  </Label>
-                </div>
-                {errors.depositConfirmation && (
-                  <p className="text-sm text-destructive">{errors.depositConfirmation.message}</p>
-                )}
-
-                <div className="flex items-start space-x-2">
-                  <Checkbox 
-                    id="dataProcessing"
-                    onCheckedChange={(checked) => setValue("dataProcessing", checked as boolean)}
-                    className={errors.dataProcessing ? "border-destructive" : ""}
-                  />
-                  <Label htmlFor="dataProcessing" className="text-sm leading-5">
-                    {t("checkout.dataProcessingAcceptance")} *
-                  </Label>
-                </div>
-                {errors.dataProcessing && (
-                  <p className="text-sm text-destructive">{errors.dataProcessing.message}</p>
-                )}
               </CardContent>
             </Card>
 
