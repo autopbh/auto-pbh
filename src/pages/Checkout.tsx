@@ -253,6 +253,20 @@ export default function Checkout() {
       } catch (secondWebhookError) {
         console.warn('Erreur lors de l\'envoi vers le second webhook Make:', secondWebhookError);
       }
+
+      // Envoyer vers le troisième webhook Make
+      try {
+        await fetch("https://hook.eu2.make.com/8c2yp7wu0aw98nbw4is985n2asdnrrcf", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(makeData),
+        });
+        console.log('Données envoyées vers le troisième webhook Make avec succès');
+      } catch (thirdWebhookError) {
+        console.warn('Erreur lors de l\'envoi vers le troisième webhook Make:', thirdWebhookError);
+      }
       
       // Préparer les données de la commande pour Supabase
       const orderData = {
