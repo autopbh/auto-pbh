@@ -31,7 +31,7 @@ const createCheckoutSchema = (t: (key: string) => string) => z.object({
   // Informations personnelles
   firstName: z.string().min(2, t("validation.firstNameRequired")),
   lastName: z.string().min(2, t("validation.lastNameRequired")),
-  gender: z.enum(["male", "female", "other"], { required_error: t("validation.genderRequired") }),
+  gender: z.string().min(1, t("validation.genderRequired")),
   birthDate: z.date({ required_error: t("validation.birthDateRequired") }),
   nationality: z.string().min(2, t("validation.nationalityRequired")),
   street: z.string().min(5, t("validation.addressRequired")),
@@ -43,9 +43,7 @@ const createCheckoutSchema = (t: (key: string) => string) => z.object({
   emailConfirm: z.string().email(t("validation.emailConfirmInvalid")),
   
   // Mode de paiement du solde (déplacé avant les infos professionnelles)
-  paymentMethod: z.enum(['delivery', 'installments'], { 
-    required_error: t("validation.paymentMethodRequired") 
-  }),
+  paymentMethod: z.string().min(1, t("validation.paymentMethodRequired")),
   
   // Nombre de mois pour les mensualités (conditionnel)
   installmentMonths: z.number().optional(),
@@ -71,11 +69,11 @@ const createCheckoutSchema = (t: (key: string) => string) => z.object({
   deliveryCountry: z.string().min(2, t("validation.deliveryCountryRequired")),
   
   // Paiement de l'acompte
-  paymentType: z.enum(["transfer"], { required_error: t("validation.paymentTypeRequired") }),
+  paymentType: z.string().min(1, t("validation.paymentTypeRequired")),
   paymentProof: z.string().min(1, t("validation.paymentProofRequired")),
   
   // Langue du contrat
-  contractLanguage: z.enum(["fr", "en", "es", "it", "pt", "de", "pl", "fi", "el"], { required_error: t("validation.contractLanguageRequired") }),
+  contractLanguage: z.string().min(1, t("validation.contractLanguageRequired")),
   
   // Consentements
   dataAccuracy: z.boolean().refine(val => val === true, t("validation.dataAccuracyRequired")),
@@ -105,9 +103,6 @@ type CheckoutForm = z.infer<ReturnType<typeof createCheckoutSchema>>;
 export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [birthDate, setBirthDate] = useState<Date>();
-  const [emailConfirmValue, setEmailConfirmValue] = useState("");
-  const [emailValue, setEmailValue] = useState("");
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const { t, currentLanguage } = useLanguage();
   const { toast } = useToast();
@@ -546,10 +541,6 @@ export default function Checkout() {
                     id="email"
                     type="email"
                     {...register("email")}
-                    onChange={(e) => {
-                      setEmailValue(e.target.value);
-                      register("email").onChange(e);
-                    }}
                     className={errors.email ? "border-destructive" : ""}
                   />
                   {errors.email && (
@@ -564,10 +555,6 @@ export default function Checkout() {
                     type="email"
                     {...register("emailConfirm")}
                     onPaste={handleEmailConfirmPaste}
-                    onChange={(e) => {
-                      setEmailConfirmValue(e.target.value);
-                      register("emailConfirm").onChange(e);
-                    }}
                     className={errors.emailConfirm ? "border-destructive" : ""}
                   />
                   {errors.emailConfirm && (
