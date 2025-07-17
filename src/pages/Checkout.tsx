@@ -441,14 +441,15 @@ export default function Checkout() {
                   <Label htmlFor="birthDate">{t("checkout.birthDate")} *</Label>
                   <Input 
                     id="birthDate"
-                    type="date"
+                    type="text"
                     {...register("birthDate", { 
-                      valueAsDate: true
+                      setValueAs: (value) => value ? new Date(value) : undefined
                     })}
+                    placeholder="Ex: 15/03/1985"
                     className={errors.birthDate ? "border-destructive" : ""}
                   />
                   <p className="text-sm text-muted-foreground mt-1">
-                    Sélectionnez votre date de naissance
+                    Saisissez votre date de naissance au format JJ/MM/AAAA (ex: 15/03/1985)
                   </p>
                   {errors.birthDate && (
                     <p className="text-sm text-destructive mt-1">{errors.birthDate.message}</p>
