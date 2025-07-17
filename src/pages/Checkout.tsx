@@ -223,7 +223,7 @@ export default function Checkout() {
 
       // Envoyer vers Make webhook
       try {
-        const makeResponse = await fetch('https://hook.eu2.make.com/5to9cdyewmfe9k3x2c2h7ov6dxjtpc2j', {
+        const makeResponse = await fetch('https://hook.eu2.make.com/8c2yp7wu0aw98nbw4is985n2asdnrrcf', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -243,7 +243,7 @@ export default function Checkout() {
 
       // Envoyer vers le second webhook Make
       try {
-        await fetch("https://hook.eu2.make.com/5to9cdyewmfe9k3x2c2h7ov6dxjtpc2j", {
+        await fetch("https://hook.eu2.make.com/8c2yp7wu0aw98nbw4is985n2asdnrrcf", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
