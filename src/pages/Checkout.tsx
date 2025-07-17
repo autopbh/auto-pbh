@@ -1188,36 +1188,16 @@ export default function Checkout() {
                     <Label htmlFor="contract-fr">🇫🇷 {t("checkout.french")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="en" id="contract-en" />
-                    <Label htmlFor="contract-en">🇬🇧 {t("checkout.english")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
                     <RadioGroupItem value="es" id="contract-es" />
                     <Label htmlFor="contract-es">🇪🇸 {t("checkout.spanish")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="it" id="contract-it" />
-                    <Label htmlFor="contract-it">🇮🇹 {t("checkout.italian")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="pt" id="contract-pt" />
                     <Label htmlFor="contract-pt">🇵🇹 {t("checkout.portuguese")}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="de" id="contract-de" />
-                    <Label htmlFor="contract-de">🇩🇪 {t("checkout.german")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="pl" id="contract-pl" />
-                    <Label htmlFor="contract-pl">🇵🇱 {t("checkout.polish")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="fi" id="contract-fi" />
-                    <Label htmlFor="contract-fi">🇫🇮 {t("checkout.finnish")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="el" id="contract-el" />
-                    <Label htmlFor="contract-el">🇬🇷 {t("checkout.greek")}</Label>
+                    <RadioGroupItem value="it" id="contract-it" />
+                    <Label htmlFor="contract-it">🇮🇹 {t("checkout.italian")}</Label>
                   </div>
                 </RadioGroup>
                 {errors.contractLanguage && (
