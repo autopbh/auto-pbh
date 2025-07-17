@@ -448,14 +448,12 @@ export default function Checkout() {
                     id="birthDate"
                     type="date"
                     {...register("birthDate", { 
-                      valueAsDate: true,
-                      setValueAs: (value) => value ? new Date(value) : undefined
+                      valueAsDate: true
                     })}
-                    placeholder="Ex: 15/03/1985 (JJ/MM/AAAA)"
                     className={errors.birthDate ? "border-destructive" : ""}
                   />
                   <p className="text-sm text-muted-foreground mt-1">
-                    Format attendu : JJ/MM/AAAA ou utilisez le sélecteur de date
+                    Sélectionnez votre date de naissance
                   </p>
                   {errors.birthDate && (
                     <p className="text-sm text-destructive mt-1">{errors.birthDate.message}</p>
