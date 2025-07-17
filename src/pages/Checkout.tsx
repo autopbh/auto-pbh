@@ -434,7 +434,7 @@ export default function Checkout() {
                   <Input 
                     id="gender"
                     {...register("gender")}
-                    placeholder="Saisissez votre genre"
+                    placeholder="Ex: Homme, Femme, Autre"
                     className={errors.gender ? "border-destructive" : ""}
                   />
                   {errors.gender && (
@@ -574,6 +574,7 @@ export default function Checkout() {
                   <Input 
                     id="nationality"
                     {...register("nationality")}
+                    placeholder="Ex: Française, Espagnole, Italienne"
                     className={errors.nationality ? "border-destructive" : ""}
                   />
                   {errors.nationality && (
@@ -586,6 +587,7 @@ export default function Checkout() {
                   <Input 
                     id="street"
                     {...register("street")}
+                    placeholder="Ex: 123 rue de la République"
                     className={errors.street ? "border-destructive" : ""}
                   />
                   {errors.street && (
@@ -599,6 +601,7 @@ export default function Checkout() {
                     <Input 
                       id="postalCode"
                       {...register("postalCode")}
+                      placeholder="Ex: 75001"
                       className={errors.postalCode ? "border-destructive" : ""}
                     />
                     {errors.postalCode && (
@@ -611,6 +614,7 @@ export default function Checkout() {
                     <Input 
                       id="city"
                       {...register("city")}
+                      placeholder="Ex: Paris"
                       className={errors.city ? "border-destructive" : ""}
                     />
                     {errors.city && (
@@ -623,6 +627,7 @@ export default function Checkout() {
                     <Input 
                       id="country"
                       {...register("country")}
+                      placeholder="Ex: France"
                       className={errors.country ? "border-destructive" : ""}
                     />
                     {errors.country && (
@@ -698,11 +703,11 @@ export default function Checkout() {
                   <Input 
                     id="paymentMethod"
                     {...register("paymentMethod")}
-                    placeholder="Saisissez votre méthode de paiement (ex: livraison intégrale, mensualités)"
+                    placeholder="Tapez 'delivery' pour paiement à la livraison ou 'installments' pour paiement en mensualités"
                     className={errors.paymentMethod ? "border-destructive" : ""}
                   />
                   <p className="text-sm text-muted-foreground mt-1">
-                    Indiquez si vous souhaitez payer à la livraison ou en mensualités
+                    <strong>Valeurs acceptées :</strong> 'delivery' (paiement à la livraison) ou 'installments' (paiement en mensualités)
                   </p>
                 </div>
                 
@@ -774,6 +779,7 @@ export default function Checkout() {
                     <Input 
                       id="profession"
                       {...register("profession")}
+                      placeholder="Ex: Ingénieur, Médecin, Avocat, Professeur"
                       className={errors.profession ? "border-destructive" : ""}
                     />
                     {errors.profession && (
@@ -786,6 +792,7 @@ export default function Checkout() {
                     <Input 
                       id="employer"
                       {...register("employer")}
+                      placeholder="Ex: Nom de votre entreprise ou employeur"
                       className={errors.employer ? "border-destructive" : ""}
                     />
                     {errors.employer && (
@@ -798,6 +805,7 @@ export default function Checkout() {
                     <Textarea 
                       id="employerAddress"
                       {...register("employerAddress")}
+                      placeholder="Ex: 456 Avenue des Entreprises, 69000 Lyon, France"
                       className={errors.employerAddress ? "border-destructive" : ""}
                     />
                     {errors.employerAddress && (
@@ -810,6 +818,7 @@ export default function Checkout() {
                     <Input 
                       id="professionalId"
                       {...register("professionalId")}
+                      placeholder="Ex: Numéro de sécurité sociale ou identifiant professionnel"
                       className={errors.professionalId ? "border-destructive" : ""}
                     />
                     {errors.professionalId && (
@@ -823,6 +832,7 @@ export default function Checkout() {
                       id="monthlySalary"
                       type="number"
                       step="0.01"
+                      placeholder="Ex: 3500 (montant en euros)"
                       {...register("monthlySalary", { valueAsNumber: true })}
                       className={errors.monthlySalary ? "border-destructive" : ""}
                     />
@@ -848,6 +858,7 @@ export default function Checkout() {
                   <Input 
                     id="accountHolder"
                     {...register("accountHolder")}
+                    placeholder="Ex: Jean Dupont (nom complet du titulaire du compte)"
                     className={errors.accountHolder ? "border-destructive" : ""}
                   />
                   {errors.accountHolder && (
@@ -860,6 +871,7 @@ export default function Checkout() {
                   <Input 
                     id="bankName"
                     {...register("bankName")}
+                    placeholder="Ex: BNP Paribas, Crédit Agricole, Banque Postale"
                     className={errors.bankName ? "border-destructive" : ""}
                   />
                   {errors.bankName && (
@@ -909,6 +921,7 @@ export default function Checkout() {
                   <Input 
                     id="deliveryRecipient"
                     {...register("deliveryRecipient")}
+                    placeholder="Ex: Jean Dupont (nom complet du destinataire)"
                     className={errors.deliveryRecipient ? "border-destructive" : ""}
                   />
                   {errors.deliveryRecipient && (
@@ -921,6 +934,7 @@ export default function Checkout() {
                   <Textarea 
                     id="deliveryStreet"
                     {...register("deliveryStreet")}
+                    placeholder="Ex: 789 Boulevard de la Livraison, Apt 12, Bâtiment B"
                     className={errors.deliveryStreet ? "border-destructive" : ""}
                   />
                   {errors.deliveryStreet && (
@@ -934,6 +948,7 @@ export default function Checkout() {
                     <Input 
                       id="deliveryPostalCode"
                       {...register("deliveryPostalCode")}
+                      placeholder="Ex: 69000"
                       className={errors.deliveryPostalCode ? "border-destructive" : ""}
                     />
                     {errors.deliveryPostalCode && (
@@ -946,6 +961,7 @@ export default function Checkout() {
                     <Input 
                       id="deliveryCity"
                       {...register("deliveryCity")}
+                      placeholder="Ex: Lyon"
                       className={errors.deliveryCity ? "border-destructive" : ""}
                     />
                     {errors.deliveryCity && (
@@ -958,6 +974,7 @@ export default function Checkout() {
                     <Input 
                       id="deliveryCountry"
                       {...register("deliveryCountry")}
+                      placeholder="Ex: France"
                       className={errors.deliveryCountry ? "border-destructive" : ""}
                     />
                     {errors.deliveryCountry && (
@@ -1153,9 +1170,12 @@ export default function Checkout() {
                   <Input 
                     id="contractLanguage"
                     {...register("contractLanguage")}
-                    placeholder="Saisissez la langue souhaitée pour le contrat (ex: français, espagnol, portugais, italien)"
+                    placeholder="Tapez le code de langue: 'fr' (français), 'es' (espagnol), 'pt' (portugais), 'it' (italien)"
                     className={errors.contractLanguage ? "border-destructive" : ""}
                   />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    <strong>Codes acceptés :</strong> fr, es, pt, it
+                  </p>
                 </div>
                 {errors.contractLanguage && (
                   <p className="text-sm text-destructive mt-2">{errors.contractLanguage.message}</p>
