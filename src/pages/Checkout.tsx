@@ -443,127 +443,20 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>{t("checkout.birthDate")} *</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full justify-start text-left font-normal",
-                          !birthDate && "text-muted-foreground",
-                          errors.birthDate && "border-destructive"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {birthDate ? format(birthDate, "dd/MM/yyyy") : t("datePicker.selectDate")}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <div className="p-3 border-b">
-                        <div className="grid grid-cols-3 gap-2 mb-2">
-                          <div>
-                            <Label className="text-xs">Jour</Label>
-                            <Select
-                              value={birthDate?.getDate()?.toString() || ""}
-                              onValueChange={(day) => {
-                                if (day) {
-                                  const currentYear = birthDate?.getFullYear() || new Date().getFullYear() - 25;
-                                  const currentMonth = birthDate?.getMonth() || 0;
-                                  const newDate = new Date(currentYear, currentMonth, parseInt(day));
-                                  setBirthDate(newDate);
-                                  setValue("birthDate", newDate);
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="h-8">
-                                <SelectValue placeholder="Jour" />
-                              </SelectTrigger>
-                              <SelectContent className="max-h-[200px]">
-                                {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                                  <SelectItem key={day} value={day.toString()}>
-                                    {day.toString().padStart(2, '0')}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-
-                          <div>
-                            <Label className="text-xs">Mois</Label>
-                            <Select
-                              value={birthDate?.getMonth()?.toString() || ""}
-                              onValueChange={(month) => {
-                                if (month) {
-                                  const currentYear = birthDate?.getFullYear() || new Date().getFullYear() - 25;
-                                  const currentDay = birthDate?.getDate() || 1;
-                                  const newDate = new Date(currentYear, parseInt(month), currentDay);
-                                  setBirthDate(newDate);
-                                  setValue("birthDate", newDate);
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="h-8">
-                                <SelectValue placeholder="Mois" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {[
-                                  "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-                                  "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
-                                ].map((month, index) => (
-                                  <SelectItem key={index} value={index.toString()}>
-                                    {month}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          
-                          <div>
-                            <Label className="text-xs">Année</Label>
-                            <Select
-                              value={birthDate?.getFullYear()?.toString() || ""}
-                              onValueChange={(year) => {
-                                if (year) {
-                                  const currentMonth = birthDate?.getMonth() || 0;
-                                  const currentDay = birthDate?.getDate() || 1;
-                                  const newDate = new Date(parseInt(year), currentMonth, currentDay);
-                                  setBirthDate(newDate);
-                                  setValue("birthDate", newDate);
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="h-8">
-                                <SelectValue placeholder="Année" />
-                              </SelectTrigger>
-                              <SelectContent className="max-h-[200px]">
-                                {Array.from({ length: 80 }, (_, i) => {
-                                  const year = new Date().getFullYear() - 18 - i;
-                                  return (
-                                    <SelectItem key={year} value={year.toString()}>
-                                      {year}
-                                    </SelectItem>
-                                  );
-                                })}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-                      </div>
-                      <Calendar
-                        mode="single"
-                        selected={birthDate}
-                        onSelect={(date) => {
-                          if (date) {
-                            setBirthDate(date);
-                            setValue("birthDate", date);
-                          }
-                        }}
-                        disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
-                        initialFocus
-                        className="pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <Label htmlFor="birthDate">{t("checkout.birthDate")} *</Label>
+                  <Input 
+                    id="birthDate"
+                    type="date"
+                    {...register("birthDate", { 
+                      valueAsDate: true,
+                      setValueAs: (value) => value ? new Date(value) : undefined
+                    })}
+                    placeholder="Ex: 15/03/1985 (JJ/MM/AAAA)"
+                    className={errors.birthDate ? "border-destructive" : ""}
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Format attendu : JJ/MM/AAAA ou utilisez le sélecteur de date
+                  </p>
                   {errors.birthDate && (
                     <p className="text-sm text-destructive mt-1">{errors.birthDate.message}</p>
                   )}
