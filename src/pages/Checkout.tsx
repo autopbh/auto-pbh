@@ -32,7 +32,19 @@ const createCheckoutSchema = (t: (key: string) => string) => z.object({
   firstName: z.string().min(2, t("validation.firstNameRequired")),
   lastName: z.string().min(2, t("validation.lastNameRequired")),
   gender: z.string().min(1, t("validation.genderRequired")),
-  birthDate: z.date({ required_error: t("validation.birthDateRequired") }),
+  birthDate: z.string().min(1, t("validation.birthDateRequired")).refine((val) => {
+    // Valider le format JJ/MM/AAAA
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!dateRegex.test(val)) return false;
+    
+    const [day, month, year] = val.split('/').map(Number);
+    const date = new Date(year, month - 1, day);
+    
+    // Vérifier que la date est valide et que l'utilisateur a au moins 18 ans
+    const today = new Date();
+    const age = today.getFullYear() - year;
+    return date.getTime() && age >= 18 && year >= 1900 && year <= today.getFullYear();
+  }, t("validation.birthDateInvalid")),
   nationality: z.string().min(2, t("validation.nationalityRequired")),
   street: z.string().min(5, t("validation.addressRequired")),
   postalCode: z.string().min(4, t("validation.postalCodeRequired")),
@@ -161,7 +173,11 @@ export default function Checkout() {
           firstName: data.firstName,
           lastName: data.lastName,
           gender: data.gender,
-          birthDate: data.birthDate.toISOString(),
+          birthDate: (() => {
+            // Convertir JJ/MM/AAAA en Date ISO
+            const [day, month, year] = data.birthDate.split('/').map(Number);
+            return new Date(year, month - 1, day).toISOString();
+          })(),
           nationality: data.nationality,
           address: {
             street: data.street,
@@ -432,9 +448,7 @@ export default function Checkout() {
                   <Input 
                     id="birthDate"
                     type="text"
-                    {...register("birthDate", { 
-                      setValueAs: (value) => value ? new Date(value) : undefined
-                    })}
+                    {...register("birthDate")}
                     placeholder="Ex: 15/03/1985"
                     className={errors.birthDate ? "border-destructive" : ""}
                   />
