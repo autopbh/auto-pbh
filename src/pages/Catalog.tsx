@@ -5,10 +5,12 @@ import { Search, Filter, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { vehicles } from "@/data/vehicles";
+import { useRouter } from "@/hooks/useRouter";
 
 const Catalog = () => {
   const { toast } = useToast();
   const { t } = useLanguage();
+  const { navigate } = useRouter();
   const [displayVehicles, setDisplayVehicles] = useState(vehicles.map(v => ({
     id: v.id,
     name: `${v.brand} ${v.model}`,
@@ -109,8 +111,8 @@ const Catalog = () => {
                 <p className="text-muted-foreground mb-2">{vehicle.year} · {t("common.premium")}</p>
                 <p className="text-2xl font-bold text-autop-red mb-4">€{vehicle.price.toLocaleString()}</p>
                 <div className="flex justify-between">
-                  <Button asChild variant="outline">
-                    <a href={`/vehicle/${vehicle.id}`}>{t("catalog.viewDetails")}</a>
+                  <Button onClick={() => navigate(`vehicle/${vehicle.id}`)} variant="outline">
+                    {t("catalog.viewDetails")}
                   </Button>
                   <Button onClick={() => addToCart(vehicle)}>
                     <Plus className="mr-2 h-4 w-4" />
