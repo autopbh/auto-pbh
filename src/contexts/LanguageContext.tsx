@@ -20,7 +20,7 @@ const LanguageContext = createContext<LanguageContextType>({
   currentLanguage: "fr",
   setLanguage: () => {},
   t: (key: string) => key,
-  currentLangDetails: languages[2], // Default to French
+  currentLangDetails: languages[1], // Default to French
 });
 
 // Custom hook to use the language context
@@ -40,7 +40,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const langCode = pathSegments[0];
     
-    const supportedLanguages: Language[] = ['fr', 'en', 'pt', 'es', 'de', 'it', 'nl'];
+    const supportedLanguages: Language[] = ['fr', 'pt', 'es', 'it'];
     
     if (supportedLanguages.includes(langCode as Language)) {
       return langCode as Language;
@@ -61,7 +61,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   });
 
   // Get the current language details
-  const currentLangDetails = languages.find(lang => lang.code === currentLanguage) || languages[2];
+  const currentLangDetails = languages.find(lang => lang.code === currentLanguage) || languages[1];
 
   // Update language when URL changes
   useEffect(() => {
@@ -86,7 +86,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     const pathSegments = location.pathname.split('/').filter(Boolean);
     
     // Remove current language from path if it exists
-    if (['fr', 'en', 'pt', 'es', 'de', 'it', 'nl'].includes(pathSegments[0])) {
+    if (['fr', 'pt', 'es', 'it'].includes(pathSegments[0])) {
       pathSegments.shift();
     }
     

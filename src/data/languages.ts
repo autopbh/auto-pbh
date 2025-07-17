@@ -8,11 +8,6 @@ export const languages: LanguageOption[] = [
     flag: "🇵🇹"
   },
   {
-    code: "en",
-    name: "English",
-    flag: "🇬🇧"
-  },
-  {
     code: "fr",
     name: "Français",
     flag: "🇫🇷"
@@ -23,18 +18,8 @@ export const languages: LanguageOption[] = [
     flag: "🇪🇸"
   },
   {
-    code: "de",
-    name: "Deutsch",
-    flag: "🇩🇪"
-  },
-  {
     code: "it",
     name: "Italiano",
     flag: "🇮🇹"
-  },
-  {
-    code: "nl",
-    name: "Nederlands",
-    flag: "🇳🇱"
   }
 ];

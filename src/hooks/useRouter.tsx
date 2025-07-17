@@ -10,7 +10,7 @@ export const useRouter = () => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const langCode = pathSegments[0];
     
-    const supportedLanguages: Language[] = ['fr', 'en', 'pt', 'es', 'de', 'it', 'nl'];
+    const supportedLanguages: Language[] = ['fr', 'pt', 'es', 'it'];
     
     if (supportedLanguages.includes(langCode as Language)) {
       return langCode as Language;
