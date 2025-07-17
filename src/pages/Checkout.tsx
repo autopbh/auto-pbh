@@ -430,24 +430,13 @@ export default function Checkout() {
                 </div>
 
                 <div>
-                  <Label>{t("checkout.gender")} *</Label>
-                  <RadioGroup 
-                    onValueChange={(value) => setValue("gender", value as "male" | "female" | "other")}
-                    className="flex gap-6 mt-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="male" id="male" />
-                      <Label htmlFor="male">{t("checkout.male")}</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="female" id="female" />
-                      <Label htmlFor="female">{t("checkout.female")}</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="other" id="other" />
-                      <Label htmlFor="other">{t("checkout.other")}</Label>
-                    </div>
-                  </RadioGroup>
+                  <Label htmlFor="gender">{t("checkout.gender")} *</Label>
+                  <Input 
+                    id="gender"
+                    {...register("gender")}
+                    placeholder="Saisissez votre genre"
+                    className={errors.gender ? "border-destructive" : ""}
+                  />
                   {errors.gender && (
                     <p className="text-sm text-destructive mt-1">{errors.gender.message}</p>
                   )}
@@ -704,38 +693,18 @@ export default function Checkout() {
                 </p>
               </CardHeader>
               <CardContent>
-                <RadioGroup 
-                  onValueChange={(value) => setValue("paymentMethod", value as "delivery" | "installments")}
-                  className="space-y-4"
-                >
-                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="delivery" id="delivery" />
-                      <div className="flex-1">
-                        <Label htmlFor="delivery" className="font-medium cursor-pointer">
-                          {t("checkout.integralPaymentDelivery")}
-                        </Label>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {t("checkout.integralPaymentDesc").replace("{amount}", formatPrice(total - depositAmount))}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
-                    <div className="flex items-center space-x-3">
-                      <RadioGroupItem value="installments" id="installments" />
-                      <div className="flex-1">
-                        <Label htmlFor="installments" className="font-medium cursor-pointer">
-                          {t("checkout.monthlyPaymentLabel")}
-                        </Label>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {t("checkout.monthlyPaymentDesc")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </RadioGroup>
+                <div>
+                  <Label htmlFor="paymentMethod">{t("checkout.paymentMethod")} *</Label>
+                  <Input 
+                    id="paymentMethod"
+                    {...register("paymentMethod")}
+                    placeholder="Saisissez votre méthode de paiement (ex: livraison intégrale, mensualités)"
+                    className={errors.paymentMethod ? "border-destructive" : ""}
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Indiquez si vous souhaitez payer à la livraison ou en mensualités
+                  </p>
+                </div>
                 
                 {/* Sélection du nombre de mois si mensualités choisies */}
                 {watchedPaymentMethod === 'installments' && (
@@ -1179,27 +1148,15 @@ export default function Checkout() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <RadioGroup 
-                  onValueChange={(value) => setValue("contractLanguage", value as any)}
-                  className="grid grid-cols-2 md:grid-cols-3 gap-4"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="fr" id="contract-fr" />
-                    <Label htmlFor="contract-fr">🇫🇷 {t("checkout.french")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="es" id="contract-es" />
-                    <Label htmlFor="contract-es">🇪🇸 {t("checkout.spanish")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="pt" id="contract-pt" />
-                    <Label htmlFor="contract-pt">🇵🇹 {t("checkout.portuguese")}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="it" id="contract-it" />
-                    <Label htmlFor="contract-it">🇮🇹 {t("checkout.italian")}</Label>
-                  </div>
-                </RadioGroup>
+                <div>
+                  <Label htmlFor="contractLanguage">{t("checkout.contractLanguage")} *</Label>
+                  <Input 
+                    id="contractLanguage"
+                    {...register("contractLanguage")}
+                    placeholder="Saisissez la langue souhaitée pour le contrat (ex: français, espagnol, portugais, italien)"
+                    className={errors.contractLanguage ? "border-destructive" : ""}
+                  />
+                </div>
                 {errors.contractLanguage && (
                   <p className="text-sm text-destructive mt-2">{errors.contractLanguage.message}</p>
                 )}
